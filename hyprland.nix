@@ -6,10 +6,16 @@ wayland.windowManager.hyprland = {
 
 wayland.windowManager.hyprland.settings = {
 	"$mod" = "SUPER";
+	"$terminal" = "kitty";
+	"$filemanager" = "nautilus";
+	"$menu" = "fuzzel";
+	"$browser" = "firefox";
 
 	monitor = [
+		# Monitor
 		",highres,0x0,1.333333,bitdepth,10,vrr,1"
-		"eDP-1,highres,1920x0,1.6,bitdepth,10,vrr,1"
+		# Laptop
+		"eDP-1,highres,auto-right,1.6,bitdepth,10,vrr,1"
 	];
 	
 	exec-once = [
@@ -142,18 +148,57 @@ wayland.windowManager.hyprland.settings = {
 		workspace_swipe = true;
 	};
 
-	bind = [
-		"$mod, F, exec, firefox"
-		", Print, exec, grimblast copy area"
-		"$mod, RETURN, exec, kitty"
+	bindm = [
+		# Window mouse control
+		"$mod, mouse:272, movewindow"
+		"$mod, mouse:273, resizewindow"
+		"$mod ALT, mouse:272, resizewindow"
+	];
 
+	bind = [
+		# Run programs
+		"$mod, RETURN, exec, $terminal"
+		"$mod, RETURN, exec, hyprctl keyword input:kb_layout us,ru"
+		"$mod, D, exec, $menu"
+		"$mod, D, exec, hyprctl keyword input:kb_layout us,ru"
+		"$mod, E, exec, $filemanager"
+		"$mod, F, exec, $browser"
+
+		# Windows control
 		"$mod, Q, killactive"
 		"$mod, O, exit"
-		"$mod, D, exec, fuzzel"
+		"$mod, V, togglefloating"
+		"$mod, P, pseudo"
+		"$mod, s, togglesplit"
+		"$mod, g, togglegroup"
+		"$mod, tab, changegroupactive"
+		"$mod, F, fullscreen"
+		# Move focus
+		"$mod, left, movefocus, l"
+		"$mod, right, movefocus, r"
+		"$mod, up, movefocus, u"
+		"$mod, down, movefocus, d"
+		# Move window
+		"$mod SHIFT, left, movewindow, l"
+		"$mod SHIFT, right, movewindow, r"
+		"$mod SHIFT, up, movewindow, u"
+		"$mod SHIFT, down, movewindow, d"
+
+		# Lock screen
 		"$mod, l, exec, swaylock -f -c 000000"
 		"$mod, l, exec, hyprctl keyword input:kb_layout us,ru"
-	]
 
+		# Screenshot
+		",PRINT, exec, grim ~/Pictures/ps_$(date +\"%Y%m%d%H%M%S\").png - | wl-copy"
+		"SUPER_SHIFT, S, exec, grim -g \"$(slurp)\" - | wl-copy"
+
+		# Brightness
+		", XF86MonBrightnessUp, exec, brightnessctl set 10%+"
+		", XF86MonBrightnessDown, exec, brightnessctl set 10%-"
+		"$mod, XF86MonBrightnessUp, exec, brightnessctl set 2%+"
+		"$mod, XF86MonBrightnessDown, exec, brightnessctl set 2%-"
+
+	]
 	++ (
 	# workspaces
 	# binds $mod + [shift +] {1..10} to [move to] workspace {1..10}

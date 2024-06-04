@@ -1,22 +1,16 @@
-{pkgs, lib, config, ...}:
-	
-	# let
-	#     startupScript = pkgs.pkgs.writeShellScriptBin "start" ''
-	#       ${pkgs.waybar}/bin/waybar &
-	#       sleep 1
-	#     '';
-	# in
-	# {
-        {
+{pkgs, lib, config, ...}: {
+
 	home = {
 		username = "user";
 		homeDirectory = "/home/user";
 		stateVersion = "23.11";
 		
 		packages = with pkgs; [
-			fuzzel
-			mako
-			swayidle swaylock
+			fuzzel # run menu
+			mako # notifications
+			swayidle swaylock # screen lock
+			grim slurp # screenshot tool
+			brightnessctl # screen light
 		];
 	};
 	imports = [
