@@ -23,6 +23,24 @@ wayland.windowManager.hyprland.settings = {
 		"swayidle -w timeout 300 'swaylock -f -c 000000' timeout 305 'hyprctl dispatch dpms off && hyprctl keyword input:kb_layout us,ru' resume 'hyprctl dispatch dpms on' before-sleep 'swaylock -c 000000'"
 	];
 
+	env = [
+		"GTK_THEME,Adwaita-dark"
+		"GDK_BACKEND,wayland,x11"
+		"QT_QPA_PLATFORM,wayland;xcb"
+		"SDL_VIDEODRIVER,wayland;"
+		"CLUTTER_BACKEND,wayland"
+		"QT_QPA_PLATFORMTHEME,qt6ct"
+		"XDG_CURRENT_DESKTOP,Hyprland"
+		"XDG_SESSION_TYPE,wayland"
+		"XDG_SESSION_DESKTOP,Hyprland"
+		"QT_AUTO_SCREEN_SCALE_FACTOR,1"
+		"QT_WAYLAND_DISABLE_WINDOWDECORATION,1"
+		"XCURSOR_THEME,Bibata-Modern-Ice"
+		"XCURSOR_SIZE,24"
+		"MOZ_ENABLE_WAYLAND,1"
+		"GDK_SCALE,2"
+	];
+
 	input = {
 		kb_layout = "us,ru";
 		kb_variant = "";
@@ -77,11 +95,6 @@ wayland.windowManager.hyprland.settings = {
 	xwayland = {
   		force_zero_scaling = true;
 	};
-	# toolkit-specific scale
-	env = [
-		"GDK_SCALE,2"
-		"XCURSOR_SIZE,32"
-	];
 
 	decoration = {
 		rounding = 0;

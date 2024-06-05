@@ -1,28 +1,37 @@
-{pkgs, lib, config, ...}: {
+{ pkgs, lib, config, inputs, ... }: {
+
+	imports = [
+		inputs.nix-colors.homeManagerModules.default
+		./features/mako.nix
+		./hyprland.nix
+	];
+	
+	colorScheme = inputs.nix-colors.colorSchemes.gruvbox-dark-medium;
 
 	home = {
 		username = "user";
 		homeDirectory = "/home/user";
 		stateVersion = "23.11";
-		
+		sessionVariables.GTK_THEME = "Adwaita-dark";
+
 		packages = with pkgs; [
 			fuzzel # run menu
-			mako # notifications
+			# mako # notifications
 			swayidle swaylock # screen lock
 			grim slurp # screenshot tool
 			brightnessctl # screen light
+
+			libreoffice-fresh
+			xfce.thunar
+			unzip
 		];
 	};
-	imports = [
-		./hyprland.nix
-	];
-  	programs = {
-		waybar = {
-      			enable = true;
-      			package = pkgs.waybar.overrideAttrs (oldAttrs: {
-        			mesonFlags = oldAttrs.mesonFlags ++ [ "-Dexperimental=true" ];
-  	    		});
-  		};
+
+	programs.waybar = {
+		enable = true;
+		package = pkgs.waybar.overrideAttrs (oldAttrs: {
+			mesonFlags = oldAttrs.mesonFlags ++ [ "-Dexperimental=true" ];
+		});
 	};
     
     	programs.zsh = {
@@ -30,7 +39,9 @@
       		enableAutosuggestions = true;
       		syntaxHighlighting.enable = true;
 		shellAliases = {
-			rebuild = "sudo nixos-rebuild switch";
+			rebuild-nixos = "sudo nixos-rebuild switch --flake \"/home/user/nix/.\"";
+			rebuild-home = "home-manager switch --flake \"/home/user/nix/.\"";
+			update-nixos = "sudo nix-channel --update && sudo nix flake update \"/home/user/nix/.\" && rebuild-nixos";
 		};
       		oh-my-zsh = {
         		enable = true;
@@ -45,7 +56,6 @@
 		enable = true;
 		defaultEditor = true;
 		plugins = with pkgs.vimPlugins; [
-			gruvbox-material
 			nerdtree
 			tcomment_vim
 		];

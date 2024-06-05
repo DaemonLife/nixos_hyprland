@@ -3,14 +3,11 @@
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
 { config, pkgs, lib, inputs, ... }: {
-
  
   # Imports
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
-      # inputs.home-manager.nixosModules.default
-      # ./home.nix
     ];
 
   programs.hyprland.enable = true;
@@ -24,7 +21,6 @@
 		useOSProber = true;
         };
 	efi = {
-		# efiSysMountPoint = "/efi";
 		canTouchEfiVariables = true;
 	};
   };
@@ -39,8 +35,9 @@
   # Enable networking
   networking.networkmanager.enable = true;
 
-  # Set your time zone.
+  # Set your time zone and andd compatible with Windows
   time.timeZone = "Europe/Moscow";
+  time.hardwareClockInLocalTime = true;
 
   # Select internationalisation properties.
   i18n.defaultLocale = "en_US.UTF-8";
@@ -61,14 +58,14 @@
 
   # Enable the GNOME Desktop Environment.
   services.xserver.displayManager.gdm.enable = true;
-  services.xserver.desktopManager.gnome.enable = true;
+  # services.xserver.desktopManager.gnome.enable = true;
 
   # Configure keymap in X11
   services.xserver = {
     layout = "us,ru";
     xkbVariant = "";
   };
-
+  
   # Enable CUPS to print documents.
   services.printing.enable = true;
 
@@ -116,8 +113,8 @@
 	  wl-clipboard
 	  home-manager
   ];
-  
-  # Some programs need SUID wrappers, can be configured further or are
+   
+     # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   # programs.mtr.enable = true;
   # programs.gnupg.agent = {
