@@ -29,7 +29,9 @@ in {
 	homeConfigurations.user = home-manager.lib.homeManagerConfiguration {
 		pkgs = nixpkgs.legacyPackages.${system};
 		extraSpecialArgs = { inherit inputs; };
-		modules = [ ./home.nix ];
+		modules = [ 
+			./home.nix 
+		];
 	}; 
 
 };

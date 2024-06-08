@@ -58,8 +58,8 @@
 
   # Enable the GNOME Desktop Environment.
   services.xserver.displayManager.gdm.enable = true;
-  # services.xserver.desktopManager.gnome.enable = true;
-
+  services.xserver.desktopManager.gnome.enable = true;
+  # services.xserver.displayManager.sessionCommands = "export GTK_THEME=Adwaita:dark";
   # Configure keymap in X11
   services.xserver = {
     layout = "us,ru";
@@ -108,12 +108,13 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-	  telegram-desktop kitty htop btop zsh oh-my-zsh git zsh-vi-mode
+	  telegram-desktop kitty htop btop zsh oh-my-zsh git
 	  os-prober grub2 tor-browser transmission-gtk 
 	  wl-clipboard
 	  home-manager
+	  dconf
   ];
-   
+
      # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   # programs.mtr.enable = true;

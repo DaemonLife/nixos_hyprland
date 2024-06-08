@@ -3,9 +3,9 @@
 	services.mako = with config.colorScheme.colors; {
 		enable = true;
 
-		backgroundColor = "#${base01}";
-		borderColor = "#${base0E}";
-		textColor = "#${base04}";
+		backgroundColor = "#${base00}";
+		borderColor = "#${base0D}";
+		textColor = "#${base05}";
 		layer = "overlay";
 		anchor = "bottom-right";
 		width = 350;

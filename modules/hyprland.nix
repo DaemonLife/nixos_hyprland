@@ -1,10 +1,11 @@
-{
+{ pkgs, config, ... }: {
+
 wayland.windowManager.hyprland = {
 	enable = true;
 	xwayland.enable = true;
 };
 
-wayland.windowManager.hyprland.settings = {
+wayland.windowManager.hyprland.settings = with config.colorScheme.colors; {
 	"$mod" = "SUPER";
 	"$terminal" = "kitty";
 	"$filemanager" = "nautilus";
@@ -24,7 +25,7 @@ wayland.windowManager.hyprland.settings = {
 	];
 
 	env = [
-		"GTK_THEME,Adwaita-dark"
+		# "GTK_THEME,Adwaita"
 		"GDK_BACKEND,wayland,x11"
 		"QT_QPA_PLATFORM,wayland;xcb"
 		"SDL_VIDEODRIVER,wayland;"
@@ -35,7 +36,7 @@ wayland.windowManager.hyprland.settings = {
 		"XDG_SESSION_DESKTOP,Hyprland"
 		"QT_AUTO_SCREEN_SCALE_FACTOR,1"
 		"QT_WAYLAND_DISABLE_WINDOWDECORATION,1"
-		"XCURSOR_THEME,Bibata-Modern-Ice"
+		"XCURSOR_THEME,Qogir-dark"
 		"XCURSOR_SIZE,24"
 		"MOZ_ENABLE_WAYLAND,1"
 		"GDK_SCALE,2"
@@ -70,13 +71,12 @@ wayland.windowManager.hyprland.settings = {
 
 	general = {
 		# See https://wiki.hyprland.org/Configuring/Variables/ for more
-		gaps_in = 5;
-		gaps_out = "9, 7, 7, 7";
-		border_size = 1;
-		# col.active_border = rgba(33ccffee) rgba(00ff99ee) 45deg
-		"col.active_border" = "rgba(3584e4ee) rgba(c3e88dee) 90deg";
-		"col.inactive_border" = "rgba(1e1e1eff)";
-		# col.inactive_border = rgba(595959aa)
+		gaps_in = 3;
+		gaps_out = "6, 6, 6, 6";
+		# gaps_out = "9, 7, 7, 7";
+		border_size = 2;
+		"col.active_border" = "rgba(${base0D}ff) rgba(${base0B}ff) 45deg";
+		"col.inactive_border" = "rgba(${base00}ff)";
 		layout = "dwindle";
 		# Please see https://wiki.hyprland.org/Configuring/Tearing/ before you turn this on
 		allow_tearing = false;
@@ -114,7 +114,7 @@ wayland.windowManager.hyprland.settings = {
 		shadow_offset = "1 2";
 		shadow_range = 10;
 		shadow_render_power = 5;
-		"col.shadow" = "0x66404040";
+		# "col.shadow" = "0x66404040";
 		# blurls = [
 		# 	"gtk-layer-shell"
 		# 	waybar
@@ -174,8 +174,9 @@ wayland.windowManager.hyprland.settings = {
 		"$mod, RETURN, exec, hyprctl keyword input:kb_layout us,ru"
 		"$mod, D, exec, $menu"
 		"$mod, D, exec, hyprctl keyword input:kb_layout us,ru"
-		"$mod, E, exec, $filemanager"
-		"$mod, F, exec, $browser"
+		"$mod, N, exec, $filemanager"
+		"$mod, B, exec, $browser"
+		"$mod, T, exec, telegram-desktop"
 
 		# Windows control
 		"$mod, Q, killactive"
