@@ -21,6 +21,7 @@
 			grim slurp # screenshot tool
 			brightnessctl # screen light
 			pavucontrol
+			gnome.gnome-power-manager
 
 			libreoffice-fresh
 			nautilus-open-in-blackbox
@@ -30,14 +31,9 @@
 
 			# theme
 			font-awesome
-			# gtk4
-			# libadwaita
-			# gradience
 			qogir-icon-theme
 			gnome.gnome-tweaks
 			gnomeExtensions.user-themes
-			# xdg-desktop-portal-gtk
-			# xdg-desktop-portal-hyprland
 		];
 	};
 

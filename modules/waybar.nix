@@ -86,7 +86,7 @@ programs.waybar = with config.colorScheme.colors; {
 			};
 
 			clock = {
-				format = "{:%b%e %H:%M}";
+				format = "{:%y/%m/%d  %H:%M}";
 				on-click = "exec gnome-calendar";
 			};
 
@@ -98,9 +98,9 @@ programs.waybar = with config.colorScheme.colors; {
 					critical = 20;
 				};
 				interval = 30;
-				format = "bat: {capacity}%";
-				format-charging = "bat: {capacity}%";
-				format-plugged = "bat: {capacity}%";
+				format = "bat: {capacity}";
+				format-charging = "bat: {capacity}+";
+				format-plugged = "bat: {capacity}";
 				on-click = "gnome-power-statistics";
 			};
 
@@ -110,8 +110,8 @@ programs.waybar = with config.colorScheme.colors; {
 				format-ethernet = " {ipaddr}/{cidr}";
 				format-linked = " (No IP)";
 				format-disconnected = "wifi";
-				on-click = "nmcli dev wifi rescan && gnome-terminal --hide-menubar -- nmtui";
-				on-click-right = "wifi toggle";
+				on-click-right = "kitty --hold sh -c \"nmcli dev wifi rescan && nmtui\"";
+				on-click = "rfkill toggle wifi";
 			};
 
 			pulseaudio = {
@@ -148,9 +148,9 @@ programs.waybar = with config.colorScheme.colors; {
 	@define-color accent #${base0D};
 	@define-color green #${base0B};
 	@define-color red #${base08};
-
+	
+	/* Default setting for all modules */
 	* {
-	    color: @white;
 	    border: none;
 	    font-family: "Jetbrains Mono Regular";
 	    font-size: 14px;
@@ -159,20 +159,27 @@ programs.waybar = with config.colorScheme.colors; {
 	
 	/* Bar background */
 	window#waybar { background-color: @dark; }
+
 	/* Window title */
 	#window { padding: 0px 20px 0px 20px; }
 
-	#language, #idle_inhibitor, #network, #pulseaudio, #battery, #date, #tray {
+	/* Default padding for some modules */
+	#workspaces button, #language, #idle_inhibitor, #network, #pulseaudio, #battery, #clock, #tray {
 	    padding: 0px 5px 0px 5px;
 	}
 
-	#clock { padding: 0px 2px 0px 5px; }
+	/* Default color for all modules except workspaces button.active. It's important to keep it. */
+	#workspaces button, #window#waybar, #window, #idle_inhibitor, #network, #pulseaudio, #battery, #clock, #tray, #bluetooth, #language {
+		color: @white;
+	}
 
 	#workspaces button {
-	    border-radius: 0px;
-	    padding: 0px 5px 0px 5px;
+		border-radius: 0px;
 	}
-	#workspaces button.active { background-color: @accent; }
+	#workspaces button.active {
+		color: @dark;
+		background-color: @accent;
+	}
 
 	#network.disconnected { color: @red;}
 	#network.disabled { color: @gray; }
@@ -202,7 +209,8 @@ programs.waybar = with config.colorScheme.colors; {
 	    animation-iteration-count: infinite;
 	    animation-direction: alternate;
 	}
-	@keyframes blink { to { color: @accent; } }
+	#battery.plugged { color: @green; }
+	@keyframes blink { to { color: @white; } }
 	'';
 };
 }
