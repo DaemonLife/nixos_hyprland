@@ -17,7 +17,5 @@
 		groupBy = "summary";
 		font = "JetBrains Mono Regular";
 		format = "<b>%s</b>\\n%b";
-
 	};
-
 }

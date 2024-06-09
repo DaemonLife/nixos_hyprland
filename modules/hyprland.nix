@@ -212,6 +212,13 @@ wayland.windowManager.hyprland.settings = with config.colorScheme.colors; {
 		"$mod, XF86MonBrightnessUp, exec, brightnessctl set 2%+"
 		"$mod, XF86MonBrightnessDown, exec, brightnessctl set 2%-"
 
+		# Audio control
+		", XF86AudioRaiseVolume, exec, amixer sset 'Master' 5%+"
+		", XF86AudioLowerVolume, exec, amixer sset 'Master' 5%-"
+		", XF86AudioMute, exec, amixer set Master toggle"
+		", XF86AudioMicMute, exec, amixer sset Capture toggle"
+
+
 	]
 	++ (
 	# workspaces
