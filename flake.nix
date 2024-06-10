@@ -3,12 +3,16 @@ description = "My flake";
 
 inputs = {
 	nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+	hyprland.url = "github:hyprwm/Hyprland";
+	nix-colors.url = "github:misterio77/nix-colors";
 	home-manager = {
 		url = "github:nix-community/home-manager";
 		inputs.nixpkgs.follows = "nixpkgs";
 	};
-	hyprland.url = "github:hyprwm/Hyprland";
-	nix-colors.url = "github:misterio77/nix-colors";
+	nixvim = {
+		url = "github:nix-community/nixvim";
+		inputs.nixpkgs.follows = "nixpkgs";
+	};
 };
 
 outputs = { self, nixpkgs, home-manager, ... }@inputs:

@@ -8,6 +8,8 @@
 		./modules/kitty.nix
 		./modules/gtk.nix
 		./modules/waybar.nix
+		./modules/nixvim.nix
+		inputs.nixvim.homeManagerModules.nixvim
 	];
 	colorScheme = inputs.nix-colors.colorSchemes.horizon-terminal-dark;
 
@@ -55,7 +57,6 @@
 			flake-rebuild = "sudo nixos-rebuild switch --flake \"/home/user/nix/.\"";
 			home-rebuild = "home-manager switch --flake \"/home/user/nix/.\"";
 			flake-upgrade = "sudo nix-channel --update && sudo nix flake update \"/home/user/nix/.\" && flake-rebuild";
-			vi = "nvim";
 			mwin = "sudo mount /dev/nvme0n1p3 /mnt/windows -t ntfs3";
 			cdwin = "cd /mnt/windows/Users/user";
 		};
@@ -68,15 +69,6 @@
       		};
     	};
 
-	programs.neovim = {
-		enable = true;
-		defaultEditor = true;
-		plugins = with pkgs.vimPlugins; [
-			nerdtree
-			tcomment_vim
-		];
-	};
-	
 	programs = {
 		btop.enable = true;
 	};
