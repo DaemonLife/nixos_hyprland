@@ -35,6 +35,10 @@
   # Enable networking
   networking.networkmanager.enable = true;
 
+  # Bluetooth
+  hardware.bluetooth.enable = true;
+  hardware.bluetooth.powerOnBoot = false;
+
   # Set your time zone and andd compatible with Windows
   time.timeZone = "Europe/Moscow";
   time.hardwareClockInLocalTime = true;
@@ -62,8 +66,8 @@
 
   # Configure keymap in X11
   services.xserver = {
-    layout = "us,ru";
-    xkbVariant = "";
+    xkb.layout = "us,ru";
+    xkb.variant = "";
   };
   
   # Enable CUPS to print documents.
