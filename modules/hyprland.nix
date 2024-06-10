@@ -5,7 +5,7 @@ wayland.windowManager.hyprland = {
 	xwayland.enable = true;
 };
 
-wayland.windowManager.hyprland.settings = with config.colorScheme.colors; {
+wayland.windowManager.hyprland.settings = with config.colorScheme.palette; {
 	"$mod" = "SUPER";
 	"$terminal" = "kitty";
 	"$filemanager" = "nautilus";

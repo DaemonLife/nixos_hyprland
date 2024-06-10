@@ -1,6 +1,6 @@
 { pkgs, config, ... }: {
 
-programs.nixvim = with config.colorScheme.colors; {
+programs.nixvim = with config.colorScheme.palette; {
 
 enable = true;
 defaultEditor = true;
@@ -8,7 +8,9 @@ viAlias = true;
 # luaLoader.enable = true;
 
 plugins = {
-    lightline.enable = true;
+    # lightline.enable = true;
+    nvim-colorizer.enable = true;
+    # nvim-colorizer.fileTypes = [ "tex" ];
 };
 
 # Base16 theme setup

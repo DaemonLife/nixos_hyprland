@@ -2,6 +2,7 @@
 
 	imports = [
 		inputs.nix-colors.homeManagerModules.default
+		inputs.nixvim.homeManagerModules.nixvim
 		./modules/mako.nix
 		./modules/fuzzel.nix
 		./modules/hyprland.nix
@@ -9,9 +10,9 @@
 		./modules/gtk.nix
 		./modules/waybar.nix
 		./modules/nixvim.nix
-		inputs.nixvim.homeManagerModules.nixvim
 	];
-	colorScheme = inputs.nix-colors.colorSchemes.horizon-terminal-dark;
+	# colorScheme = inputs.nix-colors.colorSchemes.horizon-terminal-dark;
+	colorScheme = inputs.nix-colors.colorSchemes.stella;
 
 	home = {
 		username = "user";
@@ -22,8 +23,8 @@
 			swayidle swaylock # screen lock
 			grim slurp # screenshot tool
 			brightnessctl # screen light
-			pavucontrol
-			gnome.gnome-power-manager
+			pavucontrol # audio gui control
+			gnome.gnome-power-manager # power statistic
 
 			libreoffice-fresh
 			nautilus-open-in-blackbox
@@ -33,25 +34,26 @@
 
 			# theme
 			font-awesome
+            vimix-icon-theme
 			qogir-icon-theme
 			gnome.gnome-tweaks
 			gnomeExtensions.user-themes
 		];
 	};
 
-	# dconf.settings = {
-	# 	"org/gnome/desktop/interface" = {
-	# 		color-scheme = "prefer-dark";
-	# 	};
-	# };
+	dconf.settings = {
+		"org/gnome/desktop/interface" = {
+			color-scheme = "prefer-dark";
+		};
+	};
 	qt.enable = true;
-	qt.platformTheme = "gtk";
+	qt.platformTheme.name = "gtk";
 	qt.style.name = "adwaita-dark";
 	qt.style.package = pkgs.adwaita-qt;
 
     	programs.zsh = {
       		enable = true;
-      		enableAutosuggestions = true;
+      		autosuggestion.enable = true;
       		syntaxHighlighting.enable = true;
 		shellAliases = {
 			flake-rebuild = "sudo nixos-rebuild switch --flake \"/home/user/nix/.\"";

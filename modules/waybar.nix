@@ -1,6 +1,6 @@
 { pkgs, config, ... }: {
 
-programs.waybar = with config.colorScheme.colors; {
+programs.waybar = with config.colorScheme.palette; {
 	enable = true;
 
 	# Bug fix for nixos and hyprland
@@ -52,7 +52,7 @@ programs.waybar = with config.colorScheme.colors; {
 			};
 
 			"hyprland/window" = {
-				max-length = 200;
+				max-length = 50;
 				separate-outputs = true;
 			};
 
@@ -148,6 +148,7 @@ programs.waybar = with config.colorScheme.colors; {
 	@define-color accent #${base0D};
 	@define-color green #${base0B};
 	@define-color red #${base08};
+	@define-color magenta #${base0E};
 	
 	/* Default setting for all modules */
 	* {
@@ -169,7 +170,7 @@ programs.waybar = with config.colorScheme.colors; {
 	}
 
 	/* Default color for all modules except workspaces button.active. It's important to keep it. */
-	#workspaces button, #window#waybar, #window, #idle_inhibitor, #network, #pulseaudio, #battery, #clock, #tray, #bluetooth, #language {
+	#workspaces button, #window#waybar, #window, #idle_inhibitor, #network, #pulseaudio, #clock, #tray, #bluetooth, #language {
 		color: @white;
 	}
 
@@ -177,7 +178,7 @@ programs.waybar = with config.colorScheme.colors; {
 		border-radius: 0px;
 	}
 	#workspaces button.active {
-		color: @dark;
+		color: @gray;
 		background-color: @accent;
 	}
 
@@ -187,7 +188,7 @@ programs.waybar = with config.colorScheme.colors; {
 	#idle_inhibitor.activated { color: @green; }
 	#idle_inhibitor.deactivated { color: @gray; }
 
-	#bluetooth.activated { color: @green; }
+	#bluetooth { color: @green; }
 	#bluetooth.disabled { color: @gray; }
 
 	#pulseaudio.muted { color: @gray; }

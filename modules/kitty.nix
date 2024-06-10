@@ -1,6 +1,6 @@
 { pkgs, config, ... }: {
 	
-	programs.kitty = with config.colorScheme.colors; {
+	programs.kitty = with config.colorScheme.palette; {
 
 		enable = true;
 		# theme = "";
@@ -26,7 +26,7 @@
 			draw_minimal_borders = "yes";
 			# window_margin_width 3 4
 			window_padding_width = "3 4";
-			inactive_text_alpha = "0.5";
+			# inactive_text_alpha = "0.5";
 			tab_bar_style = "hidden";
 			confirm_os_window_close = "0";
 

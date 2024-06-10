@@ -1,6 +1,6 @@
 { pkgs, config, ... }: {
 
-programs.fuzzel = with config.colorScheme.colors; {
+programs.fuzzel = with config.colorScheme.palette; {
 	enable = true;
 	settings = {
 		main = {
@@ -18,7 +18,7 @@ programs.fuzzel = with config.colorScheme.colors; {
 			text = "${base05}ff";
 			match = "${base0D}ff";
 			selection = "${base0D}dd";
-			selection-match = "${base0A}ff";
+			selection-match = "${base09}ff";
 			selection-text = "${base00}ff";
 			border = "${base0D}ff";
 		};
