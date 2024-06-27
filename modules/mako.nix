@@ -2,7 +2,6 @@
 
 	services.mako = with config.colorScheme.palette; {
 		enable = true;
-
 		backgroundColor = "#${base00}";
 		borderColor = "#${base0D}";
 		textColor = "#${base05}";

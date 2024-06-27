@@ -95,7 +95,7 @@ gtk = with config.colorScheme.colors; {
         gtk-application-prefer-dark-theme=1;
     };
     gtk3.extraConfig = {
-        gtk-theme-name = "Adwaita-dark";
+        # gtk-theme-name = "Adwaita-dark";
         gtk-application-prefer-dark-theme=1;
     };
 

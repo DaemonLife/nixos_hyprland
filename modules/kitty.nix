@@ -3,7 +3,6 @@
 	programs.kitty = with config.colorScheme.palette; {
 
 		enable = true;
-		# theme = "";
 		shellIntegration.enableZshIntegration = true;
 		settings = {
 
@@ -22,20 +21,21 @@
 			visual_bell_duration = "0.1";
 			hide_window_decorations = "yes";
 			open_url_with = "firefox";
-			window_border_width = "0.0pt";
-			draw_minimal_borders = "yes";
-			# window_margin_width 3 4
-			window_padding_width = "3 4";
+			window_border_width = "0pt";
+			# draw_minimal_borders = "yes";
+			window_margin_width = "0";
+			window_padding_width = "0 10 10 10";
 			# inactive_text_alpha = "0.5";
 			tab_bar_style = "hidden";
 			confirm_os_window_close = "0";
+            placement_strategy = "top-left";
 
 			# Colors
 			visual_bell_color = "#${base04}";
 			foreground = "#${base06}";
 			background = "#${base00}"; 
-			cursor = "#${base06}";
-			cursor_text_color = "#${base06}"; 
+			cursor = "#${base07}";
+			cursor_text_color = "#${base00}"; 
 			selection_foreground = "#${base02}"; 
 			selection_background = "#${base0D}"; 
 			# black

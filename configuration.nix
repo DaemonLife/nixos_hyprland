@@ -36,7 +36,7 @@
   networking.networkmanager.enable = true;
 
   # Bluetooth
-  hardware.bluetooth.enable = true;
+  # hardware.bluetooth.enable = true;
   hardware.bluetooth.powerOnBoot = false;
 
   # Set your time zone and andd compatible with Windows
@@ -101,9 +101,6 @@
     packages = with pkgs; [  ];
   };
 
-  # Install firefox.
-  programs.firefox.enable = true;
-
   # Allow unfree packages
   nixpkgs.config = { allowUnfree = true; };
 
@@ -112,14 +109,14 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-	  telegram-desktop kitty htop btop zsh oh-my-zsh git
-	  os-prober grub2 tor-browser transmission-gtk 
+	  kitty htop btop zsh oh-my-zsh git
+	  os-prober grub2 
 	  wl-clipboard
 	  home-manager
-	  dconf
+      swaylock
   ];
 
-     # Some programs need SUID wrappers, can be configured further or are
+ # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   # programs.mtr.enable = true;
   # programs.gnupg.agent = {
@@ -128,6 +125,9 @@
   # };
 
   # List services that you want to enable:
+
+  # screen lock
+  security.pam.services.swaylock = {};
 
   # Battery life
   services.power-profiles-daemon.enable = false; # Disable GNOME service
@@ -146,8 +146,10 @@
         CPU_MAX_PERF_ON_BAT = 20;
 
        #Optional helps save long term battery health
-       START_CHARGE_THRESH_BAT0 = 70; # 40 and bellow it starts to charge
-       STOP_CHARGE_THRESH_BAT0 = 80; # 80 and above it stops charging
+       # START_CHARGE_THRESH_BAT0 = 70; # 40 and bellow it starts to charge
+       # STOP_CHARGE_THRESH_BAT0 = 80; # 80 and above it stops charging
+       START_CHARGE_THRESH_BAT1 = 70; # 40 and bellow it starts to charge
+       STOP_CHARGE_THRESH_BAT1 = 80; # 80 and above it stops charging
     };
   };
 

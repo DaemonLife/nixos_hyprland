@@ -13,15 +13,18 @@ wayland.windowManager.hyprland.settings = with config.colorScheme.palette; {
 	"$browser" = "firefox";
 
 	monitor = [
-		# Monitor
+		# Monitor msk
 		",highres,0x0,1.333333,bitdepth,10,vrr,1"
+		# Monitor gg
+		# ",highres,auto-right,1,bitdepth,10,vrr,1"
+
 		# Laptop
-		"eDP-1,highres,auto-right,1.6,bitdepth,10,vrr,1"
+		"eDP-1,highres,auto,1.6,bitdepth,10,vrr,1"
 	];
 	
 	exec-once = [
 		"waybar & mako"
-		"swayidle -w timeout 300 'swaylock -f -c 000000' timeout 305 'hyprctl dispatch dpms off && hyprctl keyword input:kb_layout us,ru' resume 'hyprctl dispatch dpms on' before-sleep 'swaylock -c 000000'"
+        "rfkill block bluetooth" # disable bluetooth autostart
 	];
 
 	env = [
@@ -73,9 +76,8 @@ wayland.windowManager.hyprland.settings = with config.colorScheme.palette; {
 		# See https://wiki.hyprland.org/Configuring/Variables/ for more
 		gaps_in = 3;
 		gaps_out = "6, 6, 6, 6";
-		# gaps_out = "9, 7, 7, 7";
 		border_size = 2;
-		"col.active_border" = "rgba(${base0D}ff) rgba(${base0B}ff) 45deg";
+		"col.active_border" = "rgba(${base09}ff) rgba(${base0B}ff) 70deg";
 		"col.inactive_border" = "rgba(${base00}ff)";
 		layout = "dwindle";
 		# Please see https://wiki.hyprland.org/Configuring/Tearing/ before you turn this on
@@ -114,12 +116,6 @@ wayland.windowManager.hyprland.settings = with config.colorScheme.palette; {
 		shadow_offset = "1 2";
 		shadow_range = 10;
 		shadow_render_power = 5;
-		# "col.shadow" = "0x66404040";
-		# blurls = [
-		# 	"gtk-layer-shell"
-		# 	waybar
-		# 	lockscreen
-		# ];
 	};
 
 	animations = {
@@ -187,20 +183,30 @@ wayland.windowManager.hyprland.settings = with config.colorScheme.palette; {
 		"$mod, g, togglegroup"
 		"$mod, tab, changegroupactive"
 		"$mod, F, fullscreen"
+
 		# Move focus
 		"$mod, left, movefocus, l"
 		"$mod, right, movefocus, r"
 		"$mod, up, movefocus, u"
 		"$mod, down, movefocus, d"
+		"$mod, h, movefocus, l"
+		"$mod, l, movefocus, r"
+		"$mod, k, movefocus, u"
+		"$mod, j, movefocus, d"
+
 		# Move window
 		"$mod SHIFT, left, movewindow, l"
 		"$mod SHIFT, right, movewindow, r"
 		"$mod SHIFT, up, movewindow, u"
 		"$mod SHIFT, down, movewindow, d"
+		"$mod SHIFT, h, movewindow, l"
+		"$mod SHIFT, l, movewindow, r"
+		"$mod SHIFT, k, movewindow, u"
+		"$mod SHIFT, j, movewindow, d"
 
 		# Lock screen
-		"$mod, l, exec, swaylock -f -c 000000"
-		"$mod, l, exec, hyprctl keyword input:kb_layout us,ru"
+		"SUPERALT, l, exec, swaylock"
+		"SUPERALT, l, exec, hyprctl keyword input:kb_layout us,ru"
 
 		# Screenshot
 		",PRINT, exec, grim ~/Pictures/ps_$(date +\"%Y%m%d%H%M%S\").png - | wl-copy"
