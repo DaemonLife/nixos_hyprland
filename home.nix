@@ -14,6 +14,7 @@
         ./modules/mpv.nix
         ./modules/hypridle.nix
         ./modules/swaylock.nix
+        ./modules/telegram-theme.nix
 	];
 	colorScheme = inputs.nix-colors.colorSchemes.stella;
 
@@ -60,6 +61,7 @@
 			mpv
             ffmpeg-full
             transmission_4-gtk
+            fragments
             telegram-desktop
             tor-browser
 
@@ -68,7 +70,7 @@
 			font-awesome
             vimix-icon-theme
 			qogir-icon-theme
-			gnome.gnome-tweaks
+			gnome-tweaks
 			gnomeExtensions.user-themes
             swaybg
             flavours # create base16 colors from image

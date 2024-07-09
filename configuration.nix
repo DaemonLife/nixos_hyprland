@@ -146,12 +146,20 @@
         CPU_MAX_PERF_ON_BAT = 20;
 
        #Optional helps save long term battery health
-       # START_CHARGE_THRESH_BAT0 = 70; # 40 and bellow it starts to charge
-       # STOP_CHARGE_THRESH_BAT0 = 80; # 80 and above it stops charging
+       START_CHARGE_THRESH_BAT0 = 70; # 40 and bellow it starts to charge
+       STOP_CHARGE_THRESH_BAT0 = 80; # 80 and above it stops charging
        START_CHARGE_THRESH_BAT1 = 70; # 40 and bellow it starts to charge
        STOP_CHARGE_THRESH_BAT1 = 80; # 80 and above it stops charging
     };
   };
+
+  nix.gc = {
+      automatic = true;
+      dates = "weekly";
+      options = "--delete-older-than 30d";
+  };
+  nix.optimise.automatic = true;
+  nix.settings.auto-optimise-store = true;
 
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;

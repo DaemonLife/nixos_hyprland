@@ -99,7 +99,7 @@ programs.waybar = with config.colorScheme.palette; {
 				};
 				interval = 30;
 				format = "bat: {capacity}";
-				format-charging = "bat: {capacity}+";
+				format-charging = "bat: {capacity}ϟ";
 				format-plugged = "bat: {capacity}";
 				on-click = "gnome-power-statistics";
 			};
