@@ -75,6 +75,7 @@
             swaybg
             flavours # create base16 colors from image
 		];
+        
 	};
 
 	dconf.settings = {
