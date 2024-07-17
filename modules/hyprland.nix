@@ -77,7 +77,7 @@ wayland.windowManager.hyprland.settings = with config.colorScheme.palette; {
 		gaps_in = 3;
 		gaps_out = "6, 6, 6, 6";
 		border_size = 2;
-		"col.active_border" = "rgba(${base09}ff) rgba(${base0B}ff) 70deg";
+		"col.active_border" = "rgba(${base09}ff) rgba(${base0B}ff) 90deg";
 		"col.inactive_border" = "rgba(${base00}ff)";
 		layout = "dwindle";
 		# Please see https://wiki.hyprland.org/Configuring/Tearing/ before you turn this on

@@ -16,7 +16,7 @@
         ./modules/swaylock.nix
         ./modules/telegram-theme.nix
 	];
-	colorScheme = inputs.nix-colors.colorSchemes.stella;
+	colorScheme = inputs.nix-colors.colorSchemes.horizon-terminal-dark;
 
   #   colorScheme = {
   #   slug = "myown";

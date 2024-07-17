@@ -240,7 +240,7 @@
         msgInDateFgSelected: #${base00};
         msgOutDateFg: #${base05};
         msgOutDateFgSelected: #${base00};
-        msgServiceFg: #${base04};
+        msgServiceFg: #${base05};
         msgServiceBg: #${base01};
         msgServiceBgSelected: #${base02};
         msgInReplyBarColor: #${base05};
@@ -292,12 +292,12 @@
         historyFileThumbIconFgSelected: #${base0D};
         historyFileThumbRadialFg: historyFileThumbIconFg;
         historyFileThumbRadialFgSelected: historyFileThumbIconFgSelected;
-        msgWaveformInActive: #${base05};
-        msgWaveformInActiveSelected: #${base00};
-        msgWaveformInInactive: #${base01};
-        msgWaveformInInactiveSelected: #${base00};
+        msgWaveformInActive: #${base0D};
+        msgWaveformInActiveSelected: #${base05};
+        msgWaveformInInactive: #${base03};
+        msgWaveformInInactiveSelected: #${base02};
         msgWaveformOutActive: #${base05};
-        msgWaveformOutActiveSelected: #${base00};
+        msgWaveformOutActiveSelected: #${base02};
         msgWaveformOutInactive: #${base01};
         msgWaveformOutInactiveSelected: msgInBgSelected;
         msgBotKbOverBgAdd: msgServiceBg;
@@ -353,7 +353,7 @@
         mainMenuBg: #${base01};
         mainMenuCoverBg: #${base01};
         mainMenuCoverFg: #${base05};
-        mediaPlayerBg: #000000;
+        mediaPlayerBg: #${base01};
         mediaPlayerActiveFg: #${base05};
         mediaPlayerInactiveFg: #${base03};
         mediaPlayerDisabledFg: #${base03};
@@ -379,7 +379,7 @@
         mediaviewSaveMsgBg: toastBg;
         mediaviewSaveMsgFg: toastFg;
         mediaviewPlaybackActive: #${base05};
-        mediaviewPlaybackInactive: windowSubTextFg;
+        mediaviewPlaybackInactive: #${base03};
         mediaviewPlaybackActiveOver: #${base05};
         mediaviewPlaybackInactiveOver: windowSubTextFgOver;
         mediaviewPlaybackProgressFg: #${base05};
