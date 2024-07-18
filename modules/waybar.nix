@@ -60,7 +60,7 @@ programs.waybar = with config.colorScheme.palette; {
 
 			# Modules
 			idle_inhibitor = {
-				format =  "{icon}";
+				format = "{icon}";
 				format-icons = {
 					activated = "idle";
 					deactivated = "idle";
@@ -72,8 +72,8 @@ programs.waybar = with config.colorScheme.palette; {
 				format-alt = "{icon}";
 				interval = 30;
 				format-icons = {
-					enabled = " bt ";
-					disabled = " bt ";
+					enabled = "bt";
+					disabled = "bt";
 				};
 				tooltip-format = "{}";
 				on-click = "rfkill toggle bluetooth";
@@ -86,7 +86,7 @@ programs.waybar = with config.colorScheme.palette; {
 			};
 
 			clock = {
-				format = "{:%y/%m/%d  %H:%M}";
+				format = "{:%y/%m/%d %H:%M}";
 				on-click = "exec gnome-calendar";
 			};
 
@@ -115,11 +115,11 @@ programs.waybar = with config.colorScheme.palette; {
 			};
 
 			pulseaudio = {
-				format = "vol: {icon}{format_source}";
+				format = "{icon} {format_source}";
 				format-bluetooth = "{icon} {volume} {format_source}";
 				format-bluetooth-muted = "   {volume} {format_source}";
 				format-muted = "vol: ......";
-				format-source = " mic";
+				format-source = "mic";
 				format-source-muted = "";
 				format-icons = {
 					hands-free = " ";
@@ -127,13 +127,17 @@ programs.waybar = with config.colorScheme.palette; {
 					phone = " ";
 					portable = " ";
 					car = " ";
-					default = ["......" "ı....." "ıı...." "ııı..." "ıııı.." "ııııı." "ıııııı"];
+					speaker = ["speaker: ......" "speaker: ı....." "speaker: l....." "speaker: lı...." "speaker: ll...." "speaker: llı..." "speaker: lll..." "speaker: lllı.." "speaker: llll.." "speaker: llllı." "speaker: lllll." "speaker: lllllı" "speaker: llllll"];
+					default = ["volume: ......" "volume: ı....." "volume: l....." "volume: lı...." "volume: ll...." "volume: llı..." "volume: lll..." "volume: lllı.." "volume: llll.." "volume: llllı." "volume: lllll." "volume: lllllı" "volume: llllll"];
+					hdmi = ["hdmi: ......" "hdmi: ı....." "hdmi: l....." "hdmi: lı...." "hdmi: ll...." "hdmi: llı..." "hdmi: lll..." "hdmi: lllı.." "hdmi: llll.." "hdmi: llllı." "hdmi: lllll." "hdmi: lllllı" "hdmi: llllll"];
+					headphone = ["headset: ......" "headset: ı....." "headset: l....." "headset: lı...." "headset: ll...." "headset: llı..." "headset: lll..." "headset: lllı.." "headset: llll.." "headset: llllı." "headset: lllll." "headset: lllllı" "headset: llllll"];
 				};
 				max-volume = 100;
 				tooltip-format = "{desc}, {volume}%";
 				on-click = "pavucontrol";
 				on-click-right = "pactl set-source-mute @DEFAULT_SOURCE@ toggle";
 				on-click-middle = "pavucontrol";
+                scroll-step = 3;
 			};
 
 		};
@@ -165,9 +169,17 @@ programs.waybar = with config.colorScheme.palette; {
 	#window { padding: 0px 20px 0px 20px; }
 
 	/* Default padding for some modules */
-	#workspaces button, #language, #idle_inhibitor, #network, #pulseaudio, #battery, #clock, #tray {
-	    padding: 0px 5px 0px 5px;
+	#language, #idle_inhibitor, #network, #battery, #clock, #tray, #bluetooth, #pulseaudio{
+        margin: 0px;
+	    padding: 0px 0px 0px 10px;
 	}
+    #workspaces button { padding: 0px 5px 0px 5px; }
+    #clock {
+        padding-right: 8px;
+    }
+    #battery {
+        padding-left: 6px;
+    }
 
 	/* Default color for all modules except workspaces button.active. It's important to keep it. */
 	#workspaces button, #window#waybar, #window, #idle_inhibitor, #network, #pulseaudio, #clock, #tray, #bluetooth, #language {

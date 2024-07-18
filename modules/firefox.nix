@@ -24,6 +24,14 @@ programs.firefox = with config.colorScheme.palette; {
                 ExtensionRecommendations = false;
                 SkipOnboarding = true;
             };
+
+            # Set preferences shared by all profiles.
+            Preferences = { 
+                "browser.contentblocking.category" = { Value = "strict"; };
+                "extensions.pocket.enabled" = "lock-false";
+                "extensions.screenshots.disabled" = "lock-true";
+            };
+
         };
     };
 
@@ -110,7 +118,9 @@ REMOVED ELEMENTS
 }
 
 .tabs-newtab-button {
-    border-radius: 10px !important;
+    border-radius: 0px !important;
+    padding: 0px !important;
+    margin: 0px !important;
 }
 
 /* remove loading icon  */
