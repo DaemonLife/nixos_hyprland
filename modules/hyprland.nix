@@ -14,9 +14,9 @@ wayland.windowManager.hyprland.settings = with config.colorScheme.palette; {
 
 	monitor = [
 		# Monitor msk
-		# ",highres,0x0,1.333333,bitdepth,10,vrr,1"
+		",highres,0x0,1.333333,bitdepth,10,vrr,1"
 		# Monitor gg
-		",highres,auto-right,1,bitdepth,10,vrr,1"
+		# ",highres,auto-right,1,bitdepth,10,vrr,1"
 
 		# Laptop
 		"eDP-1,highres,auto,1.6,bitdepth,10,vrr,1"
@@ -25,6 +25,7 @@ wayland.windowManager.hyprland.settings = with config.colorScheme.palette; {
 	exec-once = [
 		"waybar & mako"
         "rfkill block bluetooth" # disable bluetooth autostart
+        "swaybg --color ${base00}"
 	];
 
 	env = [

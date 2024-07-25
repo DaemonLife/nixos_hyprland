@@ -52,7 +52,7 @@ programs.waybar = with config.colorScheme.palette; {
 			};
 
 			"hyprland/window" = {
-				max-length = 50;
+				max-length = 40;
 				separate-outputs = true;
 			};
 
@@ -157,42 +157,28 @@ programs.waybar = with config.colorScheme.palette; {
 	/* Default setting for all modules */
 	* {
 	    border: none;
+        border-radius: 0px;
+        margin: 0px;
 	    font-family: "Jetbrains Mono Regular";
 	    font-size: 14px;
 	    font-weight: bold;
 	}
-	
-	/* Bar background */
-	window#waybar { background-color: @dark; }
 
-	/* Window title */
-	#window { padding: 0px 20px 0px 20px; }
+    /* Default color for modules except workspaces button.active */
+    #workspaces button, #window, window#waybar, #tray, #language, #network, #bluetooth, #idle_inhibitor, #pulseaudio, #battery, #clock { background-color: @darl; color: @white; }
 
 	/* Default padding for some modules */
-	#language, #idle_inhibitor, #network, #battery, #clock, #tray, #bluetooth, #pulseaudio{
-        margin: 0px;
-	    padding: 0px 0px 0px 10px;
-	}
+	#language, #idle_inhibitor, #network, #battery, #clock, #tray, #bluetooth, #pulseaudio { padding: 0px 0px 0px 10px; }
+    
     #workspaces button { padding: 0px 5px 0px 5px; }
-    #clock {
-        padding-right: 8px;
-    }
-    #battery {
-        padding-left: 6px;
-    }
+    #clock { padding-right: 8px; }
+    #battery { padding-left: 6px; }
+    #window { padding: 0px 10px 0px 10px; }
 
-	/* Default color for all modules except workspaces button.active. It's important to keep it. */
-	#workspaces button, #window#waybar, #window, #idle_inhibitor, #network, #pulseaudio, #clock, #tray, #bluetooth, #language {
-		color: @white;
-	}
-
-	#workspaces button {
-		border-radius: 0px;
-	}
-	#workspaces button.active {
-		color: @gray;
-		background-color: @accent;
-	}
+    #workspaces button.active { 
+        color: @dark;
+        background-color: @accent;
+    }
 
 	#network.disconnected { color: @red;}
 	#network.disabled { color: @gray; }

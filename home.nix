@@ -55,23 +55,23 @@
             hypridle swaylock # screen lock
 
 			libreoffice-fresh
-			nautilus-open-in-blackbox
+			nautilus-open-in-blackbox # right click open menu
 			unzip
 			dconf
 			mpv
             ffmpeg-full
-            transmission_4-gtk
-            fragments
+            transmission_4-gtk # torrent client
+            fragments # torrent client
             telegram-desktop
             tor-browser
+            cmus # player
 
 			#Theming
-            # gtk3
 			font-awesome
             vimix-icon-theme
 			qogir-icon-theme
 			gnome-tweaks
-			gnomeExtensions.user-themes
+			# gnomeExtensions.user-themes
             swaybg
             flavours # create base16 colors from image
 		];
