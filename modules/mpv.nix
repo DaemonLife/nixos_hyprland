@@ -1,13 +1,10 @@
 { pgks, config, ... }: {
-
 programs.mpv = {
     
     enable = true;
-
     bindings = { };
-
     config = {
-    
+
         #-General
         player-operation-mode = "pseudo-gui";
         ytdl-format = "bestvideo+bestaudio/best";
@@ -62,15 +59,13 @@ programs.mpv = {
         #-Screenshot
         screenshot-format = "png";
         screenshot-sw = "no"; # use software rendering
-        screenshot-png-compression = 7; #range 0-9, higher values may lag
+        screenshot-png-compression = 7; # range 0-9, higher values may lag
         screenshot-high-bit-depth = "yes";
-        screenshot-directory = "~/Pictures/"; #insert directory between quote marks
+        screenshot-directory = "~/Pictures/mpv-screenshots"; # insert directory between quote marks
 
         scripts = [
             "/home/user/Downloads/dynamic-crop.lua"
         ];
     };
-
 };
-
 }

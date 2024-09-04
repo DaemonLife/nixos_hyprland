@@ -7,10 +7,10 @@
 		settings = {
 
 			# Font
-			font_family = "JetBrains Mono";
-			bold_font = "JetBrains Mono bold";
-			italic_font = "JetBrains Mono Italic";
-			bold_italic_font = "JetBrains Mono Medium Italic";
+			font_family = "Fira Mono";
+			bold_font = "Fira Mono Bold";
+			italic_font = "Fira Mono Italic";
+			bold_italic_font = "Fira Sans Bold Italic";
 			font_size = "12.0";
 
 			shell = "zsh";
@@ -24,7 +24,7 @@
 			window_border_width = "0pt";
 			# draw_minimal_borders = "yes";
 			window_margin_width = "0";
-			window_padding_width = "0 10 10 10";
+			window_padding_width = "0 10 9 10";
 			# inactive_text_alpha = "0.5";
 			tab_bar_style = "hidden";
 			confirm_os_window_close = "0";

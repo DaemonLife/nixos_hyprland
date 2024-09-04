@@ -11,6 +11,17 @@
     ];
 
   programs.hyprland.enable = true;
+  # Optional, hint electron apps to use wayland:
+  environment.sessionVariables.NIXOS_OZONE_WL = "1";
+
+  programs.nix-ld.enable = true;
+  programs.nix-ld.libraries = with pkgs; [
+    # Add any missing dynamic libraries for unpackaged programs
+    # here, NOT in environment.systemPackages
+    libz
+    haskellPackages.bz2
+    zlib
+  ];
 
   # Bootloader.
   boot.loader = {
@@ -63,6 +74,8 @@
   # Enable the GNOME Desktop Environment.
   services.xserver.displayManager.gdm.enable = true;
   services.xserver.desktopManager.gnome.enable = true;
+  # Enable flatpak
+  services.flatpak.enable = true;
 
   # Configure keymap in X11
   services.xserver = {
@@ -77,26 +90,27 @@
   environment.variables = { RUSTICL_ENABLE="radeonsi"; }; # important for darktable
   boot.initrd.kernelModules = [ "amdgpu" ];
   boot.kernelParams = [ "radeon.si_support=0" "amdgpu.si_support=1" ];
-  hardware.graphics = {
-    enable = true;
-    enable32Bit = true;
-  };
-  hardware.graphics.extraPackages = with pkgs; [
-    rocmPackages.clr.icd
-    amdvlk
-  ];
+  # hardware.graphics = {
+  #   enable = true;
+  #   enable32Bit = true;
+  # };
+  # hardware.graphics.extraPackages = with pkgs; [
+  #   rocmPackages.clr.icd
+  #   amdvlk
+  # ];
   services.xserver.videoDrivers = [ "amdgpu" ];
   systemd.tmpfiles.rules = [
     "L+    /opt/rocm/hip   -    -    -     -    ${pkgs.rocmPackages.clr}"
   ];
   # For 32 bit applications 
-  hardware.graphics.extraPackages32 = with pkgs; [
-    driversi686Linux.amdvlk
-  ];
+  # hardware.graphics.extraPackages32 = with pkgs; [
+  #   driversi686Linux.amdvlk
+  # ];
 
   # Enable sound with pipewire.
   hardware.pulseaudio.enable = false;
   security.rtkit.enable = true;
+  security.polkit.enable = true;
   services.pipewire = {
     enable = true;
     alsa.enable = true;
@@ -118,7 +132,9 @@
     isNormalUser = true;
     description = "user";
     extraGroups = [ "networkmanager" "wheel" ];
-    packages = with pkgs; [  ];
+    packages = with pkgs; [ 
+      flatpak
+    ];
   };
 
   # Allow unfree packages
@@ -150,6 +166,22 @@
     wantedBy = ["multi-user.target"];
   };
 
+  systemd = {
+  user.services.polkit-gnome-authentication-agent-1 = {
+    description = "polkit-gnome-authentication-agent-1";
+    wantedBy = [ "graphical-session.target" ];
+    wants = [ "graphical-session.target" ];
+    after = [ "graphical-session.target" ];
+    serviceConfig = {
+        Type = "simple";
+        ExecStart = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
+        Restart = "on-failure";
+        RestartSec = 1;
+        TimeoutStopSec = 10;
+      };
+  };
+};
+
  # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   # programs.mtr.enable = true;
@@ -180,10 +212,10 @@
         CPU_MAX_PERF_ON_BAT = 20;
 
        #Optional helps save long term battery health
-       # START_CHARGE_THRESH_BAT0 = 70; # 40 and bellow it starts to charge
-       # STOP_CHARGE_THRESH_BAT0 = 1;
-       START_CHARGE_THRESH_BAT1 = 75; # 40 and bellow it starts to charge
-       STOP_CHARGE_THRESH_BAT1 = 85; # 80 and above it stops charging
+       START_CHARGE_THRESH_BAT0 = 70; # 40 and bellow it starts to charge
+       STOP_CHARGE_THRESH_BAT0 = 85;
+       # START_CHARGE_THRESH_BAT1 = 75; # 40 and bellow it starts to charge
+       # STOP_CHARGE_THRESH_BAT1 = 85; # 80 and above it stops charging
     };
   };
 

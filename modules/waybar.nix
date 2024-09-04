@@ -159,9 +159,8 @@ programs.waybar = with config.colorScheme.palette; {
 	    border: none;
         border-radius: 0px;
         margin: 0px;
-	    font-family: "Jetbrains Mono Regular";
-	    font-size: 14px;
-	    font-weight: bold;
+	    font-family: "Cantarel Bold";
+	    font-size: 97%;
 	}
 
     /* Default color for modules except workspaces button.active */

@@ -8,10 +8,52 @@ viAlias = true;
 # luaLoader.enable = true;
 
 plugins = {
-    # lightline.enable = true;
-    nvim-colorizer.enable = true;
+    lightline.enable = true;
+    nvim-colorizer.enable = true; # colors for hex code
     # nvim-colorizer.fileTypes = [ "tex" ];
+    comment.enable = true;
 };
+
+plugins.lightline = {
+    active = {
+        left = [
+            [
+              "mode"
+              "paste"
+            ]
+            [
+              "readonly"
+              "filename"
+              "modified"
+            ]
+          ];
+      right = [
+            [
+              "lineinfo"
+            ]
+            [
+              "percent"
+            ]
+            [
+              "fileformat"
+              "fileencoding"
+              "filetype"
+            ]
+      ];
+    };
+};
+
+# Lightline colors settings
+extraConfigVim = ''
+    highlight LightlineLeft_active_0 guibg=#${base0D} guifg=#${base00}
+    highlight LightlineLeft_active_1 guibg=#${base01} guifg=#${base03}
+
+    highlight LightlineMiddle_active guibg=#${base01} guifg=#${base03}
+
+    highlight LightlineRight_active_0 guibg=#${base01} guifg=#${base03}
+    highlight LightlineRight_active_1 guibg=#${base01} guifg=#${base03}
+    highlight LightlineRight_active_2 guibg=#${base01} guifg=#${base03}
+'';
 
 # Base16 theme setup
 colorschemes.base16.enable = true;

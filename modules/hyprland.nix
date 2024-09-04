@@ -16,7 +16,7 @@ wayland.windowManager.hyprland.settings = with config.colorScheme.palette; {
 		# Monitor msk
 		",highres,0x0,1.333333,bitdepth,10,vrr,1"
 		# Monitor gg
-		# ",highres,auto-right,1,bitdepth,10,vrr,1"
+		#",highres,auto-right,1,bitdepth,10,vrr,1"
 
 		# Laptop
 		"eDP-1,highres,auto,1.6,bitdepth,10,vrr,1"
@@ -26,6 +26,7 @@ wayland.windowManager.hyprland.settings = with config.colorScheme.palette; {
 		"waybar & mako"
         "rfkill block bluetooth" # disable bluetooth autostart
         "swaybg --color ${base00}"
+        "/run/current-system/sw/libexex/polkit-gnome-authentication-agent-1"
 	];
 
 	env = [
@@ -92,6 +93,7 @@ wayland.windowManager.hyprland.settings = with config.colorScheme.palette; {
 		mouse_move_enables_dpms = true;
 		animate_manual_resizes = true;
 		mouse_move_focuses_monitor = true;
+        font_family = "JetBrainsMono";
 	};
 
 	# Scale options
