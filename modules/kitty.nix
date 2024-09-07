@@ -4,8 +4,15 @@
 
 		enable = true;
 		shellIntegration.enableZshIntegration = true;
-		settings = {
+        
+        keybindings = {
+            "ctrl+shift+c" = "copy_or_interrupt";
+            "ctrl+shift+v" = "paste_from_clipboard";
+            "ctrl+shift+с" = "copy_or_interrupt";
+            "ctrl+shift+м" = "paste_from_clipboard";
+        };
 
+		settings = {
 			# Font
 			font_family = "Fira Mono";
 			bold_font = "Fira Mono Bold";
@@ -20,11 +27,14 @@
 			notify_on_cmd_finish = "always 3.0 command notify-send \"Terminal job\" Finished";
 			visual_bell_duration = "0.1";
 			hide_window_decorations = "yes";
+            window_title = "Kitty";
 			open_url_with = "firefox";
 			window_border_width = "0pt";
 			# draw_minimal_borders = "yes";
-			window_margin_width = "0";
-			window_padding_width = "0 10 9 10";
+			# window_margin_width = "0";
+			window_margin_width = "10 10 10 10";
+			# window_padding_width = "0 10 9 10";
+			window_padding_width = "0 0 0 0";
 			# inactive_text_alpha = "0.5";
 			tab_bar_style = "hidden";
 			confirm_os_window_close = "0";

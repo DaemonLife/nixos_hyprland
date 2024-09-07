@@ -15,6 +15,8 @@
         ./modules/hypridle.nix
         ./modules/swaylock.nix
         ./modules/telegram-theme.nix
+        ./modules/git.nix
+        ./modules/zsh.nix
 	];
 	colorScheme = inputs.nix-colors.colorSchemes.horizon-terminal-dark;
 
@@ -47,17 +49,34 @@
 		homeDirectory = "/home/user";
 		stateVersion = "24.05";
 		packages = with pkgs; [
+
+            # - For Hyprland
 			fuzzel # run menu
 			grim slurp # screenshot tool
 			brightnessctl # screen light
 			pavucontrol # audio gui control
-            
+            # wl-clipboard
             alsa-utils # audio volume control (?)
-            pulseaudio-ctl # audio volume control (?)
-
+            # pulseaudio-ctl # audio volume control (?)
 			gnome.gnome-power-manager # power statistic
             hypridle swaylock # screen lock
+			
+            # Theming
+            vimix-icon-theme
+			qogir-icon-theme
+			gnome.gnome-tweaks
+            swaybg
+            flavours # create base16 colors from image
 
+            # Fonts
+			font-awesome
+            fira
+            cantarell-fonts
+            inter
+            roboto
+
+            # - Other
+            btop
 			libreoffice-fresh
 			nautilus-open-in-blackbox # right click open menu
 			unzip
@@ -65,29 +84,13 @@
 			mpv
             ffmpeg-full
             transmission_4-gtk # torrent client
-            fragments # torrent client
             telegram-desktop
             cmus # player
             python3
             pipx
-            # tor
             tor-browser
             bottles
 
-            #Fonts
-			font-awesome
-            fira
-            cantarell-fonts
-            inter
-            roboto
-
-			#Theming
-            vimix-icon-theme
-			qogir-icon-theme
-			gnome.gnome-tweaks
-			# gnomeExtensions.user-themes
-            swaybg
-            flavours # create base16 colors from image
 		];
         sessionPath = [
             "$HOME/.local/bin"
@@ -99,33 +102,10 @@
 			color-scheme = "prefer-dark";
 		};
 	};
+
 	qt.enable = true;
 	qt.platformTheme.name = "gtk";
 	qt.style.name = "adwaita-dark";
 	qt.style.package = pkgs.adwaita-qt;
 
-    programs.zsh = {
-        enable = true;
-        autosuggestion.enable = true;
-        syntaxHighlighting.enable = true;
-        shellAliases = {
-            flake-rebuild = "sudo nixos-rebuild switch --flake \"/home/user/nix/.\" && echo '\n> Complited. The flake has been rebuilded.'";
-            flake-upgrade = "sudo nix-channel --update && echo '\n> Nix-channel has been updated.\n' && sudo nix flake update \"/home/user/nix/.\" && echo '\n> Flake has been updated.\n' && flake-rebuild";
-            home-rebuild = "home-manager switch --flake \"/home/user/nix/.\" && hyprctl reload && echo '> Home-manager has been switch. Hyprland reloaded.'";
-            mwin = "sudo mount /dev/nvme0n1p3 /mnt/windows -t ntfs3";
-            cdwin = "cd /mnt/windows/Users/user";
-            hextorgb = "sh /home/user/nix/scripts/hextorgb.sh";
-        };
-        oh-my-zsh = {
-            enable = true;
-            theme = "frisk";
-            plugins = [
-                "git"
-            ];
-        };
-    };
-
-	programs = {
-		btop.enable = true;
-	};
 }
