@@ -16,11 +16,11 @@ services.hypridle = {
             on-resume = "brightnessctl -r";  
         }
         {
-            timeout = 600;
+            timeout = 900;
             on-timeout = "swaylock";
         }
         {
-          timeout = 900;
+          timeout = 910;
           on-timeout = "hyprctl dispatch dpms off";
           on-resume = "hyprctl dispatch dpms on";
         }

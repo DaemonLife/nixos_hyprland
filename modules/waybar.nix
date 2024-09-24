@@ -98,6 +98,7 @@ programs.waybar = with config.colorScheme.palette; {
 					critical = 20;
 				};
 				interval = 30;
+                # bat({capacity}) format?
 				format = "bat: {capacity}";
 				format-charging = "bat: {capacity}ϟ";
 				format-plugged = "bat: {capacity}";
@@ -110,8 +111,8 @@ programs.waybar = with config.colorScheme.palette; {
 				format-ethernet = " {ipaddr}/{cidr}";
 				format-linked = " (No IP)";
 				format-disconnected = "wifi";
-				on-click-right = "kitty --hold sh -c \"nmcli dev wifi rescan && nmtui\"";
-				on-click = "rfkill toggle wifi";
+				on-click = "kitty --hold sh -c \"nmcli dev wifi rescan && nmtui\"";
+				on-click-right = "rfkill toggle wifi";
 			};
 
 			pulseaudio = {
@@ -153,14 +154,16 @@ programs.waybar = with config.colorScheme.palette; {
 	@define-color green #${base0B};
 	@define-color red #${base08};
 	@define-color magenta #${base0E};
+	@define-color yellow #${base0A};
 	
 	/* Default setting for all modules */
 	* {
 	    border: none;
         border-radius: 0px;
         margin: 0px;
-	    font-family: "Cantarel Bold";
-	    font-size: 97%;
+	    font-family: "JetBrains";
+        font-weight: bold;
+	    font-size: 96%;
 	}
 
     /* Default color for modules except workspaces button.active */
@@ -190,7 +193,7 @@ programs.waybar = with config.colorScheme.palette; {
 
 	#pulseaudio.muted { color: @gray; }
 
-	#battery:not(.charging) { color: @white; }
+	#battery.plugged { color: @green; }
 	#battery.charging{
 	    color: @green;
 	    animation-name: blink;
@@ -199,16 +202,16 @@ programs.waybar = with config.colorScheme.palette; {
 	    animation-iteration-count: infinite;
 	    animation-direction: alternate;
 	} 
+	#battery:not(.charging) { color: @white; }
 	#battery.warning:not(.charging) {
 	    color: @red;
 	    animation-name: blink;
-	    animation-duration: 0.5s;
+	    animation-duration: 1s;
 	    animation-timing-function: linear;
 	    animation-iteration-count: infinite;
 	    animation-direction: alternate;
 	}
-	#battery.plugged { color: @green; }
-	@keyframes blink { to { color: @white; } }
+	@keyframes blink { to { color: @yellow; } }
 	'';
 };
 }

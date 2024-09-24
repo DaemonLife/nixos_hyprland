@@ -211,12 +211,14 @@
         CPU_MIN_PERF_ON_BAT = 0;
         CPU_MAX_PERF_ON_BAT = 20;
 
-       #Optional helps save long term battery health
+       # Helps save long term battery health (auto mode)
        CONSERVATION_MODE = 1;
-       # START_CHARGE_THRESH_BAT0 = 70; # 40 and bellow it starts to charge
+
+       # Not supported for my laptop (manual mode)
+       # START_CHARGE_THRESH_BAT0 = 70;
        # STOP_CHARGE_THRESH_BAT0 = 85;
-       START_CHARGE_THRESH_BAT1 = 75; # 40 and bellow it starts to charge
-       STOP_CHARGE_THRESH_BAT1 = 85; # 80 and above it stops charging
+       # START_CHARGE_THRESH_BAT1 = 70; 
+       # STOP_CHARGE_THRESH_BAT1 = 85; 
     };
   };
 

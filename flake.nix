@@ -18,23 +18,25 @@ inputs = {
 outputs = { self, nixpkgs, home-manager, ... }@inputs:
 let
 	system = "x86_64-linux";
+    # Import nixpkgs with allowUnfree set to true
+    pkgs = import nixpkgs {
+        inherit system;
+        config.allowUnfree = true;
+    };
 in {
 	nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
 		specialArgs = {
-			pkgs = import nixpkgs {
-				inherit system;
-				config.allowUnfree = true;
+                inherit pkgs;
+                inherit system;
 			};
-			inherit system;
-		};
 		modules = [ ./configuration.nix ];
 	};
 
 	homeConfigurations.user = home-manager.lib.homeManagerConfiguration {
-		pkgs = nixpkgs.legacyPackages.${system};
+		pkgs = pkgs;
 		extraSpecialArgs = { inherit inputs; };
 		modules = [ ./home.nix ];
 	}; 
+  };
 
-};
 }

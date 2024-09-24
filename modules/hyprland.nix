@@ -14,9 +14,9 @@ wayland.windowManager.hyprland.settings = with config.colorScheme.palette; {
 
 	monitor = [
 		# Monitor msk
-		",highres,0x0,1.333333,bitdepth,10,vrr,1"
+		# ",highres,0x0,1.333333,bitdepth,10,vrr,1"
 		# Monitor gg
-		#",highres,auto-right,1,bitdepth,10,vrr,1"
+		"desc:Acer Technologies Acer A231H LQT0W0084320,highres,auto-right,1,bitdepth,10,vrr,1"
 
 		# Laptop
 		"eDP-1,highres,auto,1.6,bitdepth,10,vrr,1"
@@ -79,8 +79,8 @@ wayland.windowManager.hyprland.settings = with config.colorScheme.palette; {
 		gaps_in = 3;
 		gaps_out = "6, 6, 6, 6";
 		border_size = 2;
-		"col.active_border" = "rgba(${base09}ff) rgba(${base0B}ff) 90deg";
-		"col.inactive_border" = "rgba(${base00}ff)";
+		"col.active_border" = "rgba(${base0E}ff) rgba(${base0D}ff) 65deg";
+		"col.inactive_border" = "rgba(${base03}ff)";
 		layout = "dwindle";
 		# Please see https://wiki.hyprland.org/Configuring/Tearing/ before you turn this on
 		allow_tearing = false;

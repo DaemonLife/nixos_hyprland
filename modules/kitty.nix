@@ -14,20 +14,20 @@
 
 		settings = {
 			# Font
-			font_family = "Fira Mono";
-			bold_font = "Fira Mono Bold";
-			italic_font = "Fira Mono Italic";
-			bold_italic_font = "Fira Sans Bold Italic";
+			font_family = "JetBrains";
+			bold_font = "JetBrains Bold";
+			italic_font = "JetBrains Italic";
+			bold_italic_font = "JetBrains Bold Italic";
 			font_size = "12.0";
 
 			shell = "zsh";
 			editor = "nvim";
 			linux_display_server = "wayland";
 			enable_audio_bell = false;
-			notify_on_cmd_finish = "always 3.0 command notify-send \"Terminal job\" Finished";
+			# notify_on_cmd_finish = "always 3.0 command notify-send \"Terminal job\" Finished";
 			visual_bell_duration = "0.1";
 			hide_window_decorations = "yes";
-            window_title = "Kitty";
+            # window_title = "Kitty";
 			open_url_with = "firefox";
 			window_border_width = "0pt";
 			# draw_minimal_borders = "yes";
@@ -38,7 +38,7 @@
 			# inactive_text_alpha = "0.5";
 			tab_bar_style = "hidden";
 			confirm_os_window_close = "0";
-            placement_strategy = "top-left";
+            # placement_strategy = "top-left";
 
 			# Colors
 			visual_bell_color = "#${base04}";

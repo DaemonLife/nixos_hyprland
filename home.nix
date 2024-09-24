@@ -17,9 +17,12 @@
         ./modules/telegram-theme.nix
         ./modules/git.nix
         ./modules/zsh.nix
+        ./modules/cmus.nix
+        ./modules/jrnl.nix
+        ./modules/helix.nix
 	];
-	colorScheme = inputs.nix-colors.colorSchemes.horizon-terminal-dark;
 
+	colorScheme = inputs.nix-colors.colorSchemes.horizon-terminal-dark;
   #   colorScheme = {
   #   slug = "myown";
   #   name = "Myown";
@@ -55,46 +58,41 @@
 			grim slurp # screenshot tool
 			brightnessctl # screen light
 			pavucontrol # audio gui control
-            # wl-clipboard
             alsa-utils # audio volume control (?)
-            # pulseaudio-ctl # audio volume control (?)
 			gnome.gnome-power-manager # power statistic
             hypridle swaylock # screen lock
 			
             # Theming
-            vimix-icon-theme
-			qogir-icon-theme
+            vimix-icon-theme # for icons
+			qogir-icon-theme # for cursor
 			gnome.gnome-tweaks
-            swaybg
+            swaybg # background
             flavours # create base16 colors from image
+			dconf
 
             # Fonts
 			font-awesome
             fira
             cantarell-fonts
-            inter
-            roboto
 
             # - Other
             btop
 			libreoffice-fresh
 			nautilus-open-in-blackbox # right click open menu
+            helix
 			unzip
-			dconf
-			mpv
-            ffmpeg-full
+            jrnl
+			mpv ffmpeg-full
             transmission_4-gtk # torrent client
             telegram-desktop
             cmus # player
-            python3
-            pipx
+            python3 pipx
             tor-browser
             bottles
+            veracrypt
 
 		];
-        sessionPath = [
-            "$HOME/.local/bin"
-        ];
+        sessionPath = [ "$HOME/.local/bin" ];
 	};
 
 	dconf.settings = {

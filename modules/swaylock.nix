@@ -30,8 +30,8 @@
             text-ver-color = "${base0B}";
             text-wrong-color = "${base08}";
 
-            font = "Helvetica";
-            font-size = 32;
+            font = "JetBrains Bold";
+            # font-size = 42;
 
             indicator-idle-visible = false;
             indicator-radius = 110;
