@@ -3,12 +3,11 @@
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
 { config, pkgs, lib, inputs, ... }: {
- 
+
   # Imports
-  imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-    ];
+  imports = [ # Include the results of the hardware scan.
+    ./hardware-configuration.nix
+  ];
 
   programs.hyprland.enable = true;
   # Optional, hint electron apps to use wayland:
@@ -25,15 +24,14 @@
 
   # Bootloader.
   boot.loader = {
-	grub = {
-		enable = true;
-		device = "nodev";
-		efiSupport = true;
-		useOSProber = true;
-        };
-	efi = {
-		canTouchEfiVariables = true;
-	};
+    grub = {
+      enable = true;
+      device = "nodev";
+      efiSupport = true;
+      useOSProber = true;
+      default = "saved";
+    };
+    efi = { canTouchEfiVariables = true; };
   };
 
   networking.hostName = "nixos"; # Define your hostname.
@@ -82,12 +80,14 @@
     xkb.layout = "us,ru";
     xkb.variant = "";
   };
-  
+
   # Enable CUPS to print documents.
   services.printing.enable = true;
 
   # Enable OpenCL
-  environment.variables = { RUSTICL_ENABLE="radeonsi"; }; # important for darktable
+  environment.variables = {
+    RUSTICL_ENABLE = "radeonsi";
+  }; # important for darktable
   boot.initrd.kernelModules = [ "amdgpu" ];
   boot.kernelParams = [ "radeon.si_support=0" "amdgpu.si_support=1" ];
   # hardware.graphics = {
@@ -99,9 +99,8 @@
   #   amdvlk
   # ];
   services.xserver.videoDrivers = [ "amdgpu" ];
-  systemd.tmpfiles.rules = [
-    "L+    /opt/rocm/hip   -    -    -     -    ${pkgs.rocmPackages.clr}"
-  ];
+  systemd.tmpfiles.rules =
+    [ "L+    /opt/rocm/hip   -    -    -     -    ${pkgs.rocmPackages.clr}" ];
   # For 32 bit applications 
   # hardware.graphics.extraPackages32 = with pkgs; [
   #   driversi686Linux.amdvlk
@@ -132,9 +131,7 @@
     isNormalUser = true;
     description = "user";
     extraGroups = [ "networkmanager" "wheel" ];
-    packages = with pkgs; [ 
-      flatpak
-    ];
+    packages = with pkgs; [ flatpak ];
   };
 
   # Allow unfree packages
@@ -145,44 +142,49 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-	  kitty htop btop zsh oh-my-zsh git
-	  os-prober grub2 
-	  wl-clipboard
-	  home-manager
-      swaylock
-      darktable
-      lact
-      rocmPackages.rpp
-      rocmPackages.clr
-      microcodeAmd
+    kitty
+    htop
+    btop
+    zsh
+    oh-my-zsh
+    git
+    os-prober
+    grub2
+    wl-clipboard
+    home-manager
+    swaylock
+    darktable
+    lact
+    rocmPackages.rpp
+    rocmPackages.clr
+    microcodeAmd
   ];
-  
+
   systemd.services.lactd = {
     description = "AMDGPU Control Daemon";
-    enable = true;  
-    serviceConfig = {
-      ExecStart = "${pkgs.lact}/bin/lact daemon";
-    };
-    wantedBy = ["multi-user.target"];
+    enable = true;
+    serviceConfig = { ExecStart = "${pkgs.lact}/bin/lact daemon"; };
+    wantedBy = [ "multi-user.target" ];
   };
 
   systemd = {
-  user.services.polkit-gnome-authentication-agent-1 = {
-    description = "polkit-gnome-authentication-agent-1";
-    wantedBy = [ "graphical-session.target" ];
-    wants = [ "graphical-session.target" ];
-    after = [ "graphical-session.target" ];
-    serviceConfig = {
+    user.services.polkit-gnome-authentication-agent-1 = {
+      description = "polkit-gnome-authentication-agent-1";
+      wantedBy = [ "graphical-session.target" ];
+      wants = [ "graphical-session.target" ];
+      after = [ "graphical-session.target" ];
+      serviceConfig = {
         Type = "simple";
-        ExecStart = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
+        ExecStart =
+          "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
         Restart = "on-failure";
         RestartSec = 1;
         TimeoutStopSec = 10;
       };
+    };
   };
-};
 
- # Some programs need SUID wrappers, can be configured further or are
+  # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   # programs.mtr.enable = true;
   # programs.gnupg.agent = {
@@ -193,39 +195,39 @@
   # List services that you want to enable:
 
   # screen lock
-  security.pam.services.swaylock = {};
+  security.pam.services.swaylock = { };
 
   # Battery life
   services.power-profiles-daemon.enable = false; # Disable GNOME service
   services.tlp = {
     enable = true;
     settings = {
-        CPU_SCALING_GOVERNOR_ON_AC = "performance";
-        CPU_SCALING_GOVERNOR_ON_BAT = "powersave";
+      CPU_SCALING_GOVERNOR_ON_AC = "performance";
+      CPU_SCALING_GOVERNOR_ON_BAT = "powersave";
 
-        CPU_ENERGY_PERF_POLICY_ON_AC = "performance";
-        CPU_ENERGY_PERF_POLICY_ON_BAT = "power";
+      CPU_ENERGY_PERF_POLICY_ON_AC = "performance";
+      CPU_ENERGY_PERF_POLICY_ON_BAT = "power";
 
-        CPU_MIN_PERF_ON_AC = 0;
-        CPU_MAX_PERF_ON_AC = 100;
-        CPU_MIN_PERF_ON_BAT = 0;
-        CPU_MAX_PERF_ON_BAT = 20;
+      CPU_MIN_PERF_ON_AC = 0;
+      CPU_MAX_PERF_ON_AC = 100;
+      CPU_MIN_PERF_ON_BAT = 0;
+      CPU_MAX_PERF_ON_BAT = 20;
 
-       # Helps save long term battery health (auto mode)
-       CONSERVATION_MODE = 1;
+      # Helps save long term battery health (auto mode)
+      CONSERVATION_MODE = 1;
 
-       # Not supported for my laptop (manual mode)
-       # START_CHARGE_THRESH_BAT0 = 70;
-       # STOP_CHARGE_THRESH_BAT0 = 85;
-       # START_CHARGE_THRESH_BAT1 = 70; 
-       # STOP_CHARGE_THRESH_BAT1 = 85; 
+      # Not supported for my laptop (manual mode)
+      # START_CHARGE_THRESH_BAT0 = 70;
+      # STOP_CHARGE_THRESH_BAT0 = 85;
+      # START_CHARGE_THRESH_BAT1 = 70; 
+      # STOP_CHARGE_THRESH_BAT1 = 85; 
     };
   };
 
   nix.gc = {
-      automatic = true;
-      dates = "weekly";
-      options = "--delete-older-than 30d";
+    automatic = true;
+    dates = "weekly";
+    options = "--delete-older-than 30d";
   };
   nix.optimise.automatic = true;
   nix.settings.auto-optimise-store = true;

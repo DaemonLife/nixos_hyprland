@@ -76,8 +76,8 @@
         auto-format = true;
         formatter.command = "${pkgs.nixfmt-classic}/bin/nixfmt";
         indent = {
-          tab-width = 4;
-          unit = "  ";
+          tab-width = 2;
+          unit = "	";
         };
       }];
     };

@@ -1,28 +1,28 @@
 { pkgs, lib, config, inputs, ... }: {
 
-	imports = [
-		inputs.nix-colors.homeManagerModules.default
-		inputs.nixvim.homeManagerModules.nixvim
-		./modules/mako.nix
-		./modules/fuzzel.nix
-		./modules/hyprland.nix
-		./modules/kitty.nix
-		./modules/gtk.nix
-		./modules/waybar.nix
-		./modules/nixvim.nix
-        ./modules/firefox.nix
-        ./modules/mpv.nix
-        ./modules/hypridle.nix
-        ./modules/swaylock.nix
-        ./modules/telegram-theme.nix
-        ./modules/git.nix
-        ./modules/zsh.nix
-        ./modules/cmus.nix
-        ./modules/jrnl.nix
-        ./modules/helix.nix
-	];
+  imports = [
+    inputs.nix-colors.homeManagerModules.default
+    inputs.nixvim.homeManagerModules.nixvim
+    ./modules/mako.nix
+    ./modules/fuzzel.nix
+    ./modules/hyprland.nix
+    ./modules/kitty.nix
+    ./modules/gtk.nix
+    ./modules/waybar.nix
+    ./modules/nixvim.nix
+    ./modules/firefox.nix
+    ./modules/mpv.nix
+    ./modules/hypridle.nix
+    ./modules/swaylock.nix
+    ./modules/telegram-theme.nix
+    ./modules/git.nix
+    ./modules/zsh.nix
+    ./modules/cmus.nix
+    ./modules/jrnl.nix
+    ./modules/helix.nix
+  ];
 
-	colorScheme = inputs.nix-colors.colorSchemes.horizon-terminal-dark;
+  colorScheme = inputs.nix-colors.colorSchemes.horizon-terminal-dark;
   #   colorScheme = {
   #   slug = "myown";
   #   name = "Myown";
@@ -47,63 +47,65 @@
   #   };
   # };
 
-	home = {
-		username = "user";
-		homeDirectory = "/home/user";
-		stateVersion = "24.05";
-		packages = with pkgs; [
+  home = {
+    username = "user";
+    homeDirectory = "/home/user";
+    stateVersion = "24.05";
+    packages = with pkgs; [
 
-            # - For Hyprland
-			fuzzel # run menu
-			grim slurp # screenshot tool
-			brightnessctl # screen light
-			pavucontrol # audio gui control
-            alsa-utils # audio volume control (?)
-			gnome.gnome-power-manager # power statistic
-            hypridle swaylock # screen lock
-			
-            # Theming
-            vimix-icon-theme # for icons
-			qogir-icon-theme # for cursor
-			gnome.gnome-tweaks
-            swaybg # background
-            flavours # create base16 colors from image
-			dconf
+      # - For Hyprland
+      fuzzel # run menu
+      grim
+      slurp # screenshot tool
+      brightnessctl # screen light
+      pavucontrol # audio gui control
+      alsa-utils # audio volume control (?)
+      gnome.gnome-power-manager # power statistic
+      hypridle
+      swaylock # screen lock
 
-            # Fonts
-			font-awesome
-            fira
-            cantarell-fonts
+      # Theming
+      vimix-icon-theme # for icons
+      qogir-icon-theme # for cursor
+      gnome.gnome-tweaks
+      swaybg # background
+      flavours # create base16 colors from image
+      dconf
 
-            # - Other
-            btop
-			libreoffice-fresh
-			nautilus-open-in-blackbox # right click open menu
-            helix
-			unzip
-            jrnl
-			mpv ffmpeg-full
-            transmission_4-gtk # torrent client
-            telegram-desktop
-            cmus # player
-            python3 pipx
-            tor-browser
-            bottles
-            veracrypt
+      # Fonts
+      font-awesome
+      fira
+      cantarell-fonts
 
-		];
-        sessionPath = [ "$HOME/.local/bin" ];
-	};
+      # - Other
+      btop
+      libreoffice-fresh
+      nautilus-open-in-blackbox # right click open menu
+      helix
+      unzip
+      jrnl
+      mpv
+      ffmpeg-full
+      transmission_4-gtk # torrent client
+      telegram-desktop
+      cmus # player
+      python3
+      pipx
+      tor-browser
+      bottles
+      veracrypt
 
-	dconf.settings = {
-		"org/gnome/desktop/interface" = {
-			color-scheme = "prefer-dark";
-		};
-	};
+    ];
+    sessionPath = [ "$HOME/.local/bin" ];
+  };
 
-	qt.enable = true;
-	qt.platformTheme.name = "gtk";
-	qt.style.name = "adwaita-dark";
-	qt.style.package = pkgs.adwaita-qt;
+  dconf.settings = {
+    "org/gnome/desktop/interface" = { color-scheme = "prefer-dark"; };
+  };
+
+  qt.enable = true;
+  qt.platformTheme.name = "gtk";
+  qt.style.name = "adwaita-dark";
+  qt.style.package = pkgs.adwaita-qt;
 
 }
