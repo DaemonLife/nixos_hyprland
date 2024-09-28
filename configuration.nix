@@ -10,6 +10,7 @@
   ];
 
   programs.hyprland.enable = true;
+  programs.regreet.enadle = true;
   # Optional, hint electron apps to use wayland:
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
 
@@ -73,7 +74,7 @@
   # Enable the GNOME Desktop Environment.
   services.xserver.displayManager.gdm.enable = true;
   services.xserver.desktopManager.gnome.enable = true;
-  # Enable flatpak
+
   services.flatpak.enable = true;
 
   # Configure keymap in X11
@@ -137,12 +138,12 @@
 
   # Allow unfree packages
   nixpkgs.config = { allowUnfree = true; };
-
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
+    greetd
     kitty
     htop
     btop
@@ -152,7 +153,7 @@
     os-prober
     grub2
     wl-clipboard
-    home-manager
+    # home-manager
     swaylock
     darktable
     lact

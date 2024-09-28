@@ -79,9 +79,6 @@
       fira
       cantarell-fonts
 
-      # For Outline
-      xdg-utils
-
       # - Other
       btop
       libreoffice-fresh
