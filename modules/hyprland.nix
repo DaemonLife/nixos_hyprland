@@ -1,251 +1,245 @@
 { pkgs, config, ... }: {
 
-wayland.windowManager.hyprland = {
-	enable = true;
-	xwayland.enable = true;
-};
+  wayland.windowManager.hyprland = {
+    enable = true;
+    xwayland.enable = true;
+  };
 
-wayland.windowManager.hyprland.settings = with config.colorScheme.palette; {
-	"$mod" = "SUPER";
-	"$terminal" = "kitty";
-	"$filemanager" = "nautilus";
-	"$menu" = "fuzzel";
-	"$browser" = "firefox";
+  wayland.windowManager.hyprland.settings = with config.colorScheme.palette; {
+    "$mod" = "SUPER";
+    "$terminal" = "kitty";
+    "$filemanager" = "nautilus";
+    "$menu" = "fuzzel";
+    "$browser" = "firefox";
 
-	monitor = [
-		# Monitor msk
-		# ",highres,0x0,1.333333,bitdepth,10,vrr,1"
-		# Monitor gg
-		"desc:Acer Technologies Acer A231H LQT0W0084320,highres,auto-right,1,bitdepth,10,vrr,1"
+    monitor = [
+      # Monitor msk
+      "desc:Shenzhen KTC Technology Group H27S17 0x00000001,2560x1440@165.00Hz,0x0,1.333333,bitdepth,10,vrr,1"
+      # Monitor gg
+      "desc:Acer Technologies Acer A231H LQT0W0084320,highres,auto-right,1,bitdepth,10,vrr,1"
 
-		# Laptop
-		"eDP-1,highres,auto,1.6,bitdepth,10,vrr,1"
-	];
-	
-	exec-once = [
-		"waybar & mako"
-        "rfkill block bluetooth" # disable bluetooth autostart
-        "swaybg --color ${base00}"
-        "/run/current-system/sw/libexex/polkit-gnome-authentication-agent-1"
-	];
+      # Laptop
+      "eDP-1,2240x1400@60.00Hz,auto,1.6,bitdepth,10,vrr,1"
+    ];
 
-	env = [
-		# "GTK_THEME,Adwaita"
-		"GDK_BACKEND,wayland,x11"
-		"QT_QPA_PLATFORM,wayland;xcb"
-		"SDL_VIDEODRIVER,wayland;"
-		"CLUTTER_BACKEND,wayland"
-		"QT_QPA_PLATFORMTHEME,qt6ct"
-		"XDG_CURRENT_DESKTOP,Hyprland"
-		"XDG_SESSION_TYPE,wayland"
-		"XDG_SESSION_DESKTOP,Hyprland"
-		"QT_AUTO_SCREEN_SCALE_FACTOR,1"
-		"QT_WAYLAND_DISABLE_WINDOWDECORATION,1"
-		"XCURSOR_THEME,Qogir-dark"
-		"XCURSOR_SIZE,24"
-		"MOZ_ENABLE_WAYLAND,1"
-		"GDK_SCALE,2"
-	];
+    exec-once = [
+      "waybar"
+      "mako"
+      "rfkill block bluetooth" # disable bluetooth autostart
+      "swaybg --color ${base00}"
+      "/run/current-system/sw/libexex/polkit-gnome-authentication-agent-1"
+    ];
 
-	input = {
-		kb_layout = "us,ru";
-		kb_variant = "";
-		kb_model = "";
-		kb_options = "grp:win_space_toggle";
-		kb_rules = "";
-		accel_profile = "adaptive";
-		follow_mouse = 1;
+    env = [
+      # "GTK_THEME,Adwaita"
+      "GDK_BACKEND,wayland,x11"
+      "QT_QPA_PLATFORM,wayland;xcb"
+      "SDL_VIDEODRIVER,wayland;"
+      "CLUTTER_BACKEND,wayland"
+      "QT_QPA_PLATFORMTHEME,qt6ct"
+      "XDG_CURRENT_DESKTOP,Hyprland"
+      "XDG_SESSION_TYPE,wayland"
+      "XDG_SESSION_DESKTOP,Hyprland"
+      "QT_AUTO_SCREEN_SCALE_FACTOR,1"
+      "QT_WAYLAND_DISABLE_WINDOWDECORATION,1"
+      "XCURSOR_THEME,Qogir-dark"
+      "XCURSOR_SIZE,24"
+      "MOZ_ENABLE_WAYLAND,1"
+      "GDK_SCALE,2"
+    ];
 
-		touchpad = {
-			natural_scroll = true;
-			disable_while_typing = true;
-			scroll_factor = "0.6";
-			drag_lock = false;
-			tap-and-drag = false;
-		};
+    input = {
+      kb_layout = "us,ru";
+      kb_variant = "";
+      kb_model = "";
+      kb_options = "grp:win_space_toggle";
+      kb_rules = "";
+      accel_profile = "adaptive";
+      follow_mouse = 1;
 
-		sensitivity = 0; # -1.0 to 1.0, 0 means no modification.
-	};
+      touchpad = {
+        natural_scroll = true;
+        disable_while_typing = true;
+        scroll_factor = "0.6";
+        drag_lock = false;
+        tap-and-drag = false;
+      };
 
-	# Example per-device config
-	# See https://wiki.hyprland.org/Configuring/Keywords/#per-device-input-configs for more
-	device = {
-		name = "epic-mouse-v1";
-		sensitivity = "-0.5";
-	};
+      sensitivity = 0; # -1.0 to 1.0, 0 means no modification.
+    };
 
-	general = {
-		# See https://wiki.hyprland.org/Configuring/Variables/ for more
-		gaps_in = 3;
-		gaps_out = "6, 6, 6, 6";
-		border_size = 2;
-		"col.active_border" = "rgba(${base0E}ff) rgba(${base0D}ff) 65deg";
-		"col.inactive_border" = "rgba(${base03}ff)";
-		layout = "dwindle";
-		# Please see https://wiki.hyprland.org/Configuring/Tearing/ before you turn this on
-		allow_tearing = false;
-	};
+    # Example per-device config
+    # See https://wiki.hyprland.org/Configuring/Keywords/#per-device-input-configs for more
+    device = {
+      name = "epic-mouse-v1";
+      sensitivity = "-0.5";
+    };
 
-	misc = {
-		vfr = true;
-		disable_hyprland_logo = true;
-		disable_splash_rendering = true;
-		mouse_move_enables_dpms = true;
-		animate_manual_resizes = true;
-		mouse_move_focuses_monitor = true;
-        font_family = "JetBrainsMono";
-	};
+    general = {
+      # See https://wiki.hyprland.org/Configuring/Variables/ for more
+      gaps_in = 3;
+      gaps_out = "6, 6, 6, 6";
+      border_size = 2;
+      "col.active_border" = "rgba(${base0E}ff) rgba(${base0D}ff) 65deg";
+      "col.inactive_border" = "rgba(${base03}ff)";
+      layout = "dwindle";
+      # Please see https://wiki.hyprland.org/Configuring/Tearing/ before you turn this on
+      allow_tearing = false;
+    };
 
-	# Scale options
-	xwayland = {
-  		force_zero_scaling = true;
-	};
+    misc = {
+      vfr = true;
+      vrr = true;
+      disable_hyprland_logo = true;
+      disable_splash_rendering = true;
+      mouse_move_enables_dpms = true;
+      animate_manual_resizes = true;
+      mouse_move_focuses_monitor = true;
+      font_family = "JetBrainsMono";
+    };
 
-	decoration = {
-		rounding = 0;
-		active_opacity = 1.0;
-		inactive_opacity = 1.0;
-		blur = {
-			enabled = false;
-			size = 6;
-			passes = 3;
-			new_optimizations = true;
-			xray = true;
-			ignore_opacity = true;
-		};
+    # Scale options
+    xwayland = { force_zero_scaling = true; };
 
-		drop_shadow = false;
-		shadow_ignore_window = true;
-		shadow_offset = "1 2";
-		shadow_range = 10;
-		shadow_render_power = 5;
-	};
+    decoration = {
+      rounding = 0;
+      active_opacity = 1.0;
+      inactive_opacity = 1.0;
+      blur = {
+        enabled = false;
+        # size = 6;
+        # passes = 3;
+        # new_optimizations = true;
+        # xray = true;
+        # ignore_opacity = true;
+      };
 
-	animations = {
-		enabled = true;
-		bezier = [
-			"wind, 0.05, 0.9, 0.1, 1.05"
-			"winIn, 0.1, 1.1, 0.1, 1.1"
-			"winOut, 0.3, -0.3, 0, 1"
-			"liner, 1, 1, 1, 1"
-		];
+      drop_shadow = false;
+      # shadow_ignore_window = true;
+      # shadow_offset = "1 2";
+      # shadow_range = 10;
+      # shadow_render_power = 5;
+    };
 
-		animation = [
-			"windows, 1, 6, wind, slide"
-			"windowsIn, 1, 6, winIn, slide"
-			"windowsOut, 1, 5, winOut, slide"
-			"windowsMove, 1, 5, wind, slide"
-			"border, 1, 1, liner"
-			"borderangle, 1, 30, liner, loop"
-			"fade, 1, 10, default"
-			"workspaces, 1, 5, wind"
-		];
-	};
+    animations = {
+      enabled = true;
+      bezier = [
+        "wind, 0.05, 0.9, 0.1, 1.05"
+        "winIn, 0.1, 1.1, 0.1, 1.1"
+        "winOut, 0.3, -0.3, 0, 1"
+        "liner, 1, 1, 1, 1"
+      ];
 
-	dwindle = {
-		# See https://wiki.hyprland.org/Configuring/Dwindle-Layout/ for more
-		pseudotile = true; # master switch for pseudotiling. Enabling is bound to mainMod + P in the keybinds section below
-		preserve_split = true; # you probably want this
-		# smart_split = true
-		no_gaps_when_only = 1;
-	};
+      animation = [
+        "windows, 1, 6, wind, slide"
+        "windowsIn, 1, 6, winIn, slide"
+        "windowsOut, 1, 5, winOut, slide"
+        "windowsMove, 1, 5, wind, slide"
+        "border, 1, 1, liner"
+        "borderangle, 1, 30, liner, loop"
+        "fade, 1, 10, default"
+        "workspaces, 1, 5, wind"
+      ];
+    };
 
-	master = {
-		# See https://wiki.hyprland.org/Configuring/Master-Layout/ for more
-		# new_is_master = true;
-	};
+    dwindle = {
+      # See https://wiki.hyprland.org/Configuring/Dwindle-Layout/ for more
+      pseudotile =
+        true; # master switch for pseudotiling. Enabling is bound to mainMod + P in the keybinds section below
+      preserve_split = true; # you probably want this
+      # smart_split = true
+      no_gaps_when_only = 1;
+    };
 
-	gestures = {
-		# See https://wiki.hyprland.org/Configuring/Variables/ for more
-		workspace_swipe = true;
-	};
+    master = {
+      # See https://wiki.hyprland.org/Configuring/Master-Layout/ for more
+      # new_is_master = true;
+    };
 
-	bindm = [
-		# Window mouse control
-		"$mod, mouse:272, movewindow"
-		"$mod, mouse:273, resizewindow"
-		"$mod ALT, mouse:272, resizewindow"
-	];
+    gestures = {
+      # See https://wiki.hyprland.org/Configuring/Variables/ for more
+      workspace_swipe = true;
+    };
 
-	bind = [
-		# Run programs
-		"$mod, RETURN, exec, $terminal"
-		"$mod, RETURN, exec, hyprctl keyword input:kb_layout us,ru"
-		"$mod, D, exec, $menu"
-		"$mod, D, exec, hyprctl keyword input:kb_layout us,ru"
-		"$mod, N, exec, $filemanager"
-		"$mod, B, exec, $browser"
-		"$mod, T, exec, telegram-desktop"
+    bindm = [
+      # Window mouse control
+      "$mod, mouse:272, movewindow"
+      "$mod, mouse:273, resizewindow"
+      "$mod ALT, mouse:272, resizewindow"
+    ];
 
-		# Windows control
-		"$mod, Q, killactive"
-		"$mod, O, exit"
-		"$mod, V, togglefloating"
-		"$mod, P, pseudo"
-		"$mod, s, togglesplit"
-		"$mod, g, togglegroup"
-		"$mod, tab, changegroupactive"
-		"$mod, F, fullscreen"
+    bind = [
+      # Run programs
+      "$mod, RETURN, exec, $terminal"
+      "$mod, RETURN, exec, hyprctl keyword input:kb_layout us,ru"
+      "$mod, D, exec, $menu"
+      "$mod, D, exec, hyprctl keyword input:kb_layout us,ru"
+      "$mod, N, exec, $filemanager"
+      "$mod, B, exec, $browser"
+      "$mod, T, exec, telegram-desktop"
 
-		# Move focus
-		"$mod, left, movefocus, l"
-		"$mod, right, movefocus, r"
-		"$mod, up, movefocus, u"
-		"$mod, down, movefocus, d"
-		"$mod, h, movefocus, l"
-		"$mod, l, movefocus, r"
-		"$mod, k, movefocus, u"
-		"$mod, j, movefocus, d"
+      # Windows control
+      "$mod, Q, killactive"
+      "$mod, O, exit"
+      "$mod, V, togglefloating"
+      "$mod, P, pseudo"
+      "$mod, s, togglesplit"
+      "$mod, g, togglegroup"
+      "$mod, tab, changegroupactive"
+      "$mod, F, fullscreen"
 
-		# Move window
-		"$mod SHIFT, left, movewindow, l"
-		"$mod SHIFT, right, movewindow, r"
-		"$mod SHIFT, up, movewindow, u"
-		"$mod SHIFT, down, movewindow, d"
-		"$mod SHIFT, h, movewindow, l"
-		"$mod SHIFT, l, movewindow, r"
-		"$mod SHIFT, k, movewindow, u"
-		"$mod SHIFT, j, movewindow, d"
+      # Move focus
+      "$mod, left, movefocus, l"
+      "$mod, right, movefocus, r"
+      "$mod, up, movefocus, u"
+      "$mod, down, movefocus, d"
+      "$mod, h, movefocus, l"
+      "$mod, l, movefocus, r"
+      "$mod, k, movefocus, u"
+      "$mod, j, movefocus, d"
 
-		# Lock screen
-		"SUPERALT, l, exec, swaylock"
-		"SUPERALT, l, exec, hyprctl keyword input:kb_layout us,ru"
+      # Move window
+      "$mod SHIFT, left, movewindow, l"
+      "$mod SHIFT, right, movewindow, r"
+      "$mod SHIFT, up, movewindow, u"
+      "$mod SHIFT, down, movewindow, d"
+      "$mod SHIFT, h, movewindow, l"
+      "$mod SHIFT, l, movewindow, r"
+      "$mod SHIFT, k, movewindow, u"
+      "$mod SHIFT, j, movewindow, d"
 
-		# Screenshot
-		",PRINT, exec, grim ~/Pictures/ps_$(date +\"%Y%m%d%H%M%S\").png - | wl-copy"
-		"SUPER_SHIFT, S, exec, grim -g \"$(slurp)\" - | wl-copy"
+      # Lock screen
+      "SUPERALT, l, exec, swaylock"
+      "SUPERALT, l, exec, hyprctl keyword input:kb_layout us,ru"
 
-		# Brightness
-		", XF86MonBrightnessUp, exec, brightnessctl set 10%+"
-		", XF86MonBrightnessDown, exec, brightnessctl set 10%-"
-		"$mod, XF86MonBrightnessUp, exec, brightnessctl set 2%+"
-		"$mod, XF86MonBrightnessDown, exec, brightnessctl set 2%-"
+      # Screenshot
+      ''
+        ,PRINT, exec, grim ~/Pictures/ps_$(date +"%Y%m%d%H%M%S").png - | wl-copy''
+      ''SUPER_SHIFT, S, exec, grim -g "$(slurp)" - | wl-copy''
 
-		# Audio control
-		", XF86AudioRaiseVolume, exec, amixer sset 'Master' 5%+"
-		", XF86AudioLowerVolume, exec, amixer sset 'Master' 5%-"
-		", XF86AudioMute, exec, amixer set Master toggle"
-		", XF86AudioMicMute, exec, amixer sset Capture toggle"
+      # Brightness
+      ", XF86MonBrightnessUp, exec, brightnessctl set 10%+"
+      ", XF86MonBrightnessDown, exec, brightnessctl set 10%-"
+      "$mod, XF86MonBrightnessUp, exec, brightnessctl set 2%+"
+      "$mod, XF86MonBrightnessDown, exec, brightnessctl set 2%-"
 
+      # Audio control
+      ", XF86AudioRaiseVolume, exec, amixer sset 'Master' 5%+"
+      ", XF86AudioLowerVolume, exec, amixer sset 'Master' 5%-"
+      ", XF86AudioMute, exec, amixer set Master toggle"
+      ", XF86AudioMicMute, exec, amixer sset Capture toggle"
 
-	]
-	++ (
-	# workspaces
-	# binds $mod + [shift +] {1..10} to [move to] workspace {1..10}
-	builtins.concatLists (builtins.genList (
-	    x: let
-	      ws = let
-		c = (x + 1) / 10;
-	      in
-		builtins.toString (x + 1 - (c * 10));
-	    in [
-	      "$mod, ${ws}, workspace, ${toString (x + 1)}"
-	      "$mod SHIFT, ${ws}, movetoworkspace, ${toString (x + 1)}"
-	    ]
-	  )
-	  10)
-	);
+      # Run scripts
+      "WIN, F1, exec, ~/nix/scripts/save_mode.sh"
+    ] ++ (
+      # workspaces
+      # binds $mod + [shift +] {1..10} to [move to] workspace {1..10}
+      builtins.concatLists (builtins.genList (x:
+        let ws = let c = (x + 1) / 10; in builtins.toString (x + 1 - (c * 10));
+        in [
+          "$mod, ${ws}, workspace, ${toString (x + 1)}"
+          "$mod SHIFT, ${ws}, movetoworkspace, ${toString (x + 1)}"
+        ]) 10));
 
-
-	};
+  };
 }

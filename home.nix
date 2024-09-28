@@ -55,6 +55,8 @@
 
       # - For Hyprland
       fuzzel # run menu
+      mako # notification agent
+      libnotify # for mako
       grim
       slurp # screenshot tool
       brightnessctl # screen light
@@ -76,6 +78,9 @@
       font-awesome
       fira
       cantarell-fonts
+
+      # For Outline
+      xdg-utils
 
       # - Other
       btop
