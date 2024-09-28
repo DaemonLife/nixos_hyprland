@@ -8,9 +8,11 @@
   imports = [ # Include the results of the hardware scan.
     ./hardware-configuration.nix
   ];
+  stylix.enable = true;
+  services.greetd = { enable = true; };
+  programs.regreet.enable = true;
 
   programs.hyprland.enable = true;
-  programs.regreet.enadle = true;
   # Optional, hint electron apps to use wayland:
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
 
@@ -143,7 +145,7 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-    greetd
+    greetd.regreet
     kitty
     htop
     btop

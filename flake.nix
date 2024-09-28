@@ -3,22 +3,21 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-24.05";
-    # hyprland.url = "github:hyprwm/Hyprland";
     nix-colors.url = "github:misterio77/nix-colors";
     home-manager = {
       url = "github:nix-community/home-manager/release-24.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    stylix.url = "github:danth/stylix";
     nixvim = {
       url = "github:nix-community/nixvim/nixos-24.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
-  outputs = { self, nixpkgs, home-manager, ... }@inputs:
+  outputs = { nixpkgs, home-manager, stylix, ... }@inputs:
     let
       system = "x86_64-linux";
-      # Import nixpkgs with allowUnfree set to true
       pkgs = import nixpkgs {
         inherit system;
         config.allowUnfree = true;
@@ -26,10 +25,15 @@
     in {
       nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
         specialArgs = {
+          # inherit inputs;
           inherit pkgs;
           inherit system;
         };
-        modules = [ ./configuration.nix ];
+        modules = [
+          ./configuration.nix
+          # pass
+          stylix.nixosModules.stylix
+        ];
       };
 
       homeConfigurations.user = home-manager.lib.homeManagerConfiguration {
