@@ -202,15 +202,29 @@
     };
 
     style = ''
+      	@define-color dark #${base00};
+      	@define-color gray #${base02};
+      	@define-color white #${base05};
+      	@define-color accent #${base0D};
+      	@define-color green #${base0B};
+      	@define-color red #${base08};
+      	@define-color magenta #${base0E};
+      	@define-color yellow #${base0A};
+      	
       	/* Default setting for all modules */
       	* {
       	  border: none;
           border-radius: 0px;
           margin: 0px;
+      		/*
+      	  font-family: "JetBrains";
+          font-weight: bold;
+      	  font-size: 96%;
+      		*/	
       	}
 
           /* Default color for modules except workspaces button.active */
-          #workspaces button, #window, window#waybar, #tray, #language, #network, #bluetooth, #idle_inhibitor, #pulseaudio, #battery, #clock {}
+          #workspaces button, #window, window#waybar, #tray, #language, #network, #bluetooth, #idle_inhibitor, #pulseaudio, #battery, #clock { background-color: @darl; color: @white; }
 
       	/* Default padding for some modules */
       	#language, #idle_inhibitor, #network, #battery, #clock, #tray, #bluetooth, #pulseaudio { padding: 0px 0px 0px 10px; }
@@ -220,6 +234,41 @@
           #battery { padding-left: 6px; }
           #window { padding: 0px 10px 0px 10px; }
 
+          #workspaces button.active { 
+              color: @dark;
+              background-color: @accent;
+          }
+
+      	#network.disconnected { color: @red;}
+      	#network.disabled { color: @gray; }
+
+      	#idle_inhibitor.activated { color: @green; }
+      	#idle_inhibitor.deactivated { color: @gray; }
+
+      	#bluetooth { color: @green; }
+      	#bluetooth.disabled { color: @gray; }
+
+      	#pulseaudio.muted { color: @gray; }
+
+      	#battery.plugged { color: @green; }
+      	#battery.charging{
+      	    color: @green;
+      	    animation-name: blink;
+      	    animation-duration: 1.5s;
+      	    animation-timing-function: linear;
+      	    animation-iteration-count: infinite;
+      	    animation-direction: alternate;
+      	} 
+      	#battery:not(.charging) { color: @white; }
+      	#battery.warning:not(.charging) {
+      	    color: @red;
+      	    animation-name: blink;
+      	    animation-duration: 1s;
+      	    animation-timing-function: linear;
+      	    animation-iteration-count: infinite;
+      	    animation-direction: alternate;
+      	}
+      	@keyframes blink { to { color: @yellow; } }
       	'';
   };
 }

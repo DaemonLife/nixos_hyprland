@@ -7,28 +7,55 @@
   # Imports
   imports = [ # Include the results of the hardware scan.
     ./hardware-configuration.nix
+    <home-manager/nixos>
   ];
+
+  # Global system theme 
   stylix = {
     enable = true;
+    base16Scheme = "${pkgs.base16-schemes}/share/themes/rebecca.yaml";
+    # Mandatory option... why?.. but yes...
     image = "/home/user/Pictures/wallpapers/m104.jpg";
-  };
-  # services.greetd = { enable = true; };
-  # programs.regreet.enable = true;
 
-  programs.hyprland.enable = true;
+    cursor.package = pkgs.bibata-cursors;
+    cursor.name = "Bibata-Modern-Ice";
+
+    fonts = {
+      monospace = {
+        package = pkgs.nerdfonts.override { fonts = [ "JetBrainsMono" ]; };
+        name = "JetBrainsMono Nerd Font Mono";
+      };
+      sansSerif = {
+        package = pkgs.dejavu_fonts;
+        name = "DejaVu Sans";
+      };
+      serif = {
+        package = pkgs.dejavu_fonts;
+        name = "DejaVu Serif";
+      };
+
+      sizes = {
+        applications = 12;
+        terminal = 15;
+        desktop = 10;
+        popups = 10;
+      };
+
+    };
+
+    opacity = {
+      applications = 1.0;
+      terminal = 1.0;
+      desktop = 1.0;
+      popups = 1.0;
+    };
+
+    polarity = "dark";
+  };
+
   # Optional, hint electron apps to use wayland:
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
 
-  programs.nix-ld.enable = true;
-  programs.nix-ld.libraries = with pkgs; [
-    # Add any missing dynamic libraries for unpackaged programs
-    # here, NOT in environment.systemPackages
-    libz
-    haskellPackages.bz2
-    zlib
-  ];
-
-  # Bootloader.
   boot.loader = {
     grub = {
       enable = true;
@@ -42,10 +69,6 @@
 
   networking.hostName = "nixos"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
-
-  # Configure network proxy if necessary
-  # networking.proxy.default = "http://user:password@proxy:port/";
-  # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
   # Enable networking
   networking.networkmanager.enable = true;
@@ -80,8 +103,6 @@
   services.xserver.displayManager.gdm.enable = true;
   services.xserver.desktopManager.gnome.enable = true;
 
-  services.flatpak.enable = true;
-
   # Configure keymap in X11
   services.xserver = {
     xkb.layout = "us,ru";
@@ -92,9 +113,8 @@
   services.printing.enable = true;
 
   # Enable OpenCL
-  environment.variables = {
-    RUSTICL_ENABLE = "radeonsi";
-  }; # important for darktable
+  # important for darktable
+  environment.variables = { RUSTICL_ENABLE = "radeonsi"; };
   boot.initrd.kernelModules = [ "amdgpu" ];
   boot.kernelParams = [ "radeon.si_support=0" "amdgpu.si_support=1" ];
   # hardware.graphics = {
@@ -124,14 +144,7 @@
     pulse.enable = true;
     # If you want to use JACK applications, uncomment this
     jack.enable = true;
-
-    # use the example session manager (no others are packaged yet so this is enabled by default,
-    # no need to redefine it in your config for now)
-    #media-session.enable = true;
   };
-
-  # Enable touchpad support (enabled default in most desktopManager).
-  # services.xserver.libinput.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.user = {
@@ -141,14 +154,14 @@
     packages = with pkgs; [ flatpak ];
   };
 
-  # Allow unfree packages
+  # Allow unfree and experimental packages
   nixpkgs.config = { allowUnfree = true; };
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
-  # List packages installed in system profile. To search, run:
-  # $ nix search wget
+  # List packages installed in system profile. To search, run: nix search wget
   environment.systemPackages = with pkgs; [
-    # greetd.regreet
+    pavucontrol
+    gparted
     kitty
     htop
     btop
@@ -158,7 +171,7 @@
     os-prober
     grub2
     wl-clipboard
-    home-manager
+    # home-manager
     swaylock
     darktable
     lact
@@ -167,6 +180,15 @@
     microcodeAmd
   ];
 
+  # Other programs and services
+
+  # Flatpak
+  services.flatpak.enable = true;
+
+  # Hyprland
+  programs.hyprland.enable = true;
+
+  # AMD GPU
   systemd.services.lactd = {
     description = "AMDGPU Control Daemon";
     enable = true;
@@ -174,6 +196,7 @@
     wantedBy = [ "multi-user.target" ];
   };
 
+  # Authentication agent
   systemd = {
     user.services.polkit-gnome-authentication-agent-1 = {
       description = "polkit-gnome-authentication-agent-1";
@@ -190,16 +213,6 @@
       };
     };
   };
-
-  # Some programs need SUID wrappers, can be configured further or are
-  # started in user sessions.
-  # programs.mtr.enable = true;
-  # programs.gnupg.agent = {
-  #   enable = true;
-  #   enableSSHSupport = true;
-  # };
-
-  # List services that you want to enable:
 
   # screen lock
   security.pam.services.swaylock = { };
@@ -231,6 +244,7 @@
     };
   };
 
+  # Auto delete nix trash
   nix.gc = {
     automatic = true;
     dates = "weekly";
@@ -248,12 +262,16 @@
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
 
-  # This value determines the NixOS release from which the default
-  # settings for stateful data, like file locations and database versions
-  # on your system were taken. It‘s perfectly fine and recommended to leave
-  # this value at the release version of the first install of this system.
+  home-manager.users.user = { pkgs, ... }: {
+    home.packages = [ pkgs.atool pkgs.httpie ];
+    programs.bash.enable = true;
+
+    # The state version is required and should stay at the version you
+    # originally installed.
+    home.stateVersion = "24.05";
+  };
+
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "23.11"; # Did you read the comment?
-
 }
