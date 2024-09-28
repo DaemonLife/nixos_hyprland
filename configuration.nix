@@ -8,9 +8,12 @@
   imports = [ # Include the results of the hardware scan.
     ./hardware-configuration.nix
   ];
-  stylix.enable = true;
-  services.greetd = { enable = true; };
-  programs.regreet.enable = true;
+  stylix = {
+    enable = true;
+    image = "/home/user/Pictures/wallpapers/m104.jpg";
+  };
+  # services.greetd = { enable = true; };
+  # programs.regreet.enable = true;
 
   programs.hyprland.enable = true;
   # Optional, hint electron apps to use wayland:
@@ -145,7 +148,7 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-    greetd.regreet
+    # greetd.regreet
     kitty
     htop
     btop
@@ -155,7 +158,7 @@
     os-prober
     grub2
     wl-clipboard
-    # home-manager
+    home-manager
     swaylock
     darktable
     lact

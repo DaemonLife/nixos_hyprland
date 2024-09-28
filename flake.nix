@@ -16,6 +16,7 @@
   };
 
   outputs = { nixpkgs, home-manager, stylix, ... }@inputs:
+    # outputs = { nixpkgs, home-manager, ... }@inputs:
     let
       system = "x86_64-linux";
       pkgs = import nixpkgs {
@@ -25,7 +26,7 @@
     in {
       nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
         specialArgs = {
-          # inherit inputs;
+          inherit inputs;
           inherit pkgs;
           inherit system;
         };
