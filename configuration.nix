@@ -5,17 +5,18 @@
 { config, pkgs, lib, inputs, ... }: {
 
   # Imports
-  imports = [ # Include the results of the hardware scan.
+  imports = [
     ./hardware-configuration.nix
-    <home-manager/nixos>
+    # pass
+    # <home-manager/nixos>
   ];
 
-  # Global system theme 
+  # # Global system theme 
   stylix = {
     enable = true;
     base16Scheme = "${pkgs.base16-schemes}/share/themes/rebecca.yaml";
     # Mandatory option... why?.. but yes...
-    image = "/home/user/Pictures/wallpapers/m104.jpg";
+    image = "/home/user/nix/img.png";
 
     cursor.package = pkgs.bibata-cursors;
     cursor.name = "Bibata-Modern-Ice";
@@ -153,6 +154,15 @@
     extraGroups = [ "networkmanager" "wheel" ];
     packages = with pkgs; [ flatpak ];
   };
+  # home-manager.useUserPackages = true;
+  # home-manager.users.user = { pkgs, ... }: {
+  #   home.packages = [ pkgs.atool pkgs.httpie ];
+  #   programs.bash.enable = true;
+
+  #   # The state version is required and should stay at the version you
+  #   # originally installed.
+  #   home.stateVersion = "24.05";
+  # };
 
   # Allow unfree and experimental packages
   nixpkgs.config = { allowUnfree = true; };
@@ -160,6 +170,7 @@
 
   # List packages installed in system profile. To search, run: nix search wget
   environment.systemPackages = with pkgs; [
+    imagemagick
     pavucontrol
     gparted
     kitty
@@ -171,7 +182,7 @@
     os-prober
     grub2
     wl-clipboard
-    # home-manager
+    #   # home-manager
     swaylock
     darktable
     lact
@@ -261,15 +272,6 @@
   # networking.firewall.allowedUDPPorts = [ ... ];
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
-
-  home-manager.users.user = { pkgs, ... }: {
-    home.packages = [ pkgs.atool pkgs.httpie ];
-    programs.bash.enable = true;
-
-    # The state version is required and should stay at the version you
-    # originally installed.
-    home.stateVersion = "24.05";
-  };
 
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
