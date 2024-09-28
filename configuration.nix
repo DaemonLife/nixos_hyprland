@@ -16,7 +16,7 @@
     enable = true;
     base16Scheme = "${pkgs.base16-schemes}/share/themes/rebecca.yaml";
     # Mandatory option... why?.. but yes...
-    image = "/home/user/nix/img.png";
+    image = "./img.png";
 
     cursor.package = pkgs.bibata-cursors;
     cursor.name = "Bibata-Modern-Ice";
