@@ -24,7 +24,7 @@
   # outputs = { nixpkgs, stylix, ... }@inputs:
   outputs = { nixpkgs, home-manager, stylix, ... }@inputs: {
       nixosConfigurations = {
-	hostname = nixpkgs.lib.nixosSystem {
+	nixos = nixpkgs.lib.nixosSystem {
 	system = "x86_64-linux";
         modules = [
           ./configuration.nix

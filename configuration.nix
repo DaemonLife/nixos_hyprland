@@ -5,20 +5,19 @@
 { config, pkgs, lib, inputs, ... }: {
 
   # Imports
-  imports = [
-    ./hardware-configuration.nix
-    # pass
-    # <home-manager/nixos>
-  ];
+  imports = [ ./hardware-configuration.nix ];
 
   # # Global system theme 
   stylix = {
     enable = true;
-    base16Scheme = "${pkgs.base16-schemes}/share/themes/rebecca.yaml";
+    # base16Scheme =
+    # "${pkgs.base16-schemes}/share/themes/horizon-terminal-dark.yaml";
     image = ./img.png;
+    homeManagerIntegration.followSystem = false;
 
     cursor.package = pkgs.bibata-cursors;
     cursor.name = "Bibata-Modern-Ice";
+    cursor.size = 24;
 
     fonts = {
       monospace = {
@@ -97,7 +96,7 @@
 
   # Enable the X11 windowing system.
   services.xserver.enable = true;
-  # services.xserver.displayManager.startx.enable = ;
+  # services.xserver.displayManager.startx.enable = false;
 
   # Enable the GNOME Desktop Environment.
   services.xserver.displayManager.gdm.enable = true;
@@ -153,15 +152,6 @@
     extraGroups = [ "networkmanager" "wheel" ];
     packages = with pkgs; [ flatpak ];
   };
-  # home-manager.useUserPackages = true;
-  # home-manager.users.user = { pkgs, ... }: {
-  #   home.packages = [ pkgs.atool pkgs.httpie ];
-  #   programs.bash.enable = true;
-
-  #   # The state version is required and should stay at the version you
-  #   # originally installed.
-  #   home.stateVersion = "24.05";
-  # };
 
   # Allow unfree and experimental packages
   nixpkgs.config = { allowUnfree = true; };
@@ -172,7 +162,6 @@
     imagemagick
     pavucontrol
     gparted
-    kitty
     htop
     btop
     zsh
@@ -191,6 +180,12 @@
   ];
 
   # Other programs and services
+  # home-manager.users.user.programs.kitty.settings = {
+  #   selection_background = lib.mkForce "#${config.stylix.base16Scheme.base0D}";
+  #   # # black
+  #   color0 = "#${config.lib.stylix.colors.base0D}";
+  #   color8 = "#${config.lib.stylix.colors.base0D}";
+  # };
 
   # Flatpak
   services.flatpak.enable = true;

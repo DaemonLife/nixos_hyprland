@@ -5,7 +5,7 @@
     xwayland.enable = true;
   };
 
-  wayland.windowManager.hyprland.settings = with config.colorScheme.palette; {
+  wayland.windowManager.hyprland.settings = {
     "$mod" = "SUPER";
     "$terminal" = "kitty";
     "$filemanager" = "nautilus";
@@ -26,7 +26,7 @@
       "waybar"
       "mako"
       "rfkill block bluetooth" # disable bluetooth autostart
-      "swaybg --color ${base00}"
+      # "swaybg --color ${base00}"
       "/run/current-system/sw/libexex/polkit-gnome-authentication-agent-1"
     ];
 
@@ -80,8 +80,8 @@
       gaps_in = 3;
       gaps_out = "6, 6, 6, 6";
       border_size = 2;
-      "col.active_border" = "rgba(${base0E}ff) rgba(${base0D}ff) 65deg";
-      "col.inactive_border" = "rgba(${base03}ff)";
+      # "col.active_border" = "rgba(${base0E}ff) rgba(${base0D}ff) 65deg";
+      # "col.inactive_border" = "rgba(${base03}ff)";
       layout = "dwindle";
       # Please see https://wiki.hyprland.org/Configuring/Tearing/ before you turn this on
       allow_tearing = false;

@@ -1,6 +1,6 @@
 { pkgs, config, ... }: {
 
-  programs.waybar = with config.colorScheme.palette; {
+  programs.waybar = {
     enable = true;
 
     # Bug fix for nixos and hyprland
@@ -207,6 +207,8 @@
       	  border: none;
           border-radius: 0px;
           margin: 0px;
+      	  font-size: 15px;
+
       	}
 
           /* Default color for modules except workspaces button.active */
@@ -219,7 +221,6 @@
           #clock { padding-right: 8px; }
           #battery { padding-left: 6px; }
           #window { padding: 0px 10px 0px 10px; }
-
       	'';
   };
 }

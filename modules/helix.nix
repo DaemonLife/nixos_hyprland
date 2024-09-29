@@ -1,11 +1,11 @@
 { pkgs, config, ... }: {
 
-  programs.helix = with config.colorScheme.palette; {
+  programs.helix = {
 
     enable = true;
     settings = {
 
-      theme = "base16_transparent";
+      # theme = "base16_transparent";
       editor = {
         # Show currently open buffers, only when more than one exists.
         bufferline = "multiple";

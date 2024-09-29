@@ -1,51 +1,65 @@
 { pkgs, lib, config, inputs, ... }: {
 
   imports = [
-    inputs.nix-colors.homeManagerModules.default
-#    inputs.nixvim.homeManagerModules.nixvim
-    ./modules/mako.nix
+    #./modules/mako.nix
     ./modules/fuzzel.nix
     ./modules/hyprland.nix
     ./modules/kitty.nix
-    ./modules/gtk.nix
+    #./modules/gtk.nix
     ./modules/waybar.nix
-    ./modules/nixvim.nix
     ./modules/firefox.nix
-    ./modules/mpv.nix
+    #./modules/mpv.nix
     ./modules/hypridle.nix
     ./modules/swaylock.nix
-    ./modules/telegram-theme.nix
-    ./modules/git.nix
+    #./modules/telegram-theme.nix
+    #./modules/git.nix
     ./modules/zsh.nix
-    ./modules/cmus.nix
-    ./modules/jrnl.nix
+    #./modules/cmus.nix
+    #./modules/jrnl.nix
     ./modules/helix.nix
   ];
 
-  colorScheme = inputs.nix-colors.colorSchemes.horizon-terminal-dark;
-  #   colorScheme = {
-  #   slug = "myown";
-  #   name = "Myown";
-  #   author = "Me!";
-  #   palette = {
-  #     base00 = "#2e2421";
-  #     base01 = "#4f4540";
-  #     base02 = "#716660";
-  #     base03 = "#93877f";
-  #     base04 = "#b4a89e";
-  #     base05 = "#d6c9bd";
-  #     base06 = "#dcd1c7";
-  #     base07 = "#e2d9d1";
-  #     base08 = "#6f76a1";
-  #     base09 = "#7673a3";
-  #     base0A = "#6f7893";
-  #     base0B = "#c2574d";
-  #     base0C = "#717b6b";
-  #     base0D = "#ab6744";
-  #     base0E = "#8e7174";
-  #     base0F = "#778698";
-  #   };
-  # };
+  stylix = {
+    enable = true;
+    image = ./img.png;
+
+    cursor.package = pkgs.bibata-cursors;
+    cursor.name = "Bibata-Modern-Ice";
+    cursor.size = 24;
+
+    fonts = {
+      monospace = {
+        package = pkgs.nerdfonts.override { fonts = [ "JetBrainsMono" ]; };
+        name = "JetBrainsMono Nerd Font Mono";
+      };
+      sansSerif = {
+        package = pkgs.dejavu_fonts;
+        name = "DejaVu Sans";
+      };
+      serif = {
+        package = pkgs.dejavu_fonts;
+        name = "DejaVu Serif";
+      };
+
+      sizes = {
+        applications = 12;
+        terminal = 15;
+        desktop = 10;
+        popups = 10;
+      };
+
+    };
+
+    opacity = {
+      applications = 1.0;
+      terminal = 1.0;
+      desktop = 1.0;
+      popups = 1.0;
+    };
+
+    polarity = "dark";
+
+  };
 
   home = {
     username = "user";
@@ -54,6 +68,7 @@
     packages = with pkgs; [
 
       # - For Hyprland
+      kitty
       fuzzel # run menu
       mako # notification agent
       libnotify # for mako
@@ -100,14 +115,5 @@
     ];
     sessionPath = [ "$HOME/.local/bin" ];
   };
-
-  dconf.settings = {
-    "org/gnome/desktop/interface" = { color-scheme = "prefer-dark"; };
-  };
-
-  qt.enable = true;
-  qt.platformTheme.name = "gtk";
-  qt.style.name = "adwaita-dark";
-  qt.style.package = pkgs.adwaita-qt;
 
 }
