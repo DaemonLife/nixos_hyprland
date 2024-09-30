@@ -25,6 +25,8 @@
       "${pkgs.base16-schemes}/share/themes/horizon-terminal-dark.yaml";
     image = ./image.jpg;
 
+    targets.waybar.enable = false;
+
     cursor.package = pkgs.bibata-cursors;
     cursor.name = "Bibata-Modern-Ice";
     cursor.size = 24;
