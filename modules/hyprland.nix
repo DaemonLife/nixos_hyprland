@@ -26,7 +26,7 @@
       "waybar"
       "mako"
       "rfkill block bluetooth" # disable bluetooth autostart
-      # "swaybg --color ${base00}"
+      "swaybg -i ./image.jpg"
       "/run/current-system/sw/libexex/polkit-gnome-authentication-agent-1"
     ];
 

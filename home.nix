@@ -1,27 +1,29 @@
 { pkgs, lib, config, inputs, ... }: {
 
   imports = [
-    #./modules/mako.nix
+    ./modules/mako.nix
     ./modules/fuzzel.nix
     ./modules/hyprland.nix
     ./modules/kitty.nix
     #./modules/gtk.nix
     ./modules/waybar.nix
     ./modules/firefox.nix
-    #./modules/mpv.nix
+    ./modules/mpv.nix
     ./modules/hypridle.nix
     ./modules/swaylock.nix
-    #./modules/telegram-theme.nix
-    #./modules/git.nix
+    ./modules/telegram-theme.nix
+    ./modules/git.nix
     ./modules/zsh.nix
-    #./modules/cmus.nix
-    #./modules/jrnl.nix
+    ./modules/cmus.nix
+    ./modules/jrnl.nix
     ./modules/helix.nix
   ];
 
   stylix = {
     enable = true;
-    image = ./img.png;
+    base16Scheme =
+      "${pkgs.base16-schemes}/share/themes/horizon-terminal-dark.yaml";
+    image = ./image.jpg;
 
     cursor.package = pkgs.bibata-cursors;
     cursor.name = "Bibata-Modern-Ice";
@@ -52,13 +54,12 @@
 
     opacity = {
       applications = 1.0;
-      terminal = 1.0;
+      terminal = 0.9;
       desktop = 1.0;
       popups = 1.0;
     };
 
     polarity = "dark";
-
   };
 
   home = {

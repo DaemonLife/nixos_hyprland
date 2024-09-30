@@ -1,6 +1,6 @@
 { pkgs, config, lib, ... }: {
 
-  programs.kitty = {
+  programs.kitty = with config.lib.stylix.colors; {
 
     enable = true;
     shellIntegration.enableZshIntegration = true;
@@ -19,6 +19,8 @@
       italic_font = "JetBrains Italic";
       bold_italic_font = "JetBrains Bold Italic";
       font_size = "12.0";
+
+      # background_opacity = lib.mkForce "0.9";
 
       shell = "zsh";
       editor = "nvim";
@@ -75,7 +77,7 @@
     };
     # For Stylix
     # it's important change colors only in extaConfig!
-    extraConfig = with config.stylix.base16Scheme; ''
+    extraConfig = ''
       color0  #${base02}
       visual_bell_color #${base01}
     '';

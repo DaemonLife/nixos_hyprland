@@ -1,6 +1,6 @@
 { pkgs, config, ... }: {
 
-  programs.firefox = {
+  programs.firefox = with config.lib.stylix.colors; {
     enable = true;
     package = pkgs.wrapFirefox pkgs.firefox-unwrapped {
       extraPolicies = {
@@ -36,66 +36,46 @@
     };
 
     profiles.user = { settings = { "general.smoothScroll" = true; }; };
+
     profiles.user.extraConfig = ''
-      user_pref("toolkit.legacyUserProfileCustomizations.stylesheets", true);
-      user_pref("layers.acceleration.force-enabled", true);
-      user_pref("gfx.webrender.all", true);
-      user_pref("gfx.webrender.enabled", true);
-      user_pref("layout.css.backdrop-filter.enabled", true);
-      user_pref("svg.context-properties.content.enabled", true);
-      use$r_pref("browser.compactmode.show", true);
-      user_pref("browser.tabs.firefox-view", false);
-      user_pref("svg.context-properties.content.enabled", true);
+          user_pref("toolkit.legacyUserProfileCustomizations.stylesheets", true);
+          user_pref("layers.acceleration.force-enabled
+      ", true);
+          user_pref("gfx.webrender.all", true);
+          user_pref("gfx.webrender.enabled", true);
+          user_pref("layout.css.backdrop-filter.enabled", true);
+          user_pref("svg.context-properties.content.enabled", true);
+          use$r_pref("browser.compactmode.show", true);
+          user_pref("browser.tabs.firefox-view", false);
+          user_pref("svg.context-properties.content.enabled", true);
     '';
 
     profiles.user.userChrome = ''
-      /* 
-      ┌─┐┬┌┬┐┌─┐┬  ┌─┐
-      └─┐││││├─┘│  ├┤ 
-      └─┘┴┴ ┴┴  ┴─┘└─┘
-      ┌─┐┌─┐─┐ ┬      
-      ├┤ │ │┌┴┬┘      
-      └  └─┘┴ └─
-
-      by Miguel Avila
-
-      */
-
-      /*
-       
-      ┌─┐┌─┐┌┐┌┌─┐┬┌─┐┬ ┬┬─┐┌─┐┌┬┐┬┌─┐┌┐┌
-      │  │ ││││├┤ ││ ┬│ │├┬┘├─┤ │ ││ ││││
-      └─┘└─┘┘└┘└  ┴└─┘└─┘┴└─┴ ┴ ┴ ┴└─┘┘└┘
-
-      */
-
       :root {
-      /* there's a window color and a tabs / urlbar color.
-        --sfwindow: #19171a;
-        --sfsecondary: #201e21;
-      */
+        --sfwindow: #${base00};
+        --sfsecondary: #${base02};
+        --toolbarbutton-border-radius: 0px !important;
       }
 
-      /* Urlbar View */
-
-      /*─────────────────────────────*/
-      /* Comment this section if you */
-      /* want to show the URL Bar    */
-      /*─────────────────────────────*/
-
-      .urlbarView {
-        display: none !important;
+      /* Tabs */
+      .tabbrowser-tab[selected="true"] .tab-background {
+        background: #${base02} none !important;
       }
 
-      /*─────────────────────────────*/
+      .tab-content {
+        padding: 0px 10px 0px 10px !important;
+      }
+      .tab-content[selected=""] {
+      }
 
-      /* 
-      ┌─┐┌─┐┬  ┌─┐┬─┐┌─┐
-      │  │ ││  │ │├┬┘└─┐
-      └─┘└─┘┴─┘└─┘┴└─└─┘ 
-      */
+      .tab-close-button {
+      }
 
-      /* Tabs `s  */
+      .tabbrowser-tab:not([selected="true"]) {
+      	color: #${base05} !important; /*for unselected tabs*/
+        padding: 0px !important;
+      }
+
       #tabbrowser-tabs:not([movingtab])
         > #tabbrowser-arrowscrollbox
         > .tabbrowser-tab
@@ -118,7 +98,7 @@
       /* Window colors  */
       :root {
         --toolbar-bgcolor: var(--sfsecondary) !important;
-        --tabs-border-color: var(--sfsecondary) !important;
+        --tabs-border-color: var(--sfwindow) !important;
         --lwt-sidebar-background-color: var(--sfwindow) !important;
         --lwt-toolbar-field-focus: var(--sfsecondary) !important;
       }
@@ -129,55 +109,69 @@
         background-color: var(--sfwindow) !important;
       }
 
-      /* 
-
-      ┌┬┐┌─┐┬  ┌─┐┌┬┐┌─┐            
-       ││├┤ │  ├┤  │ ├┤             
-      ─┴┘└─┘┴─┘└─┘ ┴ └─┘            
-      ┌─┐┌─┐┌┬┐┌─┐┌─┐┌┐┌┌─┐┌┐┌┌┬┐┌─┐
-      │  │ ││││├─┘│ ││││├┤ │││ │ └─┐
-      └─┘└─┘┴ ┴┴  └─┘┘└┘└─┘┘└┘ ┴ └─┘
-
+      /* hover card e/* 
+      REMOVED ELEMENTS
       */
 
       #page-action-buttons {
-        display: none;
+        display: true;
       }
-       
 
       /* Tabs elements  */
       .tab-close-button {
-        /* make it transparent */
+      /* make it transparent */
         opacity: 0;
-        transition: 0.5s;
-        border-radius: 50%;
+        border-radius: 5px !important;
       }
 
-      .tab-close-button:hover {
-        /* make it transparent */
-        opacity: 100;
-        transition: 0.5s;
+      #tabs-newtab-button, #new-tab-button {
+          background-color: #${base00} !important;
+          /* color: red !important; */
+          border-radius: 0px !important;
+          padding: 0px !important;
+          margin: 0px !important;
       }
 
-
-      .tabbrowser-tab:not([pinned]) .tab-icon-image {
-        opacity: 0 !important;
-        transition: 0.5s !important;
-        width: 0px !important;
-      }
-
-      .tabbrowser-tab:not([pinned]):hover .tab-icon-image {
+      #tabs-newtab-button:hover, #new-tab-button:hover {
+        background-color: #${base0B} !important; /* Цвет фона при наведении */
+        color: #${base01} !important; /* Цвет текста при наведении */
+        padding: 0px !important;
+        margin: 0px !important;
         opacity: 100 !important;
-        transition: 0.5s !important;
-        display: inline-block !important;
       }
 
-      .tabbrowser-tab:not([pinned]):hover .tab-icon-image {
-        width: 16px !important;
+      /* remove loading icon  */
+      .tab-throbber { 
+        display: none !important;
+      }
+
+      /* make tab close button instantly show up  */
+      .tabbrowser-tab:not([pinned]):hover .tab-close-button {
+        opacity: 100 !important;
+      }
+      .tabbrowser-tab .tab-close-button {
+        border-radius: 5px !important;
+      }
+
+      /* remove loading burst  */
+      .tabbrowser-tab[image^="chrome:"] .tab-loading-burst {
+        display: none;
+      }
+
+      /* remove website icons in tabs  */
+      .tabbrowser-tab .tab-icon-image {
+        /* display: none !important; */
+      }
+
+      .tab-icon-overlay {
+        display:none !important;
       }
 
       #nav-bar:not([tabs-hidden='true']) {
         box-shadow: none;
+      }
+      #nav-bar {
+        border: 0px !important;
       }
 
       #tabbrowser-tabs[haspinnedtabs]:not([positionpinnedtabs])
@@ -187,7 +181,8 @@
       }
 
       :root {
-        --toolbarbutton-border-radius: 0 !important;
+        --toolbarbutton-border-radius: 5px !important;
+        --toolbar-field-focus-border-color: transparent !important;
         --tab-border-radius: 0 !important;
         --tab-block-margin: 0 !important;
       }
@@ -211,71 +206,18 @@
         padding-left: 0 !important;
       }
 
-      /* Url Bar  */
-      #urlbar-input-container {
-        background-color: var(--sfsecondary) !important;
-        border: 1px solid rgba(0, 0, 0, 0) !important;
+      #tabbrowser-tabs:not([overflow="true"]) ~ #alltabs-button {
+        display: none !important;
       }
 
-      #urlbar-container {
-        margin-left: 0 !important;
-      }
-
-      #urlbar[focused='true'] > #urlbar-background {
-        box-shadow: none !important;
-      }
-
-      #navigator-toolbox {
-        border: none !important;
-      }
-
-      /* Bookmarks bar  */
-      .bookmark-item .toolbarbutton-icon {
+      .titlebar-spacer {
         display: none;
       }
-      toolbarbutton.bookmark-item:not(.subviewbutton) {
-        min-width: 1.6em;
-      }
 
-      /* Toolbar  */
-      #tracking-protection-icon-container,
-      #urlbar-zoom-button,
-      #star-button-box,
-      #pageActionButton,
-      #pageActionSeparator,
-      #tabs-newtab-button,
-      #back-button,
-      #PanelUI-button,
-      #forward-button,
-      .tab-secondary-label {
-        display: none !important;
-      }
-
-      .urlbarView-url {
-        color: #dedede !important;
-      }
+      /* #context_bookmarkTab, */
 
       /* Disable elements  */
-      #context-navigation,
-      #context-savepage,
-      #context-pocket,
-      #context-sendpagetodevice,
-      #context-selectall,
-      #context-viewsource,
-      #context-inspect-a11y,
-      #context-sendlinktodevice,
-      #context-openlinkinusercontext-menu,
-      #context-bookmarklink,
-      #context-savelink,
-      #context-savelinktopocket,
-      #context-sendlinktodevice,
-      #context-searchselect,
-      #context-sendimage,
-      #context-print-selection {
-        display: none !important;
-      }
-
-      #context_bookmarkTab,
+      #image.autoplay-media-icon,
       #context_moveTabOptions,
       #context_sendTabToDevice,
       #context_reopenInContainer,
@@ -284,57 +226,178 @@
         display: none !important;
       }
 
-      /*
-      ┬┌─┐┌─┐┌┐┌┌─┐
-      ││  │ ││││└─┐
-      ┴└─┘└─┘┘└┘└─┘
-      Icons from Feather Icons
-      https://feathericons.com/
+      /* Url Bar  */
 
-      .titlebar-min {
+      #identity-box {
+        margin-inline-end: 4px !important;
       }
-      .titlebar-max {
+
+      .identity-box-button {
+        padding: 0px 10px 0px 10px !important;
+        # padding-inline: 10px !important;
+      } 
+
+      #urlbar-input::selection{
+        background-color: #${base0D} !important;
       }
-      .titlebar-restore {
+
+      #blocked-permissions-container {
+        display: none !important;
       }
-      .titlebar-close {
+
+      .notification-anchor-icon {
+        display: none !important;
       }
-      .titlebar-close:hover {
+
+      .blocked-permission-icon {
+        display: none !important;
       }
-      #reload-button {
+
+      .urlbarView-row[selected] .urlbarView-row-inner,
+      .urlbarView-row:hover .urlbarView-row-inner { 
+       background-color: #${base0D} !important; 
       }
-      #identity-box[pageproxystate="valid"].verifiedDomain #identity-icon, #identity-box[pageproxystate="valid"].mixedActiveBlocked #identity-icon {
+
+      #urlbar[breakout][breakout-extend][open] > #urlbar-input-container {
+        border-radius: var(--toolbarbutton-border-radius) var(--toolbarbutton-border-radius) 0 0 !important;
+        background-color: #${base01} !important;
       }
-      #tabs-newtab-button, #TabsToolbar #new-tab-button {
+
+      /* Urlbar View customizations */
+      #urlbar-background, .urlbarView-results[wrap] > .urlbarView-row, .search-one-offs {
+      	background-color: #${base00} !important; 
+      	border: none !important;
       }
-      #alltabs-button {
+      	
+      .urlbarView-row:hover > .urlbarView-row-inner {
+      	background-color: #${base00} !important;
       }
-      #permissions-granted-icon {
+
+      #urlbar-input-container {
+        background-color: #${base01} !important;
+        border: 1px solid rgba(0, 0, 0, 0) !important;
       }
+
+      #urlbar-container {
+        border: none !important;
+      }
+
+      #urlbar[focused='true'] > #urlbar-background {
+        box-shadow: none !important;
+      }
+
+      /* Star button */
+      #star-button-box {
+      }
+      #star-button[starred] {
+      	fill: #${base0D} !important;
+      }
+      #star-button[starred][animate] + #star-button-animatable-box > #star-button-animatable-image {
+      	stroke: #${base0D} !important;
+      	fill: #${base0D} !important;
+      }
+
+      #navigator-toolbox {
+        border: none !important;
+      }
+
+      /* removes the firefox suggest text from urlbarview */
+      .urlbarView-row[label="Firefox Suggest"]::before{ display: none !important; }
+      .urlbarView-row[label="Firefox Suggest"]{ margin-top: 0 !important; }
+
+      /* Removes search engine support */
+      #urlbar .search-one-offs {
+        display: none !important;
+      }
+
+      /* Removes the switch tab buttons in urlbarview */
+      .urlbarView-row:is([type="switchtab"],
+        [type="remotetab"]) > .urlbarView-row-inner > .urlbarView-no-wrap > .urlbarView-action  {
+          display:none !important;
+      }
+
+      /* Bookmarks bar  */
+      .bookmark-item .toolbarbutton-icon {
+        display: none;
+      }
+
+      toolbarbutton.bookmark-item:not(.subviewbutton) {
+        min-width: 1.6em;
+      }
+
+      /* #urlbar-zoom-button,
+      #star-button-box,
+      #tabs-newtab-button, */
+
+      /* Toolbar  */
+      #tracking-protection-icon-container,
+      #pageActionButton,
+      #pageActionSeparator,
+      #firefox-view-button,
+      #wrapper-firefox-view-button,
+      #fxa-toolbar-menu-button,
+      #translations-button,
+      #reader-mode-button,
+      #customizableui-special-spring1,
+      #customizableui-special-spring2,
+      .tab-secondary-label {
+        display: none !important;
+      }
+
+      /*** firefox view - remove separator and whitespace ***/
+      #tabbrowser-tabs {
+        border-inline-start: 0 !important;
+        padding-inline-start: 0 !important;
+        padding-inline-end: 0 !important;
+        margin-inline-start: 0 !important;
+      }
+
+      .urlbarView-url {
+        color: #${base0E} !important;
+      }
+
     '';
 
     profiles.user.userContent = ''
-      /* 
-      ┌─┐┬┌┬┐┌─┐┬  ┌─┐
-      └─┐││││├─┘│  ├┤ 
-      └─┘┴┴ ┴┴  ┴─┘└─┘
-      ┌─┐┌─┐─┐ ┬      
-      ├┤ │ │┌┴┬┘      
-      └  └─┘┴ └─
+       @-moz-document url("about:home"),url(about:preferences),url("about:blank"),url("about:newtab"),url("about:privatebrowsing"){
+        body{background-color:#${base00}!important;--newtab-search-icon: transparent !important;}
+        a,a:visited,a:hover{color: red !important}
+      	#newtab-search-text {
+      	background-color: #${base02} !important;
+      	font-size: 18px !important;
+      	color: #${base07} !important;
+      	box-shadow: none !important;
+      	text-align: center !important;
+      	border:none !important;
+      	font-weight: bold !important;
+      		}
 
-      by Miguel Avila
+      .search-wrapper input {
+          --newtab-textbox-focus-boxshadow: none !important;
+          padding-left: 20px !important;
+         	padding-inline-start: 24px !important;
+         	padding-inline-end: 13px !important;
+        }
+        
+      .search-wrapper .search-handoff-button,
+      .search-wrapper input {
+         	padding-inline-start: 25px !important;
+      }
 
-      */
+      .icon.icon-settings {
+          display: none !important;
+      }
 
       :root {
-        scrollbar-width: none !important;
+      	
+          --in-content-border-active: #${base00} !important;
+          --in-content-border-active-shadow: none !important;
+          --in-content-page-background: #${base00} !important;
+          --in-content-page-color: #${base03} !important;
+          scrollbar-color: #${base04} #${base05} !important;
+          scrollbar-width: thin;
       }
 
-      @-moz-document url(about:privatebrowsing) {
-        :root {
-          scrollbar-width: none !important;
-        }
-      }
     '';
   };
 }

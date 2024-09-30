@@ -10,9 +10,9 @@
   # # Global system theme 
   stylix = {
     enable = true;
-    # base16Scheme =
-    # "${pkgs.base16-schemes}/share/themes/horizon-terminal-dark.yaml";
-    image = ./img.png;
+    base16Scheme =
+      "${pkgs.base16-schemes}/share/themes/horizon-terminal-dark.yaml";
+    image = ./image.jpg;
     homeManagerIntegration.followSystem = false;
 
     cursor.package = pkgs.bibata-cursors;
@@ -44,7 +44,7 @@
 
     opacity = {
       applications = 1.0;
-      terminal = 1.0;
+      terminal = 0.9;
       desktop = 1.0;
       popups = 1.0;
     };
@@ -180,12 +180,6 @@
   ];
 
   # Other programs and services
-  # home-manager.users.user.programs.kitty.settings = {
-  #   selection_background = lib.mkForce "#${config.stylix.base16Scheme.base0D}";
-  #   # # black
-  #   color0 = "#${config.lib.stylix.colors.base0D}";
-  #   color8 = "#${config.lib.stylix.colors.base0D}";
-  # };
 
   # Flatpak
   services.flatpak.enable = true;
