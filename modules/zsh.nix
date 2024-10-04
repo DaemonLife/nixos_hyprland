@@ -6,6 +6,7 @@ programs.zsh = {
     syntaxHighlighting.enable = true;
     
     shellAliases = {
+        rg = "ranger";
         flake-rebuild = "\
         sudo nixos-rebuild switch --flake \"/home/user/nix/.\" && \
         echo '\n> Complited. The flake has been rebuilded.'";

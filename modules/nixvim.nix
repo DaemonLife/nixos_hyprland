@@ -5,7 +5,7 @@
     enable = true;
     defaultEditor = true;
     viAlias = true;
-    # luaLoader.enable = true;
+    luaLoader.enable = true;
 
     plugins = {
       lightline.enable = true;
@@ -29,11 +29,11 @@
     extraConfigVim = ''
       highlight LightlineLeft_active_0 guibg=#${base0D} guifg=#${base00}
       highlight LightlineLeft_active_1 guibg=#${base01} guifg=#${base03}
-
+      
       highlight LightlineMiddle_active guibg=#${base01} guifg=#${base03}
-
-      highlight LightlineRight_active_0 guibg=#${base01} guifg=#${base03}
-      highlight LightlineRight_active_1 guibg=#${base01} guifg=#${base03}
+      
+      highlight LightlineRight_active_0 guibg=#${base02} guifg=#${base04}
+      highlight LightlineRight_active_1 guibg=#${base02} guifg=#${base04}
       highlight LightlineRight_active_2 guibg=#${base01} guifg=#${base03}
     '';
 
@@ -64,6 +64,11 @@
         event = "FileType";
         pattern = [ "tex" "latex" "markdown" ];
         command = "setlocal spell spelllang=en,ru";
+      }
+      {
+        event = "FileType";
+        pattern = "nix";
+        command = "setlocal tabstop=2 shiftwidth=2";
       }
     ];
 

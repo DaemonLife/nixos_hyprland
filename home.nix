@@ -76,8 +76,8 @@
       fuzzel # run menu
       mako # notification agent
       libnotify # for mako
-      grim
-      slurp # screenshot tool
+      grim # screenshot tool
+      slurp # screenshot tool also need
       brightnessctl # screen light
       pavucontrol # audio gui control
       alsa-utils # audio volume control (?)
@@ -101,8 +101,7 @@
       # - Other
       btop
       libreoffice-fresh
-      nautilus-open-in-blackbox # right click open menu
-      helix
+      # nautilus-open-in-blackbox # right click open menu
       unzip
       jrnl
       mpv

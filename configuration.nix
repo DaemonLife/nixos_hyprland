@@ -15,6 +15,8 @@
     image = ./image.jpg;
     homeManagerIntegration.followSystem = false;
 
+    targets.grub.enable = false;
+    
     cursor.package = pkgs.bibata-cursors;
     cursor.name = "Bibata-Modern-Ice";
     cursor.size = 24;
@@ -55,6 +57,43 @@
   # Optional, hint electron apps to use wayland:
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
 
+  # Enable OpenCL
+  # important for darktable
+  # environment.variables = { RUSTICL_ENABLE = "radeonsi"; };
+  # boot.initrd.kernelModules = [ "amdgpu" ];
+  # services.xserver.videoDrivers = [ "amdgpu" ];
+  # systemd.tmpfiles.rules =
+  #   [ "L+    /opt/rocm/hip   -    -    -     -    ${pkgs.rocmPackages.clr}" ];
+
+  boot = {
+    kernelParams = [
+      "radeon.si_support=0"
+      "amdgpu.si_support=1"
+      "boot.shell_on_fail"
+    ];
+  };
+
+  console = with config.lib.stylix.colors; {
+    colors = lib.mkForce [
+      "000000"          # background
+      "${base08}"       # red
+      "${base0B}"       # green
+      "${base0A}"       # yellow
+      "${base0D}"       # blue
+      "${base0E}"       # magenta
+      "${base0C}"       # cyan
+      "${base05}"       # base05
+      "${base03}"       # base03
+      "${base08}"       # red
+      "${base0B}"       # green
+      "${base0A}"       # yellow
+      "${base0D}"       # blue
+      "${base0E}"       # magenta
+      "${base0C}"       # cyan
+      "${base06}"       # base06
+    ];
+  };
+
   boot.loader = {
     grub = {
       enable = true;
@@ -62,6 +101,15 @@
       efiSupport = true;
       useOSProber = true;
       default = "saved";
+      # font = lib.mkForce "${pkgs.hack-font}/share/fonts/hack/Hack-Regular.ttf";
+      # fontSize = 36;
+      # backgroundColor = lib.mkForce "#000000";
+      splashImage = lib.mkForce null;
+      theme = lib.mkForce null;
+      gfxmodeEfi = "640x480";
+      gfxmodeBios = "640x480";
+      gfxpayloadBios = "640x480";
+      gfxpayloadEfi = "640x480";
     };
     efi = { canTouchEfiVariables = true; };
   };
@@ -96,7 +144,8 @@
 
   # Enable the X11 windowing system.
   services.xserver.enable = true;
-  # services.xserver.displayManager.startx.enable = false;
+  # TTY start - true
+  services.xserver.displayManager.startx.enable = true;
 
   # Enable the GNOME Desktop Environment.
   services.xserver.displayManager.gdm.enable = true;
@@ -110,27 +159,6 @@
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
-
-  # Enable OpenCL
-  # important for darktable
-  environment.variables = { RUSTICL_ENABLE = "radeonsi"; };
-  boot.initrd.kernelModules = [ "amdgpu" ];
-  boot.kernelParams = [ "radeon.si_support=0" "amdgpu.si_support=1" ];
-  # hardware.graphics = {
-  #   enable = true;
-  #   enable32Bit = true;
-  # };
-  # hardware.graphics.extraPackages = with pkgs; [
-  #   rocmPackages.clr.icd
-  #   amdvlk
-  # ];
-  services.xserver.videoDrivers = [ "amdgpu" ];
-  systemd.tmpfiles.rules =
-    [ "L+    /opt/rocm/hip   -    -    -     -    ${pkgs.rocmPackages.clr}" ];
-  # For 32 bit applications 
-  # hardware.graphics.extraPackages32 = with pkgs; [
-  #   driversi686Linux.amdvlk
-  # ];
 
   # Enable sound with pipewire.
   hardware.pulseaudio.enable = false;
@@ -172,14 +200,27 @@
     wl-clipboard
     swaylock
     darktable
-    lact
+    lact # gui for amd gpu
     rocmPackages.rpp
     rocmPackages.clr
     microcodeAmd
     ntfs3g # ntfs support
+    clinfo # for opencl
+    gthumb # image viewer
+    ranger # file manager
   ];
 
   # Other programs and services
+  # services.greetd = {
+  #   enable = true;
+  #   settings = rec {
+  #     default_session = {
+  #       command = "${pkgs.hyprland}/bin/Hyprland";
+  #       # user = "user";
+  #     };
+  #     # default_session = initial_session;
+  #   };
+  # };
 
   # Flatpak
   services.flatpak.enable = true;
@@ -188,11 +229,21 @@
   programs.hyprland.enable = true;
 
   # AMD GPU
+  systemd.packages = with pkgs; [ lact ];
   systemd.services.lactd = {
     description = "AMDGPU Control Daemon";
     enable = true;
-    serviceConfig = { ExecStart = "${pkgs.lact}/bin/lact daemon"; };
     wantedBy = [ "multi-user.target" ];
+  };
+  # opencl
+  hardware.opengl.extraPackages = with pkgs; [
+    rocmPackages.clr.icd
+  ];
+  # graphics acceleration
+  hardware.opengl = {
+    enable = true;
+    driSupport = true;
+    driSupport32Bit = true;
   };
 
   # Authentication agent
