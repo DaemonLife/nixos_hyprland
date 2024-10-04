@@ -170,13 +170,13 @@
     os-prober
     grub2
     wl-clipboard
-    #   # home-manager
     swaylock
     darktable
     lact
     rocmPackages.rpp
     rocmPackages.clr
     microcodeAmd
+    ntfs3g # ntfs support
   ];
 
   # Other programs and services

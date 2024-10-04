@@ -140,6 +140,14 @@
         opacity: 100 !important;
       }
 
+      .tabs-newtab-button:hover, .new-tab-button:hover {
+        background-color: #${base0B} !important; /* Цвет фона при наведении */
+        color: #${base01} !important; /* Цвет текста при наведении */
+        padding: 0px !important;
+        margin: 0px !important;
+        opacity: 100 !important;
+      }
+
       /* remove loading icon  */
       .tab-throbber { 
         display: none !important;

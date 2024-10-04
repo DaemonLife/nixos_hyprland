@@ -78,8 +78,9 @@
     # For Stylix
     # it's important change colors only in extaConfig!
     extraConfig = ''
-      color0  #${base02}
-      visual_bell_color #${base01}
+      # for black '>' in my zsh theme
+       color0  #${base03}
+       visual_bell_color #${base01}
     '';
 
   };

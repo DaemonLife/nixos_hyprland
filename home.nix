@@ -17,6 +17,7 @@
     ./modules/cmus.nix
     ./modules/jrnl.nix
     ./modules/helix.nix
+    ./modules/nixvim.nix
   ];
 
   stylix = {
