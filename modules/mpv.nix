@@ -6,8 +6,8 @@ programs.mpv = {
     config = {
 
         #-General
-        player-operation-mode = "pseudo-gui";
-        ytdl-format = "bestvideo+bestaudio/best";
+        # player-operation-mode = "pseudo-gui";
+        # ytdl-format = "bestvideo+bestaudio/best";
 
         #-Cache
         cache = "yes";
@@ -15,28 +15,28 @@ programs.mpv = {
         demuxer-readahead-secs = 20;
 
         #-Decode Opts
-        vo = "gpu-next";
-        profile = "gpu-hq";
-        gpu-api = "opengl";
-        hwdec = "auto-safe"; 
+        # vo = "gpu-next";
+        # profile = "gpu-hq";
+        # gpu-api = "opengl";
+        # hwdec = "auto-safe"; 
 
         #-Scaling settings for profile=gpu-hq
-        scale = "ewa_lanczossharp";
-        scale-antiring = ".4";
-        cscale = "ewa_lanczossharp";
-        dscale = "ewa_robidoux";
-        dscale-param1 = 0;
-        dscale-param2 = 0;
-        dscale-antiring = 0;
-        correct-downscaling = "yes";
-        sigmoid-upscaling = "yes";
+        # scale = "ewa_lanczossharp";
+        # scale-antiring = ".4";
+        # cscale = "ewa_lanczossharp";
+        # dscale = "ewa_robidoux";
+        # dscale-param1 = 0;
+        # dscale-param2 = 0;
+        # dscale-antiring = 0;
+        # correct-downscaling = "yes";
+        # sigmoid-upscaling = "yes";
 
         #-Fiters
         deband = "no";
         interpolation = "no";
         deinterlace = "no";
-        dither-depth = 8; # Set to your displays bitdepth.
-        dither = "fruit"; # default "fruit". Change to "ordered" if 10 or 12 bit display.
+        # dither-depth = 8; # Set to your displays bitdepth.
+        # dither = "fruit"; # default "fruit". Change to "ordered" if 10 or 12 bit display.
 
         #-Tweaks/UI
         fullscreen = "no";
@@ -64,7 +64,7 @@ programs.mpv = {
         screenshot-directory = "~/Pictures/mpv-screenshots"; # insert directory between quote marks
 
         scripts = [
-            "/home/user/Downloads/dynamic-crop.lua"
+            # "/home/user/Downloads/dynamic-crop.lua"
         ];
     };
 };

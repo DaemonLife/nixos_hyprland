@@ -59,11 +59,17 @@
 
   # Enable OpenCL
   # important for darktable
-  # environment.variables = { RUSTICL_ENABLE = "radeonsi"; };
-  # boot.initrd.kernelModules = [ "amdgpu" ];
-  # services.xserver.videoDrivers = [ "amdgpu" ];
-  # systemd.tmpfiles.rules =
-  #   [ "L+    /opt/rocm/hip   -    -    -     -    ${pkgs.rocmPackages.clr}" ];
+  environment.variables = { RUSTICL_ENABLE = "radeonsi"; };
+  boot.initrd.kernelModules = [ "amdgpu" ];
+  services.xserver.videoDrivers = [ "amdgpu" ];
+  systemd.tmpfiles.rules =
+    [ "L+    /opt/rocm/hip   -    -    -     -    ${pkgs.rocmPackages.clr}" ];
+
+  # For 32 bit applications 
+  hardware.opengl.extraPackages32 = with pkgs; [
+    driversi686Linux.amdvlk
+  ];
+
 
   boot = {
     kernelParams = [
@@ -208,18 +214,39 @@
     clinfo # for opencl
     gthumb # image viewer
     ranger # file manager
+    steam-run
+    xorg.xcbutilwm
+    xorg.libxcb
+    nh # nix cli helper
+    rtorrent # tui torrent cloent
+    lutris # emulator
+    winetricks
+    wineWowPackages.waylandFull
+    wineWow64Packages.waylandFull
+    wine-wayland
+    wine
+    wine64
+    amdvlk # amd Vulkan driver for emulator 
+    mesa
+    vimix-icon-theme
   ];
 
   # Other programs and services
-  # services.greetd = {
+  
+  programs.nh = {
+    enable = true;
+    # clean.enable = true;
+    # clean.extraArgs = "--keep-since 4d --keep 3";
+    flake = "/home/user/nix";
+  };
+
+  # programs.nix-ld = {
   #   enable = true;
-  #   settings = rec {
-  #     default_session = {
-  #       command = "${pkgs.hyprland}/bin/Hyprland";
-  #       # user = "user";
-  #     };
-  #     # default_session = initial_session;
-  #   };
+  #   # package = nix-ld-rs;
+  #   libraries = [
+  #     # ...
+  #     # xorg.libxcb
+  #   ];
   # };
 
   # Flatpak
@@ -238,6 +265,7 @@
   # opencl
   hardware.opengl.extraPackages = with pkgs; [
     rocmPackages.clr.icd
+    amdvlk
   ];
   # graphics acceleration
   hardware.opengl = {

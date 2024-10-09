@@ -81,6 +81,9 @@
       # for black '>' in my zsh theme
        color0  #${base03}
        visual_bell_color #${base01}
+      # green
+      color2 #${base0B}  
+      color10 #${base0B} 
     '';
 
   };

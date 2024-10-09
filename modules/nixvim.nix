@@ -12,6 +12,25 @@
       nvim-colorizer.enable = true; # colors for hex code
       # nvim-colorizer.fileTypes = [ "tex" ];
       comment.enable = true;
+      luasnip.enable = true;
+
+      lsp.enable = true;
+      lsp.servers.pyright.enable = true;
+      lsp-format.enable = true;
+      cmp.enable = true; # autocomplite
+      cmp-nvim-lsp.enable = true;
+      cmp-treesitter.enable = true;
+      nvim-autopairs.enable = true; # auto ""
+      # nvim-surround.enable = true; # auto "[text]"
+      indent-blankline.enable = true; # -- for python
+      cmp = {
+        autoEnableSources = true;
+        settings.sources = [
+          { name = "nvim_lsp"; }
+          { name = "path"; }
+          { name = "buffer"; }
+        ];
+      };
     };
 
     plugins.lightline = {

@@ -45,19 +45,17 @@
         package = pkgs.dejavu_fonts;
         name = "DejaVu Serif";
       };
-
       sizes = {
         applications = 12;
         terminal = 15;
         desktop = 10;
         popups = 10;
       };
-
     };
 
     opacity = {
       applications = 1.0;
-      terminal = 0.9;
+      terminal = 0.8;
       desktop = 1.0;
       popups = 1.0;
     };
@@ -99,6 +97,7 @@
       cantarell-fonts
 
       # - Other
+      gimp
       btop
       libreoffice-fresh
       # nautilus-open-in-blackbox # right click open menu
@@ -114,6 +113,7 @@
       tor-browser
       bottles
       veracrypt
+      portablemc # minecraft cli launcher 
 
     ];
     sessionPath = [ "$HOME/.local/bin" ];

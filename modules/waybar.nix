@@ -223,7 +223,7 @@
       	}
 
           /* Default color for modules except workspaces button.active */
-          #workspaces button, #window, window#waybar, #tray, #language, #network, #bluetooth, #idle_inhibitor, #pulseaudio, #battery, #clock { background-color: @darl; color: @white; }
+          #workspaces button, #window, window#waybar, #tray, #language, #network, #bluetooth, #idle_inhibitor, #pulseaudio, #battery, #clock { color: @white; }
 
       	/* Default padding for some modules */
       	#language, #idle_inhibitor, #network, #battery, #clock, #tray, #bluetooth, #pulseaudio { padding: 0px 0px 0px 10px; }
@@ -237,6 +237,14 @@
               color: @dark;
               background-color: @accent;
           }
+
+        window#waybar.empty {
+          background-color: transparent;
+        }
+        window#waybar {
+          background-color: @dark;
+        }
+
 
       	#network.disconnected { color: @red;}
       	#network.disabled { color: @gray; }
