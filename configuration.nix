@@ -38,15 +38,15 @@
       sizes = {
         applications = 12;
         terminal = 15;
-        desktop = 10;
-        popups = 10;
+        desktop = 12;
+        popups = 12;
       };
 
     };
 
     opacity = {
       applications = 1.0;
-      terminal = 0.9;
+      terminal = 1.0;
       desktop = 1.0;
       popups = 1.0;
     };
@@ -302,17 +302,34 @@
     settings = {
       CPU_SCALING_GOVERNOR_ON_AC = "performance";
       CPU_SCALING_GOVERNOR_ON_BAT = "powersave";
-
       CPU_ENERGY_PERF_POLICY_ON_AC = "performance";
       CPU_ENERGY_PERF_POLICY_ON_BAT = "power";
+      PLATFORM_PROFILE_ON_AC = "performance";
+      PLATFORM_PROFILE_ON_BAT = "low-power";
 
       CPU_MIN_PERF_ON_AC = 0;
       CPU_MAX_PERF_ON_AC = 100;
       CPU_MIN_PERF_ON_BAT = 0;
       CPU_MAX_PERF_ON_BAT = 20;
 
+      CPU_BOOST_ON_AC = "1";
+      CPU_BOOST_ON_BAT = "0";
+
+      # Savings are made at the expense of color balance
+      # 0 - off, 4 - max. 
+      AMDGPU_ABM_LEVEL_ON_AC = "0";
+      AMDGPU_ABM_LEVEL_ON_BAT = "3";
+
+      # Controls runtime power management for PCIe devices (Fan).
+      RUNTIME_PM_ON_AC = "auto";
+      RUNTIME_PM_ON_BAT = "auto";
+
       # Helps save long term battery health (auto mode)
       CONSERVATION_MODE = 1;
+      TLP_DEFAULT_MODE = "conservation";
+      # Only for Lenovo non-ThinkPad series
+      START_CHARGE_THRESH_BAT0 = 0;
+      STOP_CHARGE_THRESH_BAT0 = 1; 
 
       # Not supported for my laptop (manual mode)
       # START_CHARGE_THRESH_BAT0 = 70;
