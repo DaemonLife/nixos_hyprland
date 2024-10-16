@@ -12,7 +12,7 @@
       mainBar = {
         layer = "top";
         position = "top";
-        height = 24;
+        height = 25; # 25 is correct for my windows border size
         modules-left = [ "hyprland/workspaces" ];
         modules-center = [ "hyprland/window" ];
         modules-right = [
@@ -213,9 +213,10 @@
       	
       	/* Default setting for all modules */
       	* {
-      	  border: none;
+      	  border: 0px;
           border-radius: 0px;
           margin: 0px;
+          padding: 0px;
           text-decoration: none;
       	  font-family: "JetBrains";
           font-weight: bold;
@@ -228,7 +229,9 @@
       	/* Default padding for some modules */
       	#language, #idle_inhibitor, #network, #battery, #clock, #tray, #bluetooth, #pulseaudio { padding: 0px 0px 0px 10px; }
           
-          #workspaces button { padding: 0px 5px 0px 5px; }
+          #workspaces button { 
+            padding: 0px 5px 0px 5px;
+          }
           #clock { padding-right: 8px; }
           #battery { padding-left: 6px; }
           #window { padding: 0px 10px 0px 10px; }
@@ -244,7 +247,6 @@
         window#waybar {
           background-color: @dark;
         }
-
 
       	#network.disconnected { color: @red;}
       	#network.disabled { color: @gray; }
@@ -269,11 +271,6 @@
       	#battery:not(.charging) { color: @white; }
       	#battery.warning:not(.charging) {
       	    color: @red;
-      	    animation-name: blink;
-      	    animation-duration: 1s;
-      	    animation-timing-function: linear;
-      	    animation-iteration-count: infinite;
-      	    animation-direction: alternate;
       	}
       	@keyframes blink { to { color: @yellow; } }
       	'';

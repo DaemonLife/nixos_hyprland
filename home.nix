@@ -18,6 +18,7 @@
     ./modules/jrnl.nix
     ./modules/helix.nix
     ./modules/nixvim.nix
+    ./modules/ranger.nix
   ];
 
   stylix = {
