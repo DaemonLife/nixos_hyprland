@@ -94,7 +94,7 @@
           states = {
             full = 98;
             good = 90;
-            warning = 40;
+            warning = 35;
             critical = 20;
           };
           interval = 30;
@@ -224,15 +224,15 @@
       	}
 
           /* Default color for modules except workspaces button.active */
-          #workspaces button, #window, window#waybar, #tray, #language, #network, #bluetooth, #idle_inhibitor, #pulseaudio, #battery, #clock { color: @white; }
+          #workspaces button, #window, window#waybar, #tray, #language, #network, #bluetooth, #idle_inhibitor, #battery, #pulseaudio, #clock { color: @white; }
 
       	/* Default padding for some modules */
-      	#language, #idle_inhibitor, #network, #battery, #clock, #tray, #bluetooth, #pulseaudio { padding: 0px 0px 0px 10px; }
+      	#language, #idle_inhibitor, #network, #clock, #tray, #bluetooth, #pulseaudio { padding: 0px 0px 0px 10px; }
           
           #workspaces button { 
             padding: 0px 5px 0px 5px;
           }
-          #clock { padding-right: 8px; }
+          #clock { padding-right: 5px; }
           #battery { padding-left: 6px; }
           #window { padding: 0px 10px 0px 10px; }
 
@@ -268,10 +268,8 @@
       	    animation-iteration-count: infinite;
       	    animation-direction: alternate;
       	} 
-      	#battery:not(.charging) { color: @white; }
-      	#battery.warning:not(.charging) {
-      	    color: @red;
-      	}
+      	#battery.warning:not(.charging) { color: @yellow; }
+      	#battery.critical:not(.charging) { color: @red; }
       	@keyframes blink { to { color: @yellow; } }
       	'';
   };
