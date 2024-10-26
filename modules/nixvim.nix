@@ -1,7 +1,6 @@
 { pkgs, config, ... }: {
 
   programs.nixvim = with config.lib.stylix.colors; {
-
     enable = true;
     defaultEditor = true;
     viAlias = true;
@@ -131,6 +130,257 @@
       spell = true; # Highlight spelling mistakes (local to window)
 
     };
+    
+    keymaps = [
+      {
+        action = "q";
+        key = "й";
+      }
+      {
+        action = "Q";
+        key = "Й";
+      }
+      {
+        action = "w";
+        key = "ц";
+      }
+      {
+        action = "W";
+        key = "Ц";
+      }
+      {
+        action = "e";
+        key = "у";
+      }
+      {
+        action = "E";
+        key = "У";
+      }
+      {
+        action = "r";
+        key = "к";
+      }
+      {
+        action = "R";
+        key = "К";
+      }
+      {
+        action = "t";
+        key = "е";
+      }
+      {
+        action = "T";
+        key = "Е";
+      }
+      {
+        action = "y";
+        key = "н";
+      }
+      {
+        action = "Y";
+        key = "Н";
+      }
+      {
+        action = "u";
+        key = "г";
+      }
+      {
+        action = "U";
+        key = "Г";
+      }
+      {
+        action = "i";
+        key = "ш";
+      }
+      {
+        action = "I";
+        key = "Ш";
+      }
+      {
+        action = "o";
+        key = "щ";
+      }
+      {
+        action = "O";
+        key = "Щ";
+      }
+      {
+        action = "p";
+        key = "з";
+      }
+      {
+        action = "P";
+        key = "З";
+      }
+      {
+        action = "[";
+        key = "х";
+      }
+      {
+        action = "{";
+        key = "Х";
+      }
+      {
+        action = "a";
+        key = "ф";
+      }
+      {
+        action = "A";
+        key = "Ф";
+      }
+      {
+        action = "s";
+        key = "ы";
+      }
+      {
+        action = "S";
+        key = "Ы";
+      }
+      {
+        action = "d";
+        key = "в";
+      }
+      {
+        action = "D";
+        key = "В";
+      }
+      {
+        action = "f";
+        key = "а";
+      }
+      {
+        action = "F";
+        key = "А";
+      }
+      {
+        action = "g";
+        key = "п";
+      }
+      {
+        action = "G";
+        key = "П";
+      }
+      {
+        action = "h";
+        key = "р";
+      }
+      {
+        action = "H";
+        key = "Р";
+      }
+      {
+        action = "j";
+        key = "о";
+      }
+      {
+        action = "J";
+        key = "О";
+      }
+      {
+        action = "k";
+        key = "л";
+      }
+      {
+        action = "K";
+        key = "Л";
+      }
+      {
+        action = "l";
+        key = "д";
+      }
+      {
+        action = "L";
+        key = "Д";
+      }
+      {
+        action = ";";
+        key = "ж";
+      }
+      {
+        action = ":";
+        key = "Ж";
+      }
+      {
+        action = "z";
+        key = "я";
+      }
+      {
+        action = "Z";
+        key = "Я";
+      }
+      {
+        action = "x";
+        key = "ч";
+      }
+      {
+        action = "X";
+        key = "Ч";
+      }
+      {
+        action = "c";
+        key = "с";
+      }
+      {
+        action = "C";
+        key = "С";
+      }
+      {
+        action = "v";
+        key = "м";
+      }
+      {
+        action = "V";
+        key = "М";
+      }
+      {
+        action = "b";
+        key = "и";
+      }
+      {
+        action = "B";
+        key = "И";
+      }
+      {
+        action = "n";
+        key = "т";
+      }
+      {
+        action = "N";
+        key = "Т";
+      }
+      {
+        action = "m";
+        key = "ь";
+      }
+      {
+        action = "M";
+        key = "Ь";
+      }
+      {
+        action = ",";
+        key = "б";
+      }
+      {
+        action = "<";
+        key = "Б";
+      }
+      {
+        action = ".";
+        key = "ю";
+      }
+      {
+        action = ">";
+        key = "Ю";
+      }
+      {
+        action = "/";
+        key = "я";
+      }
+      {
+        action = "?";
+        key = "Я";
+      }
+    ];
   };
 
 }

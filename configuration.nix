@@ -229,6 +229,9 @@
     amdvlk # amd Vulkan driver for emulator 
     mesa
     vimix-icon-theme
+    overskride # bluetooth gui
+    qbittorrent
+    imv # cli image viewer 
   ];
 
   # Other programs and services

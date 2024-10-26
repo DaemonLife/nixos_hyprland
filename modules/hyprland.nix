@@ -190,9 +190,11 @@
       "$mod, V, togglefloating"
       "$mod, P, pseudo"
       "$mod, s, togglesplit"
-      "$mod, g, togglegroup"
-      "$mod, tab, changegroupactive"
+      # "$mod, g, togglegroup"
+      # "$mod, tab, changegroupactive"
       "$mod, F, fullscreen"
+      "$mod, Tab, cyclenext"
+      "$mod, Tab, bringactivetotop"
 
       # Move focus
       "$mod, left, movefocus, l"
@@ -213,6 +215,25 @@
       "$mod SHIFT, l, movewindow, r"
       "$mod SHIFT, k, movewindow, u"
       "$mod SHIFT, j, movewindow, d"
+
+      # Workspace
+      ", F1, workspace, 1"
+      ", F2, workspace, 2"
+      ", F3, workspace, 3"
+      ", F4, workspace, 4"
+      ", F5, workspace, 5"
+      ", F6, workspace, 6"
+      ", F7, workspace, 7"
+      ", F8, workspace, 8"
+      ", F9, workspace, 9"
+      "$mod Control_L, RIGHT, workspace, +1"
+      "$mod Control_L, LEFT, workspace, -1"
+      "$mod Control_L, l, workspace, +1"
+      "$mod Control_L, h, workspace, -1"
+      "$mod Control_L, j, workspace, +1"
+      "$mod Control_L, k, workspace, -1"
+      "$mod Control_L, mouse_up, workspace, +1"
+      "$mod Control_L, mouse_down, workspace, -1"
 
       # Lock screen
       "SUPERALT, l, exec, swaylock"
