@@ -138,6 +138,7 @@
       veracrypt
       portablemc # minecraft cli launcher 
       fastfetch # system info in terminal
+      curseofwar # cli game
 
     ];
     sessionPath = [ "$HOME/.local/bin" ];
