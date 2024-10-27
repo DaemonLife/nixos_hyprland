@@ -7,11 +7,13 @@
   # Imports
   imports = [ ./hardware-configuration.nix ];
 
-  # # Global system theme 
+  # ----------------------------------------------------------------------------
+  # Global system theme 
+  # ----------------------------------------------------------------------------
   stylix = {
     enable = true;
     base16Scheme =
-      "${pkgs.base16-schemes}/share/themes/horizon-terminal-dark.yaml";
+      "${pkgs.base16-schemes}/share/themes/onedark.yaml";
     image = ./image.jpg;
     homeManagerIntegration.followSystem = false;
 
@@ -191,13 +193,14 @@
   nixpkgs.config = { allowUnfree = true; };
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
+  # ----------------------------------------------------------------------------
   # List packages installed in system profile. To search, run: nix search wget
+  # ----------------------------------------------------------------------------
   environment.systemPackages = with pkgs; [
     imagemagick
     pavucontrol
     gparted
     htop
-    btop
     zsh
     oh-my-zsh
     git
@@ -217,7 +220,7 @@
     steam-run
     xorg.xcbutilwm
     xorg.libxcb
-    nh # nix cli helper
+    # nh # nix cli helper
     rtorrent # tui torrent cloent
     lutris # emulator
     winetricks
@@ -230,28 +233,13 @@
     mesa
     vimix-icon-theme
     overskride # bluetooth gui
-    qbittorrent
     imv # cli image viewer 
   ];
 
+  # ----------------------------------------------------------------------------
   # Other programs and services
+  # ----------------------------------------------------------------------------
   
-  programs.nh = {
-    enable = true;
-    # clean.enable = true;
-    # clean.extraArgs = "--keep-since 4d --keep 3";
-    flake = "/home/user/nix";
-  };
-
-  # programs.nix-ld = {
-  #   enable = true;
-  #   # package = nix-ld-rs;
-  #   libraries = [
-  #     # ...
-  #     # xorg.libxcb
-  #   ];
-  # };
-
   # Flatpak
   services.flatpak.enable = true;
 

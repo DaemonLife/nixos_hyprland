@@ -229,7 +229,7 @@
 
     style = ''
       	@define-color dark #${base00};
-      	@define-color gray #${base02};
+      	@define-color gray #${base03};
       	@define-color white #${base05};
       	@define-color accent #${base0D};
       	@define-color green #${base0B};

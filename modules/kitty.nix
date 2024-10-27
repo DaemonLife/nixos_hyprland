@@ -33,10 +33,8 @@
       open_url_with = "firefox";
       window_border_width = "0pt";
       # draw_minimal_borders = "yes";
-      # window_margin_width = "0";
-      window_margin_width = "10 10 10 10";
-      # window_padding_width = "0 10 9 10";
-      window_padding_width = "0 0 0 0";
+      window_margin_width = "0 0 0 0";
+      window_padding_width = "0 8 0 8";
       # inactive_text_alpha = "0.5";
       tab_bar_style = "hidden";
       confirm_os_window_close = "0";

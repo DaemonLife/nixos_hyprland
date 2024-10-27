@@ -77,17 +77,11 @@
     };
 
     general = lib.mkForce {
-      # See https://wiki.hyprland.org/Configuring/Variables/ for more
-      # gaps_in = 3;
-      # gaps_out = "6, 6, 6, 6";
-      # border_size = 2;
-      # "col.active_border" = "rgba(${base0E}ff) rgba(${base0D}ff) 5deg";
-      # "col.inactive_border" = "rgba(${base03}ff)";
       gaps_in = 4;
       gaps_out = "0, 0, 0, 0";
       border_size = 2;
-      "col.active_border" = "rgba(${base0E}ff)";
-      "col.inactive_border" = "rgba(${base0D}ff)";
+      "col.active_border" = "rgba(${base0D}ff)";
+      "col.inactive_border" = "rgba(${base02}ff)";
       layout = "dwindle";
       # Please see https://wiki.hyprland.org/Configuring/Tearing/ before you turn this on
       allow_tearing = false;

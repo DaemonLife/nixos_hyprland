@@ -24,7 +24,27 @@
   stylix = {
     enable = true;
     base16Scheme =
-      "${pkgs.base16-schemes}/share/themes/horizon-terminal-dark.yaml";
+      # "${pkgs.base16-schemes}/share/themes/mountain.yaml";
+      "${pkgs.base16-schemes}/share/themes/onedark.yaml";
+    # override = {
+    #   author = "DaemonLife";
+    #   base00 = "000000";
+    #   base01 = "000000";
+    #   base02 = "000000";
+    #   base03 = "000000";
+    #   base04 = "000000";
+    #   base05 = "000000";
+    #   base06 = "000000";
+    #   base07 = "000000";
+    #   base08 = "000000";
+    #   base09 = "000000";
+    #   base0A = "000000";
+    #   base0B = "000000";
+    #   base0C = "000000";
+    #   base0D = "000000";
+    #   base0E = "000000";
+    #   base0F = "000000";
+    # };
     image = ./image.jpg;
 
     targets.waybar.enable = false;
@@ -69,14 +89,14 @@
     homeDirectory = "/home/user";
     stateVersion = "24.05";
     packages = with pkgs; [
-
-      # - For Hyprland
+      # -----------------------------------------------------------------------
+      # For Hyprland
+      # -----------------------------------------------------------------------
       kitty
       fuzzel # run menu
       mako # notification agent
       libnotify # for mako
-      grim # screenshot tool
-      slurp # screenshot tool also need
+      grim slurp # screenshot tool
       brightnessctl # screen light
       pavucontrol # audio gui control
       alsa-utils # audio volume control (?)
@@ -97,7 +117,9 @@
       fira
       cantarell-fonts
 
-      # - Other
+      # -----------------------------------------------------------------------
+      # Other
+      # -----------------------------------------------------------------------
       gimp
       btop
       libreoffice-fresh
@@ -106,7 +128,7 @@
       jrnl
       mpv
       ffmpeg-full
-      transmission_4-gtk # torrent client
+      transmission_4-gtk qbittorrent # torrent client
       telegram-desktop
       cmus # player
       python3
@@ -115,9 +137,14 @@
       bottles
       veracrypt
       portablemc # minecraft cli launcher 
+      fastfetch # system info in terminal
 
     ];
     sessionPath = [ "$HOME/.local/bin" ];
+  };
+
+  qt = {
+    enable = true;
   };
 
 }
