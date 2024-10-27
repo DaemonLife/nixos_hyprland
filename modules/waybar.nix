@@ -95,14 +95,14 @@
           "calendar" = {
             "mode"          = "year";
             "mode-mon-col"  = 3;
-            "weeks-pos"     = "right";
+            # "weeks-pos"     = "right";
             "on-scroll"     = 1;
             "on-click-right"= "mode";
             "format" = {
-              "months"=     "<span color='#${base07}'><b>{}</b></span>";
-              "days"=       "<span color='#${base0B}'><b>{}</b></span>";
+              "months"=     "<span color='#${base0A}'><b>{}</b></span>";
+              "days"=       "<span color='#${base07}'><b>{}</b></span>";
               "weeks"=      "<span color='#${base0C}'><b>W{}</b></span>";
-              "weekdays"=   "<span color='#${base0A}'><b>{}</b></span>";
+              "weekdays"=   "<span color='#${base0B}'><b>{}</b></span>";
               "today"=      "<span color='#${base08}'><b><u>{}</u></b></span>";
             };
           };
@@ -258,7 +258,7 @@
           #workspaces button { 
             padding: 0px 5px 0px 5px;
           }
-          #clock { padding-right: 5px; }
+          #clock { padding-right: 6px; }
           #battery { padding-left: 6px; }
           #window { padding: 0px 10px 0px 10px; }
 
