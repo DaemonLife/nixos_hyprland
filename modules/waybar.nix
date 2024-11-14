@@ -91,7 +91,7 @@
           # format = "{:%y/%m/%d %H:%M}";
           format = "{:%H:%M}";
           on-click = "exec gnome-calendar";
-          "tooltip-format" = "<span size='10pt' font='JetBrainsMono Nerd Font Mono'>{calendar}</span>";
+          "tooltip-format" = "<span size='10pt' font='GeistMono'>{calendar}</span>";
           "calendar" = {
             "mode"          = "year";
             "mode-mon-col"  = 3;
@@ -231,7 +231,7 @@
       	@define-color dark #${base00};
       	@define-color gray #${base03};
       	@define-color white #${base05};
-      	@define-color accent #${base0C};
+      	@define-color accent #${base0D};
       	@define-color green #${base0B};
       	@define-color red #${base08};
       	@define-color magenta #${base0E};
@@ -244,9 +244,9 @@
           margin: 0px;
           padding: 0px;
           text-decoration: none;
-      	  font-family: "JetBrains";
-          font-weight: bold;
-      	  font-size: 96%;
+      	  font-family: "GeistMono";
+          font-weight: normal;
+      	  font-size: 97%;
       	}
 
           /* Default color for modules except workspaces button.active */

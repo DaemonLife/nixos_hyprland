@@ -18,15 +18,13 @@
     ./modules/jrnl.nix
     ./modules/helix.nix
     ./modules/nixvim.nix
-    ./modules/ranger.nix
+    # ./modules/ranger.nix
     ./modules/lf.nix
   ];
 
   stylix = {
     enable = true;
     base16Scheme =
-      # "${pkgs.base16-schemes}/share/themes/mountain.yaml";
-      # "${pkgs.base16-schemes}/share/themes/material-darker.yaml";
       "${pkgs.base16-schemes}/share/themes/ashes.yaml";
     # override = {
     #   author = "DaemonLife";
@@ -57,8 +55,8 @@
 
     fonts = {
       monospace = {
-        package = pkgs.nerdfonts.override { fonts = [ "JetBrainsMono" ]; };
-        name = "JetBrainsMono Nerd Font Mono";
+        package = pkgs.nerdfonts;
+        name = "GeistMono";
       };
       sansSerif = {
         package = pkgs.dejavu_fonts;
@@ -67,6 +65,10 @@
       serif = {
         package = pkgs.dejavu_fonts;
         name = "DejaVu Serif";
+      };
+      emoji = {
+        package = pkgs.noto-fonts-emoji;
+        name = "Noto Color Emoji";
       };
       sizes = {
         applications = 12;
@@ -119,6 +121,7 @@
       dconf
 
       # Fonts
+      nerdfonts
       font-awesome
       fira
       cantarell-fonts
@@ -148,9 +151,6 @@
       fastfetch # system info in terminal
       curseofwar vitetris # cli games
       cmatrix
-      # lolcat
-      # most
-      # bat
 
     ];
     sessionPath = [ "$HOME/.local/bin" ];

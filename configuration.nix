@@ -27,8 +27,8 @@
 
     fonts = {
       monospace = {
-        package = pkgs.nerdfonts.override { fonts = [ "JetBrainsMono" ]; };
-        name = "JetBrainsMono Nerd Font Mono";
+        package = pkgs.nerdfonts;
+        name = "GeistMono";
       };
       sansSerif = {
         package = pkgs.dejavu_fonts;
@@ -223,11 +223,10 @@
     ntfs3g # ntfs support
     clinfo # for opencl
     unstable.gthumb # image viewer
-    ranger # file manager
     unstable.steam-run
     unstable.xorg.xcbutilwm
     unstable.xorg.libxcb
-    # nh # nix cli helper
+    nh # nix cli helper
     unstable.rtorrent # tui torrent cloent
     unstable.lutris # emulator
     unstable.winetricks
