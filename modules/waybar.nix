@@ -231,7 +231,7 @@
       	@define-color dark #${base00};
       	@define-color gray #${base03};
       	@define-color white #${base05};
-      	@define-color accent #${base0D};
+      	@define-color accent #${base0C};
       	@define-color green #${base0B};
       	@define-color red #${base08};
       	@define-color magenta #${base0E};

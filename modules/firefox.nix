@@ -53,7 +53,7 @@
     profiles.user.userChrome = ''
       :root {
         --sfwindow: #${base00};
-        --sfsecondary: #${base02};
+        --sfsecondary: #${base01};
         --toolbarbutton-border-radius: 0px !important;
       }
 

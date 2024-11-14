@@ -8,17 +8,19 @@
           title: cyan
         default_hour: 9
         default_minute: 0
-        editor: hx
+        editor: nvim
         encrypt: false
         highlight: true
         indent_character: '|'
         journals:
           default:
             journal: /home/user/.local/share/jrnl/journal.txt
+          main:
+            journal: /mnt/temp/jrnl/jrnl.txt
         linewrap: 79
         tagsymbols: '#@'
         template: false
-        timeformat: '%F %r'
+        timeformat: '%Y-%m-%d %H:%M'
         version: v4.1
     '';
 

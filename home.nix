@@ -19,17 +19,19 @@
     ./modules/helix.nix
     ./modules/nixvim.nix
     ./modules/ranger.nix
+    ./modules/lf.nix
   ];
 
   stylix = {
     enable = true;
     base16Scheme =
       # "${pkgs.base16-schemes}/share/themes/mountain.yaml";
-      "${pkgs.base16-schemes}/share/themes/onedark.yaml";
+      # "${pkgs.base16-schemes}/share/themes/material-darker.yaml";
+      "${pkgs.base16-schemes}/share/themes/ashes.yaml";
     # override = {
     #   author = "DaemonLife";
     #   base00 = "000000";
-    #   base01 = "000000";
+      # base01 = "121212";
     #   base02 = "000000";
     #   base03 = "000000";
     #   base04 = "000000";
@@ -103,6 +105,10 @@
       gnome.gnome-power-manager # power statistic
       hypridle
       swaylock # screen lock
+      unstable.xfce.thunar
+      ffmpegthumbnailer
+      unstable.ueberzugpp # image preview
+      lf
 
       # Theming
       vimix-icon-theme # for icons
@@ -120,16 +126,18 @@
       # -----------------------------------------------------------------------
       # Other
       # -----------------------------------------------------------------------
-      gimp
+      unstable.joplin
+      unstable.gimp
       btop
       libreoffice-fresh
+      cool-retro-term
       # nautilus-open-in-blackbox # right click open menu
       unzip
       jrnl
       mpv
       ffmpeg-full
-      transmission_4-gtk qbittorrent # torrent client
-      telegram-desktop
+      transmission_4-gtk unstable.qbittorrent # torrent client
+      unstable.telegram-desktop
       cmus # player
       python3
       pipx
@@ -138,7 +146,11 @@
       veracrypt
       portablemc # minecraft cli launcher 
       fastfetch # system info in terminal
-      curseofwar # cli game
+      curseofwar vitetris # cli games
+      cmatrix
+      # lolcat
+      # most
+      # bat
 
     ];
     sessionPath = [ "$HOME/.local/bin" ];

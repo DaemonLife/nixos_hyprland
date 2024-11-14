@@ -17,7 +17,8 @@
       "desc:Shenzhen KTC Technology Group H27S17 0x00000001,highres,0x0,1.333333,bitdepth,10,vrr,1"
       # Monitor gg
       "desc:Acer Technologies Acer A231H LQT0W0084320,highres,auto-right,1,bitdepth,10,vrr,1"
-
+      # random monitor
+      ",preferred,auto,1"
       # Laptop
       "eDP-1,highres,auto,1.6,bitdepth,10,vrr,1"
     ];
@@ -27,6 +28,7 @@
       "mako"
       "rfkill block bluetooth" # disable bluetooth autostart
       # "swaybg -i /home/user/nix/image.jpg"
+      # "swaybg -c 000000" # black background
       "swaybg -c ${base00}" # black background
       "/run/current-system/sw/libexex/polkit-gnome-authentication-agent-1"
     ];
@@ -80,8 +82,8 @@
       gaps_in = 4;
       gaps_out = "0, 0, 0, 0";
       border_size = 2;
-      "col.active_border" = "rgba(${base0D}ff)";
-      "col.inactive_border" = "rgba(${base02}ff)";
+      "col.active_border" = "rgba(${base0C}ff)";
+      "col.inactive_border" = "rgba(${base01}ff)";
       layout = "dwindle";
       # Please see https://wiki.hyprland.org/Configuring/Tearing/ before you turn this on
       allow_tearing = false;
@@ -182,7 +184,7 @@
       "$mod, Q, killactive"
       "$mod, O, exit"
       "$mod, V, togglefloating"
-      "$mod, P, pseudo"
+      # "$mod, P, pseudo"
       "$mod, s, togglesplit"
       # "$mod, g, togglegroup"
       # "$mod, tab, changegroupactive"
@@ -220,22 +222,21 @@
       ", F7, workspace, 7"
       ", F8, workspace, 8"
       ", F9, workspace, 9"
-      "$mod Control_L, RIGHT, workspace, +1"
-      "$mod Control_L, LEFT, workspace, -1"
-      "$mod Control_L, l, workspace, +1"
-      "$mod Control_L, h, workspace, -1"
-      "$mod Control_L, j, workspace, +1"
-      "$mod Control_L, k, workspace, -1"
-      "$mod Control_L, mouse_up, workspace, +1"
-      "$mod Control_L, mouse_down, workspace, -1"
+      "$mod Alt_L, RIGHT, workspace, +1"
+      "$mod Alt_L, LEFT, workspace, -1"
+      "$mod Alt_L, l, workspace, +1"
+      "$mod Alt_L, h, workspace, -1"
+      "$mod Alt_L, j, workspace, +1"
+      "$mod Alt_L, k, workspace, -1"
+      "$mod Alt_L, mouse_up, workspace, +1"
+      "$mod Alt_L, mouse_down, workspace, -1"
 
       # Lock screen
-      "SUPERALT, l, exec, swaylock"
-      "SUPERALT, l, exec, hyprctl keyword input:kb_layout us,ru"
+      ", F10, exec, swaylock"
+      ", F10, exec, hyprctl keyword input:kb_layout us,ru"
 
       # Screenshot
-      ''
-        ,PRINT, exec, grim ~/Pictures/ps_$(date +"%Y%m%d%H%M%S").png - | wl-copy''
+      '',PRINT, exec, grim ~/Pictures/ps_$(date +"%Y%m%d%H%M%S").png - | wl-copy''
       ''SUPER_SHIFT, S, exec, grim -g "$(slurp)" - | wl-copy''
 
       # Brightness
@@ -259,7 +260,7 @@
         let ws = let c = (x + 1) / 10; in builtins.toString (x + 1 - (c * 10));
         in [
           "$mod, ${ws}, workspace, ${toString (x + 1)}"
-          "$mod SHIFT, ${ws}, movetoworkspace, ${toString (x + 1)}"
+          "$mod SHIFT, ${ws}, movetoworkspacesilent, ${toString (x + 1)}"
         ]) 10));
 
   };

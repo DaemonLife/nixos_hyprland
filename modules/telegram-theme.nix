@@ -413,7 +413,7 @@
   home.activation = with config.lib.stylix.colors; {
     test = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
       ${pkgs.imagemagick}/bin/magick -size 2960x2960 xc:#${base00} ~/.config/background.jpg
-      cd ~/.config && ${pkgs.zip}/bin/zip telegram-base16.tdesktop-theme background.jpg colors.tdesktop-theme && rm -rf colors.tdesktop-theme background.jpg
+      cd ~/.config && ${pkgs.zip}/bin/zip telegram-base16.zip background.jpg colors.tdesktop-theme && rm -rf colors.tdesktop-theme background.jpg && mv telegram-base16.zip telegram-base16.tdesktop-theme
     '';
   };
 

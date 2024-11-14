@@ -5,7 +5,9 @@
 { config, pkgs, lib, inputs, ... }: {
 
   # Imports
-  imports = [ ./hardware-configuration.nix ];
+  imports = [ 
+    ./hardware-configuration.nix
+    ];
 
   # ----------------------------------------------------------------------------
   # Global system theme 
@@ -61,7 +63,12 @@
 
   # Enable OpenCL
   # important for darktable
-  environment.variables = { RUSTICL_ENABLE = "radeonsi"; };
+  environment.variables = {
+    RUSTICL_ENABLE = "radeonsi";
+    EDITOR = "nvim";
+    SYSTEMD_EDITOR = "nvim";
+    VISUAL = "nvim";
+  };
   boot.initrd.kernelModules = [ "amdgpu" ];
   services.xserver.videoDrivers = [ "amdgpu" ];
   systemd.tmpfiles.rules =
@@ -210,30 +217,30 @@
     swaylock
     darktable
     lact # gui for amd gpu
-    rocmPackages.rpp
-    rocmPackages.clr
-    microcodeAmd
+    unstable.rocmPackages.rpp
+    unstable.rocmPackages.clr
+    unstable.microcodeAmd
     ntfs3g # ntfs support
     clinfo # for opencl
-    gthumb # image viewer
+    unstable.gthumb # image viewer
     ranger # file manager
-    steam-run
-    xorg.xcbutilwm
-    xorg.libxcb
+    unstable.steam-run
+    unstable.xorg.xcbutilwm
+    unstable.xorg.libxcb
     # nh # nix cli helper
-    rtorrent # tui torrent cloent
-    lutris # emulator
-    winetricks
-    wineWowPackages.waylandFull
-    wineWow64Packages.waylandFull
-    wine-wayland
-    wine
-    wine64
-    amdvlk # amd Vulkan driver for emulator 
-    mesa
+    unstable.rtorrent # tui torrent cloent
+    unstable.lutris # emulator
+    unstable.winetricks
+    unstable.wineWowPackages.waylandFull
+    unstable.wineWow64Packages.waylandFull
+    unstable.wine-wayland
+    unstable.wine
+    unstable.wine64
+    unstable.amdvlk # amd Vulkan driver for emulator 
+    unstable.mesa
     vimix-icon-theme
     overskride # bluetooth gui
-    imv # cli image viewer 
+    unstable.imv # cli image viewer 
   ];
 
   # ----------------------------------------------------------------------------

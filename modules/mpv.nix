@@ -32,9 +32,9 @@ programs.mpv = {
         # sigmoid-upscaling = "yes";
 
         #-Fiters
-        deband = "no";
-        interpolation = "no";
-        deinterlace = "no";
+        # deband = "no";
+        # interpolation = "no";
+        # deinterlace = "no";
         # dither-depth = 8; # Set to your displays bitdepth.
         # dither = "fruit"; # default "fruit". Change to "ordered" if 10 or 12 bit display.
 
