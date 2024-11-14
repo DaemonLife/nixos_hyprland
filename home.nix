@@ -16,7 +16,7 @@
     ./modules/zsh.nix
     ./modules/cmus.nix
     ./modules/jrnl.nix
-    ./modules/helix.nix
+    # ./modules/helix.nix
     ./modules/nixvim.nix
     # ./modules/ranger.nix
     ./modules/lf.nix
@@ -29,7 +29,7 @@
     # override = {
     #   author = "DaemonLife";
     #   base00 = "000000";
-      # base01 = "121212";
+    #   base01 = "121212";
     #   base02 = "000000";
     #   base03 = "000000";
     #   base04 = "000000";

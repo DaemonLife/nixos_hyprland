@@ -23,6 +23,13 @@ programs.zsh = {
         home-rebuild = "\
         home-manager switch --flake \"/home/user/nix/.\" && hyprctl reload && \
         echo '> Home-manager has been switch. Hyprland reloaded.'";
+
+        rebuild = "nh os switch $HOME/nix/.";
+        upgrade = "
+        sudo nix-channel --update && \
+        echo '\n> Nix-channel has been updated.\n' && \
+        sudo nix flake update \"/home/user/nix/.\" && \
+        echo '\n> Flake has been updated.\n' && rebuild";
        
         # for windows fs
         mwin = "sudo mount /dev/nvme0n1p3 /mnt/windows -t ntfs";

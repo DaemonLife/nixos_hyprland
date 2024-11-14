@@ -15,7 +15,7 @@
   stylix = {
     enable = true;
     base16Scheme =
-      "${pkgs.base16-schemes}/share/themes/onedark.yaml";
+      "${pkgs.base16-schemes}/share/themes/ashes.yaml";
     image = ./image.jpg;
     homeManagerIntegration.followSystem = false;
 
