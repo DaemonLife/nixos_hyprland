@@ -91,7 +91,7 @@
           # format = "{:%y/%m/%d %H:%M}";
           format = "{:%H:%M}";
           on-click = "exec gnome-calendar";
-          "tooltip-format" = "<span size='10pt' font='GeistMono'>{calendar}</span>";
+          "tooltip-format" = "<span size='10pt' font='GeistMono Nerd Font Mono'>{calendar}</span>";
           "calendar" = {
             "mode"          = "year";
             "mode-mon-col"  = 3;
