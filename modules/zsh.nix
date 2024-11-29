@@ -24,16 +24,16 @@ programs.zsh = {
         home-manager switch --flake \"/home/user/nix/.\" && hyprctl reload && \
         echo '> Home-manager has been switch. Hyprland reloaded.'";
 
-        rebuild = "nh os switch $HOME/nix/.";
+        update = "nh os switch $HOME/nix/.";
         upgrade = "
         sudo nix-channel --update && \
         echo '\n> Nix-channel has been updated.\n' && \
         sudo nix flake update \"/home/user/nix/.\" && \
-        echo '\n> Flake has been updated.\n' && rebuild";
+        echo '\n> Flake has been updated.\n' && update";
        
         # for windows fs
         mwin = "sudo mount /dev/nvme0n1p3 /mnt/windows -t ntfs";
-        cdwin = "cd /mnt/windows/Users/user 2>/dev/null || (echo 'Mounting win fs...' && mwin && echo '> Mount win is done' && cd /mnt/windows/Users/user)";
+        cdwin = "cd /mnt/windows/Users/user 2>/dev/null || (echo 'Mounting win fs...' && mwin && echo '> Mount win is done' && cd /mnt/windows/Users/user;)";
 
         # battery configuration will be restored at the next boot
         tlp_full = "sudo tlp fullcharge bat1";
@@ -43,6 +43,7 @@ programs.zsh = {
     oh-my-zsh = {
         enable = true;
         plugins = [
+            "web-search"
             "git"
         ];
     };

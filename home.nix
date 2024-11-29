@@ -92,10 +92,14 @@
     username = "user";
     homeDirectory = "/home/user";
     stateVersion = "24.05";
+
     packages = with pkgs; [
-      # -----------------------------------------------------------------------
-      # For Hyprland
-      # -----------------------------------------------------------------------
+
+      # --------------------------------
+      # SOFT FOR DE 
+      # --------------------------------
+
+      # Main
       kitty
       fuzzel # run menu
       mako # notification agent
@@ -126,21 +130,27 @@
       fira
       cantarell-fonts
 
-      # -----------------------------------------------------------------------
-      # Other
-      # -----------------------------------------------------------------------
+      # --------------------------------
+      # OTHER SOFT
+      # --------------------------------
+
+      # spellcheck and LibreOffice
+      hunspell 
+      hunspellDicts.ru_RU
+      hunspellDicts.en_US
+      libreoffice
+
       unstable.joplin
       unstable.gimp
       btop
-      libreoffice-fresh
       cool-retro-term
-      # nautilus-open-in-blackbox # right click open menu
       unzip
       jrnl
       mpv
       ffmpeg-full
       transmission_4-gtk unstable.qbittorrent # torrent client
       unstable.telegram-desktop
+      unstable.materialgram
       cmus # player
       python3
       pipx

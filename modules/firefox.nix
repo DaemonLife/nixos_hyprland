@@ -28,6 +28,8 @@
         # Set preferences shared by all profiles.
         Preferences = {
           "browser.contentblocking.category" = { Value = "strict"; };
+          "browser.gesture.swipe.left" = "";
+          "browser.gesture.swipe.right" = "";
           "extensions.pocket.enabled" = "lock-false";
           "extensions.screenshots.disabled" = "lock-true";
         };
@@ -45,7 +47,7 @@
           user_pref("gfx.webrender.enabled", true);
           user_pref("layout.css.backdrop-filter.enabled", true);
           user_pref("svg.context-properties.content.enabled", true);
-          use$r_pref("browser.compactmode.show", true);
+          user_pref("browser.compactmode.show", true);
           user_pref("browser.tabs.firefox-view", false);
           user_pref("svg.context-properties.content.enabled", true);
     '';
@@ -63,17 +65,14 @@
       }
 
       .tab-content {
-        padding: 0px 10px 0px 10px !important;
       }
       .tab-content[selected=""] {
       }
-
       .tab-close-button {
       }
 
       .tabbrowser-tab:not([selected="true"]) {
       	color: #${base05} !important; /*for unselected tabs*/
-        padding: 0px !important;
       }
 
       #tabbrowser-tabs:not([movingtab])
@@ -92,13 +91,13 @@
 
       /* Inactive tabs color */
       #navigator-toolbox {
-        background-color: var(--sfwindow) !important;
+        background-color: var(--sfsecondary) !important;
       }
 
       /* Window colors  */
       :root {
         --toolbar-bgcolor: var(--sfsecondary) !important;
-        --tabs-border-color: var(--sfwindow) !important;
+        --tabs-border-color: var(--sfsecondary) !important;
         --lwt-sidebar-background-color: var(--sfwindow) !important;
         --lwt-toolbar-field-focus: var(--sfsecondary) !important;
       }
@@ -121,36 +120,18 @@
       .tab-close-button {
       /* make it transparent */
         opacity: 0;
-        border-radius: 5px !important;
+        border-radius: 0px !important;
       }
 
       #tabs-newtab-button, #new-tab-button {
           background-color: #${base00} !important;
-          /* color: red !important; */
           border-radius: 0px !important;
-          padding: 0px !important;
-          margin: 0px !important;
       }
 
       #tabs-newtab-button:hover, #new-tab-button:hover {
         background-color: #${base0B} !important; /* Цвет фона при наведении */
         color: #${base01} !important; /* Цвет текста при наведении */
-        padding: 0px !important;
-        margin: 0px !important;
         opacity: 100 !important;
-      }
-
-      .tabs-newtab-button:hover, .new-tab-button:hover {
-        background-color: #${base0B} !important; /* Цвет фона при наведении */
-        color: #${base01} !important; /* Цвет текста при наведении */
-        padding: 0px !important;
-        margin: 0px !important;
-        opacity: 100 !important;
-      }
-
-      /* remove loading icon  */
-      .tab-throbber { 
-        display: none !important;
       }
 
       /* make tab close button instantly show up  */
@@ -159,11 +140,6 @@
       }
       .tabbrowser-tab .tab-close-button {
         border-radius: 5px !important;
-      }
-
-      /* remove loading burst  */
-      .tabbrowser-tab[image^="chrome:"] .tab-loading-burst {
-        display: none;
       }
 
       /* remove website icons in tabs  */
@@ -179,25 +155,16 @@
         box-shadow: none;
       }
       #nav-bar {
-        border: 0px !important;
       }
 
       #tabbrowser-tabs[haspinnedtabs]:not([positionpinnedtabs])
         > #tabbrowser-arrowscrollbox
         > .tabbrowser-tab[first-visible-unpinned-tab] {
-        margin-inline-start: 0 !important;
       }
 
       :root {
-        --toolbarbutton-border-radius: 5px !important;
+        --toolbarbutton-border-radius: 0px !important;
         --toolbar-field-focus-border-color: transparent !important;
-        --tab-border-radius: 0 !important;
-        --tab-block-margin: 0 !important;
-      }
-
-      .tab-background {
-        border-right: 0px solid rgba(0, 0, 0, 0) !important;
-        margin-left: -4px !important;
       }
 
       .tabbrowser-tab:is([visuallyselected='true'], [multiselected])
@@ -207,11 +174,9 @@
       }
 
       .tabbrowser-tab[last-visible-tab='true'] {
-        padding-inline-end: 0 !important;
       }
 
       #tabs-newtab-button {
-        padding-left: 0 !important;
       }
 
       #tabbrowser-tabs:not([overflow="true"]) ~ #alltabs-button {
@@ -237,12 +202,9 @@
       /* Url Bar  */
 
       #identity-box {
-        margin-inline-end: 4px !important;
       }
 
       .identity-box-button {
-        padding: 0px 10px 0px 10px !important;
-        # padding-inline: 10px !important;
       } 
 
       #urlbar-input::selection{
@@ -283,7 +245,6 @@
 
       #urlbar-input-container {
         background-color: #${base01} !important;
-        border: 1px solid rgba(0, 0, 0, 0) !important;
       }
 
       #urlbar-container {
@@ -330,7 +291,6 @@
       }
 
       toolbarbutton.bookmark-item:not(.subviewbutton) {
-        min-width: 1.6em;
       }
 
       /* #urlbar-zoom-button,
@@ -341,7 +301,6 @@
       #tracking-protection-icon-container,
       #pageActionButton,
       #pageActionSeparator,
-      #firefox-view-button,
       #wrapper-firefox-view-button,
       #fxa-toolbar-menu-button,
       #translations-button,
@@ -354,10 +313,6 @@
 
       /*** firefox view - remove separator and whitespace ***/
       #tabbrowser-tabs {
-        border-inline-start: 0 !important;
-        padding-inline-start: 0 !important;
-        padding-inline-end: 0 !important;
-        margin-inline-start: 0 !important;
       }
 
       .urlbarView-url {
@@ -382,14 +337,10 @@
 
       .search-wrapper input {
           --newtab-textbox-focus-boxshadow: none !important;
-          padding-left: 20px !important;
-         	padding-inline-start: 24px !important;
-         	padding-inline-end: 13px !important;
         }
         
       .search-wrapper .search-handoff-button,
       .search-wrapper input {
-         	padding-inline-start: 25px !important;
       }
 
       .icon.icon-settings {

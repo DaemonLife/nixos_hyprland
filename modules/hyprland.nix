@@ -28,9 +28,9 @@
       "mako"
       "rfkill block bluetooth" # disable bluetooth autostart
       # "swaybg -i /home/user/nix/image.jpg"
-      # "swaybg -c 000000" # black background
       "swaybg -c ${base00}" # black background
       "/run/current-system/sw/libexex/polkit-gnome-authentication-agent-1"
+      "hypridle"
     ];
 
     env = [
@@ -45,7 +45,6 @@
       "XDG_SESSION_DESKTOP,Hyprland"
       "QT_AUTO_SCREEN_SCALE_FACTOR,1"
       "QT_WAYLAND_DISABLE_WINDOWDECORATION,1"
-      # "XCURSOR_THEME,Qogir-dark"
       "XCURSOR_SIZE,24"
       "MOZ_ENABLE_WAYLAND,1"
       "GDK_SCALE,2"
@@ -63,7 +62,7 @@
       touchpad = {
         natural_scroll = true;
         disable_while_typing = true;
-        scroll_factor = "0.6";
+        scroll_factor = "0.3";
         drag_lock = false;
         tap-and-drag = false;
       };
@@ -97,7 +96,6 @@
       mouse_move_enables_dpms = true;
       animate_manual_resizes = true;
       mouse_move_focuses_monitor = true;
-      # font_family = "JetBrainsMono";
     };
 
     # Scale options
@@ -145,11 +143,9 @@
     };
 
     dwindle = {
-      # See https://wiki.hyprland.org/Configuring/Dwindle-Layout/ for more
-      pseudotile =
-        true; # master switch for pseudotiling. Enabling is bound to mainMod + P in the keybinds section below
+      pseudotile = true;
       preserve_split = true; # you probably want this
-      # smart_split = true
+      smart_split = false;
       no_gaps_when_only = 1;
     };
 
@@ -213,15 +209,15 @@
       "$mod SHIFT, j, movewindow, d"
 
       # Workspace
-      ", F1, workspace, 1"
-      ", F2, workspace, 2"
-      ", F3, workspace, 3"
-      ", F4, workspace, 4"
-      ", F5, workspace, 5"
-      ", F6, workspace, 6"
-      ", F7, workspace, 7"
-      ", F8, workspace, 8"
-      ", F9, workspace, 9"
+      # ", F1, workspace, 1"
+      # ", F2, workspace, 2"
+      # ", F3, workspace, 3"
+      # ", F4, workspace, 4"
+      # ", F5, workspace, 5"
+      # ", F6, workspace, 6"
+      # ", F7, workspace, 7"
+      # ", F8, workspace, 8"
+      # ", F9, workspace, 9"
       "$mod Alt_L, RIGHT, workspace, +1"
       "$mod Alt_L, LEFT, workspace, -1"
       "$mod Alt_L, l, workspace, +1"
