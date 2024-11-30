@@ -32,8 +32,7 @@ programs.zsh = {
         echo '\n> Flake has been updated.\n' && update";
        
         # for windows fs
-        mwin = "sudo mount /dev/nvme0n1p3 /mnt/windows -t ntfs";
-        cdwin = "cd /mnt/windows/Users/user 2>/dev/null || (echo 'Mounting win fs...' && mwin && echo '> Mount win is done' && cd /mnt/windows/Users/user;)";
+        cdwin = "source /home/user/nix/scripts/cdwin.sh";
 
         # battery configuration will be restored at the next boot
         tlp_full = "sudo tlp fullcharge bat1";
