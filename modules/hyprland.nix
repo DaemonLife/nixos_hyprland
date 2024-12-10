@@ -14,7 +14,8 @@
 
     monitor = [
       # Monitor msk
-      "desc:Shenzhen KTC Technology Group H27S17 0x00000001,highres,0x0,1.333333,bitdepth,10,vrr,1"
+      "desc:Shenzhen KTC Technology Group H27S17 0x00000001,highres,0x0,1,bitdepth,10,vrr,1"
+      # "desc:Shenzhen KTC Technology Group H27S17 0x00000001,highres,0x0,1.333333,bitdepth,10,vrr,1"
       # Monitor gg
       "desc:Acer Technologies Acer A231H LQT0W0084320,highres,auto-right,1,bitdepth,10,vrr,1"
       # random monitor
@@ -114,11 +115,7 @@
         # ignore_opacity = true;
       };
 
-      drop_shadow = false;
-      # shadow_ignore_window = true;
-      # shadow_offset = "1 2";
-      # shadow_range = 10;
-      # shadow_render_power = 5;
+      shadow.enabled = false;
     };
 
     animations = {
@@ -146,7 +143,6 @@
       pseudotile = true;
       preserve_split = true; # you probably want this
       smart_split = false;
-      no_gaps_when_only = 1;
     };
 
     master = {

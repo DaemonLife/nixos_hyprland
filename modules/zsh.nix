@@ -28,7 +28,7 @@ programs.zsh = {
         upgrade = "
         sudo nix-channel --update && \
         echo '\n> Nix-channel has been updated.\n' && \
-        sudo nix flake update \"/home/user/nix/.\" && \
+        sudo nix flake update --flake \"/home/user/nix/.\" && \
         echo '\n> Flake has been updated.\n' && update";
        
         # for windows fs

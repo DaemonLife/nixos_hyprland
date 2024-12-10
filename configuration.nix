@@ -36,10 +36,10 @@
       };
 
       sizes = {
-        applications = 12;
-        terminal = 15;
-        desktop = 12;
-        popups = 12;
+        applications = 18;
+        terminal = 20;
+        desktop = 18;
+        popups = 18;
       };
 
     };
@@ -104,6 +104,11 @@
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
+  
+  # Enable scanner
+  hardware.sane.enable = true; # enables support for scanners
+  hardware.sane.extraBackends = [ pkgs.sane-airscan ];
+  services.udev.packages = [ pkgs.sane-airscan ];
 
   # Enable sound with pipewire.
   hardware.pulseaudio.enable = false;
@@ -161,7 +166,8 @@
   users.users.user = {
     isNormalUser = true;
     description = "user";
-    extraGroups = [ "networkmanager" "wheel" ];
+    # Users in the scanner group will gain access to the scanner, or the lp group if it’s also a printer.
+    extraGroups = [ "networkmanager" "wheel" "scanner" "lp" ];
     packages = with pkgs; [ flatpak ];
   };
 
@@ -365,20 +371,19 @@
   # --------------------------------
 
   # opencl / graphics acceleration
-  hardware.opengl = {
+  hardware.graphics = {
     extraPackages = with pkgs; [
       rocmPackages.clr.icd
       amdvlk
     ];
-    enable = true;
-    driSupport = true;
-    driSupport32Bit = true;
-  };
+    extraPackages32 = with pkgs; [
+      driversi686Linux.amdvlk
+    ];
 
-  # For 32 bit applications 
-  hardware.opengl.extraPackages32 = with pkgs; [
-    driversi686Linux.amdvlk
-  ];
+    enable = true;
+    # driSupport = true;
+    # driSupport32Bit = true;
+  };
 
   # --------------------------------
   # BOOT 

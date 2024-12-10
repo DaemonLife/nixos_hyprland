@@ -1,1 +1,1 @@
-/nix/store/1n8yd665qhr4ay0j7w4y52xv6cr0b05f-home-manager-files/nix/themes/my.zsh-theme
+/nix/store/yblx59q7pskc448yzxq7aakkfnjcz1jd-home-manager-files/nix/themes/my.zsh-theme

@@ -71,10 +71,10 @@
         name = "Noto Color Emoji";
       };
       sizes = {
-        applications = 12;
-        terminal = 15;
-        desktop = 12;
-        popups = 12;
+        applications = 18;
+        terminal = 20;
+        desktop = 18;
+        popups = 18;
       };
     };
 
@@ -108,7 +108,7 @@
       brightnessctl # screen light
       pavucontrol # audio gui control
       alsa-utils # audio volume control (?)
-      gnome.gnome-power-manager # power statistic
+      gnome-power-manager # power statistic
       hypridle
       swaylock # screen lock
       unstable.xfce.thunar
@@ -119,7 +119,7 @@
       # Theming
       vimix-icon-theme # for icons
       qogir-icon-theme # for cursor
-      gnome.gnome-tweaks
+      gnome-tweaks
       swaybg # background
       flavours # create base16 colors from image
       dconf
