@@ -4,7 +4,8 @@
     ./modules/mako.nix
     ./modules/fuzzel.nix
     ./modules/hyprland.nix
-    ./modules/kitty.nix
+    # ./modules/kitty.nix
+    ./modules/alacritty.nix
     #./modules/gtk.nix
     ./modules/waybar.nix
     ./modules/firefox.nix
@@ -16,7 +17,7 @@
     ./modules/zsh.nix
     ./modules/cmus.nix
     ./modules/jrnl.nix
-    # ./modules/helix.nix
+    ./modules/helix.nix
     ./modules/nixvim.nix
     # ./modules/ranger.nix
     ./modules/lf.nix
@@ -45,18 +46,18 @@
     #   base0E = "000000";
     #   base0F = "000000";
     # };
-    image = ./image.jpg;
-
+    # image = ./image.jpg;
+    image = config.lib.stylix.pixel "base00";
     targets.waybar.enable = false;
 
     cursor.package = pkgs.bibata-cursors;
     cursor.name = "Bibata-Modern-Ice";
-    cursor.size = 24;
+    cursor.size = 18;
 
     fonts = {
       monospace = {
         package = pkgs.nerdfonts;
-        name = "GeistMono";
+        name = "GeistMono Nerd Font Mono";
       };
       sansSerif = {
         package = pkgs.dejavu_fonts;
@@ -71,10 +72,10 @@
         name = "Noto Color Emoji";
       };
       sizes = {
-        applications = 18;
-        terminal = 20;
-        desktop = 18;
-        popups = 18;
+        applications = 14;
+        terminal = 14;
+        desktop = 14;
+        popups = 12;
       };
     };
 
@@ -100,7 +101,8 @@
       # --------------------------------
 
       # Main
-      kitty
+      # kitty
+      alacritty
       fuzzel # run menu
       mako # notification agent
       libnotify # for mako
@@ -142,6 +144,7 @@
 
       unstable.joplin
       unstable.gimp
+      qutebrowser
       btop
       cool-retro-term
       unzip
@@ -149,8 +152,7 @@
       mpv
       ffmpeg-full
       transmission_4-gtk unstable.qbittorrent # torrent client
-      unstable.telegram-desktop
-      unstable.materialgram
+      telegram-desktop
       cmus # player
       python3
       pipx
@@ -166,8 +168,73 @@
     sessionPath = [ "$HOME/.local/bin" ];
   };
 
-  qt = {
-    enable = true;
-  };
+  # qt = {
+  #   enable = true;
+  # };
 
+  services = {
+    kanshi = {
+      enable = true;
+      # systemdTarget = "qtile-session.target";
+      systemdTarget = "hyprland-session.target";
+
+      settings = [
+
+        { profile.name = "default";
+          profile.outputs = [
+            {
+              criteria = "DSI-1";
+              scale = 2.0;
+              status = "enable";
+            }
+          ];
+        }
+        { profile.name = "trans270";
+          profile.outputs = [
+            {
+              criteria = "DSI-1";
+              scale = 2.0;
+              transform = "270";
+              status = "enable";
+            }
+          ];
+        }
+
+        { profile.name = "trans90";
+          profile.outputs = [
+            {
+              criteria = "DSI-1";
+              scale = 2.0;
+              transform = "90";
+              status = "enable";
+            }
+          ];
+        }
+
+        { profile.name = "flip90";
+          profile.outputs = [
+            {
+              criteria = "DSI-1";
+              scale = 2.0;
+              transform = "flipped-90";
+              status = "enable";
+            }
+          ];
+        }
+
+        { profile.name = "flip270";
+          profile.outputs = [
+            {
+              criteria = "DSI-1";
+              scale = 2.0;
+              transform = "flipped-270";
+              status = "enable";
+            }
+          ];
+        }
+
+      ];
+    };
+
+  };
 }

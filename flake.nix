@@ -41,11 +41,8 @@
                  windowManager.qtile.enable = true;
                };
 
-
                # make qtile X11 the default session
-               services.displayManager.defaultSession = lib.mkForce "qtile";
-
-               # rest of your NixOS config
+               # services.displayManager.defaultSession = lib.mkForce "qtile";
              })
             ./configuration.nix
             stylix.nixosModules.stylix

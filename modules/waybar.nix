@@ -12,7 +12,7 @@
       mainBar = {
         layer = "top";
         position = "top";
-        height = 25; # 25 is correct for my windows border size
+        height = 24; # 25 is correct for my windows border size
         modules-left = [ "hyprland/workspaces" ];
         modules-center = [ "hyprland/window" ];
         modules-right = [
@@ -246,7 +246,7 @@
           text-decoration: none;
       	  font-family: "GeistMono";
           font-weight: normal;
-      	  font-size: 97%;
+          font-size: 14px;
       	}
 
           /* Default color for modules except workspaces button.active */

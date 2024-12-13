@@ -10,21 +10,20 @@
 
   stylix = {
     enable = true;
-    base16Scheme =
-      "${pkgs.base16-schemes}/share/themes/ashes.yaml";
+    base16Scheme = "${pkgs.base16-schemes}/share/themes/ashes.yaml";
     image = ./image.jpg;
 
     homeManagerIntegration.followSystem = false;
     targets.grub.enable = false;
-    
+
     cursor.package = pkgs.bibata-cursors;
     cursor.name = "Bibata-Modern-Ice";
-    cursor.size = 24;
+    cursor.size = 18;
 
     fonts = {
       monospace = {
         package = pkgs.nerdfonts;
-        name = "GeistMono";
+        name = "GeistMono Nerd Font Mono";
       };
       sansSerif = {
         package = pkgs.dejavu_fonts;
@@ -36,10 +35,10 @@
       };
 
       sizes = {
-        applications = 18;
-        terminal = 20;
-        desktop = 18;
-        popups = 18;
+        applications = 14;
+        terminal = 14;
+        desktop = 14;
+        popups = 12;
       };
 
     };
@@ -56,29 +55,34 @@
 
   # TTYI colors
   console = with config.lib.stylix.colors; {
+    # font = "monospace 32";
     colors = lib.mkForce [
-      "000000"          # background
-      "${base08}"       # red
-      "${base0B}"       # green
-      "${base0A}"       # yellow
-      "${base0D}"       # blue
-      "${base0E}"       # magenta
-      "${base0C}"       # cyan
-      "${base05}"       # base05
-      "${base03}"       # base03
-      "${base08}"       # red
-      "${base0B}"       # green
-      "${base0A}"       # yellow
-      "${base0D}"       # blue
-      "${base0E}"       # magenta
-      "${base0C}"       # cyan
-      "${base06}"       # base06
+      "000000" # background
+      "${base08}" # red
+      "${base0B}" # green
+      "${base0A}" # yellow
+      "${base0D}" # blue
+      "${base0E}" # magenta
+      "${base0C}" # cyan
+      "${base05}" # base05
+      "${base03}" # base03
+      "${base08}" # red
+      "${base0B}" # green
+      "${base0A}" # yellow
+      "${base0D}" # blue
+      "${base0E}" # magenta
+      "${base0C}" # cyan
+      "${base06}" # base06
     ];
   };
 
   # --------------------------------
   # ENVIRONMENTS 
   # --------------------------------
+
+  # proxy for any program: proxychains [program]
+  environment.etc."proxychains.conf".text =
+    "\n    strict_chain\n    proxy_dns \n    remote_dns_subnet 224\n    tcp_read_time_out 15000\n    tcp_connect_time_out 8000\n    localnet 127.0.0.0/255.0.0.0\n\n    [ProxyList]\n    socks5   127.0.0.1 10808 \n  ";
 
   environment.variables = {
     # Enable OpenCL
@@ -104,7 +108,7 @@
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
-  
+
   # Enable scanner
   hardware.sane.enable = true; # enables support for scanners
   hardware.sane.extraBackends = [ pkgs.sane-airscan ];
@@ -150,6 +154,7 @@
     enable = true;
     videoDrivers = [ "amdgpu" ];
     displayManager.startx.enable = true;
+    windowManager.fvwm2.gestures = true;
 
     # Enable the GNOME Desktop Environment.
     displayManager.gdm.enable = true;
@@ -162,12 +167,11 @@
 
   programs.hyprland.enable = true;
 
-  # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.user = {
     isNormalUser = true;
     description = "user";
     # Users in the scanner group will gain access to the scanner, or the lp group if it’s also a printer.
-    extraGroups = [ "networkmanager" "wheel" "scanner" "lp" ];
+    extraGroups = [ "networkmanager" "wheel" "input" "scanner" "lp" ];
     packages = with pkgs; [ flatpak ];
   };
 
@@ -224,19 +228,30 @@
     unstable.wine-wayland
     unstable.wine
     unstable.wine64
-    unstable.amdvlk # amd Vulkan driver for emulator 
+    unstable.amdvlk # amd Vulkan driver for emulator
     unstable.mesa
     vimix-icon-theme
     overskride # bluetooth gui
-    unstable.imv # cli image viewer 
+    unstable.imv # cli image viewer
     unstable.steam-run
     zlib
     unstable.patchelfUnstable
     jdk
 
-    # CLI and GUI clients for xRay vpn
+    # VPN
     xray
-    nekoray
+    proxychains # run any program with xray proxy
+    # nekoray # GUI client
+
+    # -- QTILE --
+    kanshi # monitor config tool for qtile
+    mypy # check code errors for qtile check
+
+    # gestures for qtile:
+    wmctrl
+    libinput
+    libinput-gestures
+    xdotool
 
   ];
 
@@ -259,11 +274,14 @@
 
   services = {
 
+    # gestures
+    libinput.enable = true;
+
     # Flatpak
     flatpak.enable = true;
 
     # Disable GNOME power service
-    power-profiles-daemon.enable = false; 
+    power-profiles-daemon.enable = false;
 
     # Battery life / TLP
     tlp = {
@@ -279,7 +297,7 @@
         CPU_MIN_PERF_ON_AC = 0;
         CPU_MAX_PERF_ON_AC = 100;
         CPU_MIN_PERF_ON_BAT = 0;
-        CPU_MAX_PERF_ON_BAT = 20;
+        CPU_MAX_PERF_ON_BAT = 40;
 
         CPU_BOOST_ON_AC = "1";
         CPU_BOOST_ON_BAT = "0";
@@ -297,32 +315,33 @@
         CONSERVATION_MODE = 1;
         TLP_DEFAULT_MODE = "conservation";
         # Only for Lenovo non-ThinkPad series
-        START_CHARGE_THRESH_BAT0 = 0;
-        STOP_CHARGE_THRESH_BAT0 = 1; 
+        # START_CHARGE_THRESH_BAT0 = 0;
+        # STOP_CHARGE_THRESH_BAT0 = 1; 
 
         # Not supported for my laptop (manual mode)
-        # START_CHARGE_THRESH_BAT0 = 70;
-        # STOP_CHARGE_THRESH_BAT0 = 85;
-        # START_CHARGE_THRESH_BAT1 = 70; 
-        # STOP_CHARGE_THRESH_BAT1 = 85; 
+        START_CHARGE_THRESH_BAT0 = 70;
+        STOP_CHARGE_THRESH_BAT0 = 85;
+        START_CHARGE_THRESH_BAT1 = 70;
+        STOP_CHARGE_THRESH_BAT1 = 85;
       };
     };
 
-  # xRay 
-  xray = {
-    enable = true;
-    settingsFile = "/etc/xray/config.json";
-  };
+    # xRay 
+    xray = {
+      enable = true;
+      settingsFile = "/etc/xray/config.json";
+    };
 
-  # Enable the OpenSSH daemon.
-  openssh.enable = true;
+    # Enable the OpenSSH daemon.
+    openssh.enable = true;
 
   }; # close services
 
   systemd = {
     # AMD ROCM driver
-    tmpfiles.rules = [ "L+    /opt/rocm/hip   -    -    -     -    ${pkgs.rocmPackages.clr}" ];
-  
+    tmpfiles.rules =
+      [ "L+    /opt/rocm/hip   -    -    -     -    ${pkgs.rocmPackages.clr}" ];
+
     services.lactd = {
       description = "AMDGPU Control Daemon";
       enable = true;
@@ -334,7 +353,7 @@
     # disable autostart Xray
     services.xray.wantedBy = lib.mkForce [ ];
 
-  # User service authentication agent
+    # User service authentication agent
     user.services.polkit-gnome-authentication-agent-1 = {
       description = "polkit-gnome-authentication-agent-1";
       wantedBy = [ "graphical-session.target" ];
@@ -349,6 +368,23 @@
         TimeoutStopSec = 10;
       };
     };
+
+    user.services = {
+      set-display-rotation = {
+        description = "Set display rotation before GDM starts";
+        after = [ "gdm.service" ];
+        wantedBy = [ "gdm.service" ];
+        serviceConfig = {
+          ExecStart =
+            "${pkgs.dbus}/bin/dbus-send --print-reply --dest=org.gnome.SettingsDaemon /org/gnome/SettingsDaemon/Plugins/Rotation org.gnome.SettingsDaemon.Plugins.Rotation.SetRotation string:'left'"; # Замените 'left' на нужное значение
+          Type = "oneshot";
+          RemainAfterExit = true;
+        };
+      };
+    };
+
+    services.set-display-rotation.enable = true;
+
   };
 
   # --------------------------------
@@ -356,13 +392,14 @@
   # --------------------------------
 
   programs = {
-    # for run bin files
+    # run bin files
     nix-ld = {
       enable = true;
-      libraries = with pkgs; [
-        zlib
-        # ...
-      ];
+      libraries = with pkgs;
+        [
+          zlib
+          # ...
+        ];
     };
   };
 
@@ -372,17 +409,10 @@
 
   # opencl / graphics acceleration
   hardware.graphics = {
-    extraPackages = with pkgs; [
-      rocmPackages.clr.icd
-      amdvlk
-    ];
-    extraPackages32 = with pkgs; [
-      driversi686Linux.amdvlk
-    ];
+    extraPackages = with pkgs; [ rocmPackages.clr.icd amdvlk ];
+    extraPackages32 = with pkgs; [ driversi686Linux.amdvlk ];
 
     enable = true;
-    # driSupport = true;
-    # driSupport32Bit = true;
   };
 
   # --------------------------------
@@ -391,11 +421,8 @@
 
   boot = {
     initrd.kernelModules = [ "amdgpu" ];
-    kernelParams = [
-      "radeon.si_support=0"
-      "amdgpu.si_support=1"
-      "boot.shell_on_fail"
-    ];
+    kernelParams =
+      [ "radeon.si_support=0" "amdgpu.si_support=1" "boot.shell_on_fail" ];
   };
 
   boot.loader = {
