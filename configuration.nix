@@ -11,7 +11,7 @@
   stylix = {
     enable = true;
     base16Scheme = "${pkgs.base16-schemes}/share/themes/ashes.yaml";
-    image = ./image.jpg;
+    image = config.lib.stylix.pixel "base00";
 
     homeManagerIntegration.followSystem = false;
     targets.grub.enable = false;
