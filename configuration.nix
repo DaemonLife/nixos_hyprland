@@ -374,6 +374,8 @@
         git_status = {
           # style = "green";
           deleted = "x";
+          behind = "↓";
+          ahead = "↑";
         };
         custom.pwd = {
           command = "echo $PWD";
@@ -394,12 +396,12 @@
           time_format = "%R";
         };
         character = {
-        success_symbol = "[I>](green)";
-        error_symbol = "[I>](red)";
-        vimcmd_symbol = "[N>](green)";
-        vimcmd_replace_one_symbol = "[r>](purple)";
-        vimcmd_replace_symbol = "[R>](purple)";
-        vimcmd_visual_symbol = "[V>](yellow)";
+        success_symbol = "[I:>](green)";
+        error_symbol = "[I:>](red)";
+        vimcmd_symbol = "[N:>](green)";
+        vimcmd_replace_one_symbol = "[r:>](purple)";
+        vimcmd_replace_symbol = "[R:>](purple)";
+        vimcmd_visual_symbol = "[V:>](yellow)";
         };
       };
     };
