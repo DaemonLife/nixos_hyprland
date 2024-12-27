@@ -12,6 +12,7 @@
       # nvim-colorizer.fileTypes = [ "tex" ];
       comment.enable = true;
       luasnip.enable = true;
+      goyo.enable = true;
 
       lsp.enable = true;
       lsp.servers.pyright.enable = true;
@@ -24,15 +25,12 @@
       indent-blankline.enable = true; # -- for python
       cmp = {
         autoEnableSources = true;
-        settings.sources = [
-          { name = "nvim_lsp"; }
-          { name = "path"; }
-          { name = "buffer"; }
-        ];
+        settings.sources =
+          [ { name = "nvim_lsp"; } { name = "path"; } { name = "buffer"; } ];
       };
     };
 
-    plugins.lightline = {
+    plugins.lightline.settings = {
       active = {
         left = [ [ "mode" "paste" ] [ "readonly" "filename" "modified" ] ];
         right = [
@@ -47,9 +45,9 @@
     extraConfigVim = ''
       highlight LightlineLeft_active_0 guibg=#${base0D} guifg=#${base00}
       highlight LightlineLeft_active_1 guibg=#${base01} guifg=#${base03}
-      
+
       highlight LightlineMiddle_active guibg=#${base01} guifg=#${base03}
-      
+
       highlight LightlineRight_active_0 guibg=#${base02} guifg=#${base04}
       highlight LightlineRight_active_1 guibg=#${base02} guifg=#${base04}
       highlight LightlineRight_active_2 guibg=#${base01} guifg=#${base03}
@@ -129,9 +127,20 @@
       fileencoding = "utf-8"; # File-content encoding for the current buffer
       spell = true; # Highlight spelling mistakes (local to window)
 
+      wrap = true;
+      linebreak = true;
+
     };
-    
+
     keymaps = [
+      {
+        action = "gj";
+        key = "j";
+      }
+      {
+        action = "gk";
+        key = "k";
+      }
       {
         action = "q";
         key = "й";
@@ -269,7 +278,7 @@
         key = "Р";
       }
       {
-        action = "j";
+        action = "gj";
         key = "о";
       }
       {
@@ -277,7 +286,7 @@
         key = "О";
       }
       {
-        action = "k";
+        action = "gk";
         key = "л";
       }
       {

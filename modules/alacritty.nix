@@ -20,7 +20,7 @@
       # };
 
       terminal = {
-        shell = "zsh";
+        shell = "fish";
       };
 
     };

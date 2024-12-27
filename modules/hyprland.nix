@@ -1,4 +1,5 @@
-{ pkgs, config, lib, ... }: with config.lib.stylix.colors; {
+{ pkgs, config, lib, ... }:
+with config.lib.stylix.colors; {
 
   wayland.windowManager.hyprland = {
     enable = true;
@@ -47,33 +48,32 @@
 
     input = {
       kb_layout = "us,ru";
-      kb_variant = "";
-      kb_model = "";
       kb_options = "grp:win_space_toggle";
-      kb_rules = "";
       accel_profile = "adaptive";
       follow_mouse = 1;
+      sensitivity = -0.2; # -1.0 - 1.0, 0 means no modification.
+      scroll_factor = "0.5";
+      force_no_accel = false;
+      natural_scroll = true;
 
       # touch map for gpd screen
-      touchdevice.transform = 3;
+      touchdevice = { transform = 3; };
 
       touchpad = {
-        natural_scroll = true;
         disable_while_typing = true;
-        scroll_factor = "0.02";
-        drag_lock = false;
+        scroll_factor = "-0.8";
         tap-and-drag = false;
+        # drag_lock = false;
       };
-
-      sensitivity = 0; # -1.0 to 1.0, 0 means no modification.
     };
 
-    # Example per-device config
-    # See https://wiki.hyprland.org/Configuring/Keywords/#per-device-input-configs for more
-    device = {
-      name = "epic-mouse-v1";
-      sensitivity = "-0.5";
-    };
+    # device = {
+    #   # touchpad
+    #   name = "hailuck-co.,ltd-usb-keyboard-mouse";
+    #   sensitivity = "-0.3";
+    #   drag_lock = false;
+    #   tap-and-drag = false;
+    # };
 
     general = lib.mkForce {
       gaps_in = 0;
@@ -134,13 +134,9 @@
       smart_split = false;
     };
 
-    master = {
-      # See https://wiki.hyprland.org/Configuring/Master-Layout/ for more
-      # new_is_master = true;
-    };
+    master = { };
 
     gestures = {
-      # See https://wiki.hyprland.org/Configuring/Variables/ for more
       workspace_swipe = true;
     };
 
@@ -194,21 +190,22 @@
       "$mod SHIFT, j, movewindow, d"
 
       # Workspace
-      "$mod Alt_L, RIGHT, workspace, +1"
-      "$mod Alt_L, LEFT, workspace, -1"
-      "$mod Alt_L, l, workspace, +1"
-      "$mod Alt_L, h, workspace, -1"
-      "$mod Alt_L, j, workspace, +1"
-      "$mod Alt_L, k, workspace, -1"
-      "$mod Alt_L, mouse_up, workspace, +1"
-      "$mod Alt_L, mouse_down, workspace, -1"
+      "SHIFT Alt_L, RIGHT, workspace, +1"
+      "SHIFT Alt_L, LEFT, workspace, -1"
+      "SHIFT Alt_L, l, workspace, +1"
+      "SHIFT Alt_L, h, workspace, -1"
+      "SHIFT Alt_L, j, workspace, +1"
+      "SHIFT Alt_L, k, workspace, -1"
+      "SHIFT Alt_L, mouse_up, workspace, +1"
+      "SHIFT Alt_L, mouse_down, workspace, -1"
 
       # Lock screen
       ", F10, exec, swaylock"
       ", F10, exec, hyprctl keyword input:kb_layout us,ru"
 
       # Screenshot
-      '',PRINT, exec, grim ~/Pictures/ps_$(date +"%Y%m%d%H%M%S").png - | wl-copy''
+      ''
+        ,PRINT, exec, grim ~/Pictures/ps_$(date +"%Y%m%d%H%M%S").png - | wl-copy''
       ''SUPER_SHIFT, S, exec, grim -g "$(slurp)" - | wl-copy''
 
       # Brightness

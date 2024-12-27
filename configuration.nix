@@ -36,7 +36,7 @@
 
       sizes = {
         applications = 14;
-        terminal = 14;
+        terminal = 28;
         desktop = 14;
         popups = 12;
       };
@@ -55,7 +55,6 @@
 
   # TTYI colors
   console = with config.lib.stylix.colors; {
-    # font = "monospace 32";
     colors = lib.mkForce [
       "000000" # background
       "${base08}" # red
@@ -85,8 +84,6 @@
     "\n    strict_chain\n    proxy_dns \n    remote_dns_subnet 224\n    tcp_read_time_out 15000\n    tcp_connect_time_out 8000\n    localnet 127.0.0.0/255.0.0.0\n\n    [ProxyList]\n    socks5   127.0.0.1 10808 \n  ";
 
   environment.variables = {
-    # Enable OpenCL
-    RUSTICL_ENABLE = "radeonsi";
     EDITOR = "nvim";
     SYSTEMD_EDITOR = "nvim";
     VISUAL = "nvim";
@@ -102,8 +99,8 @@
   networking.hostName = "nixos"; # Define your hostname.
   networking.networkmanager.enable = true;
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
-  # hardware.bluetooth.enable = true;
 
+  # hardware.bluetooth.enable = true;
   hardware.bluetooth.powerOnBoot = false;
 
   # Enable CUPS to print documents.
@@ -152,12 +149,11 @@
   # Enable the X11 windowing system.
   services.xserver = {
     enable = true;
-    videoDrivers = [ "amdgpu" ];
-    displayManager.startx.enable = true;
-    windowManager.fvwm2.gestures = true;
+    displayManager.startx.enable = false;
+    # windowManager.fvwm2.gestures = true;
 
     # Enable the GNOME Desktop Environment.
-    displayManager.gdm.enable = true;
+    displayManager.gdm.enable = false;
     desktopManager.gnome.enable = true;
 
     # Configure keymap in X11
@@ -165,11 +161,12 @@
     xkb.variant = "";
   };
 
-  programs.hyprland.enable = true;
-
   users.users.user = {
     isNormalUser = true;
     description = "user";
+    shell = pkgs.fish;
+    useDefaultShell = true;
+
     # Users in the scanner group will gain access to the scanner, or the lp group if it’s also a printer.
     extraGroups = [ "networkmanager" "wheel" "input" "scanner" "lp" ];
     packages = with pkgs; [ flatpak ];
@@ -183,8 +180,8 @@
   nix = {
     # Allow unfree and experimental packages
     settings.experimental-features = [ "nix-command" "flakes" ];
-    # Auto delete nix trash
-    gc = {
+
+    gc = { # Auto delete nix trash
       automatic = true;
       dates = "weekly";
       options = "--delete-older-than 30d";
@@ -210,10 +207,6 @@
     wl-clipboard
     swaylock
     darktable
-    lact # gui for amd gpu
-    unstable.rocmPackages.rpp
-    unstable.rocmPackages.clr
-    unstable.microcodeAmd
     ntfs3g # ntfs support
     clinfo # for opencl
     unstable.gthumb # image viewer
@@ -222,13 +215,6 @@
     unstable.xorg.libxcb
     nh # nix cli helper
     unstable.rtorrent # tui torrent cloent
-    unstable.winetricks
-    unstable.wineWowPackages.waylandFull
-    unstable.wineWow64Packages.waylandFull
-    unstable.wine-wayland
-    unstable.wine
-    unstable.wine64
-    unstable.amdvlk # amd Vulkan driver for emulator
     unstable.mesa
     vimix-icon-theme
     overskride # bluetooth gui
@@ -237,6 +223,9 @@
     zlib
     unstable.patchelfUnstable
     jdk
+    ly
+
+    grc # for fish
 
     # VPN
     xray
@@ -244,18 +233,16 @@
     # nekoray # GUI client
 
     # -- QTILE --
-    kanshi # monitor config tool for qtile
-    mypy # check code errors for qtile check
+    # kanshi # monitor config tool for qtile
+    # mypy # check code errors for qtile check
 
     # gestures for qtile:
-    wmctrl
-    libinput
-    libinput-gestures
-    xdotool
+    # wmctrl
+    # libinput
+    # libinput-gestures
+    # xdotool
 
   ];
-
-  systemd.packages = with pkgs; [ lact ];
 
   # --------------------------------
   # SECURITY 
@@ -273,9 +260,14 @@
   # --------------------------------
 
   services = {
-
+    displayManager.ly.enable = true;
     # gestures
-    libinput.enable = true;
+    # libinput.enable = true;
+    # libinput.touchpad.accelSpeed = "0";
+    # libinput.touchpad.tappingDragLock = false;
+    # libinput.touchpad.accelProfile = "adaptive";
+    # libinput.touchpad.naturalScrolling = true;
+    # libinput.mouse.tappingDragLock = false;
 
     # Flatpak
     flatpak.enable = true;
@@ -297,32 +289,26 @@
         CPU_MIN_PERF_ON_AC = 0;
         CPU_MAX_PERF_ON_AC = 100;
         CPU_MIN_PERF_ON_BAT = 0;
-        CPU_MAX_PERF_ON_BAT = 40;
+        CPU_MAX_PERF_ON_BAT = 100;
 
         CPU_BOOST_ON_AC = "1";
         CPU_BOOST_ON_BAT = "0";
 
-        # Savings are made at the expense of color balance
-        # 0 - off, 4 - max. 
-        AMDGPU_ABM_LEVEL_ON_AC = "0";
-        AMDGPU_ABM_LEVEL_ON_BAT = "3";
-
         # Controls runtime power management for PCIe devices (Fan).
-        RUNTIME_PM_ON_AC = "auto";
-        RUNTIME_PM_ON_BAT = "auto";
+        PCIE_ASPM_ON_AC = "default";
+        PCIE_ASPM_ON_BAT = "powersupersave";
 
-        # Helps save long term battery health (auto mode)
         CONSERVATION_MODE = 1;
         TLP_DEFAULT_MODE = "conservation";
-        # Only for Lenovo non-ThinkPad series
-        # START_CHARGE_THRESH_BAT0 = 0;
-        # STOP_CHARGE_THRESH_BAT0 = 1; 
 
         # Not supported for my laptop (manual mode)
-        START_CHARGE_THRESH_BAT0 = 70;
-        STOP_CHARGE_THRESH_BAT0 = 85;
-        START_CHARGE_THRESH_BAT1 = 70;
-        STOP_CHARGE_THRESH_BAT1 = 85;
+        # START_CHARGE_THRESH_BAT0 = 70;
+        # STOP_CHARGE_THRESH_BAT0 = 85;
+        # START_CHARGE_THRESH_BAT1 = 70;
+        # STOP_CHARGE_THRESH_BAT1 = 85;
+
+        # improve disk IO
+        DISK_IOSCHED = "mq-deadline";
       };
     };
 
@@ -338,20 +324,8 @@
   }; # close services
 
   systemd = {
-    # AMD ROCM driver
-    tmpfiles.rules =
-      [ "L+    /opt/rocm/hip   -    -    -     -    ${pkgs.rocmPackages.clr}" ];
-
-    services.lactd = {
-      description = "AMDGPU Control Daemon";
-      enable = true;
-      # disable autostart 
-      wantedBy = lib.mkForce [ ];
-      # wantedBy = [ "multi-user.target" ];
-    };
-
     # disable autostart Xray
-    services.xray.wantedBy = lib.mkForce [ ];
+    # services.xray.wantedBy = lib.mkForce [ ];
 
     # User service authentication agent
     user.services.polkit-gnome-authentication-agent-1 = {
@@ -368,23 +342,6 @@
         TimeoutStopSec = 10;
       };
     };
-
-    user.services = {
-      set-display-rotation = {
-        description = "Set display rotation before GDM starts";
-        after = [ "gdm.service" ];
-        wantedBy = [ "gdm.service" ];
-        serviceConfig = {
-          ExecStart =
-            "${pkgs.dbus}/bin/dbus-send --print-reply --dest=org.gnome.SettingsDaemon /org/gnome/SettingsDaemon/Plugins/Rotation org.gnome.SettingsDaemon.Plugins.Rotation.SetRotation string:'left'"; # Замените 'left' на нужное значение
-          Type = "oneshot";
-          RemainAfterExit = true;
-        };
-      };
-    };
-
-    services.set-display-rotation.enable = true;
-
   };
 
   # --------------------------------
@@ -392,6 +349,61 @@
   # --------------------------------
 
   programs = {
+    hyprland.enable = true;
+    fish.enable = true;
+    
+    # promt for any shell
+    starship = {
+      enable = true;
+      settings = {
+        add_newline = true;
+        command_timeout = 1300;
+        scan_timeout = 50;
+        format = "\${custom.pwd}$nix_shell$lua$git_branch$git_commit$git_state$git_status$custom(:$user)$time\n$character";
+
+        git_branch = {
+          style = "green";
+          format = "[$branch(:$remote_branch)]($style)";
+        };
+        git_commit = {
+          style = "green";
+        };
+        git_state = {
+          style = "green";
+        };
+        git_status = {
+          # style = "green";
+          deleted = "x";
+        };
+        custom.pwd = {
+          command = "echo $PWD";
+          when = "true";
+          style = "bold cyan";
+          format = "[$output]($style) ";
+        };
+        custom.user = {
+          command = "echo $USER@$hostname ";
+          when = "true";
+          style = "gray";
+          format = "[\\[$output\\]]($style) ";
+        };
+        time = {
+          disabled = false;
+          format = "[\\[$time\\]]($style) ";
+          style = "gray";
+          time_format = "%R";
+        };
+        character = {
+        success_symbol = "[I>](green)";
+        error_symbol = "[I>](red)";
+        vimcmd_symbol = "[N>](green)";
+        vimcmd_replace_one_symbol = "[r>](purple)";
+        vimcmd_replace_symbol = "[R>](purple)";
+        vimcmd_visual_symbol = "[V>](yellow)";
+        };
+      };
+    };
+
     # run bin files
     nix-ld = {
       enable = true;
@@ -404,26 +416,10 @@
   };
 
   # --------------------------------
-  # OTHER HARDWARE
-  # --------------------------------
-
-  # opencl / graphics acceleration
-  hardware.graphics = {
-    extraPackages = with pkgs; [ rocmPackages.clr.icd amdvlk ];
-    extraPackages32 = with pkgs; [ driversi686Linux.amdvlk ];
-
-    enable = true;
-  };
-
-  # --------------------------------
   # BOOT 
   # --------------------------------
 
-  boot = {
-    initrd.kernelModules = [ "amdgpu" ];
-    kernelParams =
-      [ "radeon.si_support=0" "amdgpu.si_support=1" "boot.shell_on_fail" ];
-  };
+  boot = { kernelParams = [ "boot.shell_on_fail" ]; };
 
   boot.loader = {
     grub = {
@@ -432,15 +428,9 @@
       efiSupport = true;
       useOSProber = true;
       default = "saved";
-      # font = lib.mkForce "${pkgs.hack-font}/share/fonts/hack/Hack-Regular.ttf";
-      # fontSize = 36;
-      # backgroundColor = lib.mkForce "#000000";
       splashImage = lib.mkForce null;
       theme = lib.mkForce null;
-      gfxmodeEfi = "640x480";
-      gfxmodeBios = "640x480";
-      gfxpayloadBios = "640x480";
-      gfxpayloadEfi = "640x480";
+      extraConfig = "";
     };
     efi = { canTouchEfiVariables = true; };
   };

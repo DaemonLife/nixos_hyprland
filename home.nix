@@ -6,7 +6,7 @@
     ./modules/hyprland.nix
     # ./modules/kitty.nix
     ./modules/alacritty.nix
-    #./modules/gtk.nix
+    # ./modules/gtk.nix
     ./modules/waybar.nix
     ./modules/firefox.nix
     ./modules/mpv.nix
@@ -14,45 +14,47 @@
     ./modules/swaylock.nix
     ./modules/telegram-theme.nix
     ./modules/git.nix
-    ./modules/zsh.nix
+    # ./modules/zsh.nix
     ./modules/cmus.nix
     ./modules/jrnl.nix
     ./modules/helix.nix
     ./modules/nixvim.nix
     # ./modules/ranger.nix
     ./modules/lf.nix
+    ./modules/fish.nix
+    ./modules/rtorrent.nix
+    ./modules/qutebrowser.nix
   ];
 
   stylix = {
     enable = true;
-    base16Scheme =
-      "${pkgs.base16-schemes}/share/themes/ashes.yaml";
-    # override = {
-    #   author = "DaemonLife";
-    #   base00 = "000000";
-    #   base01 = "121212";
-    #   base02 = "000000";
-    #   base03 = "000000";
-    #   base04 = "000000";
-    #   base05 = "000000";
-    #   base06 = "000000";
-    #   base07 = "000000";
-    #   base08 = "000000";
-    #   base09 = "000000";
-    #   base0A = "000000";
-    #   base0B = "000000";
-    #   base0C = "000000";
-    #   base0D = "000000";
-    #   base0E = "000000";
-    #   base0F = "000000";
-    # };
+    base16Scheme = "${pkgs.base16-schemes}/share/themes/ashes.yaml";
+    override = {
+      author = "DaemonLife";
+      # base00 = "000000";
+      #   base01 = "121212";
+      #   base02 = "000000";
+      #   base03 = "000000";
+      #   base04 = "000000";
+      #   base05 = "000000";
+      #   base06 = "000000";
+      #   base07 = "000000";
+      #   base08 = "000000";
+      #   base09 = "000000";
+      #   base0A = "000000";
+      #   base0B = "000000";
+      #   base0C = "000000";
+      #   base0D = "000000";
+      #   base0E = "000000";
+      #   base0F = "000000";
+    };
     # image = ./image.jpg;
     image = config.lib.stylix.pixel "base00";
     targets.waybar.enable = false;
 
     cursor.package = pkgs.bibata-cursors;
     cursor.name = "Bibata-Modern-Ice";
-    cursor.size = 18;
+    cursor.size = 21;
 
     fonts = {
       monospace = {
@@ -72,9 +74,9 @@
         name = "Noto Color Emoji";
       };
       sizes = {
-        applications = 14;
-        terminal = 14;
-        desktop = 14;
+        applications = 16;
+        terminal = 16;
+        desktop = 16;
         popups = 12;
       };
     };
@@ -106,17 +108,19 @@
       fuzzel # run menu
       mako # notification agent
       libnotify # for mako
-      grim slurp # screenshot tool
+      grim
+      slurp # screenshot tool
       brightnessctl # screen light
       pavucontrol # audio gui control
       alsa-utils # audio volume control (?)
       gnome-power-manager # power statistic
       hypridle
       swaylock # screen lock
-      unstable.xfce.thunar
       ffmpegthumbnailer
-      unstable.ueberzugpp # image preview
+      ueberzugpp # image preview
       lf
+      nautilus
+      nautilus-open-any-terminal
 
       # Theming
       vimix-icon-theme # for icons
@@ -125,6 +129,7 @@
       swaybg # background
       flavours # create base16 colors from image
       dconf
+      dconf-editor
 
       # Fonts
       nerdfonts
@@ -137,21 +142,24 @@
       # --------------------------------
 
       # spellcheck and LibreOffice
-      hunspell 
+      hunspell
       hunspellDicts.ru_RU
       hunspellDicts.en_US
       libreoffice
 
       unstable.joplin
       unstable.gimp
-      qutebrowser
+      # qutebrowser
       btop
       cool-retro-term
       unzip
+      epy # cli book reader
       jrnl
       mpv
       ffmpeg-full
-      transmission_4-gtk unstable.qbittorrent # torrent client
+      transmission_4
+      qbittorrent # torrent client
+      # rtorrent
       telegram-desktop
       cmus # player
       python3
@@ -159,82 +167,28 @@
       tor-browser
       bottles
       veracrypt
-      portablemc # minecraft cli launcher 
+      portablemc # minecraft cli launcher
       fastfetch # system info in terminal
-      curseofwar vitetris # cli games
+      curseofwar
+      vitetris # cli games
       cmatrix
 
     ];
     sessionPath = [ "$HOME/.local/bin" ];
   };
 
-  # qt = {
-  #   enable = true;
-  # };
-
-  services = {
-    kanshi = {
-      enable = true;
-      # systemdTarget = "qtile-session.target";
-      systemdTarget = "hyprland-session.target";
-
-      settings = [
-
-        { profile.name = "default";
-          profile.outputs = [
-            {
-              criteria = "DSI-1";
-              scale = 2.0;
-              status = "enable";
-            }
-          ];
-        }
-        { profile.name = "trans270";
-          profile.outputs = [
-            {
-              criteria = "DSI-1";
-              scale = 2.0;
-              transform = "270";
-              status = "enable";
-            }
-          ];
-        }
-
-        { profile.name = "trans90";
-          profile.outputs = [
-            {
-              criteria = "DSI-1";
-              scale = 2.0;
-              transform = "90";
-              status = "enable";
-            }
-          ];
-        }
-
-        { profile.name = "flip90";
-          profile.outputs = [
-            {
-              criteria = "DSI-1";
-              scale = 2.0;
-              transform = "flipped-90";
-              status = "enable";
-            }
-          ];
-        }
-
-        { profile.name = "flip270";
-          profile.outputs = [
-            {
-              criteria = "DSI-1";
-              scale = 2.0;
-              transform = "flipped-270";
-              status = "enable";
-            }
-          ];
-        }
-
-      ];
+  dconf.settings = {
+    "org/gnome/desktop/peripherals/touchpad" = {
+      tap-and-drag = false;
+      speed = -0.8;
+      natural-scroll = false;
+      accel-profile = "adaptive";
     };
-
+    "org/gnome/desktop/peripherals/mouse" = {
+      speed = -0.3;
+      natural-scroll = false;
+      accel-profile = "adaptive";
+    };
   };
+
 }
