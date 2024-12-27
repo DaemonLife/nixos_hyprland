@@ -21,7 +21,7 @@
       cmp-nvim-lsp.enable = true;
       cmp-treesitter.enable = true;
       nvim-autopairs.enable = true; # auto ""
-      # nvim-surround.enable = true; # auto "[text]"
+      nvim-surround.enable = true; # auto "[text]"
       indent-blankline.enable = true; # -- for python
       cmp = {
         autoEnableSources = true;
@@ -48,8 +48,8 @@
 
       highlight LightlineMiddle_active guibg=#${base01} guifg=#${base03}
 
-      highlight LightlineRight_active_0 guibg=#${base02} guifg=#${base04}
-      highlight LightlineRight_active_1 guibg=#${base02} guifg=#${base04}
+      highlight LightlineRight_active_0 guibg=#${base01} guifg=#${base03}
+      highlight LightlineRight_active_1 guibg=#${base01} guifg=#${base03}
       highlight LightlineRight_active_2 guibg=#${base01} guifg=#${base03}
     '';
 
@@ -120,7 +120,7 @@
       # gdefault = true;
 
       # Start scrolling when the cursor is X lines away from the top/bottom
-      scrolloff = 8;
+      scrolloff = 4;
 
       # Other settings
       swapfile = false; # Disable the swap file

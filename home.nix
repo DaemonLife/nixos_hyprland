@@ -17,7 +17,7 @@
     # ./modules/zsh.nix
     ./modules/cmus.nix
     ./modules/jrnl.nix
-    ./modules/helix.nix
+    # ./modules/helix.nix
     ./modules/nixvim.nix
     # ./modules/ranger.nix
     ./modules/lf.nix

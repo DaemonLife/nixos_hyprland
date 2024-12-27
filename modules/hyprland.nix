@@ -59,7 +59,7 @@ with config.lib.stylix.colors; {
       # touch map for gpd screen
       touchdevice = { transform = 3; };
 
-      touchpad = {
+      touchpad = lib.mkForce {
         disable_while_typing = true;
         scroll_factor = "-0.8";
         tap-and-drag = false;
@@ -94,6 +94,10 @@ with config.lib.stylix.colors; {
       mouse_move_enables_dpms = true;
       animate_manual_resizes = true;
       mouse_move_focuses_monitor = true;
+    };
+
+    windowrulev2 = {
+      windowrulev2 = "bordercolor rgb(00FF00), fullscreenstate:* 1";
     };
 
     # Scale options
@@ -156,10 +160,10 @@ with config.lib.stylix.colors; {
       "$mod, N, exec, $filemanager"
       "$mod, B, exec, $browser"
       "$mod, T, exec, telegram-desktop"
+      # "$mod, O, exit"
 
       # Windows control
       "$mod, Q, killactive"
-      "$mod, O, exit"
       "$mod, V, togglefloating"
       # "$mod, P, pseudo"
       "$mod, s, togglesplit"

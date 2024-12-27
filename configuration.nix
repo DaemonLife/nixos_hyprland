@@ -35,10 +35,10 @@
       };
 
       sizes = {
-        applications = 14;
+        applications = 18;
         terminal = 28;
-        desktop = 14;
-        popups = 12;
+        desktop = 18;
+        popups = 18;
       };
 
     };
@@ -223,25 +223,14 @@
     zlib
     unstable.patchelfUnstable
     jdk
-    ly
+    ly # enter to system
 
-    grc # for fish
+    grc # colors for fish
 
     # VPN
     xray
     proxychains # run any program with xray proxy
     # nekoray # GUI client
-
-    # -- QTILE --
-    # kanshi # monitor config tool for qtile
-    # mypy # check code errors for qtile check
-
-    # gestures for qtile:
-    # wmctrl
-    # libinput
-    # libinput-gestures
-    # xdotool
-
   ];
 
   # --------------------------------
@@ -261,13 +250,6 @@
 
   services = {
     displayManager.ly.enable = true;
-    # gestures
-    # libinput.enable = true;
-    # libinput.touchpad.accelSpeed = "0";
-    # libinput.touchpad.tappingDragLock = false;
-    # libinput.touchpad.accelProfile = "adaptive";
-    # libinput.touchpad.naturalScrolling = true;
-    # libinput.mouse.tappingDragLock = false;
 
     # Flatpak
     flatpak.enable = true;

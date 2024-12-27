@@ -52,7 +52,7 @@
         };
 
         "hyprland/window" = {
-          max-length = 40;
+          max-length = 28;
           separate-outputs = true;
         };
 
@@ -260,7 +260,7 @@
           }
           #clock { padding-right: 6px; }
           #battery { padding-left: 6px; }
-          #window { padding: 0px 10px 0px 10px; }
+          #window { padding: 0px 15px 0px 15px; }
 
           #workspaces button.active { 
               color: @dark;
