@@ -22,18 +22,17 @@
     };
   };
 
-
   outputs = { self, nixpkgs, home-manager, stylix, nixvim, nixpkgs-unstable, nixos-hardware, ... }@inputs:
   let
     system = "x86_64-linux";
     pkgs = import nixpkgs { inherit system; };
 
-    # Функция для создания конфигурации
+    # Creating configuration function
     mkNixosConfig = device: {
       inherit system;
       modules = [
         ./main-configuration.nix
-        ./${device}-configuration.nix
+        ./devices/${device}/configuration.nix
         nixos-hardware.nixosModules.${device}
         stylix.nixosModules.stylix
         home-manager.nixosModules.home-manager
@@ -59,11 +58,10 @@
 
   in {
     nixosConfigurations = {
+      # create configurations for my devices
       gpd-pocket-3 = nixpkgs.lib.nixosSystem (mkNixosConfig "gpd-pocket-3");
-      lenovo = nixpkgs.lib.nixosSystem (mkNixosConfig "lenovo"); # Добавляем конфигурацию для Lenovo
+      # lenovo = nixpkgs.lib.nixosSystem (mkNixosConfig "lenovo"); 
     }; # end of nixosConfigurations
   }; # end of outputs
-
-
 
 }

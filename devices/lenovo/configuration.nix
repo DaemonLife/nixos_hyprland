@@ -1,6 +1,11 @@
+# Configuration for Lenovo
 { config, pkgs, ... }: {
 
+  # Imports
+  imports = [ ./hardware-configuration.nix ];
+
   services = {
+
     # Battery life / TLP
     tlp = {
       enable = true;
@@ -15,7 +20,7 @@
         CPU_MIN_PERF_ON_AC = 0;
         CPU_MAX_PERF_ON_AC = 100;
         CPU_MIN_PERF_ON_BAT = 0;
-        CPU_MAX_PERF_ON_BAT = 100;
+        CPU_MAX_PERF_ON_BAT = 60;
 
         CPU_BOOST_ON_AC = "1";
         CPU_BOOST_ON_BAT = "0";
@@ -27,15 +32,10 @@
         CONSERVATION_MODE = 1;
         TLP_DEFAULT_MODE = "conservation";
 
-        # Not supported for my laptop (manual mode)
-        # START_CHARGE_THRESH_BAT0 = 70;
-        # STOP_CHARGE_THRESH_BAT0 = 85;
-        # START_CHARGE_THRESH_BAT1 = 70;
-        # STOP_CHARGE_THRESH_BAT1 = 85;
-
         # improve disk IO
-        DISK_IOSCHED = "mq-deadline";
+        # DISK_IOSCHED = ""; 
       };
-    };
-  };
+    }; # tlp
+
+  }; # services
 }

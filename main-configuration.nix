@@ -1,9 +1,6 @@
 # NixOS manual accessible by running ‘nixos-help’.
 { config, pkgs, lib, inputs, ... }: {
 
-  # Imports
-  imports = [ ./hardware-configuration.nix ];
-
   # --------------------------------
   # SYSTEM THEME 
   # --------------------------------
@@ -33,14 +30,12 @@
         package = pkgs.dejavu_fonts;
         name = "DejaVu Serif";
       };
-
       sizes = {
         applications = 16;
         terminal = 16;
         desktop = 16;
         popups = 12;
       };
-
     };
 
     opacity = {
