@@ -22,40 +22,48 @@
     };
   };
 
-  outputs = { self, nixpkgs, home-manager, stylix, nixvim, nixpkgs-unstable
-    , nixos-hardware, ... }@inputs:
-    let
-      system = "x86_64-linux";
-      pkgs = import nixpkgs { inherit system; };
-    in {
-      nixosConfigurations = {
-        nixos = nixpkgs.lib.nixosSystem {
-          inherit system;
-          modules = [
-            ./configuration.nix
-            nixos-hardware.nixosModules.gpd-pocket-3 # only for my gpd laptop!
-            stylix.nixosModules.stylix
-            home-manager.nixosModules.home-manager
-            {
-              home-manager.sharedModules = [ nixvim.homeManagerModules.nixvim ];
-              home-manager.useGlobalPkgs = true;
-              home-manager.useUserPackages = true;
-              home-manager.users.user = import ./home.nix;
-              home-manager.backupFileExtension = "bkp";
-            }
 
-            {
-              nixpkgs.overlays = [
-                (final: prev: {
-                  unstable = import nixpkgs-unstable {
-                    inherit system;
-                    config.allowUnfree = true;
-                  };
-                })
-              ];
-            }
+  outputs = { self, nixpkgs, home-manager, stylix, nixvim, nixpkgs-unstable, nixos-hardware, ... }@inputs:
+  let
+    system = "x86_64-linux";
+    pkgs = import nixpkgs { inherit system; };
+
+    # Функция для создания конфигурации
+    mkNixosConfig = device: {
+      inherit system;
+      modules = [
+        ./main-configuration.nix
+        ./${device}-configuration.nix
+        nixos-hardware.nixosModules.${device}
+        stylix.nixosModules.stylix
+        home-manager.nixosModules.home-manager
+        {
+          home-manager.sharedModules = [ nixvim.homeManagerModules.nixvim ];
+          home-manager.useGlobalPkgs = true;
+          home-manager.useUserPackages = true;
+          home-manager.users.user = import ./home.nix;
+          home-manager.backupFileExtension = "bkp";
+        }
+        {
+          nixpkgs.overlays = [
+            (final: prev: {
+              unstable = import nixpkgs-unstable {
+                inherit system;
+                config.allowUnfree = true;
+              };
+            })
           ];
-        };
-      };
-    }; # end in outputs
+        }
+      ];
+    };
+
+  in {
+    nixosConfigurations = {
+      gpd-pocket-3 = nixpkgs.lib.nixosSystem (mkNixosConfig "gpd-pocket-3");
+      lenovo = nixpkgs.lib.nixosSystem (mkNixosConfig "lenovo"); # Добавляем конфигурацию для Lenovo
+    }; # end of nixosConfigurations
+  }; # end of outputs
+
+
+
 }

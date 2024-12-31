@@ -18,7 +18,7 @@
 
     cursor.package = pkgs.bibata-cursors;
     cursor.name = "Bibata-Modern-Ice";
-    cursor.size = 18;
+    cursor.size = 10;
 
     fonts = {
       monospace = {
@@ -35,10 +35,10 @@
       };
 
       sizes = {
-        applications = 18;
-        terminal = 28;
-        desktop = 18;
-        popups = 18;
+        applications = 16;
+        terminal = 16;
+        desktop = 16;
+        popups = 12;
       };
 
     };
@@ -175,7 +175,6 @@
   # --------------------------------
   # NIX SETTING 
   # --------------------------------
-
   nixpkgs.config = { allowUnfree = true; };
   nix = {
     # Allow unfree and experimental packages
@@ -209,17 +208,15 @@
     darktable
     ntfs3g # ntfs support
     clinfo # for opencl
-    unstable.gthumb # image viewer
-    unstable.steam-run
+    gthumb # image viewer
     unstable.xorg.xcbutilwm
     unstable.xorg.libxcb
     nh # nix cli helper
-    unstable.rtorrent # tui torrent cloent
+    rtorrent # tui torrent cloent
     unstable.mesa
     vimix-icon-theme
     overskride # bluetooth gui
     unstable.imv # cli image viewer
-    unstable.steam-run
     zlib
     unstable.patchelfUnstable
     jdk
@@ -306,9 +303,6 @@
   }; # close services
 
   systemd = {
-    # disable autostart Xray
-    # services.xray.wantedBy = lib.mkForce [ ];
-
     # User service authentication agent
     user.services.polkit-gnome-authentication-agent-1 = {
       description = "polkit-gnome-authentication-agent-1";
@@ -397,6 +391,7 @@
           # ...
         ];
     };
+
   };
 
   # --------------------------------

@@ -75,7 +75,7 @@
       };
       sizes = {
         applications = 16;
-        terminal = 16;
+        terminal = 15;
         desktop = 16;
         popups = 12;
       };
@@ -149,6 +149,7 @@
 
       unstable.joplin
       unstable.gimp
+      halftone # image pixel redactor
       # qutebrowser
       btop
       cool-retro-term

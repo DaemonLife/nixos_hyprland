@@ -43,7 +43,7 @@ with config.lib.stylix.colors; {
       "XDG_SESSION_DESKTOP,Hyprland"
       "QT_WAYLAND_DISABLE_WINDOWDECORATION,1"
       "QT_QPA_PLATFORM,wayland"
-      # "MOZ_ENABLE_WAYLAND,1"
+      "MOZ_ENABLE_WAYLAND,1"
     ];
 
     input = {
