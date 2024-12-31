@@ -18,10 +18,12 @@ with config.lib.stylix.colors; {
       "desc:Shenzhen KTC Technology Group H27S17 0x00000001,highres,0x0,1,bitdepth,10,vrr,1"
       # Monitor gg
       "desc:Acer Technologies Acer A231H LQT0W0084320,highres,auto-right,1,bitdepth,10,vrr,1"
-      # random monitor
-      ",preferred,auto,1"
-      # gpb3
+      # GPD3
       "DSI-1,preferred,auto,2,transform,3"
+      # Lenovo
+      "eDP-1,highres,auto,1.6,bitdepth,10,vrr,1"
+      # Random monitor
+      ",preferred,auto,1"
     ];
 
     exec-once = [

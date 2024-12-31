@@ -1,11 +1,27 @@
 # nixos_hyprland
 My first Hyprland setup on NixOS
 
+## Preparing
+1. Change username "user" in configs if you use other name. Also change hostname if you need. I use "nixos". 
+2. Place all configs to /home/[your_user]/nix and open this nix folder.
+
 ## Install
-1. Remove hardware-configuration.nix file. It will be generate auto.
-2. Change username "user" in configs if you use other name. Also change hostname if you need. I use "nixos". 
-3. Place all configs to /home/[your_user]/nix
-4. Run command in this folder: nixos-rebuild switch --flake .
+I have two configurated devices:
+- GPD pocket 3 ("gpd-pocket-3")
+- IdeaPad 5 Pro 14ACN ("lenovo")
+
+For Lenovo run:
+nixos-rebuild switch --flake . #lenovo
+For GPD:
+nixos-rebuild switch --flake . #gpd-pocket-3
+
+If you use other then for quickly start I recommend you remove file .../nix/devices/lenovo/hardware-configuration.nix and after all run:
+nixos-rebuild switch --flake . #lenovo
+
+Reboot. Done.
+
+## Using
+For rebuild use "update [device]", for update and rebuild - "upgrade [device]"
 
 ## Tips
 To set up your Telegram auto-update theme, follow these steps:
