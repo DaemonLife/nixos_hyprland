@@ -6,22 +6,25 @@ My first Hyprland setup on NixOS
 2. Place all configs to /home/[your_user]/nix and open this nix folder.
 
 ## Install
-I have two configurated devices:
+I have two configurated **devices**:
 - GPD pocket 3 ("gpd-pocket-3")
 - IdeaPad 5 Pro 14ACN ("lenovo")
 
 For Lenovo run:
-nixos-rebuild switch --flake . #lenovo
+# nixos-rebuild switch --flake . #**lenovo**
 For GPD:
-nixos-rebuild switch --flake . #gpd-pocket-3
+# nixos-rebuild switch --flake . #**gpd-pocket-3**
 
 If you use other then for quickly start I recommend you remove file .../nix/devices/lenovo/hardware-configuration.nix and after all run:
-nixos-rebuild switch --flake . #lenovo
+# nixos-rebuild switch --flake . #**lenovo**
 
 Reboot. Done.
 
 ## Using
-For rebuild use "update [device]", for update and rebuild - "upgrade [device]"
+For rebuild use:
+# update [**device**]
+For update and rebuild:
+# upgrade [**device**]"
 
 ## Tips
 To set up your Telegram auto-update theme, follow these steps:
