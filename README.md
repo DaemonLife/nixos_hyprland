@@ -21,7 +21,7 @@ cp /etc/nixos/hardware-configuration.nix /home/$USER/nix/devices/lenovo/
 nixos-rebuild switch --flake . #lenovo
 ```
 
-If file /etc/nixos/hardware-configuration.nix don't exist then run this command and repeat:
+If file /etc/nixos/hardware-configuration.nix don't exist then run next command and repeat:
 ```sudo nixos-generate-config```
 
 Reboot. Done.
