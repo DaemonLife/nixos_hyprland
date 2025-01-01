@@ -3,11 +3,16 @@
 programs.fish = {
     enable = true;
     shellAliases = {
+      # update [device]
       update = "nh os switch $HOME/nix/. -H $1";
-      upgrade = "sudo nix-channel --update && \
-        echo '\n> Nix-channel has been updated.\n' && \
-        sudo nix flake update --flake $HOME/nix/. #$1 && \
-        echo '\n> Flake has been updated.\n' && update $1";
+      upgrade = "nh os switch -u $HOME/nix -H $1";
+
+      # for windows fs on lenovo
+      cdwin = "source $HOME/nix/scripts/cdwin.fish";
+
+      # battery configuration will be restored at the next boot
+      tlp_full = "sudo tlp fullcharge bat1";
+      tlp_conserv = "sudo tlp setcharge bat1";
     };
     interactiveShellInit = ''
       set fish_greeting # Disable greeting

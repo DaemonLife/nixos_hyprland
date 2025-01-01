@@ -4,9 +4,7 @@
     ./modules/mako.nix
     ./modules/fuzzel.nix
     ./modules/hyprland.nix
-    # ./modules/kitty.nix
     ./modules/alacritty.nix
-    # ./modules/gtk.nix
     ./modules/waybar.nix
     ./modules/firefox.nix
     ./modules/mpv.nix
@@ -14,16 +12,19 @@
     ./modules/swaylock.nix
     ./modules/telegram-theme.nix
     ./modules/git.nix
-    # ./modules/zsh.nix
     ./modules/cmus.nix
     ./modules/jrnl.nix
-    # ./modules/helix.nix
     ./modules/nixvim.nix
-    # ./modules/ranger.nix
     ./modules/lf.nix
     ./modules/fish.nix
+    ./modules/fzf.nix
     ./modules/rtorrent.nix
     ./modules/qutebrowser.nix
+    # ./modules/kitty.nix
+    # ./modules/gtk.nix
+    # ./modules/zsh.nix
+    # ./modules/helix.nix
+    # ./modules/ranger.nix
   ];
 
   stylix = {
@@ -103,7 +104,6 @@
       # --------------------------------
 
       # Main
-      # kitty
       alacritty
       fuzzel # run menu
       mako # notification agent
@@ -150,7 +150,6 @@
       unstable.joplin
       unstable.gimp
       halftone # image pixel redactor
-      # qutebrowser
       btop
       cool-retro-term
       unzip

@@ -218,6 +218,11 @@
     ly # enter to system
 
     grc # colors for fish
+    fzf
+    fishPlugins.fzf-fish
+    fishPlugins.forgit # fzf git support
+    # fishPlugins.hydro # modern promts
+    fishPlugins.done # notifications
 
     # VPN
     xray
