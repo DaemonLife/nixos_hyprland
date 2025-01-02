@@ -1,30 +1,7 @@
 { pkgs, lib, config, inputs, ... }: {
 
   imports = [
-    ./modules/mako.nix
-    ./modules/fuzzel.nix
-    ./modules/hyprland.nix
-    ./modules/alacritty.nix
-    ./modules/waybar.nix
-    ./modules/firefox.nix
-    ./modules/mpv.nix
-    ./modules/hypridle.nix
-    ./modules/swaylock.nix
-    ./modules/telegram-theme.nix
-    ./modules/git.nix
-    ./modules/cmus.nix
-    ./modules/jrnl.nix
-    ./modules/nixvim.nix
-    ./modules/lf.nix
-    ./modules/fish.nix
-    ./modules/fzf.nix
-    ./modules/rtorrent.nix
-    ./modules/qutebrowser.nix
-    # ./modules/kitty.nix
-    # ./modules/gtk.nix
-    # ./modules/zsh.nix
-    # ./modules/helix.nix
-    # ./modules/ranger.nix
+    ./modules/import_all.nix
   ];
 
   stylix = {
@@ -104,22 +81,21 @@
       # --------------------------------
 
       # Main
-      alacritty
+      alacritty # terminal
       fuzzel # run menu
       mako # notification agent
       libnotify # for mako
-      grim
+      grim # screenshot tool
       slurp # screenshot tool
       brightnessctl # screen light
       pavucontrol # audio gui control
       alsa-utils # audio volume control (?)
       gnome-power-manager # power statistic
-      hypridle
+      hypridle # timer for screen lock
       swaylock # screen lock
       ffmpegthumbnailer
       ueberzugpp # image preview
-      lf
-      nautilus
+      nautilus # file manager
       nautilus-open-any-terminal
 
       # Theming
@@ -128,6 +104,7 @@
       gnome-tweaks
       swaybg # background
       flavours # create base16 colors from image
+      unstable.gowall # Tool to convert a Wallpaper's color scheme
       dconf
       dconf-editor
 
@@ -155,11 +132,11 @@
       unzip
       epy # cli book reader
       jrnl
+      dua # disk usage TUI tool. Run: dua i
       mpv
       ffmpeg-full
       transmission_4
       qbittorrent # torrent client
-      # rtorrent
       telegram-desktop
       cmus # player
       python3
@@ -169,9 +146,9 @@
       veracrypt
       portablemc # minecraft cli launcher
       fastfetch # system info in terminal
-      curseofwar
-      vitetris # cli games
-      cmatrix
+      curseofwar # stategy cli game
+      vitetris # tetris cli game
+      cmatrix # matrix in terminal
 
     ];
     sessionPath = [ "$HOME/.local/bin" ];

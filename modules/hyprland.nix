@@ -77,12 +77,12 @@ with config.lib.stylix.colors; {
     #   tap-and-drag = false;
     # };
 
-    general = lib.mkForce {
-      gaps_in = 0;
-      gaps_out = "0, 0, 0, 0";
+    general = {
+      # gaps_in = 0;
+      # gaps_out = "0, 0, 0, 0";
       border_size = 2;
-      "col.active_border" = "rgba(${base0D}ff)";
-      "col.inactive_border" = "rgba(${base01}ff)";
+      "col.active_border" = lib.mkForce "rgba(${base0D}ff)";
+      "col.inactive_border" = lib.mkForce "rgba(${base01}ff)";
       layout = "dwindle";
       # Please see https://wiki.hyprland.org/Configuring/Tearing/ before you turn this on
       allow_tearing = false;

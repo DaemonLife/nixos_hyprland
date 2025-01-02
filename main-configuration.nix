@@ -170,6 +170,7 @@
   # --------------------------------
   # NIX SETTING 
   # --------------------------------
+
   nixpkgs.config = { allowUnfree = true; };
   nix = {
     # Allow unfree and experimental packages
@@ -193,8 +194,8 @@
     pavucontrol
     gparted
     htop
-    zsh
-    oh-my-zsh
+    # zsh
+    # oh-my-zsh
     git
     os-prober
     grub2
@@ -204,21 +205,19 @@
     ntfs3g # ntfs support
     clinfo # for opencl
     gthumb # image viewer
-    unstable.xorg.xcbutilwm
-    unstable.xorg.libxcb
+    xorg.xcbutilwm
+    xorg.libxcb
     nh # nix cli helper
-    rtorrent # tui torrent cloent
-    unstable.mesa
-    vimix-icon-theme
+    mesa
     overskride # bluetooth gui
-    unstable.imv # cli image viewer
-    zlib
-    unstable.patchelfUnstable
-    jdk
+    imv # cli image viewer
+    # zlib
+    patchelfUnstable
+    jdk # java
     ly # enter to system
 
     grc # colors for fish
-    fzf
+    fzf # cli search. Run: Ctrl+R
     fishPlugins.fzf-fish
     fishPlugins.forgit # fzf git support
     # fishPlugins.hydro # modern promts
@@ -296,8 +295,8 @@
       enable = true;
       settings = {
         add_newline = true;
-        command_timeout = 1300;
-        scan_timeout = 50;
+        # command_timeout = 100;
+        # scan_timeout = 10;
         format = "\${custom.pwd}$nix_shell$lua$git_branch$git_commit$git_state$git_status$custom(:$user)$time\n$character";
 
         git_branch = {
@@ -335,12 +334,12 @@
           time_format = "%R";
         };
         character = {
-        success_symbol = "[I:>](green)";
-        error_symbol = "[I:>](red)";
-        vimcmd_symbol = "[N:>](green)";
-        vimcmd_replace_one_symbol = "[r:>](purple)";
-        vimcmd_replace_symbol = "[R:>](purple)";
-        vimcmd_visual_symbol = "[V:>](yellow)";
+        success_symbol = "[\\[I\\]>](green)";
+        error_symbol = "[\\[I\\]>](red)";
+        vimcmd_symbol = "[\\[N\\]>](white)";
+        vimcmd_replace_one_symbol = "[\\[r\\]>](purple)";
+        vimcmd_replace_symbol = "[\\[R\\]>](purple)";
+        vimcmd_visual_symbol = "[\\[V\\]>](yellow)";
         };
       };
     };
@@ -350,7 +349,6 @@
       enable = true;
       libraries = with pkgs;
         [
-          zlib
           # ...
         ];
     };
