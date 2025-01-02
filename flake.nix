@@ -32,8 +32,8 @@ let
     inherit system;
     modules = builtins.concatLists [
       [
-        ./main-configuration.nix
-        ./devices/${device}/configuration.nix
+        ./configuration.nix # main config
+        ./devices/${device}/configuration.nix # device config
         stylix.nixosModules.stylix
         home-manager.nixosModules.home-manager
         {
@@ -41,8 +41,8 @@ let
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
           home-manager.users.user.imports = [
-            ./home.nix
-            ./devices/${device}/home.nix
+            ./home.nix # main home config
+            ./devices/${device}/home.nix # device home config
           ];
           home-manager.backupFileExtension = "bkp";
         }
@@ -69,6 +69,5 @@ in {
     lenovo = nixpkgs.lib.nixosSystem (mkNixosConfig "lenovo"); 
   }; # end of nixosConfigurations
 }; # end of outputs
-
 
 }
