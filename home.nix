@@ -32,7 +32,7 @@
 
     cursor.package = pkgs.bibata-cursors;
     cursor.name = "Bibata-Modern-Ice";
-    cursor.size = 21;
+    cursor.size = 24;
 
     fonts = {
       monospace = {
@@ -100,6 +100,11 @@
       bluetui # bluetooth tui
       tgt # telegram tui
       dua # disk usage TUI tool. Run: dua i
+      wl-clipboard
+      darktable
+      gthumb # image viewer
+      overskride # bluetooth gui
+      imv # cli image viewer
 
       # Theming
       vimix-icon-theme # for icons

@@ -15,7 +15,7 @@
 
     cursor.package = pkgs.bibata-cursors;
     cursor.name = "Bibata-Modern-Ice";
-    cursor.size = 21;
+    cursor.size = 24;
 
     fonts = {
       monospace = {
@@ -191,25 +191,19 @@
 
   environment.systemPackages = with pkgs; [
     imagemagick
-    pavucontrol
     hyprcursor
     gparted
     htop
     git
     os-prober
     grub2
-    wl-clipboard
     swaylock
-    darktable
     ntfs3g # ntfs support
     clinfo # for opencl
-    gthumb # image viewer
     xorg.xcbutilwm
     xorg.libxcb
     nh # nix cli helper
     mesa
-    overskride # bluetooth gui
-    imv # cli image viewer
     patchelfUnstable
     jdk # java
     ly # enter to system

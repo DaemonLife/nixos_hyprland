@@ -18,7 +18,7 @@ with config.lib.stylix.colors; {
 
     plugin = {
       touch_gestures = {
-        sensitivity = 4.0;
+        sensitivity = 3.0;
         long_press_delay = 170;
         edge_margin = 500;
       };

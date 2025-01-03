@@ -10,7 +10,7 @@ with config.lib.stylix.colors; {
     "$mod" = "SUPER";
     "$terminal" = "alacritty";
     "$filemanager" = "nautilus";
-    "$menu" = "fuzzel";
+    "$menu" = "fuzzel -l 8 --show-actions --counter";
     "$browser" = "firefox";
 
     monitor = [
@@ -31,9 +31,9 @@ with config.lib.stylix.colors; {
       "mako"
       "rfkill block bluetooth" # disable bluetooth autostart
       # "swaybg -i /home/user/nix/image.jpg"
-      "swaybg -c ${base00}" # black background
       "/run/current-system/sw/libexex/polkit-gnome-authentication-agent-1"
       "hypridle"
+      "swaybg -c ${base00}" # black background
     ];
 
     env = [
@@ -47,10 +47,12 @@ with config.lib.stylix.colors; {
       "QT_QPA_PLATFORM,wayland"
       "QT_STYLE_OVERRIDE,Breeze-Dark"
       "MOZ_ENABLE_WAYLAND,1"
-      "XCURSOR_SIZE,21"
+      "XCURSOR_SIZE,24"
       "XCURSOR_THEME,Bibata-Modern-Ice"
       "HYPRCURSOR_THEME,Bibata-Modern-Ice"
-      "HYPRCURSOR_SIZE,21"
+      "HYPRCURSOR_SIZE,24"
+      "GDK_DPI_SCALE,1"
+      "GDK_SCALE,1"
     ];
 
     input = {
