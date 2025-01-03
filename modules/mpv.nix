@@ -22,7 +22,7 @@
 
       profile = "high-quality";
       ytdl-format = "bestvideo+bestaudio";
-      cache-default = 4000000;
+      # cache-default = 4000000;
 
       #-Scaling settings for profile=gpu-hq
       # scale = "ewa_lanczossharp";

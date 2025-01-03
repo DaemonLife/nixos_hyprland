@@ -97,6 +97,9 @@
       ueberzugpp # image preview
       nautilus # file manager
       nautilus-open-any-terminal
+      bluetui # bluetooth tui
+      tgt # telegram tui
+      dua # disk usage TUI tool. Run: dua i
 
       # Theming
       vimix-icon-theme # for icons
@@ -132,7 +135,6 @@
       unzip
       epy # cli book reader
       jrnl
-      dua # disk usage TUI tool. Run: dua i
       mpv
       ffmpeg-full
       transmission_4
@@ -149,23 +151,24 @@
       curseofwar # stategy cli game
       vitetris # tetris cli game
       cmatrix # matrix in terminal
+      wev # key events in wayland
 
     ];
     sessionPath = [ "$HOME/.local/bin" ];
   };
 
-  dconf.settings = {
-    "org/gnome/desktop/peripherals/touchpad" = {
-      tap-and-drag = false;
-      speed = -0.8;
-      natural-scroll = false;
-      accel-profile = "adaptive";
-    };
-    "org/gnome/desktop/peripherals/mouse" = {
-      speed = -0.3;
-      natural-scroll = false;
-      accel-profile = "adaptive";
-    };
-  };
+  # dconf.settings = {
+  #   "org/gnome/desktop/peripherals/touchpad" = {
+  #     tap-and-drag = false;
+  #     speed = -0.8;
+  #     natural-scroll = false;
+  #     accel-profile = "adaptive";
+  #   };
+  #   "org/gnome/desktop/peripherals/mouse" = {
+  #     speed = -0.3;
+  #     natural-scroll = false;
+  #     accel-profile = "adaptive";
+  #   };
+  # };
 
 }

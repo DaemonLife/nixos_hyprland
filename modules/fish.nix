@@ -14,6 +14,9 @@ programs.fish = {
       tlp_full = "sudo tlp fullcharge bat1";
       tlp_conserv = "sudo tlp setcharge bat1";
     };
+    shellAbbrs = {
+      jrnl = " jrnl"; # hide from shell history
+    };
     interactiveShellInit = ''
       set fish_greeting # Disable greeting
     '';

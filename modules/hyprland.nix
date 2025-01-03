@@ -1,4 +1,4 @@
-{ pkgs, config, lib, ... }:
+{ inputs, pkgs, config, lib, ... }:
 with config.lib.stylix.colors; {
 
   wayland.windowManager.hyprland = {
@@ -45,7 +45,12 @@ with config.lib.stylix.colors; {
       "XDG_SESSION_DESKTOP,Hyprland"
       "QT_WAYLAND_DISABLE_WINDOWDECORATION,1"
       "QT_QPA_PLATFORM,wayland"
+      "QT_STYLE_OVERRIDE,Breeze-Dark"
       "MOZ_ENABLE_WAYLAND,1"
+      "XCURSOR_SIZE,21"
+      "XCURSOR_THEME,Bibata-Modern-Ice"
+      "HYPRCURSOR_THEME,Bibata-Modern-Ice"
+      "HYPRCURSOR_SIZE,21"
     ];
 
     input = {
@@ -63,9 +68,9 @@ with config.lib.stylix.colors; {
 
       touchpad = lib.mkForce {
         disable_while_typing = true;
-        scroll_factor = "-0.8";
+        scroll_factor = "-2.8";
         tap-and-drag = false;
-        # drag_lock = false;
+        drag_lock = false;
       };
     };
 
@@ -81,6 +86,7 @@ with config.lib.stylix.colors; {
       # gaps_in = 0;
       # gaps_out = "0, 0, 0, 0";
       border_size = 2;
+      extend_border_grab_area = 25;
       "col.active_border" = lib.mkForce "rgba(${base0D}ff)";
       "col.inactive_border" = lib.mkForce "rgba(${base01}ff)";
       layout = "dwindle";
@@ -96,6 +102,7 @@ with config.lib.stylix.colors; {
       mouse_move_enables_dpms = true;
       animate_manual_resizes = true;
       mouse_move_focuses_monitor = true;
+      initial_workspace_tracking = 1;
     };
 
     windowrulev2 = {
@@ -144,13 +151,15 @@ with config.lib.stylix.colors; {
 
     gestures = {
       workspace_swipe = true;
+      workspace_swipe_distance = 200;
     };
 
     bindm = [
       # Window mouse control
       "$mod, mouse:272, movewindow"
       "$mod, mouse:273, resizewindow"
-      "$mod ALT, mouse:272, resizewindow"
+      "$mod, ALT_L, resizewindow"
+      # "$mod ALT, mouse:272, resizewindow"
     ];
 
     bind = [
