@@ -33,13 +33,8 @@ let
     inherit system;
     modules = builtins.concatLists [
       [
-<<<<<<< HEAD
-        ./configuration.nix
-        ./devices/${device}/configuration.nix
-=======
         ./configuration.nix # main config
         ./devices/${device}/configuration.nix # device config
->>>>>>> refs/remotes/origin/main
         stylix.nixosModules.stylix
         home-manager.nixosModules.home-manager
         {
