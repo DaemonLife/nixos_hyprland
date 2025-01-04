@@ -15,7 +15,7 @@
 
     cursor.package = pkgs.bibata-cursors;
     cursor.name = "Bibata-Modern-Ice";
-    cursor.size = 10;
+    cursor.size = 24;
 
     fonts = {
       monospace = {
@@ -191,30 +191,24 @@
 
   environment.systemPackages = with pkgs; [
     imagemagick
-    pavucontrol
+    hyprcursor
     gparted
     htop
-    # zsh
-    # oh-my-zsh
     git
     os-prober
     grub2
-    wl-clipboard
     swaylock
-    darktable
     ntfs3g # ntfs support
     clinfo # for opencl
-    gthumb # image viewer
     xorg.xcbutilwm
     xorg.libxcb
     nh # nix cli helper
     mesa
-    overskride # bluetooth gui
-    imv # cli image viewer
-    # zlib
     patchelfUnstable
     jdk # java
     ly # enter to system
+    impala
+    iwd
 
     grc # colors for fish
     fzf # cli search. Run: Ctrl+R
@@ -287,7 +281,7 @@
   # --------------------------------
 
   programs = {
-    hyprland.enable = true;
+    # hyprland.enable = true;
     fish.enable = true;
     
     # promt for any shell
@@ -295,8 +289,8 @@
       enable = true;
       settings = {
         add_newline = true;
-        # command_timeout = 100;
-        # scan_timeout = 10;
+        command_timeout = 300;
+        scan_timeout = 200;
         format = "\${custom.pwd}$nix_shell$lua$git_branch$git_commit$git_state$git_status$custom(:$user)$time\n$character";
 
         git_branch = {

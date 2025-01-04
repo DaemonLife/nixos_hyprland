@@ -1,4 +1,4 @@
-{ pkgs, config, lib, ... }:
+{ inputs, pkgs, config, lib, ... }:
 with config.lib.stylix.colors; {
 
   wayland.windowManager.hyprland = {
@@ -10,7 +10,7 @@ with config.lib.stylix.colors; {
     "$mod" = "SUPER";
     "$terminal" = "alacritty";
     "$filemanager" = "nautilus";
-    "$menu" = "fuzzel";
+    "$menu" = "fuzzel -l 8 --show-actions --counter";
     "$browser" = "firefox";
 
     monitor = [
@@ -31,9 +31,9 @@ with config.lib.stylix.colors; {
       "mako"
       "rfkill block bluetooth" # disable bluetooth autostart
       # "swaybg -i /home/user/nix/image.jpg"
-      "swaybg -c ${base00}" # black background
       "/run/current-system/sw/libexex/polkit-gnome-authentication-agent-1"
       "hypridle"
+      "swaybg -c ${base00}" # black background
     ];
 
     env = [
@@ -45,42 +45,39 @@ with config.lib.stylix.colors; {
       "XDG_SESSION_DESKTOP,Hyprland"
       "QT_WAYLAND_DISABLE_WINDOWDECORATION,1"
       "QT_QPA_PLATFORM,wayland"
+      "QT_STYLE_OVERRIDE,Breeze-Dark"
       "MOZ_ENABLE_WAYLAND,1"
+      "XCURSOR_SIZE,24"
+      "XCURSOR_THEME,Bibata-Modern-Ice"
+      "HYPRCURSOR_THEME,Bibata-Modern-Ice"
+      "HYPRCURSOR_SIZE,24"
+      "GDK_DPI_SCALE,1"
+      "GDK_SCALE,1"
     ];
 
     input = {
+
       kb_layout = "us,ru";
       kb_options = "grp:win_space_toggle";
       accel_profile = "adaptive";
-      follow_mouse = 1;
-      sensitivity = -0.2; # -1.0 - 1.0, 0 means no modification.
-      scroll_factor = "0.5";
       force_no_accel = false;
-      natural_scroll = true;
+      follow_mouse = 1; # window focus
+      natural_scroll = false; # natural mean idiotic
 
-      # touch map for gpd screen
-      touchdevice = { transform = 3; };
+      sensitivity = -0.2; # -1.0 - 1.0
+      scroll_factor = "0.5";
 
-      touchpad = lib.mkForce {
+      touchpad = {
         disable_while_typing = true;
-        scroll_factor = "-0.8";
         tap-and-drag = false;
-        # drag_lock = false;
+        drag_lock = false;
       };
+
     };
 
-    # device = {
-    #   # touchpad
-    #   name = "hailuck-co.,ltd-usb-keyboard-mouse";
-    #   sensitivity = "-0.3";
-    #   drag_lock = false;
-    #   tap-and-drag = false;
-    # };
-
     general = {
-      # gaps_in = 0;
-      # gaps_out = "0, 0, 0, 0";
       border_size = 2;
+      extend_border_grab_area = 25;
       "col.active_border" = lib.mkForce "rgba(${base0D}ff)";
       "col.inactive_border" = lib.mkForce "rgba(${base01}ff)";
       layout = "dwindle";
@@ -96,10 +93,7 @@ with config.lib.stylix.colors; {
       mouse_move_enables_dpms = true;
       animate_manual_resizes = true;
       mouse_move_focuses_monitor = true;
-    };
-
-    windowrulev2 = {
-      windowrulev2 = "bordercolor rgb(00FF00), fullscreenstate:* 1";
+      initial_workspace_tracking = 1;
     };
 
     # Scale options
@@ -144,13 +138,16 @@ with config.lib.stylix.colors; {
 
     gestures = {
       workspace_swipe = true;
+      workspace_swipe_distance = 200;
+      workspace_swipe_cancel_ratio = "0.05";
     };
 
     bindm = [
       # Window mouse control
       "$mod, mouse:272, movewindow"
       "$mod, mouse:273, resizewindow"
-      "$mod ALT, mouse:272, resizewindow"
+      "$mod, ALT_L, resizewindow"
+      # "$mod ALT, mouse:272, resizewindow"
     ];
 
     bind = [

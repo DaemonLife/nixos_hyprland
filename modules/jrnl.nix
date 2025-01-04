@@ -3,8 +3,8 @@
   home.file.".config/jrnl/jrnl.yaml".text = ''
     colors:
       body: none
-      date: black
-      tags: yellow
+      date: white 
+      tags: blue 
       title: cyan
     default_hour: 9
     default_minute: 0

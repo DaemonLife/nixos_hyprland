@@ -13,8 +13,8 @@
         layer = "top";
         position = "top";
         height = 24; # 25 is correct for my windows border size
-        modules-left = [ "hyprland/workspaces" ];
-        modules-center = [ "hyprland/window" ];
+        modules-left = [ "hyprland/workspaces" "hyprland/window" ];
+        modules-center = [ ];
         modules-right = [
           "tray"
           "hyprland/language"
@@ -33,11 +33,10 @@
           all-outputs = false;
           format = "{icon}";
           persistent-workspaces = {
-            "eDP-1" = 1;
-            "2" = 2;
+            "*" = 4; # monitor name and num of workspaces
           };
           format-icons = {
-            "eDP-1" = 1;
+            "1" = 1; # workspace id and icon format 
             "2" = 2;
             "3" = 3;
             "4" = 4;
@@ -46,14 +45,17 @@
             "7" = 7;
             "8" = 8;
             "9" = 9;
-            "10" = 10;
+            # "active" = "";
+            # "default" = "";
           };
 
         };
 
         "hyprland/window" = {
-          max-length = 28;
+          max-length = 60;
           separate-outputs = true;
+          format = { };
+          rewrite = { };
         };
 
         tray.spacing = 10;
@@ -249,23 +251,26 @@
           font-size: 14px;
       	}
 
-          /* Default color for modules except workspaces button.active */
-          #workspaces button, #window, window#waybar, #tray, #language, #network, #bluetooth, #idle_inhibitor, #battery, #pulseaudio, #clock { color: @white; }
+        /* Default color for modules except workspaces button.active */
+        #workspaces button, #window, window#waybar, #tray, #language, #network, #bluetooth, #idle_inhibitor, #battery, #pulseaudio, #clock { color: @white; }
 
       	/* Default padding for some modules */
       	#language, #idle_inhibitor, #network, #clock, #tray, #bluetooth, #pulseaudio { padding: 0px 0px 0px 10px; }
           
-          #workspaces button { 
-            padding: 0px 5px 0px 5px;
-          }
-          #clock { padding-right: 6px; }
-          #battery { padding-left: 6px; }
-          #window { padding: 0px 15px 0px 15px; }
+        #clock { padding-right: 6px; }
+        #battery { padding-left: 6px; }
+        #window { padding: 0px 10px 0px 10px; }
 
-          #workspaces button.active { 
-              color: @dark;
-              background-color: @accent;
-          }
+        #workspaces button { 
+          padding: 0px 5px 0px 5px;
+        }
+        #workspaces button.active { 
+            color: @dark;
+            background-color: @accent;
+        }
+        #workspaces button.empty { 
+            color: gray;
+        }
 
         window#waybar.empty {
           background-color: transparent;
@@ -295,12 +300,12 @@
 
       	#battery.plugged { color: @green; }
       	#battery.charging{
-      	    color: @green;
-      	    animation-name: blink;
-      	    animation-duration: 1.5s;
-      	    animation-timing-function: linear;
-      	    animation-iteration-count: infinite;
-      	    animation-direction: alternate;
+          color: @green;
+          animation-name: blink;
+          animation-duration: 1.5s;
+          animation-timing-function: linear;
+          animation-iteration-count: infinite;
+          animation-direction: alternate;
       	} 
       	#battery.warning:not(.charging) { color: @yellow; }
       	#battery.critical:not(.charging) { color: @red; }

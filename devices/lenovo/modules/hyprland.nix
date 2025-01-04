@@ -6,6 +6,11 @@ with config.lib.stylix.colors; {
       gaps_in = lib.mkForce 4;
       gaps_out = lib.mkForce "0, 0, 0, 0";
     };
+
+    input = {
+      scroll_factor = lib.mkForce "1.0";
+    };
+
   };
   
 }
