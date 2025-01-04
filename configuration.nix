@@ -301,7 +301,7 @@
 
         git_branch = {
           style = "green";
-          format = "[$branch(:$remote_branch)]($style)";
+          format = "[$branch(:$remote_branch)]($style) ";
         };
         git_commit = {
           style = "green";
