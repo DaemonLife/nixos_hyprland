@@ -56,37 +56,26 @@ with config.lib.stylix.colors; {
     ];
 
     input = {
+
       kb_layout = "us,ru";
       kb_options = "grp:win_space_toggle";
       accel_profile = "adaptive";
-      follow_mouse = 1;
-      sensitivity = -0.2; # -1.0 - 1.0, 0 means no modification.
-      scroll_factor = "0.5";
       force_no_accel = false;
-      natural_scroll = true;
+      follow_mouse = 1; # window focus
+      natural_scroll = false; # natural mean idiotic
 
-      # touch map for gpd screen
-      touchdevice = { transform = 3; };
+      sensitivity = -0.2; # -1.0 - 1.0
+      scroll_factor = "0.5";
 
-      touchpad = lib.mkForce {
+      touchpad = {
         disable_while_typing = true;
-        scroll_factor = "-2.8";
         tap-and-drag = false;
         drag_lock = false;
       };
+
     };
 
-    # device = {
-    #   # touchpad
-    #   name = "hailuck-co.,ltd-usb-keyboard-mouse";
-    #   sensitivity = "-0.3";
-    #   drag_lock = false;
-    #   tap-and-drag = false;
-    # };
-
     general = {
-      # gaps_in = 0;
-      # gaps_out = "0, 0, 0, 0";
       border_size = 2;
       extend_border_grab_area = 25;
       "col.active_border" = lib.mkForce "rgba(${base0D}ff)";
@@ -105,10 +94,6 @@ with config.lib.stylix.colors; {
       animate_manual_resizes = true;
       mouse_move_focuses_monitor = true;
       initial_workspace_tracking = 1;
-    };
-
-    windowrulev2 = {
-      windowrulev2 = "bordercolor rgb(00FF00), fullscreenstate:* 1";
     };
 
     # Scale options
@@ -154,6 +139,7 @@ with config.lib.stylix.colors; {
     gestures = {
       workspace_swipe = true;
       workspace_swipe_distance = 200;
+      workspace_swipe_cancel_ratio = "0.05";
     };
 
     bindm = [
