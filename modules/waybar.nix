@@ -264,12 +264,12 @@
         #workspaces button { 
           padding: 0px 5px 0px 5px;
         }
+        #workspaces button.empty { 
+            color: gray;
+        }
         #workspaces button.active { 
             color: @dark;
             background-color: @accent;
-        }
-        #workspaces button.empty { 
-            color: gray;
         }
 
         window#waybar.empty {
