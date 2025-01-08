@@ -6,28 +6,28 @@
 
   stylix = {
     enable = true;
-    base16Scheme = "${pkgs.base16-schemes}/share/themes/ashes.yaml";
+    # base16Scheme = "${pkgs.base16-schemes}/share/themes/ashes.yaml";
     override = {
       author = "DaemonLife";
       # base00 = "000000";
-      #   base01 = "121212";
-      #   base02 = "000000";
-      #   base03 = "000000";
-      #   base04 = "000000";
-      #   base05 = "000000";
-      #   base06 = "000000";
-      #   base07 = "000000";
-      #   base08 = "000000";
-      #   base09 = "000000";
-      #   base0A = "000000";
-      #   base0B = "000000";
-      #   base0C = "000000";
-      #   base0D = "000000";
-      #   base0E = "000000";
-      #   base0F = "000000";
+      # base01 = "121212";
+      # base02 = "000000";
+      # base03 = "000000";
+      # base04 = "000000";
+      # base05 = "000000";
+      # base06 = "000000";
+      # base07 = "000000";
+      # base08 = "443732";
+      # base09 = "ad875b";
+      # base0A = "fadcc9";
+      # base0B = "73cf98";
+      # base0C = "56a4a5";
+      # base0D = "05677c";
+      # base0E = "c24149";
+      # base0F = "8f2115";
     };
-    # image = ./image.jpg;
-    image = config.lib.stylix.pixel "base00";
+    image = ./image.jpg;
+    # image = config.lib.stylix.pixel "base00";
     targets.waybar.enable = false;
 
     cursor.package = pkgs.bibata-cursors;
@@ -134,6 +134,7 @@
 
       unstable.joplin
       unstable.gimp
+      stellarium
       halftone # image pixel redactor
       btop
       cool-retro-term

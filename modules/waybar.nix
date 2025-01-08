@@ -271,20 +271,22 @@
             color: @dark;
             background-color: @accent;
         }
-
+        /* 
         window#waybar.empty {
           background-color: transparent;
         }
+        */
         window#waybar {
           background-color: @dark;
         }
 
         /* calendar look */
         tooltip {
-          background-color: #${base01};
+          background-color: @dark;
           border: 2px;
           border-style: solid;
           border-color: @accent;
+          font-size: 16px;
         }
 
       	#network.disconnected { color: @red;}

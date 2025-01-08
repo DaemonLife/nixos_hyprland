@@ -2,6 +2,19 @@
 
   programs.qutebrowser = with config.lib.stylix.colors; {
     enable = true;
+
+    quickmarks = {
+       nixpkgs = "https://github.com/NixOS/nixpkgs";
+       home-manager = "https://github.com/nix-community/home-manager";
+    };
+
+    searchEngines = {
+       w = "https://en.wikipedia.org/wiki/Special:Search?search={}&go=Go&ns0=1";
+       aw = "https://wiki.archlinux.org/?search={}";
+       nw = "https://wiki.nixos.org/index.php?search={}";
+       g = "https://www.google.com/search?hl=en&q={}";
+    };
+
     greasemonkey = [
       (pkgs.fetchurl {
         url = "https://raw.githubusercontent.com/afreakk/greasemonkeyscripts/1d1be041a65c251692ee082eda64d2637edf6444/youtube_sponsorblock.js";
@@ -14,12 +27,88 @@
       '')
     ];
 
+    keyBindings = {
+      normal = {
+        "<Ctrl-v>" = "spawn mpv {url}";
+      };
+    };
+
+    aliases = {
+      "q" = "close";
+      "qa" = "quit";
+      "w" = "session-save";
+      "wq" = "quit --save";
+      "wqa" = "quit --save";
+      "dme" = "set colors.webpage.darkmode.enabled true";
+      "dmd" = "set colors.webpage.darkmode.enabled false";
+    };
+
+    loadAutoconfig = true;
+
+    settings = {
+
+      content.blocking.adblock.lists = [
+        # "https://easylist.to/easylist/easylist.txt"
+        # "https://easylist.to/easylist/easyprivacy.txt"
+        # "https://easylist-downloads.adblockplus.org/easylistdutch.txt"
+        # "https://easylist-downloads.adblockplus.org/abp-filters-anti-cv.txt"
+        # "https://www.i-dont-care-about-cookies.eu/abp/"
+        # "https://secure.fanboy.co.nz/fanboy-cookiemonster.txt"
+
+        # from my uBlockOrigin filters
+        "https://github.com/uBlockOrigin/uAssets/raw/refs/heads/master/filters/filters-2020.txt"
+        "https://github.com/uBlockOrigin/uAssets/raw/refs/heads/master/filters/filters-2021.txt"
+        "https://github.com/uBlockOrigin/uAssets/raw/refs/heads/master/filters/filters-2022.txt"
+        "https://github.com/uBlockOrigin/uAssets/raw/refs/heads/master/filters/filters-2023.txt"
+        "https://github.com/uBlockOrigin/uAssets/raw/refs/heads/master/filters/filters-2024.txt"
+        "https://github.com/uBlockOrigin/uAssets/raw/refs/heads/master/filters/filters-2025.txt"
+        "https://github.com/uBlockOrigin/uAssets/raw/refs/heads/master/filters/badware.txt"
+        "https://github.com/uBlockOrigin/uAssets/raw/refs/heads/master/filters/privacy.txt"
+        "https://github.com/uBlockOrigin/uAssets/raw/refs/heads/master/filters/quick-fixes.txt"
+        "https://github.com/uBlockOrigin/uAssets/raw/refs/heads/master/filters/unbreak.txt"
+        "https://raw.githubusercontent.com/uBlockOrigin/uAssets/refs/heads/master/filters/annoyances-cookies.txt"
+        "https://easylist.to/easylist/easylist.txt"
+        "https://easylist.to/easylist/easyprivacy.txt"
+        "https://secure.fanboy.co.nz/fanboy-annoyance.txt"
+        "https://easylist.to/easylist/fanboy-social.txt"
+
+        "https://malware-filter.gitlab.io/malware-filter/urlhaus-filter-domains.txt"
+        "https://github.com/easylist/easylist/raw/refs/heads/master/easylist_cookie/easylist_cookie_general_block.txt"
+        "https://github.com/easylist/easylist/raw/refs/heads/master/easylist_cookie/easylist_cookie_general_hide.txt"
+
+        "https://easylist-downloads.adblockplus.org/advblock.txt"
+      ];
+
+      auto_save.session = true;
+      scrolling.smooth = false;
+
+      window = {
+        hide_decoration = true;
+      };
+
+      tabs = {
+        favicons.scale = 0.8;
+        title.format = "{audio}{current_title}";
+        title.format_pinned = "{index}";
+      };
+
+      colors = {
+        webpage.preferred_color_scheme = "dark";
+      };
+
+      qt = {
+        highdpi = true;
+      };
+
+      hints.radius = 0;
+      # editor.command = ["alacritty" "--command" "nvim" "--cmd" "startinsert" "{file}"];
+      editor.command = ["alacritty" "--command" "nvim" "{file}"];
+      content.autoplay = true;
+
+    };
+
     extraConfig = ''
-config.load_autoconfig()
-c.content.blocking.adblock.lists = ['https://easylist.to/easylist/easylist.txt', 'https://easylist.to/easylist/easyprivacy.txt', 'https://easylist-downloads.adblockplus.org/easylistdutch.txt', 'https://easylist-downloads.adblockplus.org/abp-filters-anti-cv.txt', 'https://www.i-dont-care-about-cookies.eu/abp/', 'https://secure.fanboy.co.nz/fanboy-cookiemonster.txt']
-# Text color of the completion widget. May be a single color to use for
-# all columns or a list of three colors, one for each column.
-# Type: List of QtColor, or QtColor
+
 c.colors.completion.fg = ['#${base03}', '#${base0B}', '#${base08}']
 
 # Background color of the completion widget for odd rows.
@@ -382,18 +471,6 @@ c.colors.tabs.pinned.selected.even.fg = '#${base01}'
 # Background color of pinned selected even tabs.
 # Type: QtColor
 c.colors.tabs.pinned.selected.even.bg = '#${base0D}'
-
-# Value to use for `prefers-color-scheme:` for websites. The "light"
-# value is only available with QtWebEngine 5.15.2+. On older versions,
-# it is the same as "auto". The "auto" value is broken on QtWebEngine
-# 5.15.2 due to a Qt bug. There, it will fall back to "light"
-# unconditionally.
-# Type: String
-# Valid values:
-#   - auto: Use the system-wide color scheme setting.
-#   - light: Force a light theme.
-#   - dark: Force a dark theme.
-c.colors.webpage.preferred_color_scheme = 'dark'
     '';
   };
 }

@@ -59,7 +59,7 @@ let
         }
       ]
       # Добавляем модуль только если device равно "gpd-pocket-3"
-      (if device == "gpd-pocket-3___" then [ nixos-hardware.nixosModules.${device} ] else [])
+      (if device == "gpd-pocket-3" then [ nixos-hardware.nixosModules.${device} ] else [])
     ];
   };
 

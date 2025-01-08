@@ -1,7 +1,7 @@
 { pkgs, config, ... }: {
 
   programs.helix = {
-
+    package = pkgs.unstable.helix;
     enable = true;
     settings = {
 

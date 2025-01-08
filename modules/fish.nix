@@ -8,7 +8,7 @@ programs.fish = {
       upgrade = "nh os switch -u $HOME/nix -H $1";
 
       # for windows fs on lenovo
-      cdwin = "source $HOME/nix/scripts/cdwin.fish";
+      cdwin = "$HOME/nix/scripts/cdwin.fish && cd /mnt/windows/Users/user";
 
       # battery configuration will be restored at the next boot
       tlp_full = "sudo tlp fullcharge bat1";

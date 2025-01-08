@@ -7,8 +7,9 @@
 
   stylix = {
     enable = true;
-    base16Scheme = "${pkgs.base16-schemes}/share/themes/ashes.yaml";
-    image = config.lib.stylix.pixel "base00";
+    # base16Scheme = "${pkgs.base16-schemes}/share/themes/ashes.yaml";
+    # image = config.lib.stylix.pixel "base00";
+    image = ./image.jpg;
 
     homeManagerIntegration.followSystem = false;
     targets.grub.enable = false;
@@ -295,7 +296,7 @@
 
         git_branch = {
           style = "green";
-          format = "[$branch(:$remote_branch)]($style)";
+          format = "[$branch(:$remote_branch)]($style) ";
         };
         git_commit = {
           style = "green";

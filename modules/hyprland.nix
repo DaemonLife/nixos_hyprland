@@ -21,7 +21,7 @@ with config.lib.stylix.colors; {
       # GPD3
       "DSI-1,preferred,auto,2,transform,3"
       # Lenovo
-      "eDP-1,highres,auto,1.6,bitdepth,10,vrr,1"
+      "eDP-1,highres,auto,1.6,bitdepth,10,vrr,1,mirror,desc:LG Electronics LG TV 0x01010101"
       # Random monitor
       ",preferred,auto,1"
     ];
@@ -33,7 +33,7 @@ with config.lib.stylix.colors; {
       # "swaybg -i /home/user/nix/image.jpg"
       "/run/current-system/sw/libexex/polkit-gnome-authentication-agent-1"
       "hypridle"
-      "swaybg -c ${base00}" # black background
+      # "swaybg -c ${base00}" # black background
     ];
 
     env = [
@@ -46,7 +46,7 @@ with config.lib.stylix.colors; {
       "QT_WAYLAND_DISABLE_WINDOWDECORATION,1"
       "QT_QPA_PLATFORM,wayland"
       "QT_STYLE_OVERRIDE,Breeze-Dark"
-      "MOZ_ENABLE_WAYLAND,1"
+      # "MOZ_ENABLE_WAYLAND,1"
       "XCURSOR_SIZE,24"
       "XCURSOR_THEME,Bibata-Modern-Ice"
       "HYPRCURSOR_THEME,Bibata-Modern-Ice"
@@ -76,10 +76,10 @@ with config.lib.stylix.colors; {
     };
 
     general = {
-      border_size = 2;
+      border_size = 4;
       extend_border_grab_area = 25;
-      "col.active_border" = lib.mkForce "rgba(${base0D}ff)";
-      "col.inactive_border" = lib.mkForce "rgba(${base01}ff)";
+      "col.active_border" = lib.mkForce "rgba(${base0C}ff)";
+      "col.inactive_border" = lib.mkForce "rgba(${base00}ff)";
       layout = "dwindle";
       # Please see https://wiki.hyprland.org/Configuring/Tearing/ before you turn this on
       allow_tearing = false;
