@@ -7,8 +7,9 @@
 
   stylix = {
     enable = true;
-    base16Scheme = "${pkgs.base16-schemes}/share/themes/ashes.yaml";
-    image = config.lib.stylix.pixel "base00";
+    # base16Scheme = "${pkgs.base16-schemes}/share/themes/ashes.yaml";
+    # image = config.lib.stylix.pixel "base00";
+    image = ./image.jpg;
 
     homeManagerIntegration.followSystem = false;
     targets.grub.enable = false;

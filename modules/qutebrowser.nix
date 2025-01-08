@@ -80,7 +80,7 @@
       ];
 
       auto_save.session = true;
-      scrolling.smooth = true;
+      scrolling.smooth = false;
 
       window = {
         hide_decoration = true;

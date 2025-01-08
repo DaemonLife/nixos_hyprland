@@ -264,27 +264,29 @@
         #workspaces button { 
           padding: 0px 5px 0px 5px;
         }
+        #workspaces button.empty { 
+            color: gray;
+        }
         #workspaces button.active { 
             color: @dark;
             background-color: @accent;
         }
-        #workspaces button.empty { 
-            color: gray;
-        }
-
+        /* 
         window#waybar.empty {
           background-color: transparent;
         }
+        */
         window#waybar {
           background-color: @dark;
         }
 
         /* calendar look */
         tooltip {
-          background-color: #${base01};
+          background-color: @dark;
           border: 2px;
           border-style: solid;
           border-color: @accent;
+          font-size: 16px;
         }
 
       	#network.disconnected { color: @red;}

@@ -21,10 +21,11 @@
     ./rtorrent.nix
     ./qutebrowser.nix
     ./gowall.nix
+    ./qt.nix
     # ./kitty.nix
     # ./gtk.nix
     # ./zsh.nix
-    # ./helix.nix
+    ./helix.nix
     # ./ranger.nix
   ];
 

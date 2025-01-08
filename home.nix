@@ -6,7 +6,7 @@
 
   stylix = {
     enable = true;
-    base16Scheme = "${pkgs.base16-schemes}/share/themes/ashes.yaml";
+    # base16Scheme = "${pkgs.base16-schemes}/share/themes/ashes.yaml";
     override = {
       author = "DaemonLife";
       # base00 = "000000";
@@ -26,8 +26,8 @@
       # base0E = "c24149";
       # base0F = "8f2115";
     };
-    # image = ./image.jpg;
-    image = config.lib.stylix.pixel "base00";
+    image = ./image.jpg;
+    # image = config.lib.stylix.pixel "base00";
     targets.waybar.enable = false;
 
     cursor.package = pkgs.bibata-cursors;
@@ -134,6 +134,7 @@
 
       unstable.joplin
       unstable.gimp
+      stellarium
       halftone # image pixel redactor
       btop
       cool-retro-term
