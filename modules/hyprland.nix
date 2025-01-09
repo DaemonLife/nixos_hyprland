@@ -30,10 +30,16 @@ with config.lib.stylix.colors; {
       "waybar"
       "mako"
       "rfkill block bluetooth" # disable bluetooth autostart
-      # "swaybg -i /home/user/nix/image.jpg"
       "/run/current-system/sw/libexex/polkit-gnome-authentication-agent-1"
       "hypridle"
-      # "swaybg -c ${base00}" # black background
+      # "swaybg -i /home/user/nix/image.jpg"
+
+    ];
+
+    exec = [
+      # maze generator
+      "bash $HOME/nix/scripts/maze/run.sh ${base00} ${base03}"
+      "swaybg -i $HOME/nix/scripts/maze/maze.png"
     ];
 
     env = [

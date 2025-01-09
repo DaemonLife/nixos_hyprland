@@ -11,7 +11,7 @@
     settings = {
       mainBar = {
         layer = "top";
-        position = "top";
+        position = "bottom";
         height = 24; # 25 is correct for my windows border size
         modules-left = [ "hyprland/workspaces" "hyprland/window" ];
         modules-center = [ ];
@@ -36,7 +36,7 @@
             "*" = 4; # monitor name and num of workspaces
           };
           format-icons = {
-            "1" = 1; # workspace id and icon format 
+            "1" = 1; # workspace id and icon format
             "2" = 2;
             "3" = 3;
             "4" = 4;
@@ -91,30 +91,32 @@
 
         clock = {
           # format = "{:%y/%m/%d %H:%M}";
-          format = "{:%H:%M}";
+          # format = "{:%H:%M}";
+          format = "{:%d-%b-%y %H:%M}";
           on-click = "exec gnome-calendar";
-          "tooltip-format" = "<span size='10pt' font='GeistMono Nerd Font Mono'>{calendar}</span>";
+          "tooltip-format" =
+            "<span size='10pt' font='GeistMono Nerd Font Mono'>{calendar}</span>";
           "calendar" = {
-            "mode"          = "year";
-            "mode-mon-col"  = 3;
+            "mode" = "year";
+            "mode-mon-col" = 3;
             # "weeks-pos"     = "right";
-            "on-scroll"     = 1;
-            "on-click-right"= "mode";
+            "on-scroll" = 1;
+            "on-click-right" = "mode";
             "format" = {
-              "months"=     "<span color='#${base0A}'><b>{}</b></span>";
-              "days"=       "<span color='#${base07}'><b>{}</b></span>";
-              "weeks"=      "<span color='#${base0C}'><b>W{}</b></span>";
-              "weekdays"=   "<span color='#${base0B}'><b>{}</b></span>";
-              "today"=      "<span color='#${base08}'><b><u>{}</u></b></span>";
+              "months" = "<span color='#${base0A}'><b>{}</b></span>";
+              "days" = "<span color='#${base07}'><b>{}</b></span>";
+              "weeks" = "<span color='#${base0C}'><b>W{}</b></span>";
+              "weekdays" = "<span color='#${base0B}'><b>{}</b></span>";
+              "today" = "<span color='#${base08}'><b><u>{}</u></b></span>";
             };
           };
-          "actions"= {
-            "on-click-right"= "mode";
-            "on-click-forward"= "tz_down";
-            "on-click-backward"= "tz_up";
-            "on-scroll-up"= "shift_down";
-            "on-scroll-down"= "shift_up";
-        };
+          "actions" = {
+            "on-click-right" = "mode";
+            "on-click-forward" = "tz_down";
+            "on-click-backward" = "tz_up";
+            "on-scroll-up" = "shift_down";
+            "on-scroll-down" = "shift_up";
+          };
 
         };
 
@@ -139,7 +141,8 @@
           format-ethernet = " {ipaddr}/{cidr}";
           format-linked = " (No IP)";
           format-disconnected = "wifi";
-          on-click = ''rfkill unblock wifi && kitty --hold sh -c "nmcli dev wifi rescan && nmtui"'';
+          on-click = ''
+            rfkill unblock wifi && kitty --hold sh -c "nmcli dev wifi rescan && nmtui"'';
           on-click-right = "rfkill block wifi";
         };
 

@@ -4,28 +4,30 @@
 
   stylix = {
     enable = true;
-    # base16Scheme = "${pkgs.base16-schemes}/share/themes/ashes.yaml";
-    override = {
-      author = "DaemonLife";
-      # base00 = "000000";
-      # base01 = "121212";
-      # base02 = "000000";
-      # base03 = "000000";
-      # base04 = "000000";
-      # base05 = "000000";
-      # base06 = "000000";
-      # base07 = "000000";
-      # base08 = "443732";
-      # base09 = "ad875b";
-      # base0A = "fadcc9";
-      # base0B = "73cf98";
-      # base0C = "56a4a5";
-      # base0D = "05677c";
-      # base0E = "c24149";
-      # base0F = "8f2115";
-    };
+    base16Scheme = "${pkgs.base16-schemes}/share/themes/mountain.yaml";
     image = ./image.jpg;
-    # image = config.lib.stylix.pixel "base00";
+    # override = {
+    # author = "DaemonLife";
+    # one tone gradient
+    # base00 = "1F1F28"; # BACKGROUND (BLACK)
+    # base01 = "1F1F28"; # bright green
+    # base02 = "252535"; # bright yellow
+    # base03 = "34344b"; # bright black
+    # base04 = "DCD7BA"; # bright blue
+    # base05 = "DCD7BA"; # FOREGROUND (WHITE)
+    # base06 = "DCD7BA"; # bright magenta
+    # base07 = "C8C093"; # bright white
+
+    # colors
+    # base08 = "C34043"; # RED
+    # base09 = "E82424"; # bright red
+    # base0A = "E6C384"; # YELLOW
+    # base0B = "76946A"; # GREEN
+    # base0C = "7393bc"; # CYAN
+    # base0D = "7E9CD8"; # BLUE
+    # base0E = "957FB8"; # MAGENTA
+    # base0F = "7393bc"; # bright cyan
+    # };
     targets.waybar.enable = false;
 
     cursor.package = pkgs.bibata-cursors;
@@ -79,9 +81,6 @@
       # --------------------------------
 
       # Main
-      alacritty # terminal
-      fuzzel # run menu
-      mako # notification agent
       libnotify # for mako
       grim # screenshot tool
       slurp # screenshot tool
@@ -133,6 +132,7 @@
       unstable.joplin
       unstable.gimp
       stellarium
+      dwarf-fortress
       halftone # image pixel redactor
       btop
       cool-retro-term
@@ -146,6 +146,7 @@
       telegram-desktop
       cmus # player
       python3
+      nodejs
       pipx
       tor-browser
       bottles

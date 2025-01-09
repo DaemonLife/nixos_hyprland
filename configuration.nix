@@ -7,9 +7,32 @@
 
   stylix = {
     enable = true;
-    # base16Scheme = "${pkgs.base16-schemes}/share/themes/ashes.yaml";
+    base16Scheme = "${pkgs.base16-schemes}/share/themes/mountain.yaml";
     # image = config.lib.stylix.pixel "base00";
     image = ./image.jpg;
+
+    # override = {
+    #   author = "DaemonLife";
+    # one tone gradient
+    # base00 = "1F1F28"; # BACKGROUND (BLACK)
+    # base01 = "1F1F28"; # bright green
+    # base02 = "252535"; # bright yellow
+    # base03 = "34344b"; # bright black
+    # base04 = "DCD7BA"; # bright blue
+    # base05 = "DCD7BA"; # FOREGROUND (WHITE)
+    # base06 = "DCD7BA"; # bright magenta
+    # base07 = "C8C093"; # bright white
+
+    # colors
+    # base08 = "C34043"; # RED
+    # base09 = "E82424"; # bright red
+    # base0A = "E6C384"; # YELLOW
+    # base0B = "76946A"; # GREEN
+    # base0C = "7393bc"; # CYAN
+    # base0D = "7E9CD8"; # BLUE
+    # base0E = "957FB8"; # MAGENTA
+    # base0F = "7393bc"; # bright cyan
+    # };
 
     homeManagerIntegration.followSystem = false;
     targets.grub.enable = false;
@@ -281,7 +304,15 @@
   # --------------------------------
 
   programs = {
-    # hyprland.enable = true;
+
+    hyprland = {
+      enable = true;
+      # set the flake package
+      # package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
+      # make sure to also set the portal package, so that they are in sync
+      # portalPackage = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
+    };
+
     fish.enable = true;
 
     # promt for any shell

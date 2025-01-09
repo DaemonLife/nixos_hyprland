@@ -1,89 +1,137 @@
 { pgks, config, pkgs, ... }: {
-  programs.mpv = {
-
+  programs.mpv = with config.lib.stylix.colors; {
     enable = true;
-    bindings = { };
+
+    bindings = {
+      mbtn_right = "script-binding uosc/menu";
+      a = "script-binding uosc/stream-quality";
+      c = "script-binding uosc/chapters";
+      s = "script-binding uosc/subtitles";
+    };
 
     scripts = [
       pkgs.mpvScripts.sponsorblock
       pkgs.mpvScripts.dynamic-crop
-      # pkgs.mpvScripts.modernx-zydezu bug!
-      pkgs.mpvScripts.thumbnail
-      # build error!
+      pkgs.mpvScripts.uosc # new UI
+      pkgs.mpvScripts.thumbfast # previews
+      pkgs.mpvScripts.mpris # for using standard media keys
     ];
 
     config = {
-
-      #-General
-      # player-operation-mode = "pseudo-gui";
-      # osc = "no";
-      border = "no";
-
-      #-Youtube Support
-      # ytdl-format = "bestvideo+bestaudio/best";
-      ytdl-format =
-        "bestvideo[height<=?720][fps<=?30][vcodec!=?vp9]+bestaudio/best";
-      ytdl_path = "${pkgs.yt-dlp}/bin/yt-dlp";
-
-      #-Cache
-      cache = "yes";
-      # demuxer-max-bytes = "123400KiB";
-      # demuxer-readahead-secs = 20;
-
-      #-Decode Opts
-      # vo = "gpu-next";
-      # profile = "gpu-hq";
-      # gpu-api = "opengl";
-      hwdec = "auto-safe";
-
-      profile = "high-quality";
-      # cache-default = 4000000;
-
-      #-Scaling settings for profile=gpu-hq
-      # scale = "ewa_lanczossharp";
-      # scale-antiring = ".4";
-      # cscale = "ewa_lanczossharp";
-      # dscale = "ewa_robidoux";
-      # dscale-param1 = 0;
-      # dscale-param2 = 0;
-      # dscale-antiring = 0;
-      # correct-downscaling = "yes";
-      # sigmoid-upscaling = "yes";
-
-      #-Fiters
-      # deband = "no";
-      # interpolation = "no";
-      # deinterlace = "no";
-      # dither-depth = 8; # Set to your displays bitdepth.
-      # dither = "fruit"; # default "fruit". Change to "ordered" if 10 or 12 bit display.
-
-      #-Tweaks/UI
+      # ui settings
+      osc = false; # disable default ui
+      osd-bar = false; # disable default ui
+      border = false;
       fullscreen = "no";
+      # osd-font = "";
       osd-font-size = 32;
       keep-open = "no";
       volume = 80;
       volume-max = 100;
-
-      #-Subtitles
-      sub-auto =
-        "fuzzy"; # Allow loading external subs that do not match file name perfectly.
-      slang = "ru,eng"; # Change to your preferred languages
       # sub-font = "Helvetica";
       sub-bold = "yes";
-      sub-font-size = 40; # Change to your preferred sizes
+      sub-font-size = 32;
       sub-border-size = 1;
 
-      #-Video lang
-      vlang = "en,us,fr,de";
+      # lang
+      slang = "ru,en,eng,us"; # subtitle
+      vlang = "en,eng,us,fr,de"; # video
+      alang = "en,eng,us,fr,de"; # audio
+      sub-auto = "fuzzy"; # subs that do not match file name perfectly.
 
-      #-Screenshot
+      # youtube support
+      ytdl-format = "bestvideo[height<=?1080]+bestaudio/best";
+
+      # performance and quality
+      hwdec = "auto";
+      cache = "yes";
+      demuxer-max-back-bytes = 10000000000;
+      demuxer-max-bytes = 10000000000;
+      interpolation = true;
+      video-sync = "display-resample";
+
+      # other
+      save-position-on-quit = true;
+
+      # Screenshot
       screenshot-format = "png";
       screenshot-sw = "no"; # use software rendering
       screenshot-png-compression = 7; # range 0-9, higher values may lag
       screenshot-high-bit-depth = "yes";
-      screenshot-directory =
-        "~/Pictures/mpv-screenshots"; # insert directory between quote marks
+      screenshot-directory = "~/Pictures/mpv-screenshots";
+    }; # end of config
 
+    scriptOpts = {
+      uosc = {
+        # Display style of current position. available: line, bar
+        timeline_style = "bar";
+        timeline_line_width = 2;
+        # Top border of background color to help visually separate timeline from video
+        timeline_border = 1;
+        # Timeline size when fully expanded, in pixels, 0 to disable
+        timeline_size = 16;
+        timeline_persistency = "paused,audio";
+        # Render cache indicators for streaming content
+        timeline_cache = true;
+        progress = "never";
+        # progress_size = 4;
+        # progress_line_width = 4;
+        controls =
+          "menu,gap,subtitles,<has_many_audio>audio,<has_many_video>video,<has_many_edition>editions,<stream>stream-quality,gap,space,speed,space,shuffle,loop-playlist,loop-file,gap,prev,items,next,gap";
+        controls_size = 32;
+        controls_margin = 8;
+        controls_spacing = 2;
+        # Where to display volume controls: none, left, right
+        volume = "right";
+        volume_size = 40;
+        volume_border = 1;
+        volume_step = 1;
+        # Controls all menus, such as context menu, subtitle loader/selector, etc
+        menu_item_height = 36;
+        menu_min_width = 260;
+        menu_padding = 4;
+        # Can be: never, no-border, always
+        top_bar = "no-border";
+        top_bar_size = 40;
+        # close button and etc
+        top_bar_controls = "no";
+        # Flash top bar when any of these file types is loaded. Available: audio,video,image,chapter
+        top_bar_flash_on = "video,audio";
+        # Window border drawn in no-border mode
+        window_border_size = 0;
+        # auto run next files in directory
+        autoload = false;
+        shuffle = false;
+        # Scale the interface by this factor
+        scale = 1;
+        # Scale in fullscreen
+        scale_fullscreen = 1.3;
+        # Adjust the text scaling to fit your font
+        font_scale = 1;
+        # Border of text and icons when drawn directly on top of video
+        text_border = 1.2;
+        # Border radius of buttons, menus, and all other rectangles
+        border_radius = 0;
+        # Duration of animations in milliseconds
+        animation_duration = 100;
+        # Adjusted osd margins based on the visibility of UI elements
+        adjust_osd_margins = true;
+        refine = "text_width";
+        color = [
+          "foreground = ${base05}"
+          "foreground_text = ${base00}"
+          "background = 000000"
+          "background_text = ${base05}"
+          "curtain = ${base01}"
+          "success = ${base0B}"
+          "error = ${base08}"
+        ];
+      };
+      thumbfast = {
+        spawn_first = true;
+        network = true;
+        hwdec = true;
+      };
     };
 
   };
