@@ -22,7 +22,7 @@
     ./qutebrowser.nix
     ./gowall.nix
     ./qt.nix
-    # ./kitty.nix
+    ./kitty.nix
     # ./gtk.nix
     # ./zsh.nix
     ./helix.nix

@@ -3,7 +3,7 @@
   programs.kitty = with config.lib.stylix.colors; {
 
     enable = true;
-    shellIntegration.enableZshIntegration = true;
+    # shellIntegration.enableZshIntegration = true;
 
     keybindings = {
       "ctrl+shift+c" = "copy_or_interrupt";
@@ -22,8 +22,8 @@
 
       # background_opacity = lib.mkForce "0.9";
 
-      shell = "zsh";
-      editor = "nvim";
+      shell = "fish";
+      editor = "hx";
       linux_display_server = "wayland";
       enable_audio_bell = false;
       # notify_on_cmd_finish = "always 3.0 command notify-send \"Terminal job\" Finished";
@@ -34,7 +34,7 @@
       window_border_width = "0pt";
       # draw_minimal_borders = "yes";
       window_margin_width = "0 0 0 0";
-      window_padding_width = "0 8 0 8";
+      window_padding_width = "0 4 0 4";
       # inactive_text_alpha = "0.5";
       tab_bar_style = "hidden";
       confirm_os_window_close = "0";
@@ -76,12 +76,7 @@
     # For Stylix
     # it's important change colors only in extaConfig!
     extraConfig = ''
-      # for black '>' in my zsh theme
-      # color0  #${base03}
-       visual_bell_color #${base01}
-      # green
-      # color2 #${base0B}  
-      # color10 #${base0B} 
+      visual_bell_color #${base01}
     '';
 
   };

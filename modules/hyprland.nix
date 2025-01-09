@@ -8,10 +8,10 @@ with config.lib.stylix.colors; {
 
   wayland.windowManager.hyprland.settings = {
     "$mod" = "SUPER";
-    "$terminal" = "alacritty";
+    "$terminal" = "kitty";
     "$filemanager" = "nautilus";
     "$menu" = "fuzzel -l 8 --show-actions --counter";
-    "$browser" = "firefox";
+    "$browser" = "qutebrowser";
 
     monitor = [
       # Monitor msk
@@ -78,7 +78,7 @@ with config.lib.stylix.colors; {
     general = {
       border_size = 4;
       extend_border_grab_area = 25;
-      "col.active_border" = lib.mkForce "rgba(${base0C}ff)";
+      "col.active_border" = lib.mkForce "rgba(${base0D}ff)";
       "col.inactive_border" = lib.mkForce "rgba(${base00}ff)";
       layout = "dwindle";
       # Please see https://wiki.hyprland.org/Configuring/Tearing/ before you turn this on
@@ -158,6 +158,7 @@ with config.lib.stylix.colors; {
       "$mod, D, exec, hyprctl keyword input:kb_layout us,ru"
       "$mod, N, exec, $filemanager"
       "$mod, B, exec, $browser"
+      "$mod SHIFT, B, exec, proxychains4 $browser --set window.title_format [VPN]\\ {perc}{current_title}{title_sep}qutebrowser"
       "$mod, T, exec, telegram-desktop"
       # "$mod, O, exit"
 

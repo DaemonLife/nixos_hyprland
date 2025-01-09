@@ -1,8 +1,6 @@
 { pkgs, lib, config, inputs, ... }: {
 
-  imports = [
-    ./modules/import_all.nix
-  ];
+  imports = [ ./modules/import_all.nix ];
 
   stylix = {
     enable = true;
@@ -94,7 +92,7 @@
       hypridle # timer for screen lock
       swaylock # screen lock
       ffmpegthumbnailer
-      ueberzugpp # image preview
+      # ueberzugpp # image preview
       nautilus # file manager
       nautilus-open-any-terminal
       bluetui # bluetooth tui
@@ -141,7 +139,7 @@
       unzip
       epy # cli book reader
       jrnl
-      mpv
+      yt-dlp
       ffmpeg-full
       transmission_4
       qbittorrent # torrent client

@@ -1,13 +1,29 @@
-{ pgks, config, ... }: {
+{ pgks, config, pkgs, ... }: {
   programs.mpv = {
 
     enable = true;
     bindings = { };
+
+    scripts = [
+      pkgs.mpvScripts.sponsorblock
+      pkgs.mpvScripts.dynamic-crop
+      # pkgs.mpvScripts.modernx-zydezu bug!
+      pkgs.mpvScripts.thumbnail
+      # build error!
+    ];
+
     config = {
 
       #-General
       # player-operation-mode = "pseudo-gui";
+      # osc = "no";
+      border = "no";
+
+      #-Youtube Support
       # ytdl-format = "bestvideo+bestaudio/best";
+      ytdl-format =
+        "bestvideo[height<=?720][fps<=?30][vcodec!=?vp9]+bestaudio/best";
+      ytdl_path = "${pkgs.yt-dlp}/bin/yt-dlp";
 
       #-Cache
       cache = "yes";
@@ -21,7 +37,6 @@
       hwdec = "auto-safe";
 
       profile = "high-quality";
-      ytdl-format = "bestvideo+bestaudio";
       # cache-default = 4000000;
 
       #-Scaling settings for profile=gpu-hq
@@ -69,9 +84,7 @@
       screenshot-directory =
         "~/Pictures/mpv-screenshots"; # insert directory between quote marks
 
-      scripts = [
-        # "/home/user/Downloads/dynamic-crop.lua"
-      ];
     };
+
   };
 }

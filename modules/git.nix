@@ -1,9 +1,8 @@
 { pkgs, config, ... }: {
 
-programs.git = {
-
+  programs.git = {
+    enable = true;
     userName = "DaemonLife";
-
-};
+  };
 
 }

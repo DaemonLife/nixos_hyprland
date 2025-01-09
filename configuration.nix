@@ -80,9 +80,9 @@
     "\n    strict_chain\n    proxy_dns \n    remote_dns_subnet 224\n    tcp_read_time_out 15000\n    tcp_connect_time_out 8000\n    localnet 127.0.0.0/255.0.0.0\n\n    [ProxyList]\n    socks5   127.0.0.1 10808 \n  ";
 
   environment.variables = {
-    EDITOR = "nvim";
-    SYSTEMD_EDITOR = "nvim";
-    VISUAL = "nvim";
+    EDITOR = "hx";
+    SYSTEMD_EDITOR = "hx";
+    VISUAL = "hx";
   };
 
   # Optional, hint electron apps to use wayland:
@@ -195,7 +195,6 @@
     hyprcursor
     gparted
     htop
-    git
     os-prober
     grub2
     swaylock
@@ -210,12 +209,12 @@
     ly # enter to system
     impala
     iwd
+    helix
 
     grc # colors for fish
     fzf # cli search. Run: Ctrl+R
     fishPlugins.fzf-fish
     fishPlugins.forgit # fzf git support
-    # fishPlugins.hydro # modern promts
     fishPlugins.done # notifications
 
     # VPN
@@ -284,7 +283,7 @@
   programs = {
     # hyprland.enable = true;
     fish.enable = true;
-    
+
     # promt for any shell
     starship = {
       enable = true;
@@ -292,18 +291,16 @@
         add_newline = true;
         command_timeout = 300;
         scan_timeout = 200;
-        format = "\${custom.pwd}$nix_shell$lua$git_branch$git_commit$git_state$git_status$custom(:$user)$time\n$character";
+        format = ''
+          ''${custom.pwd}$nix_shell$lua$git_branch$git_commit$git_state$git_status$custom(:$user)$time
+          $character'';
 
         git_branch = {
           style = "green";
           format = "[$branch(:$remote_branch)]($style) ";
         };
-        git_commit = {
-          style = "green";
-        };
-        git_state = {
-          style = "green";
-        };
+        git_commit = { style = "green"; };
+        git_state = { style = "green"; };
         git_status = {
           # style = "green";
           deleted = "x";
@@ -329,12 +326,12 @@
           time_format = "%R";
         };
         character = {
-        success_symbol = "[\\[I\\]>](green)";
-        error_symbol = "[\\[I\\]>](red)";
-        vimcmd_symbol = "[\\[N\\]>](white)";
-        vimcmd_replace_one_symbol = "[\\[r\\]>](purple)";
-        vimcmd_replace_symbol = "[\\[R\\]>](purple)";
-        vimcmd_visual_symbol = "[\\[V\\]>](yellow)";
+          success_symbol = "[\\[I\\]>](green)";
+          error_symbol = "[\\[I\\]>](red)";
+          vimcmd_symbol = "[\\[N\\]>](white)";
+          vimcmd_replace_one_symbol = "[\\[r\\]>](purple)";
+          vimcmd_replace_symbol = "[\\[R\\]>](purple)";
+          vimcmd_visual_symbol = "[\\[V\\]>](yellow)";
         };
       };
     };
