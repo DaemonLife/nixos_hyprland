@@ -1,4 +1,4 @@
-maze(70,30);
+maze(50,22);
 
 function maze(width, height){
   var walls = [];

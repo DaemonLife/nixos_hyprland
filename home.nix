@@ -4,29 +4,31 @@
 
   stylix = {
     enable = true;
-    base16Scheme = "${pkgs.base16-schemes}/share/themes/mountain.yaml";
+    # base16Scheme = "${pkgs.base16-schemes}/share/themes/mountain.yaml";
+    base16Scheme =
+      "${pkgs.base16-schemes}/share/themes/everforest-dark-hard.yaml";
     image = ./image.jpg;
     # override = {
-    # author = "DaemonLife";
-    # one tone gradient
-    # base00 = "1F1F28"; # BACKGROUND (BLACK)
-    # base01 = "1F1F28"; # bright green
-    # base02 = "252535"; # bright yellow
-    # base03 = "34344b"; # bright black
-    # base04 = "DCD7BA"; # bright blue
-    # base05 = "DCD7BA"; # FOREGROUND (WHITE)
-    # base06 = "DCD7BA"; # bright magenta
-    # base07 = "C8C093"; # bright white
+    #   author = "DaemonLife";
+    #   # one tone gradient
+    #   base00 = "232a2d"; # BACKGROUND (BLACK)
+    #   base01 = "e57474"; # bright green
+    #   base02 = "8ccf7e"; # bright yellow
+    #   base03 = "e5c76b"; # bright black
+    #   base04 = "67b0e8"; # bright blue
+    #   base05 = "c47fd5"; # FOREGROUND (WHITE)
+    #   base06 = "6cbfbf"; # bright magenta
+    #   base07 = "b3b9b8"; # bright white
 
-    # colors
-    # base08 = "C34043"; # RED
-    # base09 = "E82424"; # bright red
-    # base0A = "E6C384"; # YELLOW
-    # base0B = "76946A"; # GREEN
-    # base0C = "7393bc"; # CYAN
-    # base0D = "7E9CD8"; # BLUE
-    # base0E = "957FB8"; # MAGENTA
-    # base0F = "7393bc"; # bright cyan
+    #   # colors
+    #   base08 = "2d3437"; # RED
+    #   base09 = "ef7e7e"; # bright red
+    #   base0A = "96d988"; # YELLOW
+    #   base0B = "f4d67a"; # GREEN
+    #   base0C = "71baf2"; # CYAN
+    #   base0D = "ce89df"; # BLUE
+    #   base0E = "67cbe7"; # MAGENTA
+    #   base0F = "bdc3c2"; # bright cyan
     # };
     targets.waybar.enable = false;
 
