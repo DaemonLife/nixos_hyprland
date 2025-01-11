@@ -28,7 +28,7 @@
       #   base0C = "71baf2"; # CYAN
       #   base0D = "ce89df"; # BLUE
       #   base0E = "67cbe7"; # MAGENTA
-      base0F = "c38cd2"; # bright cyan
+      base0F = "c38cd2"; # bright cyan # no. fixed dumb everforest color
     };
     targets.waybar.enable = false;
 
@@ -133,6 +133,7 @@
 
       unstable.joplin
       unstable.gimp
+      bitwarden-cli
       stellarium
       dwarf-fortress
       halftone # image pixel redactor
