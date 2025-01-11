@@ -2,7 +2,7 @@
 
   programs.nixvim = with config.lib.stylix.colors; {
     enable = true;
-    defaultEditor = true;
+    defaultEditor = false;
     viAlias = true;
     luaLoader.enable = true;
 

@@ -3,16 +3,23 @@
   programs.qutebrowser = with config.lib.stylix.colors; {
     enable = true;
 
-    quickmarks = {
-      nixpkgs = "https://github.com/NixOS/nixpkgs";
-      home-manager = "https://github.com/nix-community/home-manager";
-    };
+    quickmarks = { };
 
     searchEngines = {
       w = "https://en.wikipedia.org/wiki/Special:Search?search={}&go=Go&ns0=1";
-      aw = "https://wiki.archlinux.org/?search={}";
-      nw = "https://wiki.nixos.org/index.php?search={}";
+      wt = "https://ru.wiktionary.org/wiki/{}";
       g = "https://www.google.com/search?hl=en&q={}";
+      gi = "https://www.google.com/search?q={}&udm=2";
+      gt = "https://translate.google.com/?sl=en&tl=ru&text={}&op=translate";
+      yt = "https://www.youtube.com/results?search_query={}";
+      yi = "https://ya.ru/images/search?from=tabbar&text={}";
+      nixpkg =
+        "https://search.nixos.org/packages?&from=0&size=50&sort=relevance&type=packages&query={}";
+      nixopt = "https://mynixos.com/search?q={}";
+      nixgit =
+        "https://github.com/search?q={}+language%3Anix&type=repositories";
+      git = "https://github.com/search?q={}&type=repositories";
+      wttr = "https://wttr.in/{}?FMm"; # Weather. Type ":help" for helping
     };
 
     greasemonkey = [

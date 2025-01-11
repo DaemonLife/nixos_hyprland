@@ -303,9 +303,9 @@
 
       	#pulseaudio.muted { color: @gray; }
 
-      	#battery.plugged { color: @green; }
+      	#battery.plugged { color: #${base0D}; }
       	#battery.charging{
-          color: @green;
+          color: #${base0D};
           animation-name: blink;
           animation-duration: 1.5s;
           animation-timing-function: linear;

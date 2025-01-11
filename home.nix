@@ -164,18 +164,21 @@
     sessionPath = [ "$HOME/.local/bin" ];
   };
 
-  # dconf.settings = {
-  #   "org/gnome/desktop/peripherals/touchpad" = {
-  #     tap-and-drag = false;
-  #     speed = -0.8;
-  #     natural-scroll = false;
-  #     accel-profile = "adaptive";
-  #   };
-  #   "org/gnome/desktop/peripherals/mouse" = {
-  #     speed = -0.3;
-  #     natural-scroll = false;
-  #     accel-profile = "adaptive";
-  #   };
-  # };
+  dconf.settings = {
+    # disable top right buttons
+    "org/gnome/desktop/wm/preferences" = { button-layout = ""; };
+
+    "org/gnome/desktop/peripherals/touchpad" = {
+      tap-and-drag = false;
+      # speed = -0.8;
+      natural-scroll = false;
+      accel-profile = "adaptive";
+    };
+    "org/gnome/desktop/peripherals/mouse" = {
+      # speed = -0.3;
+      natural-scroll = false;
+      accel-profile = "adaptive";
+    };
+  };
 
 }
