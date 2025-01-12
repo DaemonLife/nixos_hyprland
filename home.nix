@@ -100,7 +100,7 @@
       tgt # telegram tui
       dua # disk usage TUI tool. Run: dua i
       wl-clipboard
-      darktable
+      unstable.darktable
       gthumb # image viewer
       overskride # bluetooth gui
       imv # cli image viewer

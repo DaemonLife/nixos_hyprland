@@ -222,9 +222,9 @@
     grub2
     swaylock
     ntfs3g # ntfs support
-    clinfo # for opencl
-    xorg.xcbutilwm
-    xorg.libxcb
+    clinfo # opencl info
+    xcbutilwm
+    libxcb
     nh # nix cli helper
     mesa
     patchelfUnstable

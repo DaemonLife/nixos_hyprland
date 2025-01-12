@@ -4,6 +4,11 @@
   # Imports
   imports = [ ./hardware-configuration.nix ];
 
+  hardware.opengl.extraPackages = with pkgs; [ rocmPackages.clr.icd ];
+
+  boot.initrd.kernelModules = [ "amdgpu" ];
+  services.xserver.videoDrivers = [ "amdgpu" ];
+
   services = {
 
     # Battery life / TLP

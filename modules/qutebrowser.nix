@@ -39,6 +39,16 @@
       normal = { "<Ctrl+m>" = "hint links spawn --detach mpv {hint-url}"; };
     };
 
+    keyMappings = {
+      "ш" = "i";
+      # "" = "";
+      # "" = "";
+      # "" = "";
+      # "" = "";
+      # "" = "";
+      # "" = "";
+    };
+
     aliases = {
       "q" = "close";
       "qa" = "quit";
@@ -53,6 +63,8 @@
 
     settings = {
 
+      content.blocking.method = "both";
+      content.blocking.whitelist = [ ];
       content.blocking.adblock.lists = [
         # "https://easylist.to/easylist/easylist.txt"
         # "https://easylist.to/easylist/easyprivacy.txt"
@@ -87,24 +99,61 @@
 
       auto_save.session = true;
       scrolling.smooth = false;
+      content.autoplay = false;
 
       window = { hide_decoration = true; };
 
       tabs = {
-        favicons.scale = 0.8;
+        favicons.scale = 0.7;
+        favicons.show = "always"; # always, never or pinned
+        # padding = { one string format!? no:/?
+        #   "bottom" = 0;
+        #   "left" = 2;
+        #   "right" = 2;
+        #   "top" = 0;
+        # };
         title.format = "{audio}{current_title}";
         title.format_pinned = "{index}";
+        close_mouse_button = "right";
       };
 
       colors = { webpage.preferred_color_scheme = "dark"; };
 
-      qt = { highdpi = true; };
+      qt = { highdpi = false; };
+      zoom.default = "110%";
+      zoom.text_only = true;
+      zoom.levels = [
+        "25%"
+        "33%"
+        "50%"
+        "67%"
+        "75%"
+        "90%"
+        "100%"
+        "110%"
+        "125%"
+        "135%"
+        "150%"
+        "175%"
+        "200%"
+        "250%"
+        "300%"
+        "400%"
+        "500%"
+      ];
+      # fonts.default_family = "";
+      # fonts.default_size = "16";
 
       hints.radius = 0;
-      # editor.command = ["alacritty" "--command" "nvim" "--cmd" "startinsert" "{file}"];
-      editor.command = [ "alacritty" "--command" "nvim" "{file}" ];
-      content.autoplay = true;
+      # hints.padding = ''{"bottom": 0, "left": 3, "right": 3, "top": 0}'';
+      # Leave insert mode if a non-editable element is clicked.
+      input.insert_mode.auto_leave = false;
+      # Leave insert mode when starting a new page load.
+      input.insert_mode.leave_on_load = true;
+      # Automatically enter insert mode if an editable element is focused after loading the page.
+      input.insert_mode.auto_load = false;
 
+      editor.command = [ "alacritty" "--command" "hx" "{file}" ];
     };
 
     extraConfig = ''
