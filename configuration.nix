@@ -223,8 +223,6 @@
     swaylock
     ntfs3g # ntfs support
     clinfo # opencl info
-    xcbutilwm
-    libxcb
     nh # nix cli helper
     mesa
     patchelfUnstable
