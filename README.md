@@ -11,26 +11,26 @@ I have two configurated **devices**:
 - IdeaPad 5 Pro 14ACN ("**lenovo**")
 
 For Lenovo run:
-```nixos-rebuild switch --flake . #lenovo```.
+```nixos-rebuild switch --flake . #lenovo```  
 For GPD:
-```nixos-rebuild switch --flake . #gpd-pocket-3```.
+```nixos-rebuild switch --flake . #gpd-pocket-3```
 
-If you use other then for quickly start I recommend you remove file .../nix/devices/lenovo/hardware-configuration.nix and after all run:
+If you use other then for quickly start I recommend you remove file .../nix/devices/lenovo/hardware-configuration.nix and after all run:  
 ```
 cp /etc/nixos/hardware-configuration.nix /home/$USER/nix/devices/lenovo/
 nixos-rebuild switch --flake . #lenovo
 ```
 
-If file /etc/nixos/hardware-configuration.nix don't exist then run next command and repeat:
+If file /etc/nixos/hardware-configuration.nix don't exist then run next command and repeat:  
 ```sudo nixos-generate-config```
 
 Reboot. Done.
 
 ## Using
 For rebuild use:
-```update [your_device]```.
+```update [your_device]```  
 For update and rebuild:
-```upgrade [your_device]"```.
+```upgrade [your_device]```
 
 ## Tips
 To set up your Telegram auto-update theme, follow these steps:
