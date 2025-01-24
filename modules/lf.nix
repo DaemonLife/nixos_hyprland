@@ -21,7 +21,7 @@
       "." = "set hidden!";
       "<enter>" = "open";
       ee = "editor-open";
-      gw = "/mnt/windows/Users/user";
+      gw = "cd /mnt/windows/Users/user";
       gh = "cd";
       gn = "cd ~/nix";
     };

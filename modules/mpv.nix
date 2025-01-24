@@ -4,17 +4,22 @@
 
     bindings = {
       mbtn_right = "script-binding uosc/menu";
-      a = "script-binding uosc/stream-quality";
-      c = "script-binding uosc/chapters";
-      s = "script-binding uosc/subtitles";
+      # a = "script-binding uosc/stream-quality";
+      "Ctrl+c" = "script-binding uosc/chapters";
+      "Ctrl+s" = "script-binding uosc/subtitles";
+      "Ctrl+a" = "script-binding uosc/audio";
     };
 
-    scripts = [
-      pkgs.mpvScripts.sponsorblock
-      pkgs.mpvScripts.dynamic-crop
-      pkgs.mpvScripts.uosc # new UI
-      pkgs.mpvScripts.thumbfast # previews
-      pkgs.mpvScripts.mpris # for using standard media keys
+    scripts = with pkgs; [
+      mpvScripts.sponsorblock
+      mpvScripts.dynamic-crop # press 'C'
+      # mpvScripts.crop # press 'C'
+      mpvScripts.thumbfast # previews
+      mpvScripts.mpris # for using standard media keys
+      mpvScripts.autosubsync-mpv # press 'n' to sync subtitles
+      mpvScripts.mpv-cheatsheet # press '?' and look keybinding in GUI
+      # mpvScripts.modernx # new UI
+      mpvScripts.uosc # new UI
     ];
 
     config = {
@@ -43,12 +48,12 @@
       ytdl-format = "bestvideo[height<=?1080]+bestaudio/best";
 
       # performance and quality
-      hwdec = "auto";
+      # hwdec = "auto";
       cache = "yes";
       demuxer-max-back-bytes = 10000000000;
       demuxer-max-bytes = 10000000000;
       interpolation = true;
-      video-sync = "display-resample";
+      # video-sync = "display-resample";
 
       # other
       save-position-on-quit = true;
@@ -65,9 +70,9 @@
       uosc = {
         # Display style of current position. available: line, bar
         timeline_style = "bar";
-        timeline_line_width = 2;
+        timeline_line_width = 4;
         # Top border of background color to help visually separate timeline from video
-        timeline_border = 1;
+        timeline_border = 3;
         # Timeline size when fully expanded, in pixels, 0 to disable
         timeline_size = 16;
         timeline_persistency = "paused,audio";
@@ -77,22 +82,22 @@
         # progress_size = 4;
         # progress_line_width = 4;
         controls =
-          "menu,gap,subtitles,<has_many_audio>audio,<has_many_video>video,<has_many_edition>editions,<stream>stream-quality,gap,space,speed,space,shuffle,loop-playlist,loop-file,gap,prev,items,next,gap";
-        controls_size = 32;
+          "menu,gap,subtitles,<has_many_audio>audio,<has_many_video>video,<has_many_edition>editions,<stream>stream-quality,gap,space,shuffle,loop-playlist,loop-file,gap,prev,items,next,gap";
+        controls_size = 24;
         controls_margin = 8;
         controls_spacing = 2;
         # Where to display volume controls: none, left, right
         volume = "right";
-        volume_size = 40;
+        volume_size = 24;
         volume_border = 1;
         volume_step = 1;
         # Controls all menus, such as context menu, subtitle loader/selector, etc
-        menu_item_height = 36;
+        menu_item_height = 24;
         menu_min_width = 260;
         menu_padding = 4;
         # Can be: never, no-border, always
         top_bar = "no-border";
-        top_bar_size = 40;
+        top_bar_size = 24;
         # close button and etc
         top_bar_controls = "no";
         # Flash top bar when any of these file types is loaded. Available: audio,video,image,chapter
@@ -100,14 +105,14 @@
         # Window border drawn in no-border mode
         window_border_size = 0;
         # auto run next files in directory
-        autoload = false;
+        autoload = true;
         shuffle = false;
         # Scale the interface by this factor
-        scale = 1;
+        scale = 2;
         # Scale in fullscreen
         scale_fullscreen = 1.3;
         # Adjust the text scaling to fit your font
-        font_scale = 1;
+        font_scale = 2;
         # Border of text and icons when drawn directly on top of video
         text_border = 1.2;
         # Border radius of buttons, menus, and all other rectangles
@@ -120,7 +125,7 @@
         color = [
           "foreground = ${base05}"
           "foreground_text = ${base00}"
-          "background = 000000"
+          "background = ${base0E}"
           "background_text = ${base05}"
           "curtain = ${base01}"
           "success = ${base0B}"

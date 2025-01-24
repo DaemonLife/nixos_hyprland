@@ -36,11 +36,11 @@ with config.lib.stylix.colors; {
 
     exec = [
       # wallpaper
-      # "swaybg -i /home/user/nix/image.jpg"
+      "swaybg -i /home/user/nix/image.jpg"
 
       # maze generator
-      "bash $HOME/nix/scripts/maze/run.sh ${base00} ${base02}"
-      "swaybg -i $HOME/nix/scripts/maze/maze.png"
+      # "bash $HOME/nix/scripts/maze/run.sh ${base00} ${base02}"
+      # "swaybg -i $HOME/nix/scripts/maze/maze.png"
     ];
 
     env = [

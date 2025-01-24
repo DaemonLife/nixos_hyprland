@@ -82,30 +82,41 @@
       # SOFT FOR DE 
       # --------------------------------
 
-      # Main
-      libnotify # for mako
+      # DE and system
+      libnotify # for mako notifications
       grim # screenshot tool
       slurp # screenshot tool
       brightnessctl # screen light
-      pavucontrol # audio gui control
-      pulseaudio # control pipeware and pulseaudio
-      alsa-utils # audio volume control (?)
       gnome-power-manager # power statistic
       hypridle # timer for screen lock
       swaylock # screen lock
-      ffmpegthumbnailer
-      # ueberzugpp # image preview
-      nautilus # file manager
-      nautilus-open-any-terminal
+      wl-clipboard
+      btop
+      cool-retro-term
+      unzip
+      python3
+      nodejs
+      pipx
+
+      # Disk
+      dua # disk usage TUI tool. Run: dua i
+
+      # Network
+      overskride # bluetooth gui
       bluetui # bluetooth tui
       tgt # telegram tui
-      dua # disk usage TUI tool. Run: dua i
-      wl-clipboard
-      unstable.darktable
-      gthumb # image viewer
-      overskride # bluetooth gui
+      telegram-desktop
+
+      # Media
       imv # cli image viewer
       paprefs # virtual audio output
+      gthumb # image viewer
+      ffmpegthumbnailer
+      halftone # image pixel redactor
+      ffmpeg-full
+      helvum # A GTK patchbay for pipewire
+      pavucontrol # audio gui control
+      alsa-utils # audio volume control (?)
 
       # Theming
       vimix-icon-theme # for icons
@@ -113,7 +124,7 @@
       gnome-tweaks
       swaybg # background
       flavours # create base16 colors from image
-      unstable.gowall # Tool to convert a Wallpaper's color scheme
+      unstable.gowall # Tool to convert a Wallpaper's color scheme. Still wait version 2...
       dconf
       dconf-editor
 
@@ -123,45 +134,46 @@
       fira
       cantarell-fonts
 
-      # --------------------------------
-      # OTHER SOFT
-      # --------------------------------
-
-      # spellcheck and LibreOffice
+      # spellcheck for LibreOffice
       hunspell
       hunspellDicts.ru_RU
       hunspellDicts.en_US
-      libreoffice
 
-      unstable.joplin
-      unstable.gimp
-      bitwarden-cli
-      stellarium
-      dwarf-fortress
-      halftone # image pixel redactor
-      btop
-      cool-retro-term
-      unzip
-      epy # cli book reader
-      jrnl
       yt-dlp
-      ffmpeg-full
-      transmission_4
-      qbittorrent # torrent client
-      telegram-desktop
-      cmus # player
-      python3
-      nodejs
-      pipx
-      tor-browser
       bottles
       veracrypt
-      portablemc # minecraft cli launcher
       fastfetch # system info in terminal
-      curseofwar # stategy cli game
-      vitetris # tetris cli game
       cmatrix # matrix in terminal
       wev # key events in wayland
+
+      # --------------------------------
+      # USER SOFT
+      # --------------------------------
+
+      # Media
+      cmus # player
+      unstable.darktable
+      unstable.gimp
+
+      # Internet
+      transmission_4
+      qbittorrent # torrent client
+      tor-browser
+
+      # Docs
+      jrnl
+      libreoffice
+      unstable.joplin
+      stellarium # astro map ASCII
+      unstable.astroterm # astro map
+      epy # cli book reader
+      bitwarden-cli
+
+      # Gaming
+      portablemc # minecraft cli launcher
+      curseofwar # stategy cli game
+      vitetris # tetris cli game
+      dwarf-fortress
 
     ];
     sessionPath = [ "$HOME/.local/bin" ];

@@ -211,6 +211,9 @@
 
     extraConfig = ''
 
+      # cool setting for fix exit from insert mode - no cursor and active form!
+      config.bind('<Escape>', 'mode-leave ;; jseval -q document.activeElement.blur()', mode='insert')
+
       c.colors.completion.fg = ['#${base03}', '#${base0B}', '#${base08}']
 
       # Background color of the completion widget for odd rows.
