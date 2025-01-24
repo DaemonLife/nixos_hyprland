@@ -88,6 +88,7 @@
       slurp # screenshot tool
       brightnessctl # screen light
       pavucontrol # audio gui control
+      pulseaudio # control pipeware and pulseaudio
       alsa-utils # audio volume control (?)
       gnome-power-manager # power statistic
       hypridle # timer for screen lock
@@ -104,6 +105,7 @@
       gthumb # image viewer
       overskride # bluetooth gui
       imv # cli image viewer
+      paprefs # virtual audio output
 
       # Theming
       vimix-icon-theme # for icons
