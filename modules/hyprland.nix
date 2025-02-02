@@ -82,6 +82,15 @@ with config.lib.stylix.colors; {
 
     };
 
+    cursor = {
+      # default_monitor = "";
+    };
+
+    # ecosystem = {
+    #   no_update_news = true;
+    #   no_donation_nag = true;
+    # };
+
     general = {
       border_size = 4;
       extend_border_grab_area = 25;
@@ -97,10 +106,14 @@ with config.lib.stylix.colors; {
       vrr = true;
       disable_hyprland_logo = true;
       disable_splash_rendering = true;
-      mouse_move_enables_dpms = true;
       animate_manual_resizes = true;
+      animate_mouse_windowdragging = true; # need test this
       mouse_move_focuses_monitor = true;
       initial_workspace_tracking = 1;
+      disable_autoreload = true; # for save battery
+
+      mouse_move_enables_dpms = true;
+      key_press_enables_dpms = true;
     };
 
     # Scale options
@@ -141,7 +154,8 @@ with config.lib.stylix.colors; {
       smart_split = false;
     };
 
-    master = { };
+    # disable borders if one window 
+    windowrulev2 = [ "noborder, onworkspace:w[t1]" ];
 
     gestures = {
       workspace_swipe = true;
@@ -222,12 +236,16 @@ with config.lib.stylix.colors; {
       # Brightness
       ", XF86MonBrightnessUp, exec, brightnessctl set 10%+"
       ", XF86MonBrightnessDown, exec, brightnessctl set 10%-"
+      "ALT_L, h, exec, brightnessctl set 10%-"
+      "ALT_L, l, exec, brightnessctl set 10%+"
       "$mod, XF86MonBrightnessUp, exec, brightnessctl set 2%+"
       "$mod, XF86MonBrightnessDown, exec, brightnessctl set 2%-"
 
       # Audio control
       ", XF86AudioRaiseVolume, exec, amixer sset 'Master' 5%+"
       ", XF86AudioLowerVolume, exec, amixer sset 'Master' 5%-"
+      "ALT_L, k, exec, amixer sset 'Master' 5%+"
+      "ALT_L, j, exec, amixer sset 'Master' 5%-"
       ", XF86AudioMute, exec, amixer set Master toggle"
       ", XF86AudioMicMute, exec, amixer sset Capture toggle"
 

@@ -144,7 +144,8 @@
   };
 
   # Set your time zone and andd compatible with Windows
-  time.timeZone = "Europe/Moscow";
+  # time.timeZone = "Europe/Moscow";
+  time.timeZone = "Asia/Colombo";
   time.hardwareClockInLocalTime = true;
 
   # Select internationalisation properties.

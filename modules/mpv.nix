@@ -11,31 +11,31 @@
     };
 
     scripts = with pkgs; [
-      mpvScripts.sponsorblock
-      mpvScripts.dynamic-crop # press 'C'
+      # mpvScripts.sponsorblock
+      # mpvScripts.dynamic-crop # press 'C'
       # mpvScripts.crop # press 'C'
       mpvScripts.thumbfast # previews
       mpvScripts.mpris # for using standard media keys
       mpvScripts.autosubsync-mpv # press 'n' to sync subtitles
       mpvScripts.mpv-cheatsheet # press '?' and look keybinding in GUI
       # mpvScripts.modernx # new UI
-      mpvScripts.uosc # new UI
+      # mpvScripts.uosc # new UI
     ];
 
     config = {
       # ui settings
-      osc = false; # disable default ui
-      osd-bar = false; # disable default ui
+      osc = true; # false for disable default ui
+      osd-bar = true; # false for disable default ui
       border = false;
       fullscreen = "no";
       # osd-font = "";
-      osd-font-size = 32;
+      osd-font-size = 30;
       keep-open = "no";
       volume = 80;
       volume-max = 100;
       # sub-font = "Helvetica";
       sub-bold = "yes";
-      sub-font-size = 32;
+      sub-font-size = 30;
       sub-border-size = 1;
 
       # lang
@@ -43,16 +43,15 @@
       vlang = "en,eng,us,fr,de"; # video
       alang = "en,eng,us,fr,de"; # audio
       sub-auto = "fuzzy"; # subs that do not match file name perfectly.
-
       # youtube support
       ytdl-format = "bestvideo[height<=?1080]+bestaudio/best";
 
       # performance and quality
       # hwdec = "auto";
-      cache = "yes";
-      demuxer-max-back-bytes = 10000000000;
-      demuxer-max-bytes = 10000000000;
-      interpolation = true;
+      # cache = "yes";
+      # demuxer-max-back-bytes = 10000000000;
+      # demuxer-max-bytes = 10000000000;
+      # interpolation = true;
       # video-sync = "display-resample";
 
       # other
@@ -110,9 +109,9 @@
         # Scale the interface by this factor
         scale = 2;
         # Scale in fullscreen
-        scale_fullscreen = 1.3;
+        scale_fullscreen = 2;
         # Adjust the text scaling to fit your font
-        font_scale = 2;
+        font_scale = 3;
         # Border of text and icons when drawn directly on top of video
         text_border = 1.2;
         # Border radius of buttons, menus, and all other rectangles

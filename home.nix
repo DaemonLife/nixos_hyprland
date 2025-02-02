@@ -4,7 +4,6 @@
 
   stylix = {
     enable = true;
-    # base16Scheme = "${pkgs.base16-schemes}/share/themes/mountain.yaml";
     base16Scheme =
       "${pkgs.base16-schemes}/share/themes/everforest-dark-hard.yaml";
     image = ./image.jpg;
@@ -117,6 +116,8 @@
       helvum # A GTK patchbay for pipewire
       pavucontrol # audio gui control
       alsa-utils # audio volume control (?)
+      digikam
+      qimgv # img viewer
 
       # Theming
       vimix-icon-theme # for icons
