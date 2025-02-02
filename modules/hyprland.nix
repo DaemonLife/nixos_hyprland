@@ -36,7 +36,7 @@ with config.lib.stylix.colors; {
 
     exec = [
       # wallpaper
-      "swaybg -i /home/user/nix/image.jpg"
+      "swaybg -i $HOME/nix/images/image.jpg"
 
       # maze generator
       # "bash $HOME/nix/scripts/maze/run.sh ${base00} ${base02}"
@@ -107,7 +107,7 @@ with config.lib.stylix.colors; {
       disable_hyprland_logo = true;
       disable_splash_rendering = true;
       animate_manual_resizes = true;
-      animate_mouse_windowdragging = true; # need test this
+      # animate_mouse_windowdragging = true; # need test this
       mouse_move_focuses_monitor = true;
       initial_workspace_tracking = 1;
       disable_autoreload = true; # for save battery

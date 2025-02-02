@@ -9,7 +9,7 @@
     enable = true;
     base16Scheme = "${pkgs.base16-schemes}/share/themes/mountain.yaml";
     # image = config.lib.stylix.pixel "base00";
-    image = ./image.jpg;
+    image = ./images/image.jpg;
 
     # override = {
     #   author = "DaemonLife";

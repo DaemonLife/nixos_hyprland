@@ -6,7 +6,7 @@
     enable = true;
     base16Scheme =
       "${pkgs.base16-schemes}/share/themes/everforest-dark-hard.yaml";
-    image = ./image.jpg;
+    image = ./images/image.jpg;
     override = {
       author = "DaemonLife";
       #   # one tone gradient
