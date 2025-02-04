@@ -103,7 +103,6 @@
       # Network
       overskride # bluetooth gui
       bluetui # bluetooth tui
-      tgt # telegram tui
       telegram-desktop
 
       # Media

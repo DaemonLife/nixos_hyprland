@@ -1,4 +1,3 @@
-# NixOS manual accessible by running ‘nixos-help’.
 { config, pkgs, lib, inputs, ... }: {
 
   # --------------------------------
@@ -319,8 +318,8 @@
       enable = true;
       settings = {
         add_newline = true;
-        command_timeout = 300;
-        scan_timeout = 200;
+        command_timeout = 500;
+        scan_timeout = 500;
         format = ''
           ''${custom.pwd}$nix_shell$lua$git_branch$git_commit$git_state$git_status$custom(:$user)$time
           $character'';

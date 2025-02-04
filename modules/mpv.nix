@@ -48,7 +48,7 @@
 
       # performance and quality
       # hwdec = "auto";
-      # cache = "yes";
+      cache = "yes";
       # demuxer-max-back-bytes = 10000000000;
       # demuxer-max-bytes = 10000000000;
       # interpolation = true;
@@ -66,71 +66,71 @@
     }; # end of config
 
     scriptOpts = {
-      uosc = {
-        # Display style of current position. available: line, bar
-        timeline_style = "bar";
-        timeline_line_width = 4;
-        # Top border of background color to help visually separate timeline from video
-        timeline_border = 3;
-        # Timeline size when fully expanded, in pixels, 0 to disable
-        timeline_size = 16;
-        timeline_persistency = "paused,audio";
-        # Render cache indicators for streaming content
-        timeline_cache = true;
-        progress = "never";
-        # progress_size = 4;
-        # progress_line_width = 4;
-        controls =
-          "menu,gap,subtitles,<has_many_audio>audio,<has_many_video>video,<has_many_edition>editions,<stream>stream-quality,gap,space,shuffle,loop-playlist,loop-file,gap,prev,items,next,gap";
-        controls_size = 24;
-        controls_margin = 8;
-        controls_spacing = 2;
-        # Where to display volume controls: none, left, right
-        volume = "right";
-        volume_size = 24;
-        volume_border = 1;
-        volume_step = 1;
-        # Controls all menus, such as context menu, subtitle loader/selector, etc
-        menu_item_height = 24;
-        menu_min_width = 260;
-        menu_padding = 4;
-        # Can be: never, no-border, always
-        top_bar = "no-border";
-        top_bar_size = 24;
-        # close button and etc
-        top_bar_controls = "no";
-        # Flash top bar when any of these file types is loaded. Available: audio,video,image,chapter
-        top_bar_flash_on = "video,audio";
-        # Window border drawn in no-border mode
-        window_border_size = 0;
-        # auto run next files in directory
-        autoload = true;
-        shuffle = false;
-        # Scale the interface by this factor
-        scale = 2;
-        # Scale in fullscreen
-        scale_fullscreen = 2;
-        # Adjust the text scaling to fit your font
-        font_scale = 3;
-        # Border of text and icons when drawn directly on top of video
-        text_border = 1.2;
-        # Border radius of buttons, menus, and all other rectangles
-        border_radius = 0;
-        # Duration of animations in milliseconds
-        animation_duration = 100;
-        # Adjusted osd margins based on the visibility of UI elements
-        adjust_osd_margins = true;
-        refine = "text_width";
-        color = [
-          "foreground = ${base05}"
-          "foreground_text = ${base00}"
-          "background = ${base0E}"
-          "background_text = ${base05}"
-          "curtain = ${base01}"
-          "success = ${base0B}"
-          "error = ${base08}"
-        ];
-      };
+      # uosc = {
+      #   # Display style of current position. available: line, bar
+      #   timeline_style = "bar";
+      #   timeline_line_width = 4;
+      #   # Top border of background color to help visually separate timeline from video
+      #   timeline_border = 3;
+      #   # Timeline size when fully expanded, in pixels, 0 to disable
+      #   timeline_size = 16;
+      #   timeline_persistency = "paused,audio";
+      #   # Render cache indicators for streaming content
+      #   timeline_cache = true;
+      #   progress = "never";
+      #   # progress_size = 4;
+      #   # progress_line_width = 4;
+      #   controls =
+      #     "menu,gap,subtitles,<has_many_audio>audio,<has_many_video>video,<has_many_edition>editions,<stream>stream-quality,gap,space,shuffle,loop-playlist,loop-file,gap,prev,items,next,gap";
+      #   controls_size = 24;
+      #   controls_margin = 8;
+      #   controls_spacing = 2;
+      #   # Where to display volume controls: none, left, right
+      #   volume = "right";
+      #   volume_size = 24;
+      #   volume_border = 1;
+      #   volume_step = 1;
+      #   # Controls all menus, such as context menu, subtitle loader/selector, etc
+      #   menu_item_height = 24;
+      #   menu_min_width = 260;
+      #   menu_padding = 4;
+      #   # Can be: never, no-border, always
+      #   top_bar = "no-border";
+      #   top_bar_size = 24;
+      #   # close button and etc
+      #   top_bar_controls = "no";
+      #   # Flash top bar when any of these file types is loaded. Available: audio,video,image,chapter
+      #   top_bar_flash_on = "video,audio";
+      #   # Window border drawn in no-border mode
+      #   window_border_size = 0;
+      #   # auto run next files in directory
+      #   autoload = true;
+      #   shuffle = false;
+      #   # Scale the interface by this factor
+      #   scale = 2;
+      #   # Scale in fullscreen
+      #   scale_fullscreen = 2;
+      #   # Adjust the text scaling to fit your font
+      #   font_scale = 3;
+      #   # Border of text and icons when drawn directly on top of video
+      #   text_border = 1.2;
+      #   # Border radius of buttons, menus, and all other rectangles
+      #   border_radius = 0;
+      #   # Duration of animations in milliseconds
+      #   animation_duration = 100;
+      #   # Adjusted osd margins based on the visibility of UI elements
+      #   adjust_osd_margins = true;
+      #   refine = "text_width";
+      #   color = [
+      #     "foreground = ${base05}"
+      #     "foreground_text = ${base00}"
+      #     "background = ${base0E}"
+      #     "background_text = ${base05}"
+      #     "curtain = ${base01}"
+      #     "success = ${base0B}"
+      #     "error = ${base08}"
+      #   ];
+      # };
       thumbfast = {
         spawn_first = true;
         network = true;

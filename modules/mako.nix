@@ -4,7 +4,7 @@
     enable = true;
     layer = "overlay";
     anchor = "bottom-right";
-    width = 350;
+    width = 200;
     icons = false;
     margin = "0,0,0,0";
     padding = "10,10,10,10";

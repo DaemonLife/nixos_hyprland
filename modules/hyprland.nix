@@ -171,6 +171,30 @@ with config.lib.stylix.colors; {
       # "$mod ALT, mouse:272, resizewindow"
     ];
 
+    # for long pressed
+    binde = [
+      # window resize
+      "SHIFT Control_L, l, resizeactive, 10 0"
+      "SHIFT Control_L, h, resizeactive, -10 0"
+      "SHIFT Control_L, k, resizeactive, 0 -10"
+      "SHIFT Control_L, j, resizeactive, 0 10"
+
+      # Brightness
+      ", XF86MonBrightnessUp, exec, brightnessctl set 5%+"
+      ", XF86MonBrightnessDown, exec, brightnessctl set 5%-"
+      "Control_L, h, exec, brightnessctl set 5%-"
+      "Control_L, l, exec, brightnessctl set 5%+"
+
+      # Audio control
+      ", XF86AudioRaiseVolume, exec, amixer sset 'Master' 5%+"
+      ", XF86AudioLowerVolume, exec, amixer sset 'Master' 5%-"
+      "Control_L, j, exec, amixer sset 'Master' 5%+"
+      "Control_L, k, exec, amixer sset 'Master' 5%-"
+      ", XF86AudioMute, exec, amixer set Master toggle"
+      ", XF86AudioMicMute, exec, amixer sset Capture toggle"
+    ];
+
+    # for one press
     bind = [
       # Run programs
       "$mod, RETURN, exec, $terminal"
@@ -232,22 +256,6 @@ with config.lib.stylix.colors; {
       ''
         ,PRINT, exec, grim ~/Pictures/ps_$(date +"%Y%m%d%H%M%S").png - | wl-copy''
       ''SUPER_SHIFT, S, exec, grim -g "$(slurp)" - | wl-copy''
-
-      # Brightness
-      ", XF86MonBrightnessUp, exec, brightnessctl set 10%+"
-      ", XF86MonBrightnessDown, exec, brightnessctl set 10%-"
-      "ALT_L, h, exec, brightnessctl set 10%-"
-      "ALT_L, l, exec, brightnessctl set 10%+"
-      "$mod, XF86MonBrightnessUp, exec, brightnessctl set 2%+"
-      "$mod, XF86MonBrightnessDown, exec, brightnessctl set 2%-"
-
-      # Audio control
-      ", XF86AudioRaiseVolume, exec, amixer sset 'Master' 5%+"
-      ", XF86AudioLowerVolume, exec, amixer sset 'Master' 5%-"
-      "ALT_L, k, exec, amixer sset 'Master' 5%+"
-      "ALT_L, j, exec, amixer sset 'Master' 5%-"
-      ", XF86AudioMute, exec, amixer set Master toggle"
-      ", XF86AudioMicMute, exec, amixer sset Capture toggle"
 
       # Run scripts
       "WIN, F1, exec, ~/nix/scripts/save_mode.sh"

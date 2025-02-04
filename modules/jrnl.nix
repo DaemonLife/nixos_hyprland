@@ -8,7 +8,7 @@
       title: cyan
     default_hour: 9
     default_minute: 0
-    editor: nvim
+    editor: hx
     encrypt: false
     highlight: true
     indent_character: '|'
