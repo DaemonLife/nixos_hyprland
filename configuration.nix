@@ -7,7 +7,6 @@
   stylix = {
     enable = true;
     base16Scheme = "${pkgs.base16-schemes}/share/themes/mountain.yaml";
-    # image = config.lib.stylix.pixel "base00";
     image = ./images/image.jpg;
 
     # override = {
@@ -143,8 +142,7 @@
   };
 
   # Set your time zone and andd compatible with Windows
-  # time.timeZone = "Europe/Moscow";
-  time.timeZone = "Asia/Colombo";
+  time.timeZone = "Europe/Moscow";
   time.hardwareClockInLocalTime = true;
 
   # Select internationalisation properties.
@@ -169,11 +167,10 @@
   services.xserver = {
     enable = true;
     displayManager.startx.enable = false;
-    # windowManager.fvwm2.gestures = true;
 
     # Enable the GNOME Desktop Environment.
     displayManager.gdm.enable = false;
-    desktopManager.gnome.enable = true;
+    desktopManager.gnome.enable = false;
 
     # Configure keymap in X11
     xkb.layout = "us,ru";
@@ -214,7 +211,6 @@
   # --------------------------------
 
   environment.systemPackages = with pkgs; [
-    imagemagick
     hyprcursor
     gparted
     htop
@@ -242,6 +238,10 @@
     xray
     proxychains # run any program with xray proxy
     # nekoray # GUI client
+
+    # for thunar
+    nufraw-thumbnailer
+
   ];
 
   # --------------------------------
@@ -260,6 +260,11 @@
   # --------------------------------
 
   services = {
+
+    # Thunar
+    gvfs.enable = true; # Mount, trash, and other functionalities
+    tumbler.enable = true; # Thumbnail support for images
+
     displayManager.ly.enable = true;
 
     # Flatpak
@@ -364,6 +369,11 @@
         };
       };
     };
+
+    thunar.enable = true;
+    # thunar settings
+    xfconf.enable = true;
+    thunar.plugins = with pkgs.xfce; [ thunar-archive-plugin thunar-volman ];
 
     # run bin files
     nix-ld = {

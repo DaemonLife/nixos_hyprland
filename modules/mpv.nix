@@ -47,10 +47,10 @@
       ytdl-format = "bestvideo[height<=?1080]+bestaudio/best";
 
       # performance and quality
-      # hwdec = "auto";
+      hwdec = "auto";
       cache = "yes";
-      # demuxer-max-back-bytes = 10000000000;
-      # demuxer-max-bytes = 10000000000;
+      demuxer-max-back-bytes = "200000KiB";
+      demuxer-max-bytes = "200000KiB";
       # interpolation = true;
       # video-sync = "display-resample";
 

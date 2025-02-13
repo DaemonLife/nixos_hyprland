@@ -30,6 +30,7 @@
       base0F = "c38cd2"; # bright cyan # no. fixed dumb everforest color
     };
     targets.waybar.enable = false;
+    targets.yazi.enable = false;
 
     cursor.package = pkgs.bibata-cursors;
     cursor.name = "Bibata-Modern-Ice";
@@ -83,8 +84,7 @@
 
       # DE and system
       libnotify # for mako notifications
-      grim # screenshot tool
-      slurp # screenshot tool
+      grimblast
       brightnessctl # screen light
       gnome-power-manager # power statistic
       hypridle # timer for screen lock
@@ -96,6 +96,8 @@
       python3
       nodejs
       pipx
+      xfce.thunar
+      nautilus
 
       # Disk
       dua # disk usage TUI tool. Run: dua i
@@ -104,17 +106,18 @@
       overskride # bluetooth gui
       bluetui # bluetooth tui
       telegram-desktop
+      bitwarden-cli
 
       # Media
       imv # cli image viewer
-      paprefs # virtual audio output
-      gthumb # image viewer
+      imagemagick
       ffmpegthumbnailer
       halftone # image pixel redactor
       ffmpeg-full
       helvum # A GTK patchbay for pipewire
       pavucontrol # audio gui control
       alsa-utils # audio volume control (?)
+      pulsemixer # cli pulse adudio control
       digikam
       qimgv # img viewer
 
@@ -123,7 +126,6 @@
       qogir-icon-theme # for cursor
       gnome-tweaks
       swaybg # background
-      flavours # create base16 colors from image
       unstable.gowall # Tool to convert a Wallpaper's color scheme. Still wait version 2...
       dconf
       dconf-editor
@@ -152,6 +154,7 @@
 
       # Media
       cmus # player
+      musikcube # second music player
       unstable.darktable
       unstable.gimp
 
@@ -167,7 +170,8 @@
       stellarium # astro map ASCII
       unstable.astroterm # astro map
       epy # cli book reader
-      bitwarden-cli
+      tldr # community documentation
+      russ # rss tui reader
 
       # Gaming
       portablemc # minecraft cli launcher

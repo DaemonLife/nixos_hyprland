@@ -12,10 +12,8 @@
         line-number = "relative";
         # Highlight all lines with a cursor
         cursorline = true;
-        # Force the theme to show colors
-        true-color = true;
         lsp.display-messages = true;
-        gutters = [ "diagnostics" "spacer" "line-numbers" "spacer" "diff" ];
+        gutters = [ "line-numbers" "diagnostics" "diff" ];
         color-modes = true;
 
         cursor-shape = {

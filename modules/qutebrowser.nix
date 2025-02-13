@@ -165,6 +165,7 @@
         #   "right" = 2;
         #   "top" = 0;
         # };
+        show = "multiple";
         title.format = "{audio}{current_title}";
         title.format_pinned = "{index}";
         close_mouse_button = "right";
@@ -473,29 +474,29 @@
 
       # Default foreground color of the URL in the statusbar.
       # Type: QssColor
-      c.colors.statusbar.url.fg = '#${base0B}'
+      c.colors.statusbar.url.fg = '#${base03}'
 
       # Foreground color of the URL in the statusbar on error.
       # Type: QssColor
-      c.colors.statusbar.url.error.fg = '#${base0F}'
+      c.colors.statusbar.url.error.fg = '#${base0E}'
 
       # Foreground color of the URL in the statusbar for hovered links.
       # Type: QssColor
-      c.colors.statusbar.url.hover.fg = '#${base0D}'
+      c.colors.statusbar.url.hover.fg = '#${base0F}'
 
       # Foreground color of the URL in the statusbar on successful load
       # (http).
       # Type: QssColor
-      c.colors.statusbar.url.success.http.fg = '#${base03}'
+      c.colors.statusbar.url.success.http.fg = '#${base0C}'
 
       # Foreground color of the URL in the statusbar on successful load
       # (https).
       # Type: QssColor
-      c.colors.statusbar.url.success.https.fg = '#${base03}'
+      c.colors.statusbar.url.success.https.fg = '#${base0B}'
 
       # Foreground color of the URL in the statusbar when there's a warning.
       # Type: QssColor
-      c.colors.statusbar.url.warn.fg = '#${base0E}'
+      c.colors.statusbar.url.warn.fg = '#${base0C}'
 
       # Background color of the tab bar.
       # Type: QssColor
