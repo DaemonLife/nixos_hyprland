@@ -274,15 +274,15 @@
             color: @dark;
             background-color: @accent;
         }
-        /* 
-        window#waybar.empty {
-          background-color: transparent;
-        }
-        */
+        
         window#waybar {
           background-color: @dark;
         }
 
+        window#waybar.empty {
+          background-color: transparent;
+        }
+        
         /* calendar look */
         tooltip {
           background-color: @dark;

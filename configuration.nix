@@ -362,7 +362,7 @@
         character = {
           success_symbol = "[\\[I\\]>](green)";
           error_symbol = "[\\[I\\]>](red)";
-          vimcmd_symbol = "[\\[N\\]>](white)";
+          vimcmd_symbol = "[\\[N\\]>](bold cyan)";
           vimcmd_replace_one_symbol = "[\\[r\\]>](purple)";
           vimcmd_replace_symbol = "[\\[R\\]>](purple)";
           vimcmd_visual_symbol = "[\\[V\\]>](yellow)";
