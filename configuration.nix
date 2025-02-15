@@ -124,6 +124,22 @@
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
+  services.printing.drivers = with pkgs; [
+    gutenprint # Drivers for many different printers from many different vendors.
+    gutenprintBin # Additional, binary-only drivers for some printers.
+    hplip # Drivers for HP printers.
+    postscript-lexmark # Postscript drivers for Lexmark
+    splix # Drivers for printers supporting SPL (Samsung Printer Language).
+    brlaser # Drivers for some Brother printers
+    brgenml1lpr # Generic drivers for more Brother printers
+    fxlinuxprint # Fuji Xerox Linux Printer Driver
+
+    # samsung-unified-linux-driver # Proprietary Samsung Drivers
+    # cnijfilter2 # Drivers for some Canon Pixma devices (Proprietary driver)
+    foomatic-db-nonfree # OpenPrinting printer support database (unfree content)
+    foomatic-db-ppds-withNonfreeDb
+
+  ];
 
   # Enable scanner
   hardware.sane.enable = true; # enables support for scanners
@@ -231,6 +247,7 @@
     impala
     iwd
     helix
+    cups # print
 
     grc # colors for fish
     fzf # cli search. Run: Ctrl+R
