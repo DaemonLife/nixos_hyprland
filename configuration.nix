@@ -1,4 +1,3 @@
-# NixOS manual accessible by running ‘nixos-help’.
 { config, pkgs, lib, inputs, ... }: {
 
   # --------------------------------
@@ -8,8 +7,7 @@
   stylix = {
     enable = true;
     base16Scheme = "${pkgs.base16-schemes}/share/themes/mountain.yaml";
-    # image = config.lib.stylix.pixel "base00";
-    image = ./image.jpg;
+    image = ./images/image.jpg;
 
     # override = {
     #   author = "DaemonLife";
@@ -185,11 +183,10 @@
   services.xserver = {
     enable = true;
     displayManager.startx.enable = false;
-    # windowManager.fvwm2.gestures = true;
 
     # Enable the GNOME Desktop Environment.
     displayManager.gdm.enable = false;
-    desktopManager.gnome.enable = true;
+    desktopManager.gnome.enable = false;
 
     # Configure keymap in X11
     xkb.layout = "us,ru";
@@ -230,7 +227,6 @@
   # --------------------------------
 
   environment.systemPackages = with pkgs; [
-    imagemagick
     hyprcursor
     gparted
     htop
@@ -259,6 +255,10 @@
     xray
     proxychains # run any program with xray proxy
     # nekoray # GUI client
+
+    # for thunar
+    nufraw-thumbnailer
+
   ];
 
   # --------------------------------
@@ -277,6 +277,11 @@
   # --------------------------------
 
   services = {
+
+    # Thunar
+    gvfs.enable = true; # Mount, trash, and other functionalities
+    tumbler.enable = true; # Thumbnail support for images
+
     displayManager.ly.enable = true;
 
     # Flatpak
@@ -335,8 +340,8 @@
       enable = true;
       settings = {
         add_newline = true;
-        command_timeout = 300;
-        scan_timeout = 200;
+        command_timeout = 500;
+        scan_timeout = 500;
         format = ''
           ''${custom.pwd}$nix_shell$lua$git_branch$git_commit$git_state$git_status$custom(:$user)$time
           $character'';
@@ -374,13 +379,18 @@
         character = {
           success_symbol = "[\\[I\\]>](green)";
           error_symbol = "[\\[I\\]>](red)";
-          vimcmd_symbol = "[\\[N\\]>](white)";
+          vimcmd_symbol = "[\\[N\\]>](bold cyan)";
           vimcmd_replace_one_symbol = "[\\[r\\]>](purple)";
           vimcmd_replace_symbol = "[\\[R\\]>](purple)";
           vimcmd_visual_symbol = "[\\[V\\]>](yellow)";
         };
       };
     };
+
+    thunar.enable = true;
+    # thunar settings
+    xfconf.enable = true;
+    thunar.plugins = with pkgs.xfce; [ thunar-archive-plugin thunar-volman ];
 
     # run bin files
     nix-ld = {

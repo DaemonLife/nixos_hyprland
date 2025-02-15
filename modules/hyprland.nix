@@ -9,7 +9,7 @@ with config.lib.stylix.colors; {
   wayland.windowManager.hyprland.settings = {
     "$mod" = "SUPER";
     "$terminal" = "kitty";
-    "$filemanager" = "nautilus";
+    "$filemanager" = "nautilus -w";
     "$menu" = "fuzzel -l 8 --show-actions --counter";
     "$browser" = "qutebrowser";
 
@@ -36,7 +36,7 @@ with config.lib.stylix.colors; {
 
     exec = [
       # wallpaper
-      "swaybg -i /home/user/nix/image.jpg"
+      "swaybg -i $HOME/nix/images/img_forest.jpg"
 
       # maze generator
       # "bash $HOME/nix/scripts/maze/run.sh ${base00} ${base02}"
@@ -53,7 +53,7 @@ with config.lib.stylix.colors; {
       "QT_WAYLAND_DISABLE_WINDOWDECORATION,1"
       "QT_QPA_PLATFORM,wayland"
       "QT_STYLE_OVERRIDE,Breeze-Dark"
-      # "MOZ_ENABLE_WAYLAND,1"
+      "MOZ_ENABLE_WAYLAND,1"
       "XCURSOR_SIZE,24"
       "XCURSOR_THEME,Bibata-Modern-Ice"
       "HYPRCURSOR_THEME,Bibata-Modern-Ice"
@@ -82,6 +82,15 @@ with config.lib.stylix.colors; {
 
     };
 
+    cursor = {
+      # default_monitor = "";
+    };
+
+    # ecosystem = {
+    #   no_update_news = true;
+    #   no_donation_nag = true;
+    # };
+
     general = {
       border_size = 4;
       extend_border_grab_area = 25;
@@ -97,10 +106,14 @@ with config.lib.stylix.colors; {
       vrr = true;
       disable_hyprland_logo = true;
       disable_splash_rendering = true;
-      mouse_move_enables_dpms = true;
       animate_manual_resizes = true;
+      # animate_mouse_windowdragging = true; # need test this
       mouse_move_focuses_monitor = true;
       initial_workspace_tracking = 1;
+      disable_autoreload = true; # for save battery
+
+      mouse_move_enables_dpms = true;
+      key_press_enables_dpms = true;
     };
 
     # Scale options
@@ -141,7 +154,8 @@ with config.lib.stylix.colors; {
       smart_split = false;
     };
 
-    master = { };
+    # disable borders if one window 
+    windowrulev2 = [ "noborder, onworkspace:w[t1]" ];
 
     gestures = {
       workspace_swipe = true;
@@ -157,6 +171,30 @@ with config.lib.stylix.colors; {
       # "$mod ALT, mouse:272, resizewindow"
     ];
 
+    # for long pressed
+    binde = [
+      # window resize
+      "$mod SHIFT, l, resizeactive, 10 0"
+      "$mod SHIFT, h, resizeactive, -10 0"
+      "$mod SHIFT, k, resizeactive, 0 -10"
+      "$mod SHIFT, j, resizeactive, 0 10"
+
+      # Brightness
+      ", XF86MonBrightnessUp, exec, brightnessctl set 5%+"
+      ", XF86MonBrightnessDown, exec, brightnessctl set 5%-"
+      "Control_L, h, exec, brightnessctl set 5%-"
+      "Control_L, l, exec, brightnessctl set 5%+"
+
+      # Audio control
+      ", XF86AudioRaiseVolume, exec, amixer sset 'Master' 5%+"
+      ", XF86AudioLowerVolume, exec, amixer sset 'Master' 5%-"
+      "Control_L, j, exec, amixer sset 'Master' 5%+"
+      "Control_L, k, exec, amixer sset 'Master' 5%-"
+      ", XF86AudioMute, exec, amixer set Master toggle"
+      ", XF86AudioMicMute, exec, amixer sset Capture toggle"
+    ];
+
+    # for one press
     bind = [
       # Run programs
       "$mod, RETURN, exec, $terminal"
@@ -164,6 +202,7 @@ with config.lib.stylix.colors; {
       "$mod, D, exec, $menu"
       "$mod, D, exec, hyprctl keyword input:kb_layout us,ru"
       "$mod, N, exec, $filemanager"
+      "$mod, y, exec, kitty -e yazi"
       "$mod, B, exec, $browser"
       "$mod SHIFT, B, exec, proxychains4 $browser --set window.title_format [VPN]\\ {perc}{current_title}{title_sep}qutebrowser"
       "$mod, T, exec, telegram-desktop"
@@ -191,14 +230,14 @@ with config.lib.stylix.colors; {
       "$mod, j, movefocus, d"
 
       # Move window
-      "$mod SHIFT, left, movewindow, l"
-      "$mod SHIFT, right, movewindow, r"
-      "$mod SHIFT, up, movewindow, u"
-      "$mod SHIFT, down, movewindow, d"
-      "$mod SHIFT, h, movewindow, l"
-      "$mod SHIFT, l, movewindow, r"
-      "$mod SHIFT, k, movewindow, u"
-      "$mod SHIFT, j, movewindow, d"
+      "$mod Control_L, left, movewindow, l"
+      "$mod Control_L, right, movewindow, r"
+      "$mod Control_L, up, movewindow, u"
+      "$mod Control_L, down, movewindow, d"
+      "$mod Control_L, h, movewindow, l"
+      "$mod Control_L, l, movewindow, r"
+      "$mod Control_L, k, movewindow, u"
+      "$mod Control_L, j, movewindow, d"
 
       # Workspace
       "SHIFT Alt_L, RIGHT, workspace, +1"
@@ -215,21 +254,8 @@ with config.lib.stylix.colors; {
       ", F10, exec, hyprctl keyword input:kb_layout us,ru"
 
       # Screenshot
-      ''
-        ,PRINT, exec, grim ~/Pictures/ps_$(date +"%Y%m%d%H%M%S").png - | wl-copy''
-      ''SUPER_SHIFT, S, exec, grim -g "$(slurp)" - | wl-copy''
-
-      # Brightness
-      ", XF86MonBrightnessUp, exec, brightnessctl set 10%+"
-      ", XF86MonBrightnessDown, exec, brightnessctl set 10%-"
-      "$mod, XF86MonBrightnessUp, exec, brightnessctl set 2%+"
-      "$mod, XF86MonBrightnessDown, exec, brightnessctl set 2%-"
-
-      # Audio control
-      ", XF86AudioRaiseVolume, exec, amixer sset 'Master' 5%+"
-      ", XF86AudioLowerVolume, exec, amixer sset 'Master' 5%-"
-      ", XF86AudioMute, exec, amixer set Master toggle"
-      ", XF86AudioMicMute, exec, amixer sset Capture toggle"
+      "SUPER_SHIFT, s, exec, grimblast copysave area"
+      " , PRINT, exec, grimblast copysave output"
 
       # Run scripts
       "WIN, F1, exec, ~/nix/scripts/save_mode.sh"
@@ -240,7 +266,7 @@ with config.lib.stylix.colors; {
         let ws = let c = (x + 1) / 10; in builtins.toString (x + 1 - (c * 10));
         in [
           "$mod, ${ws}, workspace, ${toString (x + 1)}"
-          "$mod SHIFT, ${ws}, movetoworkspacesilent, ${toString (x + 1)}"
+          "$mod Control_L, ${ws}, movetoworkspacesilent, ${toString (x + 1)}"
         ]) 10));
 
   };

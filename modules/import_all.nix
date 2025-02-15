@@ -14,19 +14,20 @@
     ./git.nix
     ./cmus.nix
     ./jrnl.nix
-    ./nixvim.nix
     ./lf.nix
     ./fish.nix
-    ./fzf.nix
     ./rtorrent.nix
     ./qutebrowser.nix
     ./gowall.nix
     ./qt.nix
     ./kitty.nix
-    # ./gtk.nix
-    # ./zsh.nix
+    ./gtk.nix
     ./helix.nix
-    # ./ranger.nix
+    ./fzf.nix
+    ./yazi.nix
+    # ./nixvim.nix
+    # ./zsh.nix
+    ./ranger.nix
   ];
 
 }

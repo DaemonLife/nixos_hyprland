@@ -90,7 +90,7 @@ in {
   gtk = with config.colorScheme.colors; {
     enable = true;
     # cursorTheme.name = "Qogir-dark";
-    # iconTheme.name = "Vimix";
+    iconTheme.name = "Vimix";
     # gtk4.extraConfig = { gtk-application-prefer-dark-theme = 1; };
     # gtk3.extraConfig = {
     # gtk-theme-name = "Adwaita-dark";

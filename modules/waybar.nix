@@ -222,9 +222,9 @@
           };
           max-volume = 100;
           tooltip-format = "{desc}, {volume}%";
-          on-click = "pavucontrol";
+          on-click = "kitty --hold sh -c 'pulsemixer'"; # or pavucontrol
           on-click-right = "pactl set-source-mute @DEFAULT_SOURCE@ toggle";
-          on-click-middle = "pavucontrol";
+          on-click-middle = "helvum";
           scroll-step = 3;
         };
 
@@ -238,8 +238,8 @@
       	@define-color white #${base05};
       	@define-color accent #${base0D};
       	@define-color green #${base0B};
-      	@define-color red #${base08};
-      	@define-color magenta #${base0E};
+      	@define-color red #${base0E};
+      	@define-color magenta #${base0F};
       	@define-color yellow #${base0A};
       	
       	/* Default setting for all modules */
@@ -274,15 +274,15 @@
             color: @dark;
             background-color: @accent;
         }
-        /* 
-        window#waybar.empty {
-          background-color: transparent;
-        }
-        */
+        
         window#waybar {
           background-color: @dark;
         }
 
+        window#waybar.empty {
+          background-color: transparent;
+        }
+        
         /* calendar look */
         tooltip {
           background-color: @dark;
@@ -303,9 +303,9 @@
 
       	#pulseaudio.muted { color: @gray; }
 
-      	#battery.plugged { color: #${base0D}; }
+      	#battery.plugged { color: @accent; }
       	#battery.charging{
-          color: #${base0D};
+          color: @accent;
           animation-name: blink;
           animation-duration: 1.5s;
           animation-timing-function: linear;
@@ -314,7 +314,7 @@
       	} 
       	#battery.warning:not(.charging) { color: @yellow; }
       	#battery.critical:not(.charging) { color: @red; }
-      	@keyframes blink { to { color: @yellow; } }
+      	@keyframes blink { to { color: @gray; } }
       	'';
   };
 }
