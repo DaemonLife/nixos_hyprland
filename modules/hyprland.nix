@@ -154,9 +154,6 @@ with config.lib.stylix.colors; {
       smart_split = false;
     };
 
-    # disable borders if one window 
-    windowrulev2 = [ "noborder, onworkspace:w[t1]" ];
-
     gestures = {
       workspace_swipe = true;
       workspace_swipe_distance = 200;

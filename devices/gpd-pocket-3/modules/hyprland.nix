@@ -2,10 +2,8 @@
 with config.lib.stylix.colors; {
 
   # touchscreen plugin
-  wayland.windowManager.hyprland.plugins = [
-    pkgs.hyprlandPlugins.hyprgrass
-  ];
-  
+  wayland.windowManager.hyprland.plugins = [ pkgs.hyprlandPlugins.hyprgrass ];
+
   # hyprland settings
   wayland.windowManager.hyprland.settings = {
 
@@ -14,18 +12,16 @@ with config.lib.stylix.colors; {
       gaps_out = lib.mkForce "0, 0, 0, 0";
     };
 
-    input = {
+    # disable borders if one window 
+    windowrulev2 = [ "noborder, onworkspace:w[t1]" ];
 
+    input = {
       sensitivity = lib.mkForce "-0.2"; # -1.0 - 1.0
       scroll_factor = lib.mkForce "0.5";
+      touchpad = { scroll_factor = lib.mkForce "0.000000005"; };
 
       # correct touch map for gpd screen
       touchdevice.transform = lib.mkForce 3;
-
-      touchpad = {
-        scroll_factor = lib.mkForce "0.000000005";
-      };
-
     };
 
     plugin = {
@@ -37,5 +33,5 @@ with config.lib.stylix.colors; {
     };
 
   };
-  
+
 }
