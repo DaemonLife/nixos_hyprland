@@ -98,6 +98,7 @@
       pipx
       xfce.thunar
       nautilus
+      exiftool
 
       # Disk
       dua # disk usage TUI tool. Run: dua i
