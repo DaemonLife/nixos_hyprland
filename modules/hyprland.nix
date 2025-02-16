@@ -27,6 +27,7 @@ with config.lib.stylix.colors; {
     ];
 
     exec-once = [
+      "dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"
       "rfkill block bluetooth" # disable bluetooth autostart
       "waybar"
       "mako"
@@ -45,14 +46,15 @@ with config.lib.stylix.colors; {
 
     env = [
       "GDK_BACKEND,wayland,x11,*"
-      "SDL_VIDEODRIVER,wayland;"
+      # "SDL_VIDEODRIVER,wayland;" # error with dwarf fortress? only x11
       "CLUTTER_BACKEND,wayland"
       "XDG_CURRENT_DESKTOP,Hyprland"
       "XDG_SESSION_TYPE,wayland"
       "XDG_SESSION_DESKTOP,Hyprland"
       "QT_WAYLAND_DISABLE_WINDOWDECORATION,1"
-      "QT_QPA_PLATFORM,wayland"
-      "QT_STYLE_OVERRIDE,Breeze-Dark"
+      "QT_QPA_PLATFORM,wayland;xcb"
+      "QT_AUTO_SCREEN_SCALE_FACTOR,1"
+      # "QT_QPA_PLATFORMTHEME,qt6ct"
       "MOZ_ENABLE_WAYLAND,1"
       "XCURSOR_SIZE,24"
       "XCURSOR_THEME,Bibata-Modern-Ice"
@@ -60,6 +62,7 @@ with config.lib.stylix.colors; {
       "HYPRCURSOR_SIZE,24"
       "GDK_DPI_SCALE,1"
       "GDK_SCALE,1"
+      "NIXOS_OZONE_WL=1"
     ];
 
     input = {
@@ -100,6 +103,15 @@ with config.lib.stylix.colors; {
       # Please see https://wiki.hyprland.org/Configuring/Tearing/ before you turn this on
       allow_tearing = false;
     };
+
+    # disable borders if one window 
+    workspace = [ "w[tv1], gapsout:0, gapsin:0" "f[1], gapsout:0, gapsin:0" ];
+    windowrulev2 = [
+      "bordersize 0, floating:0, onworkspace:w[tv1]"
+      "rounding 0, floating:0, onworkspace:w[tv1]"
+      "bordersize 0, floating:0, onworkspace:f[1]"
+      "rounding 0, floating:0, onworkspace:f[1]"
+    ];
 
     misc = {
       vfr = true; # always true!
@@ -199,7 +211,8 @@ with config.lib.stylix.colors; {
       "$mod, D, exec, $menu"
       "$mod, D, exec, hyprctl keyword input:kb_layout us,ru"
       "$mod, N, exec, $filemanager"
-      "$mod, y, exec, kitty -e yazi"
+      # "$mod, y, exec, kitty -e yazi"
+      "$mod, y, exec, kitty --hold sh -c 'yy'"
       "$mod, B, exec, $browser"
       "$mod SHIFT, B, exec, proxychains4 $browser --set window.title_format [VPN]\\ {perc}{current_title}{title_sep}qutebrowser"
       "$mod, T, exec, telegram-desktop"

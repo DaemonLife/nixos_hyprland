@@ -30,7 +30,7 @@
       visual_bell_duration = "0.1";
       hide_window_decorations = "yes";
       # window_title = "Kitty";
-      open_url_with = "firefox";
+      # open_url_with = "firefox";
       window_border_width = "0pt";
       # draw_minimal_borders = "yes";
       window_margin_width = "0 0 0 0";
@@ -38,6 +38,7 @@
       # inactive_text_alpha = "0.5";
       tab_bar_style = "hidden";
       confirm_os_window_close = "0";
+      cursor_trail = 2;
       # placement_strategy = "top-left";
 
       # Colors

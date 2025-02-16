@@ -12,9 +12,6 @@ with config.lib.stylix.colors; {
       gaps_out = lib.mkForce "0, 0, 0, 0";
     };
 
-    # disable borders if one window 
-    windowrulev2 = [ "noborder, onworkspace:w[t1]" ];
-
     input = {
       sensitivity = lib.mkForce "-0.2"; # -1.0 - 1.0
       scroll_factor = lib.mkForce "0.5";

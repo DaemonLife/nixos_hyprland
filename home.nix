@@ -177,7 +177,8 @@
       portablemc # minecraft cli launcher
       curseofwar # stategy cli game
       vitetris # tetris cli game
-      dwarf-fortress
+      # dwarf-fortress
+      dwarf-fortress-packages.dwarf-fortress-full
 
     ];
     sessionPath = [ "$HOME/.local/bin" ];
