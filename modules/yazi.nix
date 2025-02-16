@@ -4,6 +4,82 @@
     enable = true;
     enableFishIntegration = true;
 
+    settings = {
+
+      manager = {
+        sort_dir_first = true;
+        linemode = "btime";
+        title_format = "{cwd}";
+      };
+
+      opener = {
+        "video" = [{
+          run = ''mpv "$@" >/dev/null 2>&1 &'';
+          desc = "Play video";
+          block = true;
+          orphan = true;
+        }];
+        "edit" = [{
+          run = ''$EDITOR "$@"'';
+          desc = "Edit";
+          block = true;
+        }];
+        "open" = [{
+          run = ''xdg-open "$@"'';
+          desc = "Open";
+        }];
+        "image" = [{
+          run = ''imv "$@"'';
+          desc = "Image open";
+          orphan = true;
+        }];
+        "firefox" = [{
+          run = ''firefox "$@"'';
+          desc = "Open in Firefox";
+          orphan = true;
+        }];
+        "qutebrowser" = [{
+          run = ''qutebrowser "$@"'';
+          desc = "Open in qutebrowser";
+          orphan = true;
+        }];
+        "torrent" = [{
+          run = ''qbittorrent "$@"'';
+          desc = "Open in qBittorrent";
+          orphan = true;
+        }];
+      };
+
+      # check file mime type: xdg-mime query filetype [FILE]
+      open.rules = [
+        {
+          mime = "image/*";
+          use = [ "image" ];
+        }
+        {
+          mime = "video/*";
+          use = [ "video" ];
+        }
+        {
+          mime = "application/x-bittorrent";
+          use = [ "torrent" ];
+        }
+        {
+          mime = "application/json";
+          use = [ "edit" ];
+        }
+        {
+          mime = "text/html";
+          use = [ "firefox" "qutebrowser" "edit" ];
+        }
+        {
+          mime = "*";
+          use = [ "edit" ];
+        }
+      ];
+
+    }; # settings end
+
     theme = {
       manager = {
         cwd = { fg = "cyan"; };
