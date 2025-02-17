@@ -106,7 +106,9 @@
       # Network
       overskride # bluetooth gui
       bluetui # bluetooth tui
-      telegram-desktop
+      # telegram-desktop # no bin...
+      materialgram
+      nchat
       bitwarden-cli
 
       # Media
