@@ -180,6 +180,12 @@ with config.lib.stylix.colors; {
       # "$mod ALT, mouse:272, resizewindow"
     ];
 
+    bindl = [
+      ",switch:on:Lid Switch, exec, hyprctl dispatch dpms off && swaylock"
+
+      ",switch:off:Lid Switch, exec, hyprctl dispatch dpms on"
+    ];
+
     # for long pressed
     binde = [
       # window resize
@@ -214,7 +220,7 @@ with config.lib.stylix.colors; {
       "$mod, y, exec, kitty --hold $HOME/nix/scripts/y.fish"
       "$mod, B, exec, $browser"
       "$mod SHIFT, B, exec, proxychains4 $browser --set window.title_format [VPN]\\ {perc}{current_title}{title_sep}qutebrowser"
-      "$mod, T, exec, telegram-desktop"
+      "$mod, T, exec, materialgram"
       # "$mod, O, exit"
 
       # Windows control
