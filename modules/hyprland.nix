@@ -9,8 +9,9 @@ with config.lib.stylix.colors; {
   wayland.windowManager.hyprland.settings = {
     "$mod" = "SUPER";
     "$terminal" = "kitty";
-    "$filemanager" = "nautilus -w";
-    "$menu" = "fuzzel -l 8 --show-actions --counter";
+    # "$filemanager" = "nautilus -w";
+    "$filemanager" = "thunar";
+    "$menu" = "fuzzel -l 8";
     "$browser" = "qutebrowser";
 
     monitor = [
