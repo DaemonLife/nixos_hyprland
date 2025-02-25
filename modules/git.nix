@@ -5,7 +5,9 @@
     userName = "DaemonLife";
 
     aliases = {
-      ac = ''!f() { git add . && git commit -m "$1" && git push; }; f'';
+      ac = ''
+        !f() { git add . && git commit -m "$*" && git push && echo '
+        Push complited!'; }; f'';
     };
   };
 
