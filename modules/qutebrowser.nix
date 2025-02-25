@@ -174,7 +174,7 @@
       colors = { webpage.preferred_color_scheme = "dark"; };
 
       qt = { highdpi = false; };
-      zoom.default = "110%";
+      zoom.default = "125%";
       zoom.text_only = true;
       zoom.levels = [
         "25%"

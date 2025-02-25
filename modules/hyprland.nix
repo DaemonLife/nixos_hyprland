@@ -63,6 +63,7 @@ with config.lib.stylix.colors; {
       "GDK_DPI_SCALE,1"
       "GDK_SCALE,1"
       "NIXOS_OZONE_WL=1"
+      "MOZ_USE_XINPUT2=1" # smooth scroll and better touch gestures
     ];
 
     input = {
