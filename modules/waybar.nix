@@ -314,7 +314,7 @@
       	} 
       	#battery.warning:not(.charging) { color: @yellow; }
       	#battery.critical:not(.charging) { color: @red; }
-      	@keyframes blink { to { color: @gray; } }
+      	@keyframes blink { to { color: @white; } }
       	'';
   };
 }
