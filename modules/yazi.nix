@@ -8,7 +8,7 @@
 
       manager = {
         sort_dir_first = true;
-        linemode = "btime";
+        # linemode = "size_and_mtime";
         title_format = "{cwd}";
       };
 
@@ -82,128 +82,130 @@
 
     theme = {
       manager = {
-        cwd = { fg = "cyan"; };
+        cwd = { fg = "#${base0C}"; };
 
         hovered = {
-          fg = "black";
-          bg = "green";
+          fg = "#${base00}";
+          bg = "#${base0B}";
           bold = true;
         };
         preview_hovered = { underline = true; };
 
         find_keyword = {
-          fg = "yellow";
+          fg = "#${base0C}";
           italic = true;
         };
         find_position = {
-          fg = "magenta";
+          fg = "#${base0F}";
           bg = "reset";
           italic = true;
         };
 
         marker_copied = {
-          fg = "green";
-          bg = "green";
+          fg = "#${base0B}";
+          bg = "#${base0B}";
         };
         marker_cut = {
-          fg = "lightred";
-          bg = "lightred";
+          fg = "#${base0C}";
+          bg = "#${base0C}";
         };
         marker_marked = {
-          fg = "lightyellow";
-          bg = "lightyellow";
+          fg = "#${base0A}";
+          bg = "#${base0A}";
         };
         marker_selected = {
-          fg = "blue";
-          bg = "blue";
+          fg = "#${base08}";
+          bg = "#${base08}";
         };
 
         tab_active = {
-          fg = "black";
-          bg = "white";
+          fg = "#${base00}";
+          bg = "#${base0B}";
         };
         tab_inactive = {
-          fg = "white";
-          bg = "red";
+          fg = "#${base03}";
+          bg = "#${base01}";
         };
         tab_width = 1;
 
         count_copied = {
-          fg = "black";
-          bg = "green";
+          fg = "#${base00}";
+          bg = "#${base0B}";
         };
         count_cut = {
-          fg = "black";
-          bg = "lightred";
+          fg = "#${base00}";
+          bg = "#${base0C}";
         };
         count_selected = {
-          fg = "black";
-          bg = "blue";
+          fg = "#${base00}";
+          bg = "#${base08}";
         };
 
         border_symbol = "│";
-        border_style = { fg = "gray"; };
+        border_style = { fg = "#${base02}"; };
 
         syntect_theme = "";
       };
 
       status = {
-        separator_open = "";
-        separator_close = "";
+        # separator_open = "";
+        # separator_close = "";
+        separator_open = "";
+        separator_close = "";
         separator_style = {
-          fg = "black";
-          bg = "black";
+          fg = "#${base04}";
+          bg = "#${base01}";
         };
 
         mode_normal = {
-          fg = "black";
-          bg = "white";
+          fg = "#${base04}";
+          bg = "#${base02}";
           bold = true;
         };
         mode_select = {
-          fg = "black";
-          bg = "green";
+          fg = "#${base00}";
+          bg = "#${base0B}";
           bold = true;
         };
         mode_unset = {
-          fg = "black";
-          bg = "magenta";
+          fg = "#${base00}";
+          bg = "#${base0F}";
           bold = true;
         };
 
         progress_label = { bold = true; };
         progress_normal = {
-          fg = "blue";
-          bg = "black";
+          fg = "#${base08}";
+          bg = "#${base00}";
         };
         progress_error = {
-          fg = "red";
-          bg = "black";
+          fg = "#${base0E}";
+          bg = "#${base00}";
         };
 
-        permissions_t = { fg = "green"; };
-        permissions_r = { fg = "lightyellow"; };
-        permissions_w = { fg = "lightred"; };
-        permissions_x = { fg = "lightcyan"; };
-        permissions_s = { fg = "darkgray"; };
+        permissions_t = { fg = "#${base0B}"; };
+        permissions_r = { fg = "#${base0A}"; };
+        permissions_w = { fg = "#${base0C}"; };
+        permissions_x = { fg = "#${base0B}"; };
+        permissions_s = { fg = "#${base02}"; };
       };
 
       select = {
-        border = { fg = "blue"; };
-        active = { fg = "magenta"; };
+        border = { fg = "#${base08}"; };
+        active = { fg = "#${base0F}"; };
         inactive = { };
       };
 
       input = {
-        border = { fg = "blue"; };
+        border = { fg = "#${base08}"; };
         title = { };
         value = { };
         selected = { reversed = true; };
       };
 
       completion = {
-        border = { fg = "blue"; };
-        active = { bg = "darkgray"; };
+        border = { fg = "#${base08}"; };
+        active = { bg = "#${base02}"; };
         inactive = { };
 
         icon_file = "";
@@ -212,32 +214,32 @@
       };
 
       tasks = {
-        border = { fg = "blue"; };
+        border = { fg = "#${base08}"; };
         title = { };
         hovered = { underline = true; };
       };
 
       which = {
         cols = 3;
-        mask = { bg = "black"; };
-        cand = { fg = "lightcyan"; };
-        rest = { fg = "darkgray"; };
-        desc = { fg = "magenta"; };
+        mask = { bg = "#${base00}"; };
+        cand = { fg = "#${base0E}"; };
+        rest = { fg = "#${base02}"; };
+        desc = { fg = "#${base0F}"; };
         separator = "  ";
-        separator_style = { fg = "darkgray"; };
+        separator_style = { fg = "#${base02}"; };
       };
 
       help = {
-        on = { fg = "magenta"; };
-        run = { fg = "cyan"; };
-        desc = { fg = "white"; };
+        on = { fg = "#${base0F}"; };
+        run = { fg = "#${base09}"; };
+        desc = { fg = "#${base07}"; };
         hovered = {
           reversed = true;
           bold = true;
         };
         footer = {
-          fg = "black";
-          bg = "white";
+          fg = "#${base03}";
+          bg = "#${base07}";
         };
       };
 
@@ -245,69 +247,73 @@
         rules = [
           {
             mime = "image/*";
-            fg = "cyan";
+            fg = "#${base0D}";
           }
           {
             mime = "video/*";
-            fg = "yellow";
+            fg = "#${base09}";
           }
           {
             mime = "audio/*";
-            fg = "yellow";
+            fg = "#${base0B}";
           }
           {
             mime = "application/zip";
-            fg = "magenta";
+            fg = "#${base0F}";
           }
           {
             mime = "application/gzip";
-            fg = "magenta";
+            fg = "#${base0F}";
           }
           {
             mime = "application/x-tar";
-            fg = "magenta";
+            fg = "#${base0F}";
           }
           {
             mime = "application/x-bzip";
-            fg = "magenta";
+            fg = "#${base0F}";
           }
           {
             mime = "application/x-bzip2";
-            fg = "magenta";
+            fg = "#${base0F}";
           }
           {
             mime = "application/x-7z-compressed";
-            fg = "magenta";
+            fg = "#${base0F}";
           }
           {
             mime = "application/x-rar";
-            fg = "magenta";
+            fg = "#${base0F}";
           }
           {
             mime = "application/xz";
-            fg = "magenta";
+            fg = "#${base0F}";
           }
           # Documents
           {
+            mime = "text/*";
+            fg = "#${base05}";
+          }
+          {
             mime = "application/doc";
-            fg = "green";
+            fg = "#${base08}";
           }
           {
             mime = "application/pdf";
-            fg = "green";
+            fg = "#${base0E}";
           }
           {
             mime = "application/rtf";
-            fg = "green";
+            fg = "#${base0B}";
           }
           {
             mime = "application/vnd.*";
-            fg = "green";
+            fg = "#${base0B}";
           }
           # Fallback
           {
             name = "*/";
-            fg = "blue";
+            fg = "#${base0C}";
             bold = true;
           }
         ];
