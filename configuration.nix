@@ -351,8 +351,7 @@
       theme = lib.mkForce null;
       fontSize = lib.mkForce 30;
       extraConfig = lib.mkForce ''
-        GRUB_GFXMODE=640x480
-        GRUB_CMDLINE_LINUX="video=efifb fbcon=rotate:1"
+        GRUB_GFXMODE=1920x1200x32
       '';
     };
     efi = { canTouchEfiVariables = true; };
