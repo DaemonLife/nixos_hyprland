@@ -25,9 +25,10 @@
     ./helix.nix
     ./fzf.nix
     ./yazi.nix
+    ./stylix.nix
     # ./nixvim.nix
     # ./zsh.nix
-    ./ranger.nix
+    # ./ranger.nix
   ];
 
 }

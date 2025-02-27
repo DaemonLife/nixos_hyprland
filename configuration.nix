@@ -4,71 +4,7 @@
   # SYSTEM THEME 
   # --------------------------------
 
-  stylix = {
-    enable = true;
-    base16Scheme = "${pkgs.base16-schemes}/share/themes/mountain.yaml";
-    image = ./images/image.jpg;
-
-    # override = {
-    #   author = "DaemonLife";
-    # one tone gradient
-    # base00 = "1F1F28"; # BACKGROUND (BLACK)
-    # base01 = "1F1F28"; # bright green
-    # base02 = "252535"; # bright yellow
-    # base03 = "34344b"; # bright black
-    # base04 = "DCD7BA"; # bright blue
-    # base05 = "DCD7BA"; # FOREGROUND (WHITE)
-    # base06 = "DCD7BA"; # bright magenta
-    # base07 = "C8C093"; # bright white
-
-    # colors
-    # base08 = "C34043"; # RED
-    # base09 = "E82424"; # bright red
-    # base0A = "E6C384"; # YELLOW
-    # base0B = "76946A"; # GREEN
-    # base0C = "7393bc"; # CYAN
-    # base0D = "7E9CD8"; # BLUE
-    # base0E = "957FB8"; # MAGENTA
-    # base0F = "7393bc"; # bright cyan
-    # };
-
-    homeManagerIntegration.followSystem = false;
-    targets.grub.enable = false;
-
-    cursor.package = pkgs.bibata-cursors;
-    cursor.name = "Bibata-Modern-Ice";
-    cursor.size = 24;
-
-    fonts = {
-      monospace = {
-        package = pkgs.nerdfonts;
-        name = "GeistMono Nerd Font Mono";
-      };
-      sansSerif = {
-        package = pkgs.dejavu_fonts;
-        name = "DejaVu Sans";
-      };
-      serif = {
-        package = pkgs.dejavu_fonts;
-        name = "DejaVu Serif";
-      };
-      sizes = {
-        applications = 16;
-        terminal = 16;
-        desktop = 16;
-        popups = 12;
-      };
-    };
-
-    opacity = {
-      applications = 1.0;
-      terminal = 1.0;
-      desktop = 1.0;
-      popups = 1.0;
-    };
-
-    polarity = "dark";
-  };
+  imports = [ ./modules/stylix.nix ];
 
   # TTYI colors
   console = with config.lib.stylix.colors; {
@@ -183,10 +119,11 @@
   services.xserver = {
     enable = true;
     displayManager.startx.enable = false;
+    displayManager.lightdm.enable = false;
 
     # Enable the GNOME Desktop Environment.
-    displayManager.gdm.enable = false;
-    desktopManager.gnome.enable = false;
+    # displayManager.gdm.enable = false;
+    # desktopManager.gnome.enable = false;
 
     # Configure keymap in X11
     xkb.layout = "us,ru";
@@ -240,7 +177,7 @@
     mesa
     patchelfUnstable
     jdk # java
-    ly # enter to system
+    # ly # enter to system
     impala
     iwd
     helix
@@ -283,7 +220,7 @@
     gvfs.enable = true; # Mount, trash, and other functionalities
     tumbler.enable = true; # Thumbnail support for images
 
-    displayManager.ly.enable = true;
+    # displayManager.ly.enable = true;
 
     # Flatpak
     flatpak.enable = true;
@@ -412,7 +349,11 @@
       default = "saved";
       splashImage = lib.mkForce null;
       theme = lib.mkForce null;
-      extraConfig = "";
+      fontSize = lib.mkForce 30;
+      extraConfig = lib.mkForce ''
+        GRUB_GFXMODE=640x480
+        GRUB_CMDLINE_LINUX="video=efifb fbcon=rotate:1"
+      '';
     };
     efi = { canTouchEfiVariables = true; };
   };
