@@ -39,11 +39,11 @@
       };
       sansSerif = {
         package = pkgs.dejavu_fonts;
-        name = "DejaVu Sans";
+        name = "GeistMono Nerd Font Mono";
       };
       serif = {
         package = pkgs.dejavu_fonts;
-        name = "DejaVu Serif";
+        name = "GeistMono Nerd Font Mono";
       };
       emoji = {
         package = pkgs.noto-fonts-emoji;

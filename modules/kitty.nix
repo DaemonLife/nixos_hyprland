@@ -14,10 +14,10 @@
 
     settings = {
       # Font
-      font_family = "GeistMono";
-      bold_font = "GeistMono Bold";
-      italic_font = "GeistMono Italic";
-      bold_italic_font = "GeistMono Bold Italic";
+      # font_family = "GeistMono";
+      # bold_font = "GeistMono Bold";
+      # italic_font = "GeistMono Italic";
+      # bold_italic_font = "GeistMono Bold Italic";
       # font_size = "12.0";
 
       # background_opacity = lib.mkForce "0.9";
