@@ -33,6 +33,8 @@
       nodejs
       pipx
       exiftool
+      xdragon
+      # xdg-desktop-portal-termfilechooser # for choosing your favorite file chooser
 
       # Disk
       dua # disk usage TUI tool. Run: dua i
