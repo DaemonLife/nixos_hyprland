@@ -4,7 +4,6 @@
     ./mako.nix
     ./fuzzel.nix
     ./hyprland.nix
-    ./alacritty.nix
     ./waybar.nix
     ./firefox.nix
     ./mpv.nix
@@ -26,6 +25,8 @@
     ./fzf.nix
     ./yazi.nix
     ./stylix.nix
+    # ./alacritty.nix
+    # ./eww/eww.nix
     # ./nixvim.nix
     # ./zsh.nix
     # ./ranger.nix

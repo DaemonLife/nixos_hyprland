@@ -182,6 +182,7 @@
     iwd
     helix
     cups # print
+    # eww # status bar
 
     grc # colors for fish
     fzf # cli search. Run: Ctrl+R

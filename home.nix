@@ -3,7 +3,7 @@
   imports = [ ./modules/import_all.nix ];
 
   stylix.targets = {
-    waybar.enable = false;
+    # waybar.enable = false;
     yazi.enable = false;
   };
 
