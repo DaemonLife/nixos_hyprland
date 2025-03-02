@@ -4,76 +4,7 @@
   # SYSTEM THEME 
   # --------------------------------
 
-<<<<<<< HEAD
-  stylix = {
-    enable = true;
-    base16Scheme =
-      "${pkgs.base16-schemes}/share/themes/everforest-dark-hard.yaml";
-    image = ./images/image.jpg;
-
-    # override = {
-    #   author = "DaemonLife";
-    # one tone gradient
-    # base00 = "1F1F28"; # BACKGROUND (BLACK)
-    # base01 = "1F1F28"; # bright green
-    # base02 = "252535"; # bright yellow
-    # base03 = "34344b"; # bright black
-    # base04 = "DCD7BA"; # bright blue
-    # base05 = "DCD7BA"; # FOREGROUND (WHITE)
-    # base06 = "DCD7BA"; # bright magenta
-    # base07 = "C8C093"; # bright white
-
-    # colors
-    # base08 = "C34043"; # RED
-    # base09 = "E82424"; # bright red
-    # base0A = "E6C384"; # YELLOW
-    # base0B = "76946A"; # GREEN
-    # base0C = "7393bc"; # CYAN
-    # base0D = "7E9CD8"; # BLUE
-    # base0E = "957FB8"; # MAGENTA
-    # base0F = "7393bc"; # bright cyan
-    # };
-
-    homeManagerIntegration.followSystem = false;
-    targets.grub.enable = false;
-
-    cursor.package = pkgs.bibata-cursors;
-    cursor.name = "Bibata-Modern-Ice";
-    cursor.size = 24;
-
-    fonts = {
-      monospace = {
-        package = pkgs.nerdfonts;
-        name = "GeistMono Nerd Font Mono";
-      };
-      sansSerif = {
-        package = pkgs.dejavu_fonts;
-        name = "GeistMono Nerd Font Mono";
-      };
-      serif = {
-        package = pkgs.dejavu_fonts;
-        name = "GeistMono Nerd Font Mono";
-      };
-      sizes = {
-        applications = 18;
-        terminal = 16;
-        desktop = 18;
-        popups = 14;
-      };
-    };
-
-    opacity = {
-      applications = 1.0;
-      terminal = 1.0;
-      desktop = 1.0;
-      popups = 1.0;
-    };
-
-    polarity = "dark";
-  };
-=======
   imports = [ ./modules/stylix.nix ];
->>>>>>> d326262a0d19945886d3de62c4fc19e166d4c4e0
 
   # TTYI colors
   console = with config.lib.stylix.colors; {

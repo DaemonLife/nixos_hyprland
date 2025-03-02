@@ -66,8 +66,8 @@ lib.mkForce {
         idle_inhibitor = {
           format = "{icon}";
           format-icons = {
-            activated = "󰚵";
-            deactivated = "󰚵";
+            activated = "idle";
+            deactivated = "idle";
           };
         };
 
@@ -76,8 +76,8 @@ lib.mkForce {
           format-alt = "{icon}";
           interval = 30;
           format-icons = {
-            enabled = "󰂯";
-            disabled = "󰂯";
+            enabled = "bt";
+            disabled = "bt";
           };
           tooltip-format = "{}";
           # on-click = "rfkill toggle bluetooth";
@@ -136,11 +136,11 @@ lib.mkForce {
         };
 
         network = {
-          format-disabled = "󰞃";
-          format-wifi = "";
+          format-disabled = "wifi";
+          format-wifi = "wifi";
           format-ethernet = " {ipaddr}/{cidr}";
-          format-linked = " (No IP)";
-          format-disconnected = "";
+          format-linked = "wifi (No IP)";
+          format-disconnected = "wifi";
           on-click = ''
             rfkill unblock wifi && kitty --hold sh -c "nmcli dev wifi rescan && nmtui"'';
           on-click-right = "rfkill block wifi";
@@ -160,36 +160,6 @@ lib.mkForce {
             portable = " ";
             car = " ";
             speaker = [
-<<<<<<< HEAD
-              "volume: -- -- --"
-              "volume: i- -- --"
-              "volume: I- -- --"
-              "volume: Ii -- --"
-              "volume: II -- --"
-              "volume: IIi-- --"
-              "volume: III-- --"
-              "volume: IIIi- --"
-              "volume: IIII- --"
-              "volume: IIIIi --"
-              "volume: IIIII --"
-              "volume: IIIIIi--"
-              "volume: IIIIII--"
-            ];
-            default = [
-              "volume: "
-              "volume: i"
-              "volume: I"
-              "volume: Ii"
-              "volume: II"
-              "volume: IIi"
-              "volume: III"
-              "volume: IIIi"
-              "volume: IIII"
-              "volume: IIIIi"
-              "volume: IIIII"
-              "volume: IIIIIi"
-              "volume: IIIIII"
-=======
               "speaker ______"
               "speaker \\_____"
               "speaker |_____"
@@ -224,7 +194,6 @@ lib.mkForce {
               "vol |||||."
               "vol |||||\\"
               "vol ||||||"
->>>>>>> d326262a0d19945886d3de62c4fc19e166d4c4e0
             ];
             hdmi = [
               "hdmi ______"
@@ -270,7 +239,6 @@ lib.mkForce {
     };
 
     style = ''
-<<<<<<< HEAD
       	@define-color dark #${base00};
       	@define-color gray #${base03};
       	@define-color white #${base05};
@@ -282,110 +250,68 @@ lib.mkForce {
       	
       	/* Default setting for all modules */
       	* {
-      	  border: 0px;
-          border-radius: 0px;
+      	  border: none;
+          border-radius: 0;
           margin: 0px;
-          padding: 0px;
           text-decoration: none;
-      	  font-family: "GeistMono Nerd Font Propo Bold";
-          font-weight: normal;
-          font-size: 18px;
+      	  /* font-family: "GeistMono"; */ 
+          font-size: 14px;
+          min-height: 0;
+          box-shadow: none;
       	}
-=======
-            	@define-color dark #${base00};
-            	@define-color gray #${base03};
-            	@define-color white #${base05};
-            	@define-color accent #${base0D};
-            	@define-color green #${base0B};
-            	@define-color red #${base0E};
-            	@define-color magenta #${base0F};
-            	@define-color yellow #${base0A};
-            	
-            	/* Default setting for all modules */
-            	* {
-            	  border: 0px;
-                border-radius: 0px;
-                margin: 0px;
-                padding: 0px 5px 0px 5px;
-                text-decoration: none;
-            	  /* font-family: "GeistMono"; */ 
-                font-size: 14px;
-            	}
->>>>>>> d326262a0d19945886d3de62c4fc19e166d4c4e0
 
-              /* Default color for modules except workspaces button.active */
-              #workspaces button, #window, window#waybar, #tray, #language, #network, #bluetooth, #idle_inhibitor, #battery, #pulseaudio, #clock#time, #clock#date { color: @white; }
+        /* Default color for modules except workspaces button.active */
+        #workspaces button, #window, window#waybar, #tray, #language, #network, #bluetooth, #idle_inhibitor, #battery, #pulseaudio, #clock#time, #clock#date { color: @white; }
 
-            	/* Default padding for some modules 
-            	#language, #idle_inhibitor, #network, #clock, #tray, #bluetooth, #pulseaudio { padding: 0px 5px 0px 5px; }
-      */          
-              #window { padding: 0px 10px 0px 10px; }
-              #mainBar { padding: 0px; }
-              #language {
-                background-color: #${base00};
-              }
-              #network {
-                background-color: #${base00};
-              }
-              #bluetooth {
-                background-color: #${base00};
-              }
-              #idle_inhibitor {
-                background-color: #${base00};
-              }
-              #pulseaudio {
-                background-color: #${base00};
-              }
-              #battery {
-                background-color: #${base00};
-              }
-              #clock.date {
-                background-color: #${base01};
-              }
-              #clock.time {
-                background-color: #${base02};
-              }
-              
-              #workspaces button { 
-                font-weight: normal; 
-                padding: 0px 2px 0px 2px;
-              }
-              #workspaces button.empty { 
-                font-weight: normal; 
-                padding: 0px 2px 0px 2px;
-                color: @gray;
-              }
-              #workspaces button.active { 
-                font-weight: normal; 
-                color: @dark;
-                background-color: @accent;
-                padding: 0px 6px 0px 6px;
-              }
-              
-              window#waybar {
-                background-color: @dark;
-              }
-
-<<<<<<< HEAD
+      	/* Default padding for some modules */
+      #tray,	#language, #network, #bluetooth, #idle_inhibitor, #battery, #pulseaudio, #clock { padding: 0px 5px 0px 5px; }
+          
+        #language {
+          background-color: #${base00};
+        }
+        #network {
+          background-color: #${base00};
+        }
+        #bluetooth {
+          background-color: #${base00};
+        }
+        #idle_inhibitor {
+          background-color: #${base00};
+        }
+        #pulseaudio {
+          background-color: #${base00};
+        }
+        #battery {
+          background-color: #${base00};
+        }
+        #clock.date {
+          background-color: #${base01};
+        }
+        #clock.time {
+          background-color: #${base02};
+        }
+        
         #workspaces button { 
-          padding: 0px 5px 0px 5px;
+          font-weight: normal; 
+          padding: 0px 2px 0px 2px;
         }
         #workspaces button.empty { 
-            color: gray;
+          font-weight: normal; 
+          padding: 0px 2px 0px 2px;
+          color: @gray;
         }
         #workspaces button.active { 
-            color: @dark;
-            background-color: @accent;
+          font-weight: normal; 
+          color: @dark;
+          background-color: @accent;
+          padding: 0px 6px 0px 6px;
         }
         
         window#waybar {
           background-color: @dark;
         }
-        /*
-        window#waybar.empty {
-          background-color: transparent;
-        }
-        */
+        #window { padding: 0px 10px 0px 10px; }
+         
         /* calendar look */
         tooltip {
           background-color: @dark;
@@ -394,49 +320,30 @@ lib.mkForce {
           border-color: @accent;
           font-size: 16px;
         }
-=======
-              window#waybar.empty {
-                background-color: transparent;
-              }
-              
-              /* calendar look */
-              tooltip {
-                background-color: @dark;
-                border: 2px;
-                border-style: solid;
-                border-color: @accent;
-                font-size: 16px;
-              }
 
-            	#network.disconnected { color: @red;}
-            	#network.disabled { color: @gray; }
->>>>>>> d326262a0d19945886d3de62c4fc19e166d4c4e0
+      	#network.disconnected { color: @red;}
+      	#network.disabled { color: @gray; }
 
-            	#idle_inhibitor.activated { color: @green; }
-            	#idle_inhibitor.deactivated { color: @gray; }
-
-<<<<<<< HEAD
-      	#idle_inhibitor.activated { color: #${base0C}; }
+      	#idle_inhibitor.activated { color: @green; }
       	#idle_inhibitor.deactivated { color: @gray; }
-=======
-            	#bluetooth { color: @green; }
-            	#bluetooth.disabled { color: @gray; }
->>>>>>> d326262a0d19945886d3de62c4fc19e166d4c4e0
 
-            	#pulseaudio.muted { color: @gray; }
+      	#bluetooth { color: @green; }
+      	#bluetooth.disabled { color: @gray; }
 
-            	#battery.plugged { color: @accent; }
-            	#battery.charging{
-                color: @accent;
-                animation-name: blink;
-                animation-duration: 1.5s;
-                animation-timing-function: linear;
-                animation-iteration-count: infinite;
-                animation-direction: alternate;
-            	} 
-            	#battery.warning:not(.charging) { color: @yellow; }
-            	#battery.critical:not(.charging) { color: @red; }
-            	@keyframes blink { to { color: @white; } }
-            	'';
+      	#pulseaudio.muted { color: @gray; }
+
+      	#battery.plugged { color: @accent; }
+      	#battery.charging{
+          color: @accent;
+          animation-name: blink;
+          animation-duration: 1.5s;
+          animation-timing-function: linear;
+          animation-iteration-count: infinite;
+          animation-direction: alternate;
+      	} 
+      	#battery.warning:not(.charging) { color: @yellow; }
+      	#battery.critical:not(.charging) { color: @red; }
+      	@keyframes blink { to { color: @white; } }
+      	'';
   };
 }

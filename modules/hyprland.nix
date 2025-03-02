@@ -16,7 +16,7 @@ with config.lib.stylix.colors; {
 
     monitor = [
       # Monitor msk
-      "desc:Shenzhen KTC Technology Group H27S17 0x00000001,highres,0x0,1,bitdepth,10,vrr,1"
+      "desc:Shenzhen KTC Technology Group H27S17 0x00000001,highres,0x0,1.25,bitdepth,10,vrr,1"
       # Monitor gg
       "desc:Acer Technologies Acer A231H LQT0W0084320,highres,auto-right,1,bitdepth,10,vrr,1"
       # GPD3

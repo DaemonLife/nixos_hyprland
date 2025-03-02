@@ -11,4 +11,8 @@
     };
   };
 
+  # If you have flake.lock error with pull run:
+  # git reset HEAD -- flake.lock
+  # git restore -- flake.lock
+
 }
