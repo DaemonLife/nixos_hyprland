@@ -53,7 +53,7 @@
   networking.networkmanager.enable = true;
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
-  # hardware.bluetooth.enable = true;
+  hardware.bluetooth.enable = true;
   hardware.bluetooth.powerOnBoot = false;
 
   # Enable CUPS to print documents.
@@ -118,7 +118,7 @@
   # Enable the X11 windowing system.
   services.xserver = {
     enable = true;
-    displayManager.startx.enable = false;
+    displayManager.startx.enable = true;
     displayManager.lightdm.enable = false;
 
     # Enable the GNOME Desktop Environment.
@@ -177,12 +177,11 @@
     mesa
     patchelfUnstable
     jdk # java
-    # ly # enter to system
     impala
     iwd
     helix
     cups # print
-    # eww # status bar
+    bluez
 
     grc # colors for fish
     fzf # cli search. Run: Ctrl+R
@@ -193,7 +192,6 @@
     # VPN
     xray
     proxychains # run any program with xray proxy
-    # nekoray # GUI client
 
     # for thunar
     nufraw-thumbnailer
