@@ -6,7 +6,8 @@
 
   stylix = {
     enable = true;
-    base16Scheme = "${pkgs.base16-schemes}/share/themes/mountain.yaml";
+    base16Scheme =
+      "${pkgs.base16-schemes}/share/themes/everforest-dark-hard.yaml";
     image = ./images/image.jpg;
 
     # override = {
@@ -46,17 +47,17 @@
       };
       sansSerif = {
         package = pkgs.dejavu_fonts;
-        name = "DejaVu Sans";
+        name = "GeistMono Nerd Font Mono";
       };
       serif = {
         package = pkgs.dejavu_fonts;
-        name = "DejaVu Serif";
+        name = "GeistMono Nerd Font Mono";
       };
       sizes = {
-        applications = 16;
+        applications = 18;
         terminal = 16;
-        desktop = 16;
-        popups = 12;
+        desktop = 18;
+        popups = 14;
       };
     };
 
@@ -330,7 +331,7 @@
     fish.enable = true;
 
     # promt for any shell
-    starship = {
+    starship = with config.lib.stylix.colors; {
       enable = true;
       settings = {
         add_newline = true;
@@ -355,7 +356,7 @@
         custom.pwd = {
           command = "echo $PWD";
           when = "true";
-          style = "bold cyan";
+          style = "#${base0A}";
           format = "[$output]($style) ";
         };
         custom.user = {

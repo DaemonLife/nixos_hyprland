@@ -82,7 +82,7 @@
 
     theme = {
       manager = {
-        cwd = { fg = "#${base0C}"; };
+        cwd = { fg = "#${base0A}"; };
 
         hovered = {
           fg = "#${base00}";
@@ -313,7 +313,7 @@
           # Fallback
           {
             name = "*/";
-            fg = "#${base0C}";
+            fg = "#${base0A}";
             bold = true;
           }
         ];

@@ -43,21 +43,21 @@
       };
       sansSerif = {
         package = pkgs.dejavu_fonts;
-        name = "DejaVu Sans";
+        name = "GeistMono Nerd Font Mono";
       };
       serif = {
         package = pkgs.dejavu_fonts;
-        name = "DejaVu Serif";
+        name = "GeistMono Nerd Font Mono";
       };
       emoji = {
         package = pkgs.noto-fonts-emoji;
         name = "Noto Color Emoji";
       };
       sizes = {
-        applications = 16;
-        terminal = 15;
-        desktop = 16;
-        popups = 12;
+        applications = 18;
+        terminal = 16;
+        desktop = 18;
+        popups = 14;
       };
     };
 
@@ -170,17 +170,17 @@
       jrnl
       libreoffice
       unstable.joplin
-      stellarium # astro map ASCII
-      unstable.astroterm # astro map
+      stellarium # astro map
+      unstable.astroterm # astro map ASCII
       epy # cli book reader
       tldr # community documentation
       russ # rss tui reader
+      gnome-feeds # gui rss reader
 
       # Gaming
       portablemc # minecraft cli launcher
       curseofwar # stategy cli game
       vitetris # tetris cli game
-      # dwarf-fortress
       dwarf-fortress-packages.dwarf-fortress-full
 
     ];

@@ -64,8 +64,8 @@
         idle_inhibitor = {
           format = "{icon}";
           format-icons = {
-            activated = "idle";
-            deactivated = "idle";
+            activated = "󰚵";
+            deactivated = "󰚵";
           };
         };
 
@@ -74,8 +74,8 @@
           format-alt = "{icon}";
           interval = 30;
           format-icons = {
-            enabled = "bt";
-            disabled = "bt";
+            enabled = "󰂯";
+            disabled = "󰂯";
           };
           tooltip-format = "{}";
           # on-click = "rfkill toggle bluetooth";
@@ -107,7 +107,7 @@
               "days" = "<span color='#${base07}'><b>{}</b></span>";
               "weeks" = "<span color='#${base0C}'><b>W{}</b></span>";
               "weekdays" = "<span color='#${base0B}'><b>{}</b></span>";
-              "today" = "<span color='#${base08}'><b><u>{}</u></b></span>";
+              "today" = "<span color='#${base0E}'><b><u>{}</u></b></span>";
             };
           };
           "actions" = {
@@ -136,11 +136,11 @@
         };
 
         network = {
-          format-disabled = "wifi";
-          format-wifi = "wifi";
-          format-ethernet = " {ipaddr}/{cidr}";
-          format-linked = " (No IP)";
-          format-disconnected = "wifi";
+          format-disabled = "󰞃";
+          format-wifi = "";
+          format-ethernet = " {ipaddr}/{cidr}";
+          format-linked = " (No IP)";
+          format-disconnected = "";
           on-click = ''
             rfkill unblock wifi && kitty --hold sh -c "nmcli dev wifi rescan && nmtui"'';
           on-click-right = "rfkill block wifi";
@@ -160,34 +160,34 @@
             portable = " ";
             car = " ";
             speaker = [
-              "speaker: ......"
-              "speaker: ı....."
-              "speaker: l....."
-              "speaker: lı...."
-              "speaker: ll...."
-              "speaker: llı..."
-              "speaker: lll..."
-              "speaker: lllı.."
-              "speaker: llll.."
-              "speaker: llllı."
-              "speaker: lllll."
-              "speaker: lllllı"
-              "speaker: llllll"
+              "volume: -- -- --"
+              "volume: i- -- --"
+              "volume: I- -- --"
+              "volume: Ii -- --"
+              "volume: II -- --"
+              "volume: IIi-- --"
+              "volume: III-- --"
+              "volume: IIIi- --"
+              "volume: IIII- --"
+              "volume: IIIIi --"
+              "volume: IIIII --"
+              "volume: IIIIIi--"
+              "volume: IIIIII--"
             ];
             default = [
-              "volume: ......"
-              "volume: ı....."
-              "volume: l....."
-              "volume: lı...."
-              "volume: ll...."
-              "volume: llı..."
-              "volume: lll..."
-              "volume: lllı.."
-              "volume: llll.."
-              "volume: llllı."
-              "volume: lllll."
-              "volume: lllllı"
-              "volume: llllll"
+              "volume: "
+              "volume: i"
+              "volume: I"
+              "volume: Ii"
+              "volume: II"
+              "volume: IIi"
+              "volume: III"
+              "volume: IIIi"
+              "volume: IIII"
+              "volume: IIIIi"
+              "volume: IIIII"
+              "volume: IIIIIi"
+              "volume: IIIIII"
             ];
             hdmi = [
               "hdmi: ......"
@@ -249,9 +249,9 @@
           margin: 0px;
           padding: 0px;
           text-decoration: none;
-      	  font-family: "GeistMono";
+      	  font-family: "GeistMono Nerd Font Propo Bold";
           font-weight: normal;
-          font-size: 14px;
+          font-size: 18px;
       	}
 
         /* Default color for modules except workspaces button.active */
@@ -278,11 +278,11 @@
         window#waybar {
           background-color: @dark;
         }
-
+        /*
         window#waybar.empty {
           background-color: transparent;
         }
-        
+        */
         /* calendar look */
         tooltip {
           background-color: @dark;
@@ -295,7 +295,7 @@
       	#network.disconnected { color: @red;}
       	#network.disabled { color: @gray; }
 
-      	#idle_inhibitor.activated { color: @green; }
+      	#idle_inhibitor.activated { color: #${base0C}; }
       	#idle_inhibitor.deactivated { color: @gray; }
 
       	#bluetooth { color: @green; }
