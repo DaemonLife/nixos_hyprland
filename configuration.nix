@@ -4,6 +4,7 @@
   # SYSTEM THEME 
   # --------------------------------
 
+<<<<<<< HEAD
   stylix = {
     enable = true;
     base16Scheme =
@@ -70,6 +71,9 @@
 
     polarity = "dark";
   };
+=======
+  imports = [ ./modules/stylix.nix ];
+>>>>>>> d326262a0d19945886d3de62c4fc19e166d4c4e0
 
   # TTYI colors
   console = with config.lib.stylix.colors; {
@@ -184,10 +188,11 @@
   services.xserver = {
     enable = true;
     displayManager.startx.enable = false;
+    displayManager.lightdm.enable = false;
 
     # Enable the GNOME Desktop Environment.
-    displayManager.gdm.enable = false;
-    desktopManager.gnome.enable = false;
+    # displayManager.gdm.enable = false;
+    # desktopManager.gnome.enable = false;
 
     # Configure keymap in X11
     xkb.layout = "us,ru";
@@ -241,11 +246,12 @@
     mesa
     patchelfUnstable
     jdk # java
-    ly # enter to system
+    # ly # enter to system
     impala
     iwd
     helix
     cups # print
+    # eww # status bar
 
     grc # colors for fish
     fzf # cli search. Run: Ctrl+R
@@ -284,7 +290,7 @@
     gvfs.enable = true; # Mount, trash, and other functionalities
     tumbler.enable = true; # Thumbnail support for images
 
-    displayManager.ly.enable = true;
+    # displayManager.ly.enable = true;
 
     # Flatpak
     flatpak.enable = true;
@@ -413,7 +419,10 @@
       default = "saved";
       splashImage = lib.mkForce null;
       theme = lib.mkForce null;
-      extraConfig = "";
+      fontSize = lib.mkForce 30;
+      extraConfig = lib.mkForce ''
+        GRUB_CMDLINE_LINUX_DEFAULT="loglevel=2"
+      '';
     };
     efi = { canTouchEfiVariables = true; };
   };

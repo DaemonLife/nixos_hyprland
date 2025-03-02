@@ -30,7 +30,14 @@
       ];
 
     shellInit = "";
-    loginShellInit = "";
+    loginShellInit = ''
+      if not set -q DISPLAY
+        if test (tty) = "/dev/tty1"
+          clear
+          exec Hyprland
+        end
+      end
+    '';
 
     functions = {
       y = ''

@@ -1,4 +1,5 @@
-{ pkgs, config, lib, ... }: {
+{ pkgs, config, lib, ... }:
+lib.mkForce {
 
   programs.waybar = with config.lib.stylix.colors; {
     enable = true;
@@ -11,8 +12,8 @@
     settings = {
       mainBar = {
         layer = "top";
-        position = "bottom";
-        height = 24; # 25 is correct for my windows border size
+        position = "top";
+        height = 24;
         modules-left = [ "hyprland/workspaces" "hyprland/window" ];
         modules-center = [ ];
         modules-right = [
@@ -21,9 +22,10 @@
           "network"
           "bluetooth"
           "idle_inhibitor"
-          "pulseaudio"
           "battery"
-          "clock"
+          "pulseaudio"
+          "clock#date"
+          "clock#time"
         ];
 
         "hyprland/workspaces" = {
@@ -89,10 +91,9 @@
           format-ru = "ru";
         };
 
-        clock = {
-          # format = "{:%y/%m/%d %H:%M}";
-          # format = "{:%H:%M}";
-          format = "{:%d-%b-%y %H:%M}";
+        "clock#time" = { format = "{:%H:%M}"; };
+        "clock#date" = {
+          format = "{:%d-%b-%y}";
           on-click = "exec gnome-calendar";
           "tooltip-format" =
             "<span size='10pt' font='GeistMono Nerd Font Mono'>{calendar}</span>";
@@ -128,10 +129,9 @@
             critical = 20;
           };
           interval = 30;
-          # bat({capacity}) format?
-          format = "bat: {capacity}";
-          format-charging = "bat: {capacity}ϟ";
-          format-plugged = "bat: {capacity}";
+          format = "bat {capacity}";
+          format-plugged = "bat {capacity}";
+          format-charging = "bat {capacity}ϟ";
           on-click = "gnome-power-statistics";
         };
 
@@ -150,7 +150,7 @@
           format = "{icon} {format_source}";
           format-bluetooth = "{icon} {volume} {format_source}";
           format-bluetooth-muted = "   {volume} {format_source}";
-          format-muted = "vol: ......";
+          format-muted = "vol ______";
           format-source = "mic";
           format-source-muted = "";
           format-icons = {
@@ -160,6 +160,7 @@
             portable = " ";
             car = " ";
             speaker = [
+<<<<<<< HEAD
               "volume: -- -- --"
               "volume: i- -- --"
               "volume: I- -- --"
@@ -188,41 +189,77 @@
               "volume: IIIII"
               "volume: IIIIIi"
               "volume: IIIIII"
+=======
+              "speaker ______"
+              "speaker \\_____"
+              "speaker |_____"
+              "speaker |\\____"
+              "speaker ||____"
+              "speaker ||\\___"
+              "speaker |||___"
+              "speaker |||\\__"
+              "speaker ||||__"
+              "speaker ||||\\_"
+              "speaker |||||_"
+              "speaker |||||\\"
+              "speaker ||||||"
+            ];
+            default = [
+              "vol       "
+              "vol .     "
+              "vol \\     "
+              "vol |     "
+              "vol |.    "
+              "vol |\\    "
+              "vol ||    "
+              "vol ||.   "
+              "vol ||\\   "
+              "vol |||   "
+              "vol |||.  "
+              "vol |||\\  "
+              "vol ||||  "
+              "vol ||||. "
+              "vol ||||\\ "
+              "vol ||||| "
+              "vol |||||."
+              "vol |||||\\"
+              "vol ||||||"
+>>>>>>> d326262a0d19945886d3de62c4fc19e166d4c4e0
             ];
             hdmi = [
-              "hdmi: ......"
-              "hdmi: ı....."
-              "hdmi: l....."
-              "hdmi: lı...."
-              "hdmi: ll...."
-              "hdmi: llı..."
-              "hdmi: lll..."
-              "hdmi: lllı.."
-              "hdmi: llll.."
-              "hdmi: llllı."
-              "hdmi: lllll."
-              "hdmi: lllllı"
-              "hdmi: llllll"
+              "hdmi ______"
+              "hdmi \\_____"
+              "hdmi |_____"
+              "hdmi |\\____"
+              "hdmi ||____"
+              "hdmi ||\\___"
+              "hdmi |||___"
+              "hdmi |||\\__"
+              "hdmi ||||__"
+              "hdmi ||||\\_"
+              "hdmi |||||_"
+              "hdmi |||||\\"
+              "hdmi ||||||"
             ];
             headphone = [
-              "headset: ......"
-              "headset: ı....."
-              "headset: l....."
-              "headset: lı...."
-              "headset: ll...."
-              "headset: llı..."
-              "headset: lll..."
-              "headset: lllı.."
-              "headset: llll.."
-              "headset: llllı."
-              "headset: lllll."
-              "headset: lllllı"
-              "headset: llllll"
+              "headset ______"
+              "headset \\_____"
+              "headset |_____"
+              "headset |\\____"
+              "headset ||____"
+              "headset ||\\___"
+              "headset |||___"
+              "headset |||\\__"
+              "headset ||||__"
+              "headset ||||\\_"
+              "headset |||||_"
+              "headset |||||\\"
+              "headset ||||||"
             ];
           };
           max-volume = 100;
           tooltip-format = "{desc}, {volume}%";
-          on-click = "kitty --hold sh -c 'pulsemixer'"; # or pavucontrol
+          on-click = "kitty sh -c 'pulsemixer'"; # or pavucontrol
           on-click-right = "pactl set-source-mute @DEFAULT_SOURCE@ toggle";
           on-click-middle = "helvum";
           scroll-step = 3;
@@ -233,6 +270,7 @@
     };
 
     style = ''
+<<<<<<< HEAD
       	@define-color dark #${base00};
       	@define-color gray #${base03};
       	@define-color white #${base05};
@@ -253,17 +291,82 @@
           font-weight: normal;
           font-size: 18px;
       	}
+=======
+            	@define-color dark #${base00};
+            	@define-color gray #${base03};
+            	@define-color white #${base05};
+            	@define-color accent #${base0D};
+            	@define-color green #${base0B};
+            	@define-color red #${base0E};
+            	@define-color magenta #${base0F};
+            	@define-color yellow #${base0A};
+            	
+            	/* Default setting for all modules */
+            	* {
+            	  border: 0px;
+                border-radius: 0px;
+                margin: 0px;
+                padding: 0px 5px 0px 5px;
+                text-decoration: none;
+            	  /* font-family: "GeistMono"; */ 
+                font-size: 14px;
+            	}
+>>>>>>> d326262a0d19945886d3de62c4fc19e166d4c4e0
 
-        /* Default color for modules except workspaces button.active */
-        #workspaces button, #window, window#waybar, #tray, #language, #network, #bluetooth, #idle_inhibitor, #battery, #pulseaudio, #clock { color: @white; }
+              /* Default color for modules except workspaces button.active */
+              #workspaces button, #window, window#waybar, #tray, #language, #network, #bluetooth, #idle_inhibitor, #battery, #pulseaudio, #clock#time, #clock#date { color: @white; }
 
-      	/* Default padding for some modules */
-      	#language, #idle_inhibitor, #network, #clock, #tray, #bluetooth, #pulseaudio { padding: 0px 0px 0px 10px; }
-          
-        #clock { padding-right: 6px; }
-        #battery { padding-left: 6px; }
-        #window { padding: 0px 10px 0px 10px; }
+            	/* Default padding for some modules 
+            	#language, #idle_inhibitor, #network, #clock, #tray, #bluetooth, #pulseaudio { padding: 0px 5px 0px 5px; }
+      */          
+              #window { padding: 0px 10px 0px 10px; }
+              #mainBar { padding: 0px; }
+              #language {
+                background-color: #${base00};
+              }
+              #network {
+                background-color: #${base00};
+              }
+              #bluetooth {
+                background-color: #${base00};
+              }
+              #idle_inhibitor {
+                background-color: #${base00};
+              }
+              #pulseaudio {
+                background-color: #${base00};
+              }
+              #battery {
+                background-color: #${base00};
+              }
+              #clock.date {
+                background-color: #${base01};
+              }
+              #clock.time {
+                background-color: #${base02};
+              }
+              
+              #workspaces button { 
+                font-weight: normal; 
+                padding: 0px 2px 0px 2px;
+              }
+              #workspaces button.empty { 
+                font-weight: normal; 
+                padding: 0px 2px 0px 2px;
+                color: @gray;
+              }
+              #workspaces button.active { 
+                font-weight: normal; 
+                color: @dark;
+                background-color: @accent;
+                padding: 0px 6px 0px 6px;
+              }
+              
+              window#waybar {
+                background-color: @dark;
+              }
 
+<<<<<<< HEAD
         #workspaces button { 
           padding: 0px 5px 0px 5px;
         }
@@ -291,30 +394,49 @@
           border-color: @accent;
           font-size: 16px;
         }
+=======
+              window#waybar.empty {
+                background-color: transparent;
+              }
+              
+              /* calendar look */
+              tooltip {
+                background-color: @dark;
+                border: 2px;
+                border-style: solid;
+                border-color: @accent;
+                font-size: 16px;
+              }
 
-      	#network.disconnected { color: @red;}
-      	#network.disabled { color: @gray; }
+            	#network.disconnected { color: @red;}
+            	#network.disabled { color: @gray; }
+>>>>>>> d326262a0d19945886d3de62c4fc19e166d4c4e0
 
+            	#idle_inhibitor.activated { color: @green; }
+            	#idle_inhibitor.deactivated { color: @gray; }
+
+<<<<<<< HEAD
       	#idle_inhibitor.activated { color: #${base0C}; }
       	#idle_inhibitor.deactivated { color: @gray; }
+=======
+            	#bluetooth { color: @green; }
+            	#bluetooth.disabled { color: @gray; }
+>>>>>>> d326262a0d19945886d3de62c4fc19e166d4c4e0
 
-      	#bluetooth { color: @green; }
-      	#bluetooth.disabled { color: @gray; }
+            	#pulseaudio.muted { color: @gray; }
 
-      	#pulseaudio.muted { color: @gray; }
-
-      	#battery.plugged { color: @accent; }
-      	#battery.charging{
-          color: @accent;
-          animation-name: blink;
-          animation-duration: 1.5s;
-          animation-timing-function: linear;
-          animation-iteration-count: infinite;
-          animation-direction: alternate;
-      	} 
-      	#battery.warning:not(.charging) { color: @yellow; }
-      	#battery.critical:not(.charging) { color: @red; }
-      	@keyframes blink { to { color: @white; } }
-      	'';
+            	#battery.plugged { color: @accent; }
+            	#battery.charging{
+                color: @accent;
+                animation-name: blink;
+                animation-duration: 1.5s;
+                animation-timing-function: linear;
+                animation-iteration-count: infinite;
+                animation-direction: alternate;
+            	} 
+            	#battery.warning:not(.charging) { color: @yellow; }
+            	#battery.critical:not(.charging) { color: @red; }
+            	@keyframes blink { to { color: @white; } }
+            	'';
   };
 }

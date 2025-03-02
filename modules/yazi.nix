@@ -4,6 +4,30 @@
     enable = true;
     enableFishIntegration = true;
 
+    # clipboard sync for all yazi instances
+    initLua = ''
+      require("session"):setup {
+      	sync_yanked = true,
+      }
+    '';
+
+    keymap.manager.prepend_keymap = [
+      # copy to system clipboard
+      {
+        on = "<C-y>";
+        run = [''
+          shell --interactive 'for path in "$@"; do echo "file://$path"; done | wl-copy -t text/uri-list' 
+        ''];
+      }
+      # drag and drop
+      {
+        on = "<C-n>";
+        run = ''
+          shell --interactive 'dragon -x -i -T "$1"'
+        '';
+      }
+    ];
+
     settings = {
 
       manager = {

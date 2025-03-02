@@ -2,6 +2,7 @@
 
   imports = [ ./modules/import_all.nix ];
 
+<<<<<<< HEAD
   stylix = {
     enable = true;
     base16Scheme =
@@ -69,6 +70,11 @@
     };
 
     polarity = "dark";
+=======
+  stylix.targets = {
+    # waybar.enable = false;
+    yazi.enable = false;
+>>>>>>> d326262a0d19945886d3de62c4fc19e166d4c4e0
   };
 
   home = {
@@ -96,9 +102,9 @@
       python3
       nodejs
       pipx
-      xfce.thunar
-      nautilus
       exiftool
+      xdragon
+      # xdg-desktop-portal-termfilechooser # for choosing your favorite file chooser
 
       # Disk
       dua # disk usage TUI tool. Run: dua i
@@ -203,5 +209,4 @@
       accel-profile = "adaptive";
     };
   };
-
 }
