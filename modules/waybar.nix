@@ -147,91 +147,30 @@ lib.mkForce {
         };
 
         pulseaudio = {
-          format = "{icon} {format_source}";
-          format-bluetooth = "{icon} {volume} {format_source}";
-          format-bluetooth-muted = "   {volume} {format_source}";
-          format-muted = "vol ______";
-          format-source = "mic";
+          # format = "{icon}{format_source}";
+          format = "{icon} {volume}{format_source}";
+          format-bluetooth = "{icon} {volume}{format_source}";
+          format-bluetooth-muted = "{icon} {volume}{format_source}";
+          format-muted = "muted";
+          format-source = " mic";
           format-source-muted = "";
           format-icons = {
-            hands-free = " ";
-            headset = " ";
-            phone = " ";
-            portable = " ";
-            car = " ";
-            speaker = [
-              "speaker ______"
-              "speaker \\_____"
-              "speaker |_____"
-              "speaker |\\____"
-              "speaker ||____"
-              "speaker ||\\___"
-              "speaker |||___"
-              "speaker |||\\__"
-              "speaker ||||__"
-              "speaker ||||\\_"
-              "speaker |||||_"
-              "speaker |||||\\"
-              "speaker ||||||"
-            ];
-            default = [
-              "vol       "
-              "vol .     "
-              "vol \\     "
-              "vol |     "
-              "vol |.    "
-              "vol |\\    "
-              "vol ||    "
-              "vol ||.   "
-              "vol ||\\   "
-              "vol |||   "
-              "vol |||.  "
-              "vol |||\\  "
-              "vol ||||  "
-              "vol ||||. "
-              "vol ||||\\ "
-              "vol ||||| "
-              "vol |||||."
-              "vol |||||\\"
-              "vol ||||||"
-            ];
-            hdmi = [
-              "hdmi ______"
-              "hdmi \\_____"
-              "hdmi |_____"
-              "hdmi |\\____"
-              "hdmi ||____"
-              "hdmi ||\\___"
-              "hdmi |||___"
-              "hdmi |||\\__"
-              "hdmi ||||__"
-              "hdmi ||||\\_"
-              "hdmi |||||_"
-              "hdmi |||||\\"
-              "hdmi ||||||"
-            ];
-            headphone = [
-              "headset ______"
-              "headset \\_____"
-              "headset |_____"
-              "headset |\\____"
-              "headset ||____"
-              "headset ||\\___"
-              "headset |||___"
-              "headset |||\\__"
-              "headset ||||__"
-              "headset ||||\\_"
-              "headset |||||_"
-              "headset |||||\\"
-              "headset ||||||"
-            ];
+            hands-free = "headset";
+            headset = "headset";
+            headphone = "headset";
+            phone = "phone";
+            portable = "portable";
+            car = "car";
+            speaker = "speaker";
+            default = "vol";
+            hdmi = "hdmi";
           };
           max-volume = 100;
           tooltip-format = "{desc}, {volume}%";
           on-click = "kitty sh -c 'pulsemixer'"; # or pavucontrol
           on-click-right = "pactl set-source-mute @DEFAULT_SOURCE@ toggle";
           on-click-middle = "helvum";
-          scroll-step = 3;
+          scroll-step = 5;
         };
 
       };
@@ -265,7 +204,7 @@ lib.mkForce {
 
       	/* Default padding for some modules */
       #tray,	#language, #network, #bluetooth, #idle_inhibitor, #battery, #pulseaudio, #clock { padding: 0px 5px 0px 5px; }
-          
+
         #language {
           background-color: #${base00};
         }
@@ -321,8 +260,8 @@ lib.mkForce {
           font-size: 16px;
         }
 
-      	#network.disconnected { color: @red;}
-      	#network.disabled { color: @gray; }
+      	#network.disconnected { color: @gray;}
+      	#network.disabled { color: @yellow; }
 
       	#idle_inhibitor.activated { color: @green; }
       	#idle_inhibitor.deactivated { color: @gray; }
