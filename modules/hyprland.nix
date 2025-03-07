@@ -4,6 +4,7 @@ with config.lib.stylix.colors; {
   wayland.windowManager.hyprland = {
     enable = true;
     xwayland.enable = true;
+    # package = pkgs.unstable.hyprland;
   };
 
   wayland.windowManager.hyprland.settings = {
@@ -38,7 +39,7 @@ with config.lib.stylix.colors; {
 
     exec = [
       # wallpaper
-      # "swaybg -i $HOME/nix/images/img_forest.jpg"
+      "swaybg -i $HOME/nix/images/image.jpg"
 
       # maze generator
       # "bash $HOME/nix/scripts/maze/run.sh ${base00} ${base02}"

@@ -118,7 +118,7 @@
   # Enable the X11 windowing system.
   services.xserver = {
     enable = true;
-    displayManager.startx.enable = true;
+    displayManager.startx.enable = false;
     displayManager.lightdm.enable = false;
 
     # Enable the GNOME Desktop Environment.
@@ -219,7 +219,7 @@
     gvfs.enable = true; # Mount, trash, and other functionalities
     tumbler.enable = true; # Thumbnail support for images
 
-    # displayManager.ly.enable = true;
+    displayManager.ly.enable = true;
 
     # Flatpak
     flatpak.enable = true;
@@ -263,6 +263,11 @@
   programs = {
 
     hyprland.enable = true;
+    hyprland.package = pkgs.hyprland.override {
+      # don't use override if you don't want compiling
+      withSystemd = false;
+      legacyRenderer = false;
+    };
     fish.enable = true;
 
     # promt for any shell
@@ -350,7 +355,7 @@
       theme = lib.mkForce null;
       fontSize = lib.mkForce 30;
       extraConfig = lib.mkForce ''
-        GRUB_CMDLINE_LINUX_DEFAULT="loglevel=2"
+        GRUB_CMDLINE_LINUX_DEFAULT="loglevel=1"
       '';
     };
     efi = { canTouchEfiVariables = true; };

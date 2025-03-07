@@ -95,8 +95,7 @@ lib.mkForce {
         "clock#date" = {
           format = "{:%d-%b-%y}";
           on-click = "exec gnome-calendar";
-          "tooltip-format" =
-            "<span size='10pt' font='GeistMono Nerd Font Mono'>{calendar}</span>";
+          "tooltip-format" = "<span size='10pt' {calendar}</span>";
           "calendar" = {
             "mode" = "year";
             "mode-mon-col" = 3;
@@ -193,7 +192,7 @@ lib.mkForce {
           border-radius: 0;
           margin: 0px;
           text-decoration: none;
-      	  /* font-family: "GeistMono"; */ 
+      	  font-family: "Mononoki Nerd Font Regular"; 
           font-size: 14px;
           min-height: 0;
           box-shadow: none;

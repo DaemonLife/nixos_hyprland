@@ -2,7 +2,7 @@
 with config.lib.stylix.colors; {
 
   # touchscreen plugin
-  wayland.windowManager.hyprland.plugins = [ pkgs.hyprlandPlugins.hyprgrass ];
+  # wayland.windowManager.hyprland.plugins = [ pkgs.hyprlandPlugins.hyprgrass ];
 
   # hyprland settings
   wayland.windowManager.hyprland.settings = {
@@ -21,13 +21,13 @@ with config.lib.stylix.colors; {
       touchdevice.transform = lib.mkForce 3;
     };
 
-    plugin = {
-      touch_gestures = {
-        sensitivity = 3.0;
-        long_press_delay = 170;
-        edge_margin = 500;
-      };
-    };
+    # plugin = {
+    #   touch_gestures = {
+    #     sensitivity = 3.0;
+    #     long_press_delay = 170;
+    #     edge_margin = 500;
+    #   };
+    # };
 
   };
 
