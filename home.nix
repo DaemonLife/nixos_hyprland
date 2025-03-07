@@ -127,7 +127,7 @@
         color_theme = lib.mkForce "TTY";
         theme_background = lib.mkForce false;
         rounded_corners = lib.mkForce false;
-        vim_keys = lib.mkForce false;
+        vim_keys = lib.mkForce true;
       };
     };
 
