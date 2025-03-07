@@ -91,11 +91,16 @@ lib.mkForce {
           format-ru = "ru";
         };
 
-        "clock#time" = { format = "{:%H:%M}"; };
+        "clock#time" = {
+          format = "{:%H:%M}";
+          tooltip = false;
+          # exec = ../scripts/timezone.sh;
+        };
         "clock#date" = {
           format = "{:%d-%b-%y}";
           on-click = "exec gnome-calendar";
-          "tooltip-format" = "<span size='10pt' {calendar}</span>";
+          "tooltip-format" =
+            "<span size='10pt' font='GeistMono Nerd Font Mono'>{calendar}</span>";
           "calendar" = {
             "mode" = "year";
             "mode-mon-col" = 3;
@@ -104,7 +109,7 @@ lib.mkForce {
             "on-click-right" = "mode";
             "format" = {
               "months" = "<span color='#${base0A}'><b>{}</b></span>";
-              "days" = "<span color='#${base07}'><b>{}</b></span>";
+              "days" = "<span color='#${base05}'><b>{}</b></span>";
               "weeks" = "<span color='#${base0C}'><b>W{}</b></span>";
               "weekdays" = "<span color='#${base0B}'><b>{}</b></span>";
               "today" = "<span color='#${base0E}'><b><u>{}</u></b></span>";

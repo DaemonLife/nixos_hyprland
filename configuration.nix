@@ -302,19 +302,19 @@
         custom.user = {
           command = "echo $USER@$hostname ";
           when = "true";
-          style = "gray";
+          style = "#${base05}";
           format = "[\\[$output\\]]($style) ";
         };
         time = {
           disabled = false;
           format = "[\\[$time\\]]($style) ";
-          style = "gray";
+          style = "#${base05}";
           time_format = "%R";
         };
         character = {
           success_symbol = "[\\[I\\]>](green)";
           error_symbol = "[\\[I\\]>](red)";
-          vimcmd_symbol = "[\\[N\\]>](bold cyan)";
+          vimcmd_symbol = "[\\[N\\]>](#${base05})";
           vimcmd_replace_one_symbol = "[\\[r\\]>](purple)";
           vimcmd_replace_symbol = "[\\[R\\]>](purple)";
           vimcmd_visual_symbol = "[\\[V\\]>](yellow)";
