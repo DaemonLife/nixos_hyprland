@@ -43,7 +43,7 @@
   };
 
   # Optional, hint electron apps to use wayland:
-  environment.sessionVariables.NIXOS_OZONE_WL = "1";
+  # environment.sessionVariables.NIXOS_OZONE_WL = "1";
 
   # --------------------------------
   # NETWORK, BlUETOOTH, SOUND, PRINT, TIMEZONE
@@ -117,7 +117,7 @@
 
   # Enable the X11 windowing system.
   services.xserver = {
-    enable = true;
+    enable = false;
     displayManager.startx.enable = false;
     displayManager.lightdm.enable = false;
 
@@ -219,8 +219,6 @@
     gvfs.enable = true; # Mount, trash, and other functionalities
     tumbler.enable = true; # Thumbnail support for images
 
-    displayManager.ly.enable = true;
-
     # Flatpak
     flatpak.enable = true;
 
@@ -262,12 +260,19 @@
 
   programs = {
 
-    hyprland.enable = true;
-    # hyprland.package = pkgs.hyprland.override {
-    #   # don't use override if you don't want compiling
-    #   withSystemd = false;
-    #   legacyRenderer = false;
-    # };
+    uwsm = { enable = true; };
+
+    hyprland = {
+      enable = true;
+      withUWSM = true;
+
+      package = pkgs.hyprland.override {
+        # don't use override if you don't want compiling
+        withSystemd = false;
+        legacyRenderer = false;
+      };
+
+    };
 
     fish.enable = true;
     dconf.enable = true;

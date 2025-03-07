@@ -1,13 +1,51 @@
 { inputs, pkgs, config, lib, ... }:
-with config.lib.stylix.colors; {
+let
+  execPref = "uwsm app -- ";
+  # execPref = "";
+in {
+
+  xdg.configFile."uwsm/env".text = ''
+    export XDG_SESSION_TYPE=wayland
+
+    export CLUTTER_BACKEND=wayland
+
+    # can be some errors with dwarffortress, it use x11
+    export SDL_VIDEODRIVER=wayland 
+
+    export GDK_BACKEND=wayland,x11,*
+    export GDK_DPI_SCALE=1
+    export GDK_SCALE=1
+
+    export QT_QPA_PLATFORM=wayland;xcb
+    export QT_AUTO_SCREEN_SCALE_FACTOR=1
+    export QT_WAYLAND_DISABLE_WINDOWDECORATION=1
+    export QT_QPA_PLATFORMTHEME=qt6ct
+
+    export _JAVA_AWT_WM_NONREPARENTING=1
+    export MOZ_ENABLE_WAYLAND=1
+    export MOZ_USE_XINPUT2=1
+
+    export TERMINAL=kitty
+
+    export XCURSOR_SIZE=24
+    export XCURSOR_THEME=Bibata-Modern-Ice
+
+    export NIXOS_OZONE_WL=1
+  '';
+
+  xdg.configFile."uwsm/env-hyprland".text = ''
+    export XDG_CURRENT_DESKTOP=Hyprland
+    export XDG_SESSION_DESKTOP=Hyprland
+  '';
 
   wayland.windowManager.hyprland = {
     enable = true;
     xwayland.enable = true;
     # package = pkgs.unstable.hyprland;
+    systemd = { enable = false; };
   };
 
-  wayland.windowManager.hyprland.settings = {
+  wayland.windowManager.hyprland.settings = with config.lib.stylix.colors; {
     "$mod" = "SUPER";
     "$terminal" = "kitty";
     # "$filemanager" = "nautilus -w";
@@ -29,43 +67,21 @@ with config.lib.stylix.colors; {
     ];
 
     exec-once = [
-      "dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"
-      "rfkill block bluetooth" # disable bluetooth autostart
-      "waybar"
-      "mako"
-      "/run/current-system/sw/libexex/polkit-gnome-authentication-agent-1"
-      "hypridle"
+      "${execPref}dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"
+      "${execPref}rfkill block bluetooth" # disable bluetooth autostart
+      "${execPref}waybar"
+      "${execPref}mako"
+      "${execPref}/run/current-system/sw/libexex/polkit-gnome-authentication-agent-1"
+      "${execPref}hypridle"
     ];
 
     exec = [
       # wallpaper
-      "swaybg -i $HOME/nix/images/image.jpg"
+      "uwsm app -- swaybg -i $HOME/nix/images/image.jpg"
 
       # maze generator
       # "bash $HOME/nix/scripts/maze/run.sh ${base00} ${base02}"
       # "swaybg -i $HOME/nix/scripts/maze/maze.png"
-    ];
-
-    env = [
-      "GDK_BACKEND,wayland,x11,*"
-      # "SDL_VIDEODRIVER,wayland;" # error with dwarf fortress? only x11
-      "CLUTTER_BACKEND,wayland"
-      "XDG_CURRENT_DESKTOP,Hyprland"
-      "XDG_SESSION_TYPE,wayland"
-      "XDG_SESSION_DESKTOP,Hyprland"
-      "QT_WAYLAND_DISABLE_WINDOWDECORATION,1"
-      "QT_QPA_PLATFORM,wayland;xcb"
-      "QT_AUTO_SCREEN_SCALE_FACTOR,1"
-      # "QT_QPA_PLATFORMTHEME,qt6ct"
-      "MOZ_ENABLE_WAYLAND,1"
-      "XCURSOR_SIZE,24"
-      "XCURSOR_THEME,Bibata-Modern-Ice"
-      "HYPRCURSOR_THEME,Bibata-Modern-Ice"
-      "HYPRCURSOR_SIZE,24"
-      "GDK_DPI_SCALE,1"
-      "GDK_SCALE,1"
-      "NIXOS_OZONE_WL=1"
-      "MOZ_USE_XINPUT2=1" # smooth scroll and better touch gestures
     ];
 
     input = {
@@ -92,6 +108,7 @@ with config.lib.stylix.colors; {
       # default_monitor = "";
     };
 
+    # for hyprland v.47
     # ecosystem = {
     #   no_update_news = true;
     #   no_donation_nag = true;
@@ -184,9 +201,8 @@ with config.lib.stylix.colors; {
     ];
 
     bindl = [
-      ",switch:on:Lid Switch, exec, hyprctl dispatch dpms off && swaylock"
-
-      ",switch:off:Lid Switch, exec, hyprctl dispatch dpms on"
+      ",switch:on:Lid Switch, exec, ${execPref}hyprctl dispatch dpms off && swaylock"
+      ",switch:off:Lid Switch, exec, ${execPref}hyprctl dispatch dpms on"
     ];
 
     # for long pressed
@@ -198,32 +214,32 @@ with config.lib.stylix.colors; {
       "$mod SHIFT, j, resizeactive, 0 10"
 
       # Brightness
-      ", XF86MonBrightnessUp, exec, brightnessctl set 5%+"
-      ", XF86MonBrightnessDown, exec, brightnessctl set 5%-"
-      "Control_L, h, exec, brightnessctl set 5%-"
-      "Control_L, l, exec, brightnessctl set 5%+"
+      ", XF86MonBrightnessUp, exec, ${execPref}brightnessctl set 5%+"
+      ", XF86MonBrightnessDown, exec, ${execPref}brightnessctl set 5%-"
+      "Control_L, h, exec, ${execPref}brightnessctl set 5%-"
+      "Control_L, l, exec, ${execPref}brightnessctl set 5%+"
 
       # Audio control
-      ", XF86AudioRaiseVolume, exec, amixer sset 'Master' 5%+"
-      ", XF86AudioLowerVolume, exec, amixer sset 'Master' 5%-"
-      "Control_L, j, exec, amixer sset 'Master' 5%+"
-      "Control_L, k, exec, amixer sset 'Master' 5%-"
-      ", XF86AudioMute, exec, amixer set Master toggle"
-      ", XF86AudioMicMute, exec, amixer sset Capture toggle"
+      ", XF86AudioRaiseVolume, exec, ${execPref}amixer sset 'Master' 5%+"
+      ", XF86AudioLowerVolume, exec, ${execPref}amixer sset 'Master' 5%-"
+      "Control_L, j, exec, ${execPref}amixer sset 'Master' 5%+"
+      "Control_L, k, exec, ${execPref}amixer sset 'Master' 5%-"
+      ", XF86AudioMute, exec, ${execPref}amixer set Master toggle"
+      ", XF86AudioMicMute, exec, ${execPref}amixer sset Capture toggle"
     ];
 
     # for one press
     bind = [
       # Run programs
-      "$mod, RETURN, exec, $terminal"
-      "$mod, RETURN, exec, hyprctl keyword input:kb_layout us,ru"
-      "$mod, D, exec, $menu"
-      "$mod, D, exec, hyprctl keyword input:kb_layout us,ru"
-      "$mod, N, exec, $filemanager"
-      "$mod, y, exec, kitty --hold $HOME/nix/scripts/y.fish"
-      "$mod, B, exec, $browser"
-      "$mod SHIFT, B, exec, proxychains4 $browser --set window.title_format [VPN]\\ {perc}{current_title}{title_sep}qutebrowser"
-      "$mod, T, exec, materialgram"
+      "$mod, RETURN, exec, ${execPref}$terminal"
+      "$mod, RETURN, exec, ${execPref}hyprctl keyword input:kb_layout us,ru"
+      "$mod, D, exec, ${execPref}$menu"
+      "$mod, D, exec, ${execPref}hyprctl keyword input:kb_layout us,ru"
+      "$mod, N, exec, ${execPref}$filemanager"
+      "$mod, y, exec, ${execPref}kitty --hold $HOME/nix/scripts/y.fish"
+      "$mod, B, exec, ${execPref}$browser"
+      "$mod SHIFT, B, exec, ${execPref}proxychains4 $browser --set window.title_format [VPN]\\ {perc}{current_title}{title_sep}qutebrowser"
+      "$mod, T, exec, ${execPref}materialgram"
       # "$mod, O, exit"
 
       # Windows control
@@ -268,15 +284,13 @@ with config.lib.stylix.colors; {
       "SHIFT Alt_L, mouse_down, workspace, -1"
 
       # Lock screen
-      ", F10, exec, swaylock"
-      ", F10, exec, hyprctl keyword input:kb_layout us,ru"
+      ", F10, exec, ${execPref}swaylock"
+      ", F10, exec, ${execPref}hyprctl keyword input:kb_layout us,ru"
 
       # Screenshot
-      "SUPER_SHIFT, s, exec, grimblast copysave area"
-      " , PRINT, exec, grimblast copysave output"
+      "SUPER_SHIFT, s, exec, ${execPref}grimblast copysave area"
+      " , PRINT, exec, ${execPref}grimblast copysave output"
 
-      # Run scripts
-      "WIN, F1, exec, ~/nix/scripts/save_mode.sh"
     ] ++ (
       # workspaces
       # binds $mod + [shift +] {1..10} to [move to] workspace {1..10}

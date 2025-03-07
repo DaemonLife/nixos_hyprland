@@ -13,7 +13,6 @@
     ./git.nix
     ./cmus.nix
     ./jrnl.nix
-    ./lf.nix
     ./fish.nix
     ./rtorrent.nix
     ./qutebrowser.nix
@@ -27,6 +26,7 @@
     ./stylix.nix
     # ./alacritty.nix
     # ./eww/eww.nix
+    # ./lf/lf.nix
     # ./nixvim.nix
     # ./zsh.nix
     # ./ranger.nix

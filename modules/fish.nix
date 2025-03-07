@@ -29,15 +29,14 @@
     } # colors
       ];
 
-    # shellInit = "";
-    # loginShellInit = ''
-    #   if not set -q DISPLAY
-    #     if test (tty) = "/dev/tty1"
-    #       clear
-    #       exec Hyprland
-    #     end
-    #   end
-    # '';
+    shellInit = "";
+    loginShellInit = ''
+      if not set -q DISPLAY
+        if test (tty) = "/dev/tty1"
+          exec uwsm start hyprland-uwsm.desktop
+        end
+      end
+    '';
 
     functions = {
       y = ''
