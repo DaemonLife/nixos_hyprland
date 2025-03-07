@@ -42,7 +42,7 @@ in {
     enable = true;
     xwayland.enable = true;
     # package = pkgs.unstable.hyprland;
-    systemd = { enable = false; };
+    systemd.enable = false;
   };
 
   wayland.windowManager.hyprland.settings = with config.lib.stylix.colors; {
