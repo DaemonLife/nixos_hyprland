@@ -150,11 +150,11 @@
     # Allow unfree and experimental packages
     settings.experimental-features = [ "nix-command" "flakes" ];
 
-    gc = { # Auto delete nix trash
-      automatic = true;
-      dates = "weekly";
-      options = "--delete-older-than 30d";
-    };
+    # gc = { # Auto delete nix trash
+    #   automatic = true;
+    #   dates = "weekly";
+    #   options = "--delete-older-than 30d";
+    # };
     optimise.automatic = true;
     settings.auto-optimise-store = true;
   };
@@ -173,7 +173,6 @@
     swaylock
     ntfs3g # ntfs support
     clinfo # opencl info
-    nh # nix cli helper
     mesa
     patchelfUnstable
     jdk # java
@@ -259,6 +258,13 @@
   # --------------------------------
 
   programs = {
+
+    nh = {
+      enable = true;
+      clean.enable = true;
+      clean.extraArgs = "--keep-since 4d --keep 5";
+      flake = "/home/user/nix";
+    };
 
     uwsm = { enable = true; };
 
