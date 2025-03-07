@@ -8,6 +8,12 @@
   boot.initrd.kernelModules = [ "amdgpu" ];
   services.xserver.videoDrivers = [ "amdgpu" ];
 
+  # swap file
+  swapDevices = [{
+    device = "/var/lib/swapfile";
+    size = 16 * 1024; # 16GB
+  }];
+
   services = {
 
     # Battery life / TLP

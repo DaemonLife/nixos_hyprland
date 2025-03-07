@@ -70,8 +70,8 @@
 
     # samsung-unified-linux-driver # Proprietary Samsung Drivers
     # cnijfilter2 # Drivers for some Canon Pixma devices (Proprietary driver)
-    foomatic-db-nonfree # OpenPrinting printer support database (unfree content)
-    foomatic-db-ppds-withNonfreeDb
+    # foomatic-db-nonfree # OpenPrinting printer support database (unfree content)
+    # foomatic-db-ppds-withNonfreeDb
 
   ];
 
@@ -263,12 +263,14 @@
   programs = {
 
     hyprland.enable = true;
-    hyprland.package = pkgs.hyprland.override {
-      # don't use override if you don't want compiling
-      withSystemd = false;
-      legacyRenderer = false;
-    };
+    # hyprland.package = pkgs.hyprland.override {
+    #   # don't use override if you don't want compiling
+    #   withSystemd = false;
+    #   legacyRenderer = false;
+    # };
+
     fish.enable = true;
+    dconf.enable = true;
 
     # promt for any shell
     starship = with config.lib.stylix.colors; {

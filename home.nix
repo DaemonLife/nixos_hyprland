@@ -2,10 +2,7 @@
 
   imports = [ ./modules/import_all.nix ];
 
-  stylix.targets = {
-    # waybar.enable = false;
-    yazi.enable = false;
-  };
+  stylix.targets = { yazi.enable = false; };
 
   home = {
     username = "user";
@@ -23,10 +20,7 @@
       grimblast
       brightnessctl # screen light
       gnome-power-manager # power statistic
-      hypridle # timer for screen lock
-      swaylock # screen lock
       wl-clipboard
-      btop
       cool-retro-term
       unzip
       python3
@@ -48,10 +42,8 @@
       bitwarden-cli
 
       # Media
-      imv # cli image viewer
       imagemagick
       ffmpegthumbnailer
-      halftone # image pixel redactor
       ffmpeg-full
       helvum # A GTK patchbay for pipewire
       pavucontrol # audio gui control
@@ -66,7 +58,6 @@
       gnome-tweaks
       swaybg # background
       unstable.gowall # Tool to convert a Wallpaper's color scheme. Still wait version 2...
-      dconf
       dconf-editor
 
       # Fonts
@@ -80,10 +71,8 @@
       hunspellDicts.ru_RU
       hunspellDicts.en_US
 
-      yt-dlp
       bottles
       veracrypt
-      fastfetch # system info in terminal
       cmatrix # matrix in terminal
       wev # key events in wayland
 
@@ -92,7 +81,6 @@
       # --------------------------------
 
       # Media
-      cmus # player
       musikcube # second music player
       unstable.darktable
       unstable.gimp
@@ -123,20 +111,44 @@
     sessionPath = [ "$HOME/.local/bin" ];
   };
 
-  dconf.settings = {
-    # disable top right buttons
-    "org/gnome/desktop/wm/preferences" = { button-layout = ""; };
+  # --------------------------------
+  # PROGRAMS SETUP
+  # --------------------------------
 
-    "org/gnome/desktop/peripherals/touchpad" = {
-      tap-and-drag = false;
-      # speed = -0.8;
-      natural-scroll = false;
-      accel-profile = "adaptive";
+  programs = {
+
+    fastfetch = { enable = true; };
+    yt-dlp = { enable = true; };
+    imv = { enable = true; };
+
+    btop = {
+      enable = true;
+      settings = {
+        color_theme = lib.mkForce "TTY";
+        theme_background = lib.mkForce false;
+        rounded_corners = lib.mkForce false;
+        vim_keys = lib.mkForce false;
+      };
     };
-    "org/gnome/desktop/peripherals/mouse" = {
-      # speed = -0.3;
-      natural-scroll = false;
-      accel-profile = "adaptive";
+
+  };
+
+  dconf = {
+    settings = {
+      # disable top right buttons
+      "org/gnome/desktop/wm/preferences" = { button-layout = ""; };
+
+      "org/gnome/desktop/peripherals/touchpad" = {
+        tap-and-drag = false;
+        # speed = -0.8;
+        natural-scroll = false;
+        accel-profile = "adaptive";
+      };
+      "org/gnome/desktop/peripherals/mouse" = {
+        # speed = -0.3;
+        natural-scroll = false;
+        accel-profile = "adaptive";
+      };
     };
   };
 }
