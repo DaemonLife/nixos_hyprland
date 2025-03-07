@@ -1,7 +1,7 @@
 { inputs, pkgs, config, lib, ... }:
 let
   execPref = "uwsm app -- ";
-  # execPref = "";
+  # execPref = ""; # if you don't use UWSM
 in {
 
   xdg.configFile."uwsm/env".text = ''
@@ -77,7 +77,7 @@ in {
 
     exec = [
       # wallpaper
-      "uwsm app -- swaybg -i $HOME/nix/images/image.jpg"
+      "${execPref}swaybg -i $HOME/nix/images/image.jpg"
 
       # maze generator
       # "bash $HOME/nix/scripts/maze/run.sh ${base00} ${base02}"
