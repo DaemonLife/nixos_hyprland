@@ -266,6 +266,8 @@
       flake = "/home/user/nix";
     };
 
+    git = { enable = true; };
+
     uwsm = { enable = true; };
 
     hyprland = {
