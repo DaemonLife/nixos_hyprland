@@ -28,7 +28,7 @@ fi
 # Rename model name to simple format
 if [ "$hardware_model" == "IdeaPad 5 Pro 14ACN6" ]; then
     hardware_model="lenovo"
-elif [ "$hardware_model" == "gpd-pocket-3" ]; then
+elif [ "$hardware_model" == "G1621-02" ]; then
     hardware_model="gpd-pocket-3"
 else
     hardware_model="default"

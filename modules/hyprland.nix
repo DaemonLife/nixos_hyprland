@@ -6,8 +6,6 @@ in {
 
   # export QT_QPA_PLATFORM=wayland;xcb # color error with wayland
   # export QT_QPA_PLATFORMTHEME=qt6ct
-  # can be some errors with dwarffortress it use x11
-  # export SDL_VIDEODRIVER=wayland 
   xdg.configFile."uwsm/env".text = ''
     export XDG_SESSION_TYPE=wayland
 
@@ -19,7 +17,7 @@ in {
     export GDK_DPI_SCALE=1
     export GDK_SCALE=1
 
-    export QT_QPA_PLATFORM=xcb 
+    export QT_QPA_PLATFORM=wayland;xcb
     export QT_AUTO_SCREEN_SCALE_FACTOR=1
     # export QT_WAYLAND_DISABLE_WINDOWDECORATION=1
 
@@ -69,10 +67,11 @@ in {
     ];
 
     exec-once = [
-      "${execPref}dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"
-      "${execPref}rfkill block bluetooth" # disable bluetooth autostart
+      "${execPref}pactl set-source-mute @DEFAULT_SOURCE@ on" # mic off
+      "${execPref}rfkill block bluetooth" # bt off
       "${execPref}waybar"
       "${execPref}mako"
+      # "${execPref}dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"
       "${execPref}/run/current-system/sw/libexex/polkit-gnome-authentication-agent-1"
       # "bash ../scripts/sleep.sh"
       "${execPref}swayidle -w timeout 600 'hyprctl keyword input:kb_layout us,ru && swaylock -f' timeout 630 'hyprctl dispatch dpms off' resume 'hyprctl dispatch dpms on' before-sleep 'swaylock -f'"
