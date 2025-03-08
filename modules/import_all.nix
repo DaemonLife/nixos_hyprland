@@ -7,7 +7,7 @@
     ./waybar.nix
     ./firefox.nix
     ./mpv.nix
-    ./hypridle.nix
+    # ./swayidle.nix
     ./swaylock.nix
     ./telegram-theme.nix
     ./git.nix
@@ -24,6 +24,7 @@
     ./fzf.nix
     ./yazi.nix
     ./stylix.nix
+    # ./hypridle.nix
     # ./alacritty.nix
     # ./eww/eww.nix
     # ./lf/lf.nix

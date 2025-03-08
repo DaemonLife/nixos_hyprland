@@ -214,6 +214,8 @@
 
   services = {
 
+    # hypridle.enable = true;
+
     # Thunar
     gvfs.enable = true; # Mount, trash, and other functionalities
     tumbler.enable = true; # Thumbnail support for images
@@ -224,7 +226,7 @@
     # Disable GNOME power service
     power-profiles-daemon.enable = false;
 
-    # xRay 
+    # VPN xRay
     xray = {
       enable = true;
       settingsFile = "/etc/xray/config.json";

@@ -1,5 +1,5 @@
 {
-  description = "My flake";
+  description = "DaemonLife flake";
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-24.11";
@@ -20,7 +20,6 @@
       url = "github:nix-community/nixvim/nixos-24.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    # hyprland.url = "github:hyprwm/Hyprland";
   };
 
   outputs = { self, nixpkgs, home-manager, stylix, nixvim, nixpkgs-unstable

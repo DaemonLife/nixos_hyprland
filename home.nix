@@ -28,6 +28,7 @@
       pipx
       exiftool
       xdragon
+      swayidle
       # xdg-desktop-portal-termfilechooser # for choosing your favorite file chooser
 
       # Disk

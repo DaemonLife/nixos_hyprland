@@ -9,7 +9,7 @@ in {
 
     export CLUTTER_BACKEND=wayland
 
-    # can be some errors with dwarffortress, it use x11
+    # can be some errors with dwarffortress it use x11
     export SDL_VIDEODRIVER=wayland 
 
     export GDK_BACKEND=wayland,x11,*
@@ -72,7 +72,8 @@ in {
       "${execPref}waybar"
       "${execPref}mako"
       "${execPref}/run/current-system/sw/libexex/polkit-gnome-authentication-agent-1"
-      "${execPref}hypridle"
+      # "bash ../scripts/sleep.sh"
+      "${execPref}swayidle -w timeout 600 'hyprctl keyword input:kb_layout us,ru && swaylock -f' timeout 630 'hyprctl dispatch dpms off' resume 'hyprctl dispatch dpms on' before-sleep 'swaylock -f'"
     ];
 
     exec = [
