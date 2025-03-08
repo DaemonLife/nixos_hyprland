@@ -21,9 +21,9 @@ in {
 
     export QT_QPA_PLATFORM=xcb 
     export QT_AUTO_SCREEN_SCALE_FACTOR=1
-    export QT_WAYLAND_DISABLE_WINDOWDECORATION=1
+    # export QT_WAYLAND_DISABLE_WINDOWDECORATION=1
 
-    export _JAVA_AWT_WM_NONREPARENTING=1
+    # export _JAVA_AWT_WM_NONREPARENTING=1
     export MOZ_ENABLE_WAYLAND=1
     export MOZ_USE_XINPUT2=1
 
@@ -56,14 +56,14 @@ in {
     "$browser" = "qutebrowser";
 
     monitor = [
-      # Monitor msk
-      "desc:Shenzhen KTC Technology Group H27S17 0x00000001,highres,0x0,1.25,bitdepth,10,vrr,1"
-      # Monitor gg
-      "desc:Acer Technologies Acer A231H LQT0W0084320,highres,auto-right,1,bitdepth,10,vrr,1"
       # GPD3
       "DSI-1,preferred,auto,2,transform,3"
       # Lenovo
       "eDP-1,highres,auto,1.6,bitdepth,10,vrr,1,mirror,desc:LG Electronics LG TV 0x01010101"
+      # Monitor msk
+      "desc:Shenzhen KTC Technology Group H27S17 0x00000001,highres,0x0,1.25,bitdepth,10,vrr,1"
+      # Monitor gg
+      "desc:Acer Technologies Acer A231H LQT0W0084320,highres,auto-right,1,bitdepth,10,vrr,1"
       # Random monitor
       ",preferred,auto,1"
     ];

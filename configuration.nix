@@ -266,6 +266,8 @@
   # OTHER PROGRAMS 
   # --------------------------------
 
+  qt.enable = true;
+
   programs = {
 
     # For Hyprland
