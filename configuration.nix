@@ -32,29 +32,42 @@
   # ENVIRONMENTS 
   # --------------------------------
 
-  # proxy for any program: proxychains [program]
-  environment.etc."proxychains.conf".text =
-    "\n    strict_chain\n    proxy_dns \n    remote_dns_subnet 224\n    tcp_read_time_out 15000\n    tcp_connect_time_out 8000\n    localnet 127.0.0.0/255.0.0.0\n\n    [ProxyList]\n    socks5   127.0.0.1 10808 \n  ";
+  environment = {
+    variables = {
+      EDITOR = "hx";
+      SYSTEMD_EDITOR = "hx";
+      VISUAL = "hx";
+    };
+    # Proxy for any program: proxychains [PROGRAM]
+    etc."proxychains.conf".text = ''
+      strict_chain
+      proxy_dns
+      remote_dns_subnet 224
+      tcp_read_time_out 15000
+      tcp_connect_time_out 8000
+      localnet 127.0.0.0/255.0.0.0
 
-  environment.variables = {
-    EDITOR = "hx";
-    SYSTEMD_EDITOR = "hx";
-    VISUAL = "hx";
+      [ProxyList]
+      socks5   127.0.0.1 10808
+    '';
   };
-
-  # Optional, hint electron apps to use wayland:
-  environment.sessionVariables.NIXOS_OZONE_WL = "1";
 
   # --------------------------------
   # NETWORK, BlUETOOTH, SOUND, PRINT, TIMEZONE
   # --------------------------------
 
+  # Network
   networking.hostName = "nixos"; # Define your hostname.
   networking.networkmanager.enable = true;
+  # networking.wireless.iwd.enable = true; # wifi cli
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
+  # Bluetooth
   hardware.bluetooth.enable = true;
   hardware.bluetooth.powerOnBoot = false;
+
+  # NixOS power management tool is compatible with similar tools, but the other tools may overwrite this setting.
+  powerManagement.enable = true;
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
@@ -72,12 +85,12 @@
     # cnijfilter2 # Drivers for some Canon Pixma devices (Proprietary driver)
     # foomatic-db-nonfree # OpenPrinting printer support database (unfree content)
     # foomatic-db-ppds-withNonfreeDb
-
   ];
 
   # Enable scanner
   hardware.sane.enable = true; # enables support for scanners
   hardware.sane.extraBackends = [ pkgs.sane-airscan ];
+  # udev, a device manager for the Linux kernel.
   services.udev.packages = [ pkgs.sane-airscan ];
 
   # Enable sound with pipewire.
@@ -129,6 +142,7 @@
     xkb.layout = "us,ru";
     xkb.variant = "";
   };
+  xdg.portal.wlr.enable = true;
 
   users.users.user = {
     isNormalUser = true;
@@ -164,22 +178,19 @@
   # --------------------------------
 
   environment.systemPackages = with pkgs; [
-    xdg-desktop-portal
     hyprcursor
     gparted
-    htop
     os-prober
     grub2
     swaylock
     ntfs3g # ntfs support
     clinfo # opencl info
-    mesa
-    patchelfUnstable
+    mesa # video driver
     jdk # java
-    impala
+    impala # wifi tui
     iwd
     helix
-    cups # print
+    # cups # print. enabled upper
     bluez
 
     grc # colors for fish
@@ -214,9 +225,7 @@
 
   services = {
 
-    # hypridle.enable = true;
-
-    # Thunar
+    # For thunar
     gvfs.enable = true; # Mount, trash, and other functionalities
     tumbler.enable = true; # Thumbnail support for images
 
@@ -225,6 +234,8 @@
 
     # Disable GNOME power service
     power-profiles-daemon.enable = false;
+    # Thermald proactively prevents overheating 
+    thermald.enable = true;
 
     # VPN xRay
     xray = {
@@ -261,17 +272,8 @@
 
   programs = {
 
-    nh = {
-      enable = true;
-      clean.enable = true;
-      clean.extraArgs = "--keep-since 4d --keep 5";
-      flake = "/home/user/nix";
-    };
-
-    git = { enable = true; };
-
+    # For Hyprland
     uwsm = { enable = true; };
-
     hyprland = {
       enable = true;
       withUWSM = true;
@@ -284,8 +286,17 @@
 
     };
 
-    fish.enable = true;
+    nh = {
+      enable = true;
+      clean.enable = true;
+      clean.extraArgs = "--keep-since 4d --keep 5";
+      flake = "/home/user/nix";
+    };
+
+    htop.enable = true;
+    git.enable = true;
     dconf.enable = true;
+    fish.enable = true;
 
     # promt for any shell
     starship = with config.lib.stylix.colors; {
@@ -344,23 +355,13 @@
     xfconf.enable = true;
     thunar.plugins = with pkgs.xfce; [ thunar-archive-plugin thunar-volman ];
 
-    # run bin files
-    nix-ld = {
-      enable = true;
-      libraries = with pkgs;
-        [
-          # ...
-        ];
-    };
-
   };
 
   # --------------------------------
-  # BOOT 
+  # BOOT OPTIONS
   # --------------------------------
 
-  boot = { kernelParams = [ "boot.shell_on_fail" ]; };
-
+  boot.kernelParams = [ "boot.shell_on_fail" ];
   boot.loader = {
     grub = {
       enable = true;
