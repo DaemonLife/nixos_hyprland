@@ -19,12 +19,19 @@ lib.mkForce {
         modules-right = [
           "tray"
           "hyprland/language"
+          "custom/sep"
           "network"
+          "custom/sep"
           "bluetooth"
+          "custom/sep"
           "idle_inhibitor"
+          "custom/sep"
           "battery"
+          "custom/sep"
           "pulseaudio"
+          "custom/sep"
           "clock#date"
+          "custom/sep"
           "clock#time"
         ];
 
@@ -70,6 +77,8 @@ lib.mkForce {
             deactivated = "idle";
           };
         };
+
+        "custom/sep" = { format = "|"; };
 
         bluetooth = {
           format = "{icon}";
@@ -184,6 +193,7 @@ lib.mkForce {
     style = ''
       	@define-color dark #${base00};
       	@define-color gray #${base03};
+      	@define-color dark-white #${base04};
       	@define-color white #${base05};
       	@define-color accent #${base0D};
       	@define-color green #${base0B};
@@ -209,6 +219,10 @@ lib.mkForce {
       	/* Default padding for some modules */
       #tray,	#language, #network, #bluetooth, #idle_inhibitor, #battery, #pulseaudio, #clock { padding: 0px 5px 0px 5px; }
 
+        #custom-sep {
+          color: @gray;
+        }
+
         #language {
           background-color: #${base00};
         }
@@ -228,10 +242,10 @@ lib.mkForce {
           background-color: #${base00};
         }
         #clock.date {
-          background-color: #${base01};
+          background-color: #${base00};
         }
         #clock.time {
-          background-color: #${base02};
+          background-color: #${base00};
         }
         
         #workspaces button { 
@@ -275,9 +289,9 @@ lib.mkForce {
 
       	#pulseaudio.muted { color: @gray; }
 
-      	#battery.plugged { color: @accent; }
+      	#battery.plugged { color: @green; }
       	#battery.charging{
-          color: @accent;
+          color: @green;
           animation-name: blink;
           animation-duration: 1.5s;
           animation-timing-function: linear;
