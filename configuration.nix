@@ -274,6 +274,7 @@
       enable = true;
       withUWSM = true;
 
+      # package = pkgs.unstable.hyprland.override {
       package = pkgs.hyprland.override {
         # don't use override if you don't want compiling
         withSystemd = false;
