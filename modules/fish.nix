@@ -32,7 +32,7 @@
     loginShellInit = ''
       if not set -q DISPLAY
         if test (tty) = "/dev/tty1"
-          exec uwsm start hyprland-uwsm.desktop
+          exec uwsm start hyprland-uwsm.desktop > /dev/null
         end
       end
     '';

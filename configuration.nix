@@ -59,7 +59,6 @@
   # Network
   networking.hostName = "nixos"; # Define your hostname.
   networking.networkmanager.enable = true;
-  # networking.wireless.iwd.enable = true; # wifi cli
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Bluetooth
@@ -181,16 +180,14 @@
     hyprcursor
     gparted
     os-prober
-    grub2
     swaylock
     ntfs3g # ntfs support
     clinfo # opencl info
     mesa # video driver
     jdk # java
     impala # wifi tui
-    iwd
+    iwd # wifi cli, don't delete!
     helix
-    # cups # print. enabled upper
     bluez
 
     grc # colors for fish
@@ -205,7 +202,6 @@
 
     # for thunar
     nufraw-thumbnailer
-
   ];
 
   # --------------------------------
