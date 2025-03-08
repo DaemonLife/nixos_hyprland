@@ -4,22 +4,24 @@ let
   # execPref = ""; # if you don't use UWSM
 in {
 
+  # export QT_QPA_PLATFORM=wayland;xcb # color error with wayland
+  # export QT_QPA_PLATFORMTHEME=qt6ct
+  # can be some errors with dwarffortress it use x11
+  # export SDL_VIDEODRIVER=wayland 
   xdg.configFile."uwsm/env".text = ''
     export XDG_SESSION_TYPE=wayland
 
     export CLUTTER_BACKEND=wayland
 
-    # can be some errors with dwarffortress it use x11
     export SDL_VIDEODRIVER=wayland 
 
     export GDK_BACKEND=wayland,x11,*
     export GDK_DPI_SCALE=1
     export GDK_SCALE=1
 
-    export QT_QPA_PLATFORM=wayland;xcb
+    export QT_QPA_PLATFORM=xcb 
     export QT_AUTO_SCREEN_SCALE_FACTOR=1
     export QT_WAYLAND_DISABLE_WINDOWDECORATION=1
-    export QT_QPA_PLATFORMTHEME=qt6ct
 
     export _JAVA_AWT_WM_NONREPARENTING=1
     export MOZ_ENABLE_WAYLAND=1
