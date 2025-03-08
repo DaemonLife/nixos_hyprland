@@ -3,12 +3,11 @@
   programs.fish = {
     enable = true;
     shellAliases = {
-      # update [device]
-      update = "nh os switch $HOME/nix/. -H $1";
-      upgrade = "nh os switch -u $HOME/nix -H $1";
+      # os help - for help
+      os = "$HOME/nix/scripts/nix_rebuild.sh";
 
       # for windows fs on lenovo
-      cdwin = "$HOME/nix/scripts/cdwin.fish && cd /mnt/windows/Users/user";
+      mwin = "$HOME/nix/scripts/cdwin.fish && cd /mnt/windows/Users/user";
 
       # battery configuration will be restored at the next boot
       tlp_full = "sudo tlp fullcharge bat1";
