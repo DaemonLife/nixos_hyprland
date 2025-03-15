@@ -1,41 +1,41 @@
 { pkgs, config, ... }: {
 
-  programs.firefox = with config.lib.stylix.colors; {
+  programs.librewolf = with config.lib.stylix.colors; {
     enable = true;
-    package = pkgs.wrapFirefox pkgs.firefox-unwrapped {
-      extraPolicies = {
-        CaptivePortal = false;
-        DisableFirefoxStudies = true;
-        DisablePocket = true;
-        DisableTelemetry = true;
-        DisableFirefoxAccounts = false;
-        NoDefaultBookmarks = true;
-        OfferToSaveLogins = true;
-        OfferToSaveLoginsDefault = true;
-        PasswordManagerEnabled = true;
-        FirefoxHome = {
-          Search = true;
-          Pocket = false;
-          Snippets = false;
-          TopSites = false;
-          Highlights = false;
-        };
-        UserMessaging = {
-          ExtensionRecommendations = false;
-          SkipOnboarding = true;
-        };
+    # package = pkgs.wrapFirefox pkgs.firefox-unwrapped {
+    #   extraPolicies = {
+    #     CaptivePortal = false;
+    #     DisableFirefoxStudies = true;
+    #     DisablePocket = true;
+    #     DisableTelemetry = true;
+    #     DisableFirefoxAccounts = false;
+    #     NoDefaultBookmarks = true;
+    #     OfferToSaveLogins = true;
+    #     OfferToSaveLoginsDefault = true;
+    #     PasswordManagerEnabled = true;
+    #     FirefoxHome = {
+    #       Search = true;
+    #       Pocket = false;
+    #       Snippets = false;
+    #       TopSites = false;
+    #       Highlights = false;
+    #     };
+    #     UserMessaging = {
+    #       ExtensionRecommendations = false;
+    #       SkipOnboarding = true;
+    #     };
 
-        # Set preferences shared by all profiles.
-        Preferences = {
-          "browser.contentblocking.category" = { Value = "strict"; };
-          "browser.gesture.swipe.left" = "";
-          "browser.gesture.swipe.right" = "";
-          "extensions.pocket.enabled" = "lock-false";
-          "extensions.screenshots.disabled" = "lock-true";
-        };
+    #     # Set preferences shared by all profiles.
+    #     Preferences = {
+    #       "browser.contentblocking.category" = { Value = "strict"; };
+    #       "browser.gesture.swipe.left" = "";
+    #       "browser.gesture.swipe.right" = "";
+    #       "extensions.pocket.enabled" = "lock-false";
+    #       "extensions.screenshots.disabled" = "lock-true";
+    #     };
 
-      };
-    };
+    #   };
+    # };
 
     profiles.user = { settings = { "general.smoothScroll" = true; }; };
 
@@ -56,7 +56,7 @@
       :root {
         --sfwindow: #${base00};
         --sfsecondary: #${base01};
-        --toolbarbutton-border-radius: 0px !important;
+        --toolbarbutton-border-radius: 4px !important;
       }
 
       /* Tabs */
@@ -120,12 +120,12 @@
       .tab-close-button {
       /* make it transparent */
         opacity: 0;
-        border-radius: 0px !important;
+        border-radius: 4px !important;
       }
 
       #tabs-newtab-button, #new-tab-button {
           background-color: #${base00} !important;
-          border-radius: 0px !important;
+          border-radius: 4px !important;
       }
 
       #tabs-newtab-button:hover, #new-tab-button:hover {
