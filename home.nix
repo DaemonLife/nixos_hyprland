@@ -84,7 +84,6 @@
       # Media
       musikcube # second music player
       termusic
-      unstable.kew # old version is unsecure
       unstable.darktable
       unstable.gimp
 

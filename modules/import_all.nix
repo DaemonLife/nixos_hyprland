@@ -24,6 +24,7 @@
     ./fzf.nix
     ./yazi.nix
     ./stylix.nix
+    ./joplin-cli.nix
     # ./hypridle.nix
     # ./alacritty.nix
     # ./eww/eww.nix

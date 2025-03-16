@@ -190,7 +190,6 @@
     helix
     bluez
     kitty
-    rmpc
 
     # GNOME programs
     nautilus
@@ -251,8 +250,6 @@
 
     # Enable the OpenSSH daemon.
     openssh.enable = true;
-
-    mpd.enable = true;
 
   }; # close services
 
