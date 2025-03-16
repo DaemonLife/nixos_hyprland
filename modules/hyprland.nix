@@ -235,8 +235,7 @@ in {
       # Run programs
       "$mod, RETURN, exec, ${execPref}$terminal"
       "$mod, RETURN, exec, ${execPref}hyprctl keyword input:kb_layout us,ru"
-      "$mod, D, exec, ${execPref}$menu"
-      "$mod, D, exec, ${execPref}hyprctl keyword input:kb_layout us,ru"
+      "$mod, D, exec, ${execPref}hyprctl keyword input:kb_layout us,ru && ${execPref}$menu"
       "$mod, N, exec, ${execPref}$filemanager"
       "$mod, y, exec, ${execPref}kitty --hold $HOME/nix/scripts/y.fish"
       "$mod, B, exec, ${execPref}$browser"
