@@ -7,8 +7,11 @@ with config.lib.stylix.colors; {
       gaps_out = lib.mkForce "6, 6, 6, 6";
     };
 
-    input = { scroll_factor = lib.mkForce "1.0"; };
-
+    input = {
+      sensitivity = lib.mkForce "0"; # -1.0 - 1.0
+      scroll_factor = lib.mkForce "1.0";
+      natural_scroll = lib.mkForce false; # natural mean idiotic
+    };
   };
 
 }
