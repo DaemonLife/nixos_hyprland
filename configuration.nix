@@ -189,7 +189,14 @@
     iwd # wifi cli, don't delete!
     helix
     bluez
+    kitty
+    rmpc
 
+    # GNOME programs
+    nautilus
+    adwaita-icon-theme
+
+    # fish shell
     grc # colors for fish
     fzf # cli search. Run: Ctrl+R
     fishPlugins.fzf-fish
@@ -203,6 +210,9 @@
     # for thunar
     nufraw-thumbnailer
   ];
+
+  # Android emulator. Read https://nixos.wiki/wiki/WayDroid
+  virtualisation.waydroid.enable = true;
 
   # --------------------------------
   # SECURITY 
@@ -241,6 +251,8 @@
 
     # Enable the OpenSSH daemon.
     openssh.enable = true;
+
+    mpd.enable = true;
 
   }; # close services
 
@@ -288,13 +300,25 @@
     nh = {
       enable = true;
       clean.enable = true;
-      clean.extraArgs = "--keep-since 4d --keep 5";
+      clean.extraArgs = "--keep-since 7d --keep 5";
       flake = "/home/user/nix";
+    };
+
+    thunar = {
+      enable = true;
+      plugins = with pkgs.xfce; [ thunar-archive-plugin thunar-volman ];
+    };
+    xfconf.enable = true; # thunar settings
+
+    # GNOME programs
+    dconf.enable = true;
+    nautilus-open-any-terminal = {
+      enable = true;
+      terminal = "kitty";
     };
 
     htop.enable = true;
     git.enable = true;
-    dconf.enable = true;
     fish.enable = true;
 
     # promt for any shell
@@ -348,12 +372,6 @@
         };
       };
     };
-
-    thunar.enable = true;
-    # thunar settings
-    xfconf.enable = true;
-    thunar.plugins = with pkgs.xfce; [ thunar-archive-plugin thunar-volman ];
-
   };
 
   # --------------------------------

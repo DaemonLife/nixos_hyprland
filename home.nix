@@ -83,18 +83,19 @@
 
       # Media
       musikcube # second music player
+      termusic
+      unstable.kew # old version is unsecure
       unstable.darktable
       unstable.gimp
 
       # Internet
-      transmission_4
       qbittorrent # torrent client
       tor-browser
 
       # Docs
       jrnl
       libreoffice
-      unstable.joplin
+      joplin
       stellarium # astro map
       unstable.astroterm # astro map ASCII
       epy # cli book reader

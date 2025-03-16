@@ -4,9 +4,15 @@
   # Imports
   imports = [ ./hardware-configuration.nix ];
 
-  hardware.graphics.extraPackages = with pkgs; [ rocmPackages.clr.icd ];
+  hardware.graphics.enable = true;
+  # OpenCL
+  hardware.graphics.extraPackages = with pkgs; [ rocmPackages.clr.icd amdvlk ];
   boot.initrd.kernelModules = [ "amdgpu" ];
   services.xserver.videoDrivers = [ "amdgpu" ];
+
+  # enable HIP
+  systemd.tmpfiles.rules =
+    [ "L+    /opt/rocm/hip   -    -    -     -    ${pkgs.rocmPackages.clr}" ];
 
   # swap file
   swapDevices = [{
