@@ -190,6 +190,8 @@
     helix
     bluez
     kitty
+    bottles # run windows programs
+    gitui
 
     # GNOME programs
     nautilus
@@ -314,6 +316,7 @@
       terminal = "kitty";
     };
 
+    lazygit.enable = true;
     htop.enable = true;
     git.enable = true;
     fish.enable = true;
