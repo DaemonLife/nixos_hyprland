@@ -53,13 +53,13 @@
           desc = "Open";
         }];
         "image" = [{
-          run = ''imv "$@"'';
-          desc = "Image open";
+          run = ''imv "$@" *'';
+          desc = "Open in imv";
           orphan = true;
         }];
         "firefox" = [{
-          run = ''firefox "$@"'';
-          desc = "Open in Firefox";
+          run = ''librewolf "$@"'';
+          desc = "Open in Librewolf";
           orphan = true;
         }];
         "qutebrowser" = [{

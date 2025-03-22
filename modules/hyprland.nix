@@ -4,49 +4,16 @@ let
   # execPref = ""; # if you don't use UWSM
 in {
 
-  # export QT_QPA_PLATFORM=wayland;xcb # color error with wayland
-  # export QT_QPA_PLATFORMTHEME=qt6ct
-  xdg.configFile."uwsm/env".text = ''
-    export XDG_SESSION_TYPE=wayland
-
-    export CLUTTER_BACKEND=wayland
-
-    export SDL_VIDEODRIVER=wayland 
-
-    export GDK_BACKEND=wayland,x11,*
-    export GDK_DPI_SCALE=1
-    export GDK_SCALE=1
-
-    export QT_QPA_PLATFORM=wayland;xcb
-    export QT_AUTO_SCREEN_SCALE_FACTOR=1
-    export QT_WAYLAND_DISABLE_WINDOWDECORATION=1
-
-    export MOZ_ENABLE_WAYLAND=1
-    export MOZ_USE_XINPUT2=1
-
-    export TERMINAL=kitty
-
-    export XCURSOR_SIZE=24
-    export XCURSOR_THEME=Bibata-Modern-Ice
-
-    export NIXOS_OZONE_WL=1
-  '';
-
-  xdg.configFile."uwsm/env-hyprland".text = ''
-    export XDG_CURRENT_DESKTOP=Hyprland
-    export XDG_SESSION_DESKTOP=Hyprland
-  '';
-
   wayland.windowManager.hyprland = {
     enable = true;
     xwayland.enable = true;
     # package = pkgs.unstable.hyprland;
-    systemd.enable = false;
+    systemd.enable = false; # false for UWSM
   };
 
   wayland.windowManager.hyprland.settings = with config.lib.stylix.colors; {
     "$mod" = "SUPER";
-    "$terminal" = "kitty";
+    "$terminal" = "kitty --single-instance";
     "$filemanager" = "nautilus -w";
     # "$filemanager" = "thunar";
     "$menu" = "fuzzel -l 10";
@@ -140,7 +107,7 @@ in {
       vrr = true;
       disable_hyprland_logo = true;
       disable_splash_rendering = true;
-      animate_manual_resizes = true;
+      animate_manual_resizes = false;
       # animate_mouse_windowdragging = true; # need test this
       mouse_move_focuses_monitor = true;
       initial_workspace_tracking = 1;
@@ -162,7 +129,7 @@ in {
     };
 
     animations = {
-      enabled = true;
+      enabled = false;
       bezier = [
         "wind, 0.05, 0.9, 0.1, 1.05"
         "winIn, 0.1, 1.1, 0.1, 1.1"
@@ -237,7 +204,7 @@ in {
       "$mod, RETURN, exec, ${execPref}hyprctl keyword input:kb_layout us,ru"
       "$mod, D, exec, ${execPref}hyprctl keyword input:kb_layout us,ru && ${execPref}$menu"
       "$mod, N, exec, ${execPref}$filemanager"
-      "$mod, y, exec, ${execPref}kitty --hold $HOME/nix/scripts/y.fish"
+      "$mod, y, exec, ${execPref}kitty --single-instance --hold $HOME/nix/scripts/y.fish"
       "$mod, B, exec, ${execPref}$browser"
       "$mod SHIFT, B, exec, ${execPref}proxychains4 $browser --set window.title_format [VPN]\\ {perc}{current_title}{title_sep}qutebrowser"
       "$mod, T, exec, ${execPref}materialgram"
@@ -303,4 +270,40 @@ in {
         ]) 10));
 
   };
+
+  # HYPRLAND VARIABLES
+
+  # export QT_QPA_PLATFORM=wayland;xcb # color error with wayland
+  # export QT_QPA_PLATFORMTHEME=qt6ct
+  xdg.configFile."uwsm/env".text = ''
+    export XDG_SESSION_TYPE=wayland
+
+    export CLUTTER_BACKEND=wayland
+
+    export SDL_VIDEODRIVER=wayland 
+
+    export GDK_BACKEND=wayland,x11,*
+    export GDK_DPI_SCALE=1
+    export GDK_SCALE=1
+
+    export QT_QPA_PLATFORM=wayland;xcb
+    export QT_AUTO_SCREEN_SCALE_FACTOR=1
+    export QT_WAYLAND_DISABLE_WINDOWDECORATION=1
+
+    export MOZ_ENABLE_WAYLAND=1
+    export MOZ_USE_XINPUT2=1
+
+    export TERMINAL=kitty
+
+    export XCURSOR_SIZE=24
+    export XCURSOR_THEME=Bibata-Modern-Ice
+
+    export NIXOS_OZONE_WL=1
+  '';
+
+  xdg.configFile."uwsm/env-hyprland".text = ''
+    export XDG_CURRENT_DESKTOP=Hyprland
+    export XDG_SESSION_DESKTOP=Hyprland
+  '';
+
 }

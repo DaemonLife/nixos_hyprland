@@ -4,6 +4,7 @@
 
     enable = true;
     # shellIntegration.enableZshIntegration = true;
+    shellIntegration.enableFishIntegration = true;
 
     keybindings = {
       "ctrl+shift+c" = "copy_or_interrupt";
@@ -30,7 +31,7 @@
       visual_bell_duration = "0.1";
       hide_window_decorations = "yes";
       # window_title = "Kitty";
-      # open_url_with = "firefox";
+      open_url_with = "qutebrowser";
       window_border_width = "0pt";
       # draw_minimal_borders = "yes";
       window_margin_width = "0 0 0 0";

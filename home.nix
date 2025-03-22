@@ -2,7 +2,10 @@
 
   imports = [ ./modules/_import.nix ];
 
-  stylix.targets = { yazi.enable = false; };
+  stylix.targets = {
+    sway.enable = true;
+    yazi.enable = false;
+  };
 
   home = {
     username = "user";

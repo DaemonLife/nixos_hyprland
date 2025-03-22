@@ -7,7 +7,6 @@
     ./waybar.nix
     ./firefox.nix
     ./mpv.nix
-    # ./swayidle.nix
     ./swaylock.nix
     ./telegram-theme.nix
     ./git.nix
@@ -25,6 +24,8 @@
     ./yazi.nix
     ./stylix.nix
     ./joplin-cli.nix
+    # ./sway.nix
+    # ./swayidle.nix
     # ./hypridle.nix
     # ./alacritty.nix
     # ./eww/eww.nix

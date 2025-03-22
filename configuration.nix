@@ -38,6 +38,8 @@
       SYSTEMD_EDITOR = "hx";
       VISUAL = "hx";
     };
+    # Run Electron apps without XWayland
+    sessionVariables.NIXOS_OZONE_WL = "1";
     # Proxy for any program: proxychains [PROGRAM]
     etc."proxychains.conf".text = ''
       strict_chain
@@ -93,14 +95,13 @@
   services.udev.packages = [ pkgs.sane-airscan ];
 
   # Enable sound with pipewire.
-  hardware.pulseaudio.enable = false;
   # rtkit is optional but recommended for pipewire
   security.rtkit.enable = true;
   services.pipewire = {
     enable = true;
     alsa.enable = true;
     alsa.support32Bit = true;
-    pulse.enable = true;
+    pulse.enable = true; # important for waybar
     # If you want to use JACK applications, uncomment this
     jack.enable = true;
   };
@@ -141,7 +142,7 @@
     xkb.layout = "us,ru";
     xkb.variant = "";
   };
-  xdg.portal.wlr.enable = true;
+  # xdg.portal.wlr.enable = true;
 
   users.users.user = {
     isNormalUser = true;
@@ -150,7 +151,7 @@
     useDefaultShell = true;
 
     # Users in the scanner group will gain access to the scanner, or the lp group if it’s also a printer.
-    extraGroups = [ "networkmanager" "wheel" "input" "scanner" "lp" ];
+    extraGroups = [ "networkmanager" "wheel" "video" "input" "scanner" "lp" ];
     packages = with pkgs; [ flatpak ];
   };
 
@@ -177,7 +178,7 @@
   # --------------------------------
 
   environment.systemPackages = with pkgs; [
-    hyprcursor
+    # hyprcursor
     gparted
     os-prober
     swaylock
@@ -207,7 +208,7 @@
     proxychains # run any program with xray proxy
 
     # for thunar
-    nufraw-thumbnailer
+    # nufraw-thumbnailer
   ];
 
   # Android emulator. Read https://nixos.wiki/wiki/WayDroid
@@ -231,8 +232,8 @@
   services = {
 
     # For thunar
-    gvfs.enable = true; # Mount, trash, and other functionalities
-    tumbler.enable = true; # Thumbnail support for images
+    # gvfs.enable = true; # Mount, trash, and other functionalities
+    # tumbler.enable = true; # Thumbnail support for images
 
     # Flatpak
     flatpak.enable = true;
@@ -251,24 +252,34 @@
     # Enable the OpenSSH daemon.
     openssh.enable = true;
 
+    # bluetooth
+    pipewire.wireplumber.extraConfig.bluetoothEnhancements = {
+      "monitor.bluez.properties" = {
+        "bluez5.enable-sbc-xq" = true;
+        "bluez5.enable-msbc" = true;
+        "bluez5.enable-hw-volume" = true;
+        "bluez5.roles" = [ "hsp_hs" "hsp_ag" "hfp_hf" "hfp_ag" ];
+      };
+    };
+
   }; # close services
 
   systemd = {
     # User service authentication agent
-    user.services.polkit-gnome-authentication-agent-1 = {
-      description = "polkit-gnome-authentication-agent-1";
-      wantedBy = [ "graphical-session.target" ];
-      wants = [ "graphical-session.target" ];
-      after = [ "graphical-session.target" ];
-      serviceConfig = {
-        Type = "simple";
-        ExecStart =
-          "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
-        Restart = "on-failure";
-        RestartSec = 1;
-        TimeoutStopSec = 10;
-      };
-    };
+    # user.services.polkit-gnome-authentication-agent-1 = {
+    #   description = "polkit-gnome-authentication-agent-1";
+    #   wantedBy = [ "graphical-session.target" ];
+    #   wants = [ "graphical-session.target" ];
+    #   after = [ "graphical-session.target" ];
+    #   serviceConfig = {
+    #     Type = "simple";
+    #     ExecStart =
+    #       "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
+    #     Restart = "on-failure";
+    #     RestartSec = 1;
+    #     TimeoutStopSec = 10;
+    #   };
+    # };
   };
 
   # --------------------------------
@@ -301,11 +312,11 @@
       flake = "/home/user/nix";
     };
 
-    thunar = {
-      enable = true;
-      plugins = with pkgs.xfce; [ thunar-archive-plugin thunar-volman ];
-    };
-    xfconf.enable = true; # thunar settings
+    # thunar = {
+    #   enable = true;
+    #   plugins = with pkgs.xfce; [ thunar-archive-plugin thunar-volman ];
+    # };
+    # xfconf.enable = true; # thunar settings
 
     # GNOME programs
     dconf.enable = true;
@@ -314,6 +325,7 @@
       terminal = "kitty";
     };
 
+    light.enable = true; # brightness control
     htop.enable = true;
     git.enable = true;
     fish.enable = true;
