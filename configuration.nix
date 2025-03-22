@@ -142,7 +142,6 @@
     xkb.layout = "us,ru";
     xkb.variant = "";
   };
-  # xdg.portal.wlr.enable = true;
 
   users.users.user = {
     isNormalUser = true;
@@ -164,11 +163,6 @@
     # Allow unfree and experimental packages
     settings.experimental-features = [ "nix-command" "flakes" ];
 
-    # gc = { # Auto delete nix trash
-    #   automatic = true;
-    #   dates = "weekly";
-    #   options = "--delete-older-than 30d";
-    # };
     optimise.automatic = true;
     settings.auto-optimise-store = true;
   };
@@ -178,7 +172,6 @@
   # --------------------------------
 
   environment.systemPackages = with pkgs; [
-    # hyprcursor
     gparted
     os-prober
     swaylock
@@ -209,8 +202,6 @@
     xray
     proxychains # run any program with xray proxy
 
-    # for thunar
-    # nufraw-thumbnailer
   ];
 
   # Android emulator. Read https://nixos.wiki/wiki/WayDroid
@@ -222,7 +213,7 @@
 
   security = {
     # authentication support
-    polkit.enable = true;
+    # polkit.enable = true;
     # screen lock
     pam.services.swaylock = { };
   };
@@ -232,10 +223,6 @@
   # --------------------------------
 
   services = {
-
-    # For thunar
-    # gvfs.enable = true; # Mount, trash, and other functionalities
-    # tumbler.enable = true; # Thumbnail support for images
 
     # Flatpak
     flatpak.enable = true;
@@ -268,20 +255,20 @@
 
   systemd = {
     # User service authentication agent
-    # user.services.polkit-gnome-authentication-agent-1 = {
-    #   description = "polkit-gnome-authentication-agent-1";
-    #   wantedBy = [ "graphical-session.target" ];
-    #   wants = [ "graphical-session.target" ];
-    #   after = [ "graphical-session.target" ];
-    #   serviceConfig = {
-    #     Type = "simple";
-    #     ExecStart =
-    #       "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
-    #     Restart = "on-failure";
-    #     RestartSec = 1;
-    #     TimeoutStopSec = 10;
-    #   };
-    # };
+    user.services.polkit-gnome-authentication-agent-1 = {
+      description = "polkit-gnome-authentication-agent-1";
+      wantedBy = [ "graphical-session.target" ];
+      wants = [ "graphical-session.target" ];
+      after = [ "graphical-session.target" ];
+      serviceConfig = {
+        Type = "simple";
+        ExecStart =
+          "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
+        Restart = "on-failure";
+        RestartSec = 1;
+        TimeoutStopSec = 10;
+      };
+    };
   };
 
   # --------------------------------
@@ -313,12 +300,6 @@
       clean.extraArgs = "--keep-since 7d --keep 5";
       flake = "/home/user/nix";
     };
-
-    # thunar = {
-    #   enable = true;
-    #   plugins = with pkgs.xfce; [ thunar-archive-plugin thunar-volman ];
-    # };
-    # xfconf.enable = true; # thunar settings
 
     # GNOME programs
     dconf.enable = true;
