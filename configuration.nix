@@ -1,4 +1,10 @@
-{ config, pkgs, lib, inputs, ... }: {
+{ config, pkgs, lib, inputs, ... }:
+let
+
+  # system disk uid for hibernation
+  resumeDeviceId = builtins.trimString (builtins.readFile ./resume-device.conf);
+
+in {
 
   # --------------------------------
   # SYSTEM THEME 
@@ -186,6 +192,7 @@
     kitty
     bottles # run windows programs
     gitui
+    exfatprogs # exfat gparted support
 
     # GNOME programs
     nautilus
@@ -371,6 +378,8 @@
   # --------------------------------
 
   boot.kernelParams = [ "boot.shell_on_fail" ];
+  boot.resumeDevice = "/dev/disk/by-uuid/" + resumeDeviceId;
+
   boot.loader = {
     grub = {
       enable = true;
