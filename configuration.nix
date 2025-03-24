@@ -2,7 +2,8 @@
 let
 
   # system disk uid for hibernation
-  resumeDeviceId = builtins.trimString (builtins.readFile ./resume-device.conf);
+  disk_uid = builtins.readFile ./resume-device.conf;
+  resumeDeviceId = "/dev/disk/by-uuid/" + disk_uid;
 
 in {
 
@@ -378,7 +379,7 @@ in {
   # --------------------------------
 
   boot.kernelParams = [ "boot.shell_on_fail" ];
-  boot.resumeDevice = "/dev/disk/by-uuid/" + resumeDeviceId;
+  boot.resumeDevice = resumeDeviceId;
 
   boot.loader = {
     grub = {
