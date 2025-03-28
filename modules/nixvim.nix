@@ -4,32 +4,27 @@
     enable = true;
     defaultEditor = false;
     viAlias = true;
-    luaLoader.enable = true;
+    vimAlias = true;
 
     plugins = {
       lightline.enable = true;
       nvim-colorizer.enable = true; # colors for hex code
-      # nvim-colorizer.fileTypes = [ "tex" ];
       comment.enable = true;
-      luasnip.enable = true;
-      goyo.enable = true;
-
-      lsp.enable = true;
-      lsp.servers.pyright.enable = true;
-      lsp-format.enable = true;
       cmp.enable = true; # autocomplite
-      cmp-nvim-lsp.enable = true;
-      cmp-treesitter.enable = true;
       nvim-autopairs.enable = true; # auto ""
       nvim-surround.enable = true; # auto "[text]"
-      indent-blankline.enable = true; # -- for python
+      indent-blankline = {
+        enable = true; # -- for python
+        settings = {
+          indent.char = ":";
+        };
+      };
       cmp = {
         autoEnableSources = true;
         settings.sources =
-          [ { name = "nvim_lsp"; } { name = "path"; } { name = "buffer"; } ];
+          [ { name = "path"; } ];
       };
     };
-
     plugins.lightline.settings = {
       active = {
         left = [ [ "mode" "paste" ] [ "readonly" "filename" "modified" ] ];
@@ -54,24 +49,26 @@
     '';
 
     # Base16 theme setup
-    colorschemes.base16.enable = true;
-    colorschemes.base16.colorscheme = {
-      base00 = "#${base00}";
-      base01 = "#${base01}";
-      base02 = "#${base02}";
-      base03 = "#${base03}";
-      base04 = "#${base04}";
-      base05 = "#${base05}";
-      base06 = "#${base06}";
-      base07 = "#${base07}";
-      base08 = "#${base08}";
-      base09 = "#${base09}";
-      base0A = "#${base0A}";
-      base0B = "#${base0B}";
-      base0C = "#${base0C}";
-      base0D = "#${base0D}";
-      base0E = "#${base0E}";
-      base0F = "#${base0F}";
+    colorschemes.base16 = {
+      enable = true;
+      colorscheme = {
+        base00 = "#${base00}";
+        base01 = "#${base01}";
+        base02 = "#${base02}";
+        base03 = "#${base03}";
+        base04 = "#${base04}";
+        base05 = "#${base05}";
+        base06 = "#${base06}";
+        base07 = "#${base07}";
+        base08 = "#${base08}";
+        base09 = "#${base09}";
+        base0A = "#${base0A}";
+        base0B = "#${base0B}";
+        base0C = "#${base0C}";
+        base0D = "#${base0D}";
+        base0E = "#${base0E}";
+        base0F = "#${base0F}";
+      };
     };
 
     autoCmd = [
@@ -97,7 +94,7 @@
       ignorecase = true;
       smartcase = true;
       incsearch =
-        true; # Incremental search: show match for partly typed search command
+        true; # show match for partly typed search command
 
       # Tab defaults (might get overwritten by an LSP server)
       tabstop = 4;
@@ -108,16 +105,13 @@
       autoindent = true; # Do clever autoindenting
 
       # System clipboard support, needs xclip/wl-clipboard
-      clipboard = "unnamedplus";
+      # clipboard = "unnamedplus";
 
       # Highlight the current line
       cursorline = true;
 
       # Show line and column when searching
       ruler = true;
-
-      # Global substitution by default
-      # gdefault = true;
 
       # Start scrolling when the cursor is X lines away from the top/bottom
       scrolloff = 4;

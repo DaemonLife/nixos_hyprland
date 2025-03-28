@@ -14,8 +14,8 @@ in {
   wayland.windowManager.hyprland.settings = with config.lib.stylix.colors; {
     "$mod" = "SUPER";
     "$terminal" = "kitty --single-instance";
-    "$filemanager" = "nautilus -w";
-    # "$filemanager" = "thunar";
+    # "$filemanager" = "nautilus -w";
+    "$filemanager" = "thunar";
     "$menu" = "fuzzel -l 10";
     "$browser" = "qutebrowser";
 
@@ -37,6 +37,7 @@ in {
       "${execPref}rfkill block bluetooth" # bt off
       "${execPref}waybar"
       "${execPref}mako"
+      "${execPref}udiskie -a"
       "${execPref}swayidle -w timeout 600 'hyprctl keyword input:kb_layout us,ru && swaylock -f' timeout 630 'hyprctl dispatch dpms off' resume 'hyprctl dispatch dpms on' before-sleep 'swaylock -f'"
     ];
 

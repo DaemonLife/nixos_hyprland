@@ -30,7 +30,7 @@
     # ./alacritty.nix
     # ./eww/eww.nix
     # ./lf/lf.nix
-    # ./nixvim.nix
+    ./nixvim.nix
     # ./zsh.nix
     # ./ranger.nix
   ];

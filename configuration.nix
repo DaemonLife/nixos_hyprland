@@ -194,9 +194,9 @@ in {
     bottles # run windows programs
     gitui
     exfatprogs # exfat gparted support
+    udiskie # auto disks mount
 
     # GNOME programs
-    nautilus
     adwaita-icon-theme
 
     # fish shell
@@ -249,6 +249,9 @@ in {
     # Enable the OpenSSH daemon.
     openssh.enable = true;
 
+    # disk mount
+    udisks2.enable = true;
+
     # bluetooth
     pipewire.wireplumber.extraConfig.bluetoothEnhancements = {
       "monitor.bluez.properties" = {
@@ -262,6 +265,14 @@ in {
   }; # close services
 
   systemd = {
+
+    sleep.extraConfig = ''
+      AllowSuspend=yes
+      AllowHibernation=yes
+      AllowHybridSleep=yes
+      AllowSuspendThenHibernate=yes
+    '';
+
     # User service authentication agent
     user.services.polkit-gnome-authentication-agent-1 = {
       description = "polkit-gnome-authentication-agent-1";
@@ -309,13 +320,8 @@ in {
       flake = "/home/user/nix";
     };
 
-    # GNOME programs
     dconf.enable = true;
-    nautilus-open-any-terminal = {
-      enable = true;
-      terminal = "kitty";
-    };
-
+    thunar.enable = true;
     lazygit.enable = true;
     htop.enable = true;
     git.enable = true;
