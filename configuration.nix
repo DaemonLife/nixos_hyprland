@@ -41,24 +41,12 @@ in {
 
   environment = {
     variables = {
-      EDITOR = "hx";
-      SYSTEMD_EDITOR = "hx";
-      VISUAL = "hx";
+      EDITOR = "nvim";
+      SYSTEMD_EDITOR = "nvim";
+      VISUAL = "nvim";
     };
     # Run Electron apps without XWayland
     sessionVariables.NIXOS_OZONE_WL = "1";
-    # Proxy for any program: proxychains [PROGRAM]
-    etc."proxychains.conf".text = ''
-      strict_chain
-      proxy_dns
-      remote_dns_subnet 224
-      tcp_read_time_out 15000
-      tcp_connect_time_out 8000
-      localnet 127.0.0.0/255.0.0.0
-
-      [ProxyList]
-      socks5   127.0.0.1 10808
-    '';
   };
 
   # --------------------------------
@@ -206,10 +194,6 @@ in {
     fishPlugins.forgit # fzf git support
     fishPlugins.done # notifications
 
-    # VPN
-    xray
-    proxychains # run any program with xray proxy
-
   ];
 
   # Android emulator. Read https://nixos.wiki/wiki/WayDroid
@@ -318,6 +302,25 @@ in {
       clean.enable = true;
       clean.extraArgs = "--keep-since 7d --keep 5";
       flake = "/home/user/nix";
+    };
+
+    proxychains = {
+      # just default settings
+      enable = true;
+      proxyDNS = true;
+      chain.type = "strict";
+      localnet = "127.0.0.0/255.0.0.0";
+      tcpReadTimeOut = 15000;
+      tcpConnectTimeOut = 8000;
+      remoteDNSSubnet = 224;
+      proxies = {
+        myproxy = {
+          type = "socks5";
+          host = "127.0.0.1";
+          port = 10808; # and only my port
+          enable = true;
+        };
+      };
     };
 
     dconf.enable = true;

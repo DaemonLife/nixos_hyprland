@@ -2,7 +2,7 @@
 
   programs.nixvim = with config.lib.stylix.colors; {
     enable = true;
-    defaultEditor = false;
+    # defaultEditor = false;
     viAlias = true;
     vimAlias = true;
 
@@ -15,14 +15,11 @@
       nvim-surround.enable = true; # auto "[text]"
       indent-blankline = {
         enable = true; # -- for python
-        settings = {
-          indent.char = ":";
-        };
+        settings = { indent.char = "┆"; };
       };
       cmp = {
         autoEnableSources = true;
-        settings.sources =
-          [ { name = "path"; } ];
+        settings.sources = [{ name = "path"; }];
       };
     };
     plugins.lightline.settings = {
@@ -93,8 +90,7 @@
       # Search
       ignorecase = true;
       smartcase = true;
-      incsearch =
-        true; # show match for partly typed search command
+      incsearch = true; # show match for partly typed search command
 
       # Tab defaults (might get overwritten by an LSP server)
       tabstop = 4;
@@ -103,9 +99,6 @@
       expandtab = true;
       smarttab = true;
       autoindent = true; # Do clever autoindenting
-
-      # System clipboard support, needs xclip/wl-clipboard
-      # clipboard = "unnamedplus";
 
       # Highlight the current line
       cursorline = true;
@@ -127,6 +120,31 @@
     };
 
     keymaps = [
+      # redo
+      {
+        action = ":redo<ENTER>";
+        key = "U";
+      }
+      {
+        action = "";
+        key = "<Ctrl>R";
+      }
+
+      # easy way to use system clipboard
+      {
+        action = "";
+        key = " ";
+      }
+      {
+        action = ''"+y'';
+        key = " y";
+      }
+      {
+        action = ''"+p'';
+        key = " p";
+      }
+
+      # soft string jumping
       {
         action = "gj";
         key = "j";
@@ -135,6 +153,8 @@
         action = "gk";
         key = "k";
       }
+
+      # rus layout support
       {
         action = "q";
         key = "й";
