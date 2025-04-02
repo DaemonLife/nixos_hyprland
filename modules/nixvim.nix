@@ -7,29 +7,37 @@
     vimAlias = true;
 
     plugins = {
-      lightline.enable = true;
+      lsp.enable = true;
+      # vim-visual-multi.enable = true; # multicursor
+      lsp-format = {
+        enable = true;
+        lspServersToEnable = "all";
+      };
       nvim-colorizer.enable = true; # colors for hex code
       comment.enable = true;
-      cmp.enable = true; # autocomplite
       nvim-autopairs.enable = true; # auto ""
       nvim-surround.enable = true; # auto "[text]"
       indent-blankline = {
-        enable = true; # -- for python
+        enable = true; 
         settings = { indent.char = "┆"; };
       };
-      cmp = {
+      cmp = { # autocomplite
+        enable = true;
         autoEnableSources = true;
         settings.sources = [{ name = "path"; }];
       };
-    };
-    plugins.lightline.settings = {
-      active = {
-        left = [ [ "mode" "paste" ] [ "readonly" "filename" "modified" ] ];
-        right = [
-          [ "lineinfo" ]
-          [ "percent" ]
-          [ "fileformat" "fileencoding" "filetype" ]
-        ];
+      lightline = {
+        enable = true;
+        settings = {
+          active = {
+            left = [ [ "mode" "paste" ] [ "readonly" "filename" "modified" ] ];
+            right = [
+              [ "lineinfo" ]
+              [ "percent" ]
+              [ "fileformat" "fileencoding" "filetype" ]
+            ];
+          };
+        };
       };
     };
 
@@ -69,7 +77,7 @@
     };
 
     autoCmd = [
-      # Enable spellcheck for some filetypes
+      # Setups for some files 
       {
         event = "FileType";
         pattern = [ "tex" "latex" "markdown" ];
@@ -127,7 +135,7 @@
       }
       {
         action = "";
-        key = "<Ctrl>R";
+        key = "\^R";
       }
 
       # easy way to use system clipboard
