@@ -14,6 +14,9 @@ in {
     username = username;
     homeDirectory = "/home/${username}";
     stateVersion = "24.05";
+    sessionVariables = {
+      # EDITOR = config.evironment.variables.EDITOR;
+    };
 
     packages = with pkgs; [
 
