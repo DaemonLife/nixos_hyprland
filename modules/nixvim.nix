@@ -2,34 +2,42 @@
 
   programs.nixvim = with config.lib.stylix.colors; {
     enable = true;
-    defaultEditor = false;
+    # defaultEditor = false;
     viAlias = true;
     vimAlias = true;
 
     plugins = {
-      lightline.enable = true;
+      lsp.enable = true;
+      # vim-visual-multi.enable = true; # multicursor
+      lsp-format = {
+        enable = true;
+        lspServersToEnable = "all";
+      };
       nvim-colorizer.enable = true; # colors for hex code
       comment.enable = true;
-      cmp.enable = true; # autocomplite
       nvim-autopairs.enable = true; # auto ""
       nvim-surround.enable = true; # auto "[text]"
       indent-blankline = {
-        enable = true; # -- for python
-        settings = { indent.char = "╎"; };
+        enable = true;
+        settings = { indent.char = "┆"; };
       };
-      cmp = {
+      cmp = { # autocomplite
+        enable = true;
         autoEnableSources = true;
         settings.sources = [{ name = "path"; }];
       };
-    };
-    plugins.lightline.settings = {
-      active = {
-        left = [ [ "mode" "paste" ] [ "readonly" "filename" "modified" ] ];
-        right = [
-          [ "lineinfo" ]
-          [ "percent" ]
-          [ "fileformat" "fileencoding" "filetype" ]
-        ];
+      lightline = {
+        enable = true;
+        settings = {
+          active = {
+            left = [ [ "mode" "paste" ] [ "readonly" "filename" "modified" ] ];
+            right = [
+              [ "lineinfo" ]
+              [ "percent" ]
+              [ "fileformat" "fileencoding" "filetype" ]
+            ];
+          };
+        };
       };
     };
 
@@ -69,7 +77,7 @@
     };
 
     autoCmd = [
-      # Enable spellcheck for some filetypes
+      # Setups for some files 
       {
         event = "FileType";
         pattern = [ "tex" "latex" "markdown" ];
@@ -100,9 +108,6 @@
       smarttab = true;
       autoindent = true; # Do clever autoindenting
 
-      # System clipboard support, needs xclip/wl-clipboard
-      # clipboard = "unnamedplus";
-
       # Highlight the current line
       cursorline = true;
 
@@ -116,7 +121,6 @@
       swapfile = false; # Disable the swap file
       fileencoding = "utf-8"; # File-content encoding for the current buffer
       spell = true; # Highlight spelling mistakes (local to window)
-
       wrap = true;
       linebreak = true;
 
@@ -138,6 +142,23 @@
       }
 
       {
+        action = "<cmd>redo<CR><CR>";
+        key = "U";
+        options.desc = "Redo.";
+      }
+      {
+        action = ''"+y'';
+        key = "<C-y>";
+        options.desc = "Copy to system clipboard.";
+      }
+      {
+        action = ''"+p'';
+        key = "<C-p>";
+        options.desc = "Paste from system clipboard.";
+      }
+
+      # soft string jumping
+      {
         action = "gj";
         key = "j";
       }
@@ -145,6 +166,18 @@
         action = "gk";
         key = "k";
       }
+
+      # other
+      {
+        action = "";
+        key = "<C-r>";
+      }
+      {
+        action = "";
+        key = " ";
+      }
+
+      # rus layout support
       {
         action = "q";
         key = "й";

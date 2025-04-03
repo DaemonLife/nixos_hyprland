@@ -1,5 +1,11 @@
-{ config, lib, pkgs, ... }: {
+{ config, pkgs, ... }: 
+let
+  editor = "nvim";
+in {
 
+  home.file.".config/jrnl/default.nix".text = ''
+  { config, pkgs, ... }: {}
+  '';
   home.file.".config/jrnl/jrnl.yaml".text = ''
     colors:
       body: none
@@ -8,13 +14,13 @@
       title: cyan
     default_hour: 9
     default_minute: 0
-    editor: hx
+    editor: ${editor} 
     encrypt: false
     highlight: true
     indent_character: '|'
     journals:
       default:
-        journal: /home/user/.local/share/jrnl/journal.txt
+        journal: $HOME/.local/share/jrnl/journal.txt
       main:
         journal: /mnt/temp/jrnl/jrnl.txt
     linewrap: 79

@@ -30,10 +30,10 @@
       keep-open = "no";
       volume = 80;
       volume-max = 100;
-      # sub-font = "Helvetica";
+      sub-font = "Helvetica";
       sub-bold = "yes";
       sub-font-size = 46;
-      sub-border-size = 1;
+      sub-border-size = 3;
       sub-auto = "fuzzy"; # subs that do not match file name perfectly.
 
       # lang

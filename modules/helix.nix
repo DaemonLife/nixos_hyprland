@@ -3,7 +3,7 @@
   programs.helix = {
     package = pkgs.unstable.helix;
     enable = true;
-    defaultEditor = true;
+    # defaultEditor = true;
 
     settings = {
       editor = {
@@ -285,37 +285,42 @@
       };
 
       keys.select = {
-        A-x = "extend_to_line_bounds";
-        X = [ "extend_line_up" "extend_to_line_bounds" ];
-        "A-ч" = "extend_to_line_bounds";
-        "Ч" = [ "extend_line_up" "extend_to_line_bounds" ];
+        "р" = "extend_char_left";
+        "о" = "extend_visual_line_down";
+        "л" = "extend_visual_line_up";
+        "д" = "extend_char_right";
+        # --- movement
+        # "р" = "move_char_left"; # h
+        # "о" = "move_visual_line_down"; # j
+        # "л" = "move_visual_line_up"; # k
+        # "д" = "move_char_right"; # l
+        # "ц" = "move_next_word_start"; # w
+        # "и" = "move_prev_word_start"; # b
+        # "у" = "move_next_word_end"; # e
+        # "Ц" = "move_next_long_word_start"; # W
+        # "И" = "move_prev_long_word_start"; # B
+        # "У" = "move_next_long_word_end"; # E
+        # "е" = "find_till_char"; # t
+        # "а" = "find_next_char"; # f
+        # "Е" = "till_prev_char"; # T
+        # "А" = "find_prev_char"; # F
+        # "П" = "goto_line"; # G
+        # "A-ю" = "repeat_last_motion"; # Alt-.
+        # "C-и" = "page_up"; # Ctrl-b, PageUp
+        # "C-а" = "page_down"; # Ctrl-f, PageDown
+        # "C-г" = "page_cursor_half_up"; # Ctrl-u
+        # "C-в" = "page_cursor_half_down"; # Ctrl-d
+        # "C-ш" = "jump_forward"; # Ctrl-i
+        # "C-о" = "jump_backward"; # Ctrl-o
+        # "C-ы" = "save_selection"; # Ctrl-s
 
-        "а" = "file_picker"; # f
-        "А" = "file_picker_in_current_directory"; # F
-        "и" = "buffer_picker"; # b
-        "о" = "jumplist_picker"; # j
-        "п" = "changed_file_picker"; # g
-        # "G" = "N/A"; # G
-        "л" = "hover"; # k
-        "ы" = "symbol_picker"; # s
-        "Ы" = "workspace_symbol_picker"; # S
-        "в" = "diagnostics_picker"; # d
-        "В" = "workspace_diagnostics_picker"; # D
-        "к" = "rename_symbol"; # r
-        "ф" = "code_action"; # a
-        "р" = "select_references_to_symbol_under_cursor"; # h
-        "э" = "last_picker"; # '
-        # "w" = "N/A"; # w
-        "с" = "toggle_comments"; # c
-        "С" = "toggle_block_comments"; # C
-        "A-с" = "toggle_line_comments"; # Alt-c
-        "з" = "paste_clipboard_after"; # p
-        "З" = "paste_clipboard_before"; # P
-        "н" = "yank_to_clipboard"; # y
-        "Н" = "yank_main_selection_to_clipboard"; # Y
-        "К" = "replace_selections_with_clipboard"; # R
-        "." = "global_search"; # /
-        "," = "command_palette"; # ?
+        # A-x = "extend_to_line_bounds";
+        # X = [ "extend_line_up" "extend_to_line_bounds" ];
+        # "A-ч" = "extend_to_line_bounds";
+        # "Ч" = [ "extend_line_up" "extend_to_line_bounds" ];
+
+        # "." = "global_search"; # /
+        # "," = "command_palette"; # ?
       };
 
     }; # settings

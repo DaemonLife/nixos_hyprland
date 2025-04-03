@@ -13,10 +13,10 @@
       gt = "https://translate.google.com/?sl=en&tl=ru&text={}&op=translate";
       yt = "https://www.youtube.com/results?search_query={}";
       yi = "https://ya.ru/images/search?from=tabbar&text={}";
-      nixpkg =
+      nixp =
         "https://search.nixos.org/packages?&from=0&size=50&sort=relevance&type=packages&query={}";
-      nixopt = "https://mynixos.com/search?q={}";
-      nixgit =
+      nixo = "https://search.nixos.org/options?size=50&sort=relevance&type=packages&query={}";
+      nixg =
         "https://github.com/search?q={}+language%3Anix&type=repositories";
       git = "https://github.com/search?q={}&type=repositories";
       wttr = "https://wttr.in/{}?FMm"; # Weather. Type ":help" for helping
@@ -107,7 +107,6 @@
       "qa" = "quit";
       "w" = "session-save";
       "wq" = "quit --save";
-      "wqa" = "quit --save";
       "dme" = "set colors.webpage.darkmode.enabled true";
       "dmd" = "set colors.webpage.darkmode.enabled false";
     };
@@ -206,8 +205,9 @@
       input.insert_mode.leave_on_load = true;
       # Automatically enter insert mode if an editable element is focused after loading the page.
       input.insert_mode.auto_load = false;
-
-      editor.command = [ "alacritty" "--command" "hx" "{file}" ];
+      
+      # --execute is key only for kitty
+      editor.command = [ "$TERMINAL" "--execute" "$EDITOR" "{file}" ];
     };
 
     extraConfig = ''

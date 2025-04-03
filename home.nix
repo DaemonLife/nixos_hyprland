@@ -1,4 +1,7 @@
-{ pkgs, lib, config, inputs, ... }: {
+{ pkgs, lib, config, inputs, ... }:
+let
+  username = "user";
+in {
 
   imports = [ ./modules/_import.nix ];
 
@@ -8,9 +11,12 @@
   };
 
   home = {
-    username = "user";
-    homeDirectory = "/home/user";
+    username = username;
+    homeDirectory = "/home/${username}";
     stateVersion = "24.05";
+    sessionVariables = {
+      # EDITOR = config.evironment.variables.EDITOR;
+    };
 
     packages = with pkgs; [
 
@@ -32,7 +38,6 @@
       exiftool
       xdragon
       swayidle
-      # xdg-desktop-portal-termfilechooser # for choosing your favorite file chooser
 
       # Disk
       dua # disk usage TUI tool. Run: dua i
@@ -92,6 +97,7 @@
 
       # Internet
       qbittorrent # torrent client
+      transmission_4-gtk
       tor-browser
 
       # Docs

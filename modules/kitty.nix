@@ -24,14 +24,14 @@
       # background_opacity = lib.mkForce "0.9";
 
       shell = "fish";
-      editor = "hx";
+      editor = "$EDITOR";
       linux_display_server = "wayland";
       enable_audio_bell = false;
       # notify_on_cmd_finish = "always 3.0 command notify-send \"Terminal job\" Finished";
       visual_bell_duration = "0.1";
       hide_window_decorations = "yes";
       # window_title = "Kitty";
-      open_url_with = "qutebrowser";
+      open_url_with = "$BROWSER";
       window_border_width = "0pt";
       # draw_minimal_borders = "yes";
       window_margin_width = "0 0 0 0";
