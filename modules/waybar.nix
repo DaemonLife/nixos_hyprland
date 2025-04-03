@@ -39,10 +39,10 @@ lib.mkForce {
           window-rewrite = { };
           on-click = "activate";
           disable-scroll = true;
-          all-outputs = false;
+          # all-outputs = false;
           format = "{icon}";
           persistent-workspaces = {
-            "*" = 4; # monitor name and num of workspaces
+            "eDP-1" = 1; # monitor name and num of workspaces
           };
           format-icons = {
             "1" = 1; # workspace id and icon format

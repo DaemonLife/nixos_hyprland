@@ -210,6 +210,9 @@ in {
     xray
     proxychains # run any program with xray proxy
 
+    # For games
+    mangohud
+    protonup-qt
   ];
 
   # Android emulator. Read https://nixos.wiki/wiki/WayDroid
@@ -294,6 +297,14 @@ in {
   # OTHER PROGRAMS 
   # --------------------------------
 
+  # nixpkgs.config.allowUnfreePredicate = pkg:
+  #   builtins.elem (lib.getName pkg) [
+  #     "steam"
+  #     "steam-original"
+  #     "steam-unwrapped"
+  #     "steam-run"
+  #   ];
+
   qt.enable = true;
 
   programs = {
@@ -319,6 +330,18 @@ in {
       clean.extraArgs = "--keep-since 7d --keep 5";
       flake = "/home/user/nix";
     };
+
+    steam = {
+      enable = true;
+      remotePlay.openFirewall =
+        true; # Open ports in the firewall for Steam Remote Play
+      dedicatedServer.openFirewall =
+        true; # Open ports in the firewall for Source Dedicated Server
+      localNetworkGameTransfers.openFirewall =
+        true; # Open ports in the firewall for Steam Local Network Game Transfers
+    };
+    steam.gamescopeSession.enable = true;
+    gamemode.enable = true;
 
     dconf.enable = true;
     thunar.enable = true;

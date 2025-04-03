@@ -15,14 +15,11 @@
       nvim-surround.enable = true; # auto "[text]"
       indent-blankline = {
         enable = true; # -- for python
-        settings = {
-          indent.char = ":";
-        };
+        settings = { indent.char = "╎"; };
       };
       cmp = {
         autoEnableSources = true;
-        settings.sources =
-          [ { name = "path"; } ];
+        settings.sources = [{ name = "path"; }];
       };
     };
     plugins.lightline.settings = {
@@ -93,8 +90,7 @@
       # Search
       ignorecase = true;
       smartcase = true;
-      incsearch =
-        true; # show match for partly typed search command
+      incsearch = true; # show match for partly typed search command
 
       # Tab defaults (might get overwritten by an LSP server)
       tabstop = 4;
@@ -127,6 +123,20 @@
     };
 
     keymaps = [
+
+      {
+        action = "jjj";
+        key = "<space>p";
+      }
+      {
+        action = "kkk";
+        key = "<space>P";
+      }
+      {
+        action = ''"+p'';
+        key = "<space>н";
+      }
+
       {
         action = "gj";
         key = "j";
