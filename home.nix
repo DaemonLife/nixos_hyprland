@@ -32,7 +32,6 @@
       exiftool
       xdragon
       swayidle
-      # xdg-desktop-portal-termfilechooser # for choosing your favorite file chooser
 
       # Disk
       dua # disk usage TUI tool. Run: dua i
@@ -92,6 +91,7 @@
 
       # Internet
       qbittorrent # torrent client
+      transmission_4-gtk
       tor-browser
 
       # Docs

@@ -28,6 +28,8 @@ in {
       "desc:Shenzhen KTC Technology Group H27S17 0x00000001,highres,0x0,1.25,bitdepth,10,vrr,1"
       # Monitor gg
       "desc:Acer Technologies Acer A231H LQT0W0084320,highres,auto-right,1,bitdepth,10,vrr,1"
+      # TV msk
+      "HDMI-A-1,preferred,auto,2"
       # Random monitor
       ",preferred,auto,1"
     ];

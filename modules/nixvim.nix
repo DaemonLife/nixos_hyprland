@@ -121,35 +121,26 @@
       swapfile = false; # Disable the swap file
       fileencoding = "utf-8"; # File-content encoding for the current buffer
       spell = true; # Highlight spelling mistakes (local to window)
-
       wrap = true;
       linebreak = true;
 
     };
 
     keymaps = [
-      # redo
       {
-        action = ":redo<ENTER>";
-        key = "U";
-      }
-      {
-        action = "";
-        key = "\^R";
-      }
-
-      # easy way to use system clipboard
-      {
-        action = "";
-        key = " ";
+        action = "<cmd>redo<CR><CR>";
+        key = "U";    
+        options.desc = "Redo.";
       }
       {
         action = ''"+y'';
-        key = " y";
+        key = "<C-y>";
+        options.desc = "Copy to system clipboard.";
       }
       {
         action = ''"+p'';
-        key = " p";
+        key = "<C-p>";
+        options.desc = "Paste from system clipboard.";
       }
 
       # soft string jumping
@@ -160,6 +151,16 @@
       {
         action = "gk";
         key = "k";
+      }
+
+      # other
+      {
+        action = "";
+        key = "<C-r>";
+      }
+      {
+        action = "";
+        key = " ";
       }
 
       # rus layout support
