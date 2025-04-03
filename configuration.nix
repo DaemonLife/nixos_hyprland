@@ -44,6 +44,7 @@ in {
       EDITOR = "nvim";
       SYSTEMD_EDITOR = "nvim";
       VISUAL = "nvim";
+      BROWSER = "qutebrowser";
     };
     # Run Electron apps without XWayland
     sessionVariables.NIXOS_OZONE_WL = "1";
@@ -301,7 +302,7 @@ in {
       enable = true;
       clean.enable = true;
       clean.extraArgs = "--keep-since 7d --keep 5";
-      flake = "/home/user/nix";
+      flake = "/home/$USER/nix";
     };
 
     proxychains = {

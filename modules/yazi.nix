@@ -57,7 +57,12 @@
           desc = "Open in imv";
           orphan = true;
         }];
-        "firefox" = [{
+        "default_browser" = [{
+          run = ''$BROWSER "$@"'';
+          desc = "Open in default browser";
+          orphan = true;
+        }];
+        "librewolf" = [{
           run = ''librewolf "$@"'';
           desc = "Open in Librewolf";
           orphan = true;
@@ -67,9 +72,14 @@
           desc = "Open in qutebrowser";
           orphan = true;
         }];
-        "torrent" = [{
+        "qbittorrent" = [{
           run = ''qbittorrent "$@"'';
           desc = "Open in qBittorrent";
+          orphan = true;
+        }];
+        "rtorrent" = [{
+          run = ''cp "$@" $HOME/Downloads/rtorrent/watch && $TERMINAL --execute rtorrent'';
+          desc = "Open in rtorrent";
           orphan = true;
         }];
       };
@@ -86,7 +96,7 @@
         }
         {
           mime = "application/x-bittorrent";
-          use = [ "torrent" ];
+          use = [ "qbittorrent" "rtorrent" ];
         }
         {
           mime = "application/json";
@@ -94,7 +104,7 @@
         }
         {
           mime = "text/html";
-          use = [ "firefox" "qutebrowser" "edit" ];
+          use = [ "default_browser" "librewolf" "qutebrowser" "edit" ];
         }
         {
           mime = "*";

@@ -1,11 +1,11 @@
 { pkgs, config, ... }:
 let
-user = config.home.username;
+username = config.home.username;
 in {  
 
   programs.rtorrent = { enable = true; };
   home.file.".rtorrent.rc".text = ''
-        method.insert = cfg.basedir,  private|const|string, (cat,"/home/${user}/Downloads/rtorrent/")
+        method.insert = cfg.basedir,  private|const|string, (cat,"/home/${username}/Downloads/rtorrent/")
         method.insert = cfg.download, private|const|string, (cat,(cfg.basedir),"download/")
         method.insert = cfg.logs,     private|const|string, (cat,(cfg.basedir),"log/")
         method.insert = cfg.logfile,  private|const|string, (cat,(cfg.logs),"rtorrent-",(system.time),".log")

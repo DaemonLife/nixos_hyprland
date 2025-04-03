@@ -14,7 +14,7 @@
     indent_character: '|'
     journals:
       default:
-        journal: /home/user/.local/share/jrnl/journal.txt
+        journal: $HOME/.local/share/jrnl/journal.txt
       main:
         journal: /mnt/temp/jrnl/jrnl.txt
     linewrap: 79

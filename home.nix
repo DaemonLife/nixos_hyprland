@@ -1,4 +1,7 @@
-{ pkgs, lib, config, inputs, ... }: {
+{ pkgs, lib, config, inputs, ... }:
+let
+  username = "user";
+in {
 
   imports = [ ./modules/_import.nix ];
 
@@ -8,8 +11,8 @@
   };
 
   home = {
-    username = "user";
-    homeDirectory = "/home/user";
+    username = username;
+    homeDirectory = "/home/${username}";
     stateVersion = "24.05";
 
     packages = with pkgs; [

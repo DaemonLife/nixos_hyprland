@@ -13,26 +13,26 @@ programs.zsh = {
     shellAliases = {
         # nix aliases
         flake-rebuild = "\
-        sudo nixos-rebuild switch --flake \"/home/user/nix/.\" && \
+        sudo nixos-rebuild switch --flake \"$HOME/nix/.\" && \
         echo '\n> Complited. The flake has been rebuilded.'";
         flake-upgrade = "\
         sudo nix-channel --update && \
         echo '\n> Nix-channel has been updated.\n' && \
-        sudo nix flake update \"/home/user/nix/.\" && \
+        sudo nix flake update \"$HOME/nix/.\" && \
         echo '\n> Flake has been updated.\n' && flake-rebuild";
         home-rebuild = "\
-        home-manager switch --flake \"/home/user/nix/.\" && hyprctl reload && \
+        home-manager switch --flake \"$HOME/nix/.\" && hyprctl reload && \
         echo '> Home-manager has been switch. Hyprland reloaded.'";
 
         update = "nh os switch $HOME/nix/.";
         upgrade = "
         sudo nix-channel --update && \
         echo '\n> Nix-channel has been updated.\n' && \
-        sudo nix flake update --flake \"/home/user/nix/.\" && \
+        sudo nix flake update --flake \"$HOME/nix/.\" && \
         echo '\n> Flake has been updated.\n' && update";
        
         # for windows fs
-        cdwin = "source /home/user/nix/scripts/cdwin.sh";
+        cdwin = "source $HOME/nix/scripts/cdwin.sh";
 
         # battery configuration will be restored at the next boot
         tlp_full = "sudo tlp fullcharge bat1";
@@ -53,7 +53,7 @@ programs.zsh = {
     '';
 };
 
-home.file."/home/user/nix/themes/my.zsh-theme".text = ''
+home.file."$HOME/nix/themes/my.zsh-theme".text = ''
 PROMPT=$'
 %{$fg[blue]%}%/%{$reset_color%} $(git_prompt_info)$(bzr_prompt_info)%{$fg[white]%}[%n@%m]%{$reset_color%} %{$fg[white]%}[%T]%{$reset_color%}
 %{$fg_bold[white]%}>%{$reset_color%} '

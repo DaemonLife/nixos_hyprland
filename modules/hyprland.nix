@@ -17,7 +17,7 @@ in {
     # "$filemanager" = "nautilus -w";
     "$filemanager" = "thunar";
     "$menu" = "fuzzel -l 10";
-    "$browser" = "qutebrowser";
+    "$browser" = "$BROWSER";
 
     monitor = [
       # GPD3
@@ -210,13 +210,13 @@ in {
       # "$mod, O, exit"
 
       # Windows control
-      "$mod, Q, killactive"
-      "$mod, V, togglefloating"
+      "$mod, q, killactive"
+      "$mod, v, togglefloating"
       # "$mod, P, pseudo"
       "$mod, s, togglesplit"
       # "$mod, g, togglegroup"
       # "$mod, tab, changegroupactive"
-      "$mod, F, fullscreen"
+      "$mod, f, fullscreen"
       "$mod, Tab, cyclenext"
       "$mod, Tab, bringactivetotop"
 

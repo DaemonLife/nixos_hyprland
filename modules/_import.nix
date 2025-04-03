@@ -19,18 +19,18 @@
     ./qt.nix
     ./kitty.nix
     ./gtk.nix
-    ./helix.nix
     ./fzf.nix
     ./yazi.nix
     ./stylix.nix
     ./joplin-cli.nix
+    ./nixvim.nix
+    # ./helix.nix
     # ./sway.nix
     # ./swayidle.nix
     # ./hypridle.nix
     # ./alacritty.nix
     # ./eww/eww.nix
     # ./lf/lf.nix
-    ./nixvim.nix
     # ./zsh.nix
     # ./ranger.nix
   ];
