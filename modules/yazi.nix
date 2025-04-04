@@ -1,5 +1,9 @@
 { pkgs, config, lib, ... }: {
 
+  home.packages = with pkgs; [
+    xdragon
+  ];
+
   programs.yazi = with config.lib.stylix.colors; {
     enable = true;
     enableFishIntegration = true;
@@ -23,7 +27,7 @@
       {
         on = "<C-n>";
         run = ''
-          shell --interactive 'dragon -x -i -T "$1"'
+          shell --interactive '${pkgs.xdragon}/bin/dragon -x -i -T "$1"'
         '';
       }
     ];

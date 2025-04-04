@@ -26,7 +26,7 @@
     ./nixvim.nix
     # ./helix.nix
     # ./sway.nix
-    # ./swayidle.nix
+    ./swayidle.nix
     # ./hypridle.nix
     # ./alacritty.nix
     # ./eww/eww.nix

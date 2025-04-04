@@ -6,7 +6,6 @@ in {
   imports = [ ./modules/_import.nix ];
 
   stylix.targets = {
-    sway.enable = true;
     yazi.enable = false;
   };
 
@@ -14,9 +13,6 @@ in {
     username = username;
     homeDirectory = "/home/${username}";
     stateVersion = "24.05";
-    sessionVariables = {
-      # EDITOR = config.evironment.variables.EDITOR;
-    };
 
     packages = with pkgs; [
 
@@ -28,7 +24,7 @@ in {
       libnotify # for mako notifications
       grimblast
       brightnessctl # screen light
-      gnome-power-manager # power statistic
+      # gnome-power-manager # power statistic
       wl-clipboard
       cool-retro-term
       unzip
@@ -36,8 +32,6 @@ in {
       nodejs
       pipx
       exiftool
-      xdragon
-      swayidle
 
       # Disk
       dua # disk usage TUI tool. Run: dua i
@@ -45,7 +39,7 @@ in {
       # Network
       overskride # bluetooth gui
       bluetui # bluetooth tui
-      # telegram-desktop # no bin...
+      telegram-desktop # no bin...
       materialgram
       nchat
       bitwarden-cli
@@ -59,7 +53,7 @@ in {
       alsa-utils # audio volume control (?)
       pulsemixer # cli pulse adudio control
       digikam
-      qimgv # img viewer
+      # qimgv # img viewer
 
       # Theming
       vimix-icon-theme # for icons

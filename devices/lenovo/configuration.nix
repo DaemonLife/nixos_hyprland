@@ -4,7 +4,6 @@
   # Imports
   imports = [ ./hardware-configuration.nix ];
 
-  hardware.graphics.enable = true;
   # OpenCL
   hardware.graphics.extraPackages = with pkgs; [ rocmPackages.clr.icd amdvlk ];
   boot.initrd.kernelModules = [ "amdgpu" ];

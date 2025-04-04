@@ -54,6 +54,8 @@ in {
   # NETWORK, BlUETOOTH, SOUND, PRINT, TIMEZONE
   # --------------------------------
 
+  hardware.graphics.enable = true;
+
   # Network
   networking.hostName = "nixos"; # Define your hostname.
   networking.networkmanager.enable = true;
@@ -296,13 +298,14 @@ in {
     hyprland = {
       enable = true;
       withUWSM = true;
+      # package = pkgs.unstable.hyprland;
 
       # package = pkgs.unstable.hyprland.override {
-      package = pkgs.hyprland.override {
+      # package = pkgs.hyprland.override {
         # don't use override if you don't want compiling
-        withSystemd = false;
-        legacyRenderer = false;
-      };
+        # withSystemd = false;
+        # legacyRenderer = false;
+      # };
 
     };
 
@@ -350,6 +353,7 @@ in {
     htop.enable = true;
     git.enable = true;
     fish.enable = true;
+    light.enable = true; # brightness control for sway
 
     # promt for any shell
     starship = with config.lib.stylix.colors; {

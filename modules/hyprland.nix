@@ -58,6 +58,8 @@ in {
       force_no_accel = false;
       follow_mouse = 1; # window focus
       natural_scroll = false; # natural mean idiotic
+      repeat_rate = 60;
+      repeat_delay = 300;
 
       sensitivity = -0.2; # -1.0 - 1.0
       scroll_factor = "0.5";

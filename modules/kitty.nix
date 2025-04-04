@@ -39,7 +39,7 @@
       # inactive_text_alpha = "0.5";
       tab_bar_style = "hidden";
       confirm_os_window_close = "0";
-      cursor_trail = 2;
+      # cursor_trail = 2;
       # placement_strategy = "top-left";
 
       # Colors
