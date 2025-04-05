@@ -26,7 +26,7 @@ in {
             (session.path), "rtorrent.pid", " ",(system.pid))
 
         # autostart files in watch directory
-    		schedule2 = watch_directory,5,5,load.start=~/Downloads/rtorrent/watch/*.torrent
+    		schedule2 = watch_directory,5,5,load.start=/home/${username}/Downloads/rtorrent/watch/*.torrent
 
         # disk space safe
     		schedule2 = low_diskspace,5,60,((close_low_diskspace,500M))

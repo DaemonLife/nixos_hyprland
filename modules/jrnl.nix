@@ -1,10 +1,9 @@
-{ config, pkgs, ... }: 
-let
-  editor = "nvim";
+{ config, pkgs, ... }:
+let editor = "hx";
 in {
 
   home.file.".config/jrnl/default.nix".text = ''
-  { config, pkgs, ... }: {}
+    { config, pkgs, ... }: {}
   '';
   home.file.".config/jrnl/jrnl.yaml".text = ''
     colors:
