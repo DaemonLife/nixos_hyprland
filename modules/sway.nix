@@ -5,37 +5,43 @@ with config.lib.stylix.colors; {
     enable = true;
     checkConfig = true;
     # xwayland = true;
-    
+
     config = rec {
       modifier = "Mod4";
       terminal = "${pkgs.kitty}/bin/kitty --single-instance";
       menu = "${pkgs.fuzzel}/bin/fuzzel -l 10";
-      bars = [ { command = "waybar"; } ];
-      startup = [ 
+      bars = [{ command = "waybar"; }];
+      startup = [
         { command = "rfkill block bluetooth"; }
         { command = "${pkgs.mako}/bin/mako"; }
         { command = "${pkgs.autotiling}/bin/autotiling"; }
         { command = "${pkgs.udiskie}/bin/udiskie -a"; }
-        { command = "${pkgs.wl-clipboard}/bin/wl-paste -t text --watch clipman store --no-persist"; }
-        { command = "swayidle -w timeout 600 'hyprctl keyword input:kb_layout us,ru && swaylock -f' timeout 630 'hyprctl dispatch dpms off' resume 'hyprctl dispatch dpms on' before-sleep 'swaylock -f'"; }
+        {
+          command =
+            "${pkgs.wl-clipboard}/bin/wl-paste -t text --watch clipman store --no-persist";
+        }
+        {
+          command =
+            "swayidle -w timeout 600 'hyprctl keyword input:kb_layout us,ru && swaylock -f' timeout 630 'hyprctl dispatch dpms off' resume 'hyprctl dispatch dpms on' before-sleep 'swaylock -f'";
+        }
       ];
 
       output = {
         # monitor gg
         "Acer Technologies Acer A231H LQT0W0084320" = {
-           mode = "1920x1080@60Hz";
-           scale = "1";
-           adaptive_sync = "off";
-           render_bit_depth = "8"; # 6, 8, 10
-           position = "1400 0";
+          mode = "1920x1080@60Hz";
+          scale = "1";
+          adaptive_sync = "off";
+          render_bit_depth = "8"; # 6, 8, 10
+          position = "1400 0";
         };
         # lenovo
         "BOE 0x0931 Unknown" = {
-           mode = "2240x1400@60.002Hz";
-           scale = "1.6";
-           adaptive_sync = "on";
-           render_bit_depth = "10"; # 6, 8, 10
-           position = "0 0";
+          mode = "2240x1400@60.002Hz";
+          scale = "1.6";
+          adaptive_sync = "on";
+          render_bit_depth = "10"; # 6, 8, 10
+          position = "0 0";
         };
 
       };
@@ -73,7 +79,8 @@ with config.lib.stylix.colors; {
         # start terminal
         "${modifier}+Return" = "exec ${terminal}";
         # run menu 
-        "${modifier}+a" = ''exec swaymsg input "type:keyboard" xkb_switch_layout 0 && exec ${menu}'';
+        "${modifier}+a" = ''
+          exec swaymsg input "type:keyboard" xkb_switch_layout 0 && exec ${menu}'';
 
         # kill active window
         "${modifier}+q" = "kill";
@@ -183,16 +190,16 @@ with config.lib.stylix.colors; {
         };
       };
 
-  };
+    };
 
     extraSessionCommands = ''
-       export SDL_VIDEODRIVER=wayland
-       export QT_WAYLAND_DISABLE_WINDOWDECORATION="1"
-       export _JAVA_AWT_WM_NONREPARENTING=1
-       export QT_QPA_PLATFORM=wayland
-       export XDG_CURRENT_DESKTOP=sway
+      export SDL_VIDEODRIVER=wayland
+      export QT_WAYLAND_DISABLE_WINDOWDECORATION="1"
+      export _JAVA_AWT_WM_NONREPARENTING=1
+      export QT_QPA_PLATFORM=wayland
+      export XDG_CURRENT_DESKTOP=sway
     '';
 
-};
+  };
 
 }

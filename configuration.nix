@@ -40,10 +40,11 @@ in {
   # --------------------------------
 
   environment = {
-    variables = {
-      EDITOR = "nvim";
-      SYSTEMD_EDITOR = "nvim";
-      VISUAL = "nvim";
+    variables = let EDITOR = "hx";
+    in {
+      EDITOR = "${EDITOR}";
+      SYSTEMD_EDITOR = "${EDITOR}";
+      VISUAL = "${EDITOR}";
       BROWSER = "qutebrowser";
     };
     # Run Electron apps without XWayland
@@ -281,20 +282,11 @@ in {
   # OTHER PROGRAMS 
   # --------------------------------
 
-  # nixpkgs.config.allowUnfreePredicate = pkg:
-  #   builtins.elem (lib.getName pkg) [
-  #     "steam"
-  #     "steam-original"
-  #     "steam-unwrapped"
-  #     "steam-run"
-  #   ];
-
   qt.enable = true;
 
   programs = {
 
     # For Hyprland
-    uwsm = { enable = true; };
     hyprland = {
       enable = true;
       withUWSM = true;
@@ -302,9 +294,9 @@ in {
 
       # package = pkgs.unstable.hyprland.override {
       # package = pkgs.hyprland.override {
-        # don't use override if you don't want compiling
-        # withSystemd = false;
-        # legacyRenderer = false;
+      # don't use override if you don't want compiling
+      # withSystemd = false;
+      # legacyRenderer = false;
       # };
 
     };

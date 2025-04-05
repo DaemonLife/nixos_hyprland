@@ -1,13 +1,8 @@
 { pkgs, lib, config, inputs, ... }:
-let
-  username = "user";
+let username = "user";
 in {
 
   imports = [ ./modules/_import.nix ];
-
-  stylix.targets = {
-    yazi.enable = false;
-  };
 
   home = {
     username = username;

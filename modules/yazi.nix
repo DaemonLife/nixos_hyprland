@@ -1,8 +1,6 @@
 { pkgs, config, lib, ... }: {
 
-  home.packages = with pkgs; [
-    xdragon
-  ];
+  home.packages = with pkgs; [ xdragon ];
 
   programs.yazi = with config.lib.stylix.colors; {
     enable = true;
@@ -82,7 +80,8 @@
           orphan = true;
         }];
         "rtorrent" = [{
-          run = ''cp "$@" $HOME/Downloads/rtorrent/watch && $TERMINAL --execute rtorrent'';
+          run = ''
+            cp "$@" $HOME/Downloads/rtorrent/watch && $TERMINAL --execute rtorrent'';
           desc = "Open in rtorrent";
           orphan = true;
         }];
@@ -118,7 +117,7 @@
 
     }; # settings end
 
-    theme = {
+    theme = lib.mkForce {
       manager = {
         cwd = { fg = "#${base0A}"; };
 

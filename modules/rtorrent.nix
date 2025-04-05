@@ -1,7 +1,6 @@
 { pkgs, config, ... }:
-let
-username = config.home.username;
-in {  
+let username = config.home.username;
+in {
 
   programs.rtorrent = { enable = true; };
   home.file.".rtorrent.rc".text = ''
@@ -33,14 +32,19 @@ in {
     		schedule2 = low_diskspace,5,60,((close_low_diskspace,500M))
 
         # if main tracker not works
-        dht = auto
-        dht_port = 6881
+        dht.mode.set = auto
+        dht.port.set = 6881
+        protocol.pex.set= yes
+        # dht = auto
+        # dht_port = 6881
 
         encoding.add = UTF-8
         pieces.hash.on_completion.set = yes
 
         ratio.enable=false
         trackers.use_udp.set = yes
+
+        protocol.encryption.set = allow_incoming,try_outgoing,enable_retry
   '';
 
 }
