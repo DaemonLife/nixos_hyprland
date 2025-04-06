@@ -1,5 +1,9 @@
 # Not all is declarative! You need install and sometimes update plugins. Check 'ya --help' for details, 'ya -l' for list plugins.
 
+# Installation:
+# ya pack -a yazi-rs/plugins:smart-enter
+# ya pack -a yazi-rs/plugins:mount
+
 { pkgs, config, lib, ... }: {
 
   home.packages = with pkgs; [ xdragon ];
