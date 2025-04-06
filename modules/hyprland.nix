@@ -38,7 +38,7 @@ in {
       "${execPref}waybar"
       "${execPref}mako"
       "${execPref}udiskie -a"
-      "${execPref}swayidle -w timeout 600 'hyprctl keyword input:kb_layout us,ru && swaylock -f' timeout 630 'hyprctl dispatch dpms off' resume 'hyprctl dispatch dpms on' before-sleep 'swaylock -f'"
+      "${execPref}swayidle -w timeout 600 'hyprctl keyword input:kb_layout us,ru && swaylock -f' timeout 540 'hyprctl dispatch dpms off' timeout 1800 'systemctl hibernate' resume 'hyprctl dispatch dpms on' before-sleep 'swaylock -f'"
     ];
 
     exec = [
@@ -208,7 +208,7 @@ in {
       "$mod, y, exec, ${execPref}kitty --single-instance --hold $HOME/nix/scripts/y.fish"
       "$mod, B, exec, ${execPref}$browser"
       "$mod SHIFT, B, exec, ${execPref}proxychains4 $browser --set window.title_format [VPN]\\ {perc}{current_title}{title_sep}qutebrowser"
-      "$mod, T, exec, ${execPref}materialgram"
+      "$mod, T, exec, ${execPref}telegram-desktop"
       # "$mod, O, exit"
 
       # Windows control

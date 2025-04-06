@@ -1,11 +1,4 @@
-{ config, pkgs, lib, inputs, ... }:
-let
-
-  # system disk uid for hibernation
-  disk_uid = builtins.readFile ./resume-device.conf;
-  resumeDeviceId = "/dev/disk/by-uuid/" + disk_uid;
-
-in {
+{ config, pkgs, lib, inputs, ... }: {
 
   # --------------------------------
   # SYSTEM THEME 
@@ -52,9 +45,10 @@ in {
   };
 
   # --------------------------------
-  # NETWORK, BlUETOOTH, SOUND, PRINT, TIMEZONE
+  # HARDWARE, NETWORK, BlUETOOTH, SOUND, PRINT, TIMEZONE
   # --------------------------------
 
+  # gparhic drivers
   hardware.graphics.enable = true;
 
   # Network
@@ -130,16 +124,16 @@ in {
   # Enable the X11 windowing system.
   services.xserver = {
     enable = false;
-    displayManager.startx.enable = false;
-    displayManager.lightdm.enable = false;
+    # displayManager.startx.enable = false;
+    # displayManager.lightdm.enable = false;
 
     # Enable the GNOME Desktop Environment.
     # displayManager.gdm.enable = false;
     # desktopManager.gnome.enable = false;
 
     # Configure keymap in X11
-    xkb.layout = "us,ru";
-    xkb.variant = "";
+    # xkb.layout = "us,ru";
+    # xkb.variant = "";
   };
 
   users.users.user = {
@@ -234,12 +228,6 @@ in {
       settingsFile = "/etc/xray/config.json";
     };
 
-    # Enable the OpenSSH daemon.
-    openssh.enable = true;
-
-    # disk mount
-    udisks2.enable = true;
-
     # bluetooth
     pipewire.wireplumber.extraConfig.bluetoothEnhancements = {
       "monitor.bluez.properties" = {
@@ -249,6 +237,12 @@ in {
         "bluez5.roles" = [ "hsp_hs" "hsp_ag" "hfp_hf" "hfp_ag" ];
       };
     };
+
+    # Enable the OpenSSH daemon.
+    openssh.enable = true;
+
+    # disk mount
+    udisks2.enable = true;
 
   }; # close services
 
@@ -329,6 +323,7 @@ in {
 
     steam = {
       enable = true;
+      gamescopeSession.enable = true;
       remotePlay.openFirewall =
         true; # Open ports in the firewall for Steam Remote Play
       dedicatedServer.openFirewall =
@@ -336,7 +331,6 @@ in {
       localNetworkGameTransfers.openFirewall =
         true; # Open ports in the firewall for Steam Local Network Game Transfers
     };
-    steam.gamescopeSession.enable = true;
     gamemode.enable = true;
 
     dconf.enable = true;
@@ -403,9 +397,6 @@ in {
   # --------------------------------
   # BOOT OPTIONS
   # --------------------------------
-
-  boot.kernelParams = [ "boot.shell_on_fail" ];
-  boot.resumeDevice = resumeDeviceId;
 
   boot.loader = {
     grub = {

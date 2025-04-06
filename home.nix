@@ -27,6 +27,7 @@ in {
       nodejs
       pipx
       exiftool
+      swayidle
 
       # Disk
       dua # disk usage TUI tool. Run: dua i
@@ -34,8 +35,7 @@ in {
       # Network
       overskride # bluetooth gui
       bluetui # bluetooth tui
-      telegram-desktop # no bin...
-      materialgram
+      telegram-desktop
       nchat
       bitwarden-cli
 
