@@ -13,8 +13,13 @@
         # Highlight all lines with a cursor
         cursorline = true;
         lsp.display-messages = true;
-        gutters = [ "line-numbers" "diagnostics" "diff" ];
+        gutters = {
+          layout = [ "line-numbers" "diagnostics" "diff" ];
+          line-numbers.min-width = 1;
+        };
         color-modes = true;
+
+        whitespace = { render = "tab"; };
 
         cursor-shape = {
           insert = "bar";
