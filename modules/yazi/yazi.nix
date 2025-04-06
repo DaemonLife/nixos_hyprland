@@ -149,243 +149,317 @@
     }; # settings end
 
     theme = lib.mkForce {
+
       manager = {
-        cwd = { fg = "#${base0A}"; };
+        border_symbol = "│";
+        border_style = { fg = "#${base01}"; };
 
-        hovered = {
-          fg = "#${base00}";
-          bg = "#${base0B}";
-          bold = true;
-        };
-        preview_hovered = { underline = true; };
-
-        find_keyword = {
-          fg = "#${base0C}";
-          italic = true;
-        };
-        find_position = {
-          fg = "#${base0F}";
-          bg = "reset";
-          italic = true;
-        };
-
+        # Color block on the left side separator line in the filename.
         marker_copied = {
-          fg = "#${base0B}";
           bg = "#${base0B}";
+          fg = "#${base0B}";
         };
         marker_cut = {
-          fg = "#${base0C}";
-          bg = "#${base0C}";
+          bg = "#${base0E}";
+          fg = "#${base0E}";
         };
-        marker_marked = {
-          fg = "#${base0A}";
-          bg = "#${base0A}";
+        marker_marked = { # SEL/V mode
+          bg = "#${base0F}";
+          fg = "#${base0F}";
         };
         marker_selected = {
-          fg = "#${base08}";
-          bg = "#${base08}";
+          bg = "#${base0A}";
+          fg = "#${base0A}";
         };
 
-        tab_active = {
+      };
+
+      mode = {
+        normal_main = {
           fg = "#${base00}";
-          bg = "#${base0B}";
+          bg = "#${base03}";
         };
-        tab_inactive = {
-          fg = "#${base03}";
+        normal_alt = { # file size info, etc
+          fg = "#${base04}";
           bg = "#${base01}";
         };
-        tab_width = 1;
-
-        count_copied = {
+        select_main = {
           fg = "#${base00}";
-          bg = "#${base0B}";
+          bg = "#${base0F}";
         };
-        count_cut = {
+        select_alt = {
+          fg = "#${base04}";
+          bg = "#${base01}";
+        };
+        unset_main = {
           fg = "#${base00}";
-          bg = "#${base0C}";
+          bg = "#${base0E}";
         };
-        count_selected = {
-          fg = "#${base00}";
-          bg = "#${base08}";
+        unset_alt = {
+          fg = "#${base04}";
+          bg = "#${base01}";
         };
-
-        border_symbol = "│";
-        border_style = { fg = "#${base02}"; };
-
-        syntect_theme = "";
       };
 
       status = {
-        # separator_open = "";
-        # separator_close = "";
-        separator_open = "";
-        separator_close = "";
-        separator_style = {
+        sep_left = {
+          open = "";
+          close = "";
+        };
+        sep_right = {
+          open = "";
+          close = "";
+        };
+        overall = {
           fg = "#${base04}";
           bg = "#${base01}";
         };
-
-        mode_normal = {
-          fg = "#${base04}";
-          bg = "#${base02}";
-          bold = true;
-        };
-        mode_select = {
-          fg = "#${base00}";
-          bg = "#${base0B}";
-          bold = true;
-        };
-        mode_unset = {
-          fg = "#${base00}";
-          bg = "#${base0F}";
-          bold = true;
-        };
-
-        progress_label = { bold = true; };
-        progress_normal = {
-          fg = "#${base08}";
-          bg = "#${base00}";
-        };
-        progress_error = {
-          fg = "#${base0E}";
-          bg = "#${base00}";
-        };
-
-        permissions_t = { fg = "#${base0B}"; };
-        permissions_r = { fg = "#${base0A}"; };
-        permissions_w = { fg = "#${base0C}"; };
-        permissions_x = { fg = "#${base0B}"; };
-        permissions_s = { fg = "#${base02}"; };
       };
 
-      select = {
-        border = { fg = "#${base08}"; };
-        active = { fg = "#${base0F}"; };
-        inactive = { };
-      };
-
-      input = {
-        border = { fg = "#${base08}"; };
-        title = { };
-        value = { };
-        selected = { reversed = true; };
-      };
-
-      completion = {
-        border = { fg = "#${base08}"; };
-        active = { bg = "#${base02}"; };
-        inactive = { };
-
-        icon_file = "";
-        icon_folder = "";
-        icon_command = "";
-      };
-
-      tasks = {
-        border = { fg = "#${base08}"; };
-        title = { };
-        hovered = { underline = true; };
-      };
-
-      which = {
-        cols = 3;
-        mask = { bg = "#${base00}"; };
-        cand = { fg = "#${base0E}"; };
-        rest = { fg = "#${base02}"; };
-        desc = { fg = "#${base0F}"; };
-        separator = "  ";
-        separator_style = { fg = "#${base02}"; };
-      };
-
-      help = {
-        on = { fg = "#${base0F}"; };
-        run = { fg = "#${base09}"; };
-        desc = { fg = "#${base07}"; };
-        hovered = {
-          reversed = true;
-          bold = true;
-        };
-        footer = {
-          fg = "#${base03}";
-          bg = "#${base07}";
-        };
-      };
-
-      filetype = {
-        rules = [
-          {
-            mime = "image/*";
-            fg = "#${base0D}";
-          }
-          {
-            mime = "video/*";
-            fg = "#${base09}";
-          }
-          {
-            mime = "audio/*";
-            fg = "#${base0B}";
-          }
-          {
-            mime = "application/zip";
-            fg = "#${base0F}";
-          }
-          {
-            mime = "application/gzip";
-            fg = "#${base0F}";
-          }
-          {
-            mime = "application/x-tar";
-            fg = "#${base0F}";
-          }
-          {
-            mime = "application/x-bzip";
-            fg = "#${base0F}";
-          }
-          {
-            mime = "application/x-bzip2";
-            fg = "#${base0F}";
-          }
-          {
-            mime = "application/x-7z-compressed";
-            fg = "#${base0F}";
-          }
-          {
-            mime = "application/x-rar";
-            fg = "#${base0F}";
-          }
-          {
-            mime = "application/xz";
-            fg = "#${base0F}";
-          }
-          # Documents
-          {
-            mime = "text/*";
-            fg = "#${base05}";
-          }
-          {
-            mime = "application/doc";
-            fg = "#${base08}";
-          }
-          {
-            mime = "application/pdf";
-            fg = "#${base0E}";
-          }
-          {
-            mime = "application/rtf";
-            fg = "#${base0B}";
-          }
-          {
-            mime = "application/vnd.*";
-            fg = "#${base0B}";
-          }
-          # Fallback
-          {
-            name = "*/";
-            fg = "#${base0A}";
-            bold = true;
-          }
-        ];
-      };
     };
+
+    # ------------------------
+    # Old theme configuration
+    # ------------------------
+
+    # theme = lib.mkForce {
+    #   manager = {
+    #     cwd = { fg = "#${base0A}"; };
+
+    #     hovered = {
+    #       fg = "#${base00}";
+    #       bg = "#${base0B}";
+    #       bold = true;
+    #     };
+    #     preview_hovered = { underline = true; };
+
+    #     find_keyword = {
+    #       fg = "#${base0C}";
+    #       italic = true;
+    #     };
+    #     find_position = {
+    #       fg = "#${base0F}";
+    #       bg = "reset";
+    #       italic = true;
+    #     };
+
+    #     marker_copied = {
+    #       fg = "#${base0B}";
+    #       bg = "#${base0B}";
+    #     };
+    #     marker_cut = {
+    #       fg = "#${base0C}";
+    #       bg = "#${base0C}";
+    #     };
+    #     marker_marked = {
+    #       fg = "#${base0A}";
+    #       bg = "#${base0A}";
+    #     };
+    #     marker_selected = {
+    #       fg = "#${base08}";
+    #       bg = "#${base08}";
+    #     };
+
+    #     tab_active = {
+    #       fg = "#${base00}";
+    #       bg = "#${base0B}";
+    #     };
+    #     tab_inactive = {
+    #       fg = "#${base03}";
+    #       bg = "#${base01}";
+    #     };
+    #     tab_width = 1;
+
+    #     count_copied = {
+    #       fg = "#${base00}";
+    #       bg = "#${base0B}";
+    #     };
+    #     count_cut = {
+    #       fg = "#${base00}";
+    #       bg = "#${base0C}";
+    #     };
+    #     count_selected = {
+    #       fg = "#${base00}";
+    #       bg = "#${base08}";
+    #     };
+
+    #     border_symbol = "│";
+    #     border_style = { fg = "#${base02}"; };
+
+    #     syntect_theme = "";
+    #   };
+
+    #   status = {
+    #     # separator_open = "";
+    #     # separator_close = "";
+    #     separator_open = "";
+    #     separator_close = "";
+    #     separator_style = {
+    #       fg = "#${base04}";
+    #       bg = "#${base01}";
+    #     };
+
+    #     mode_normal = {
+    #       fg = "#${base04}";
+    #       bg = "#${base02}";
+    #       bold = true;
+    #     };
+    #     mode_select = {
+    #       fg = "#${base00}";
+    #       bg = "#${base0B}";
+    #       bold = true;
+    #     };
+    #     mode_unset = {
+    #       fg = "#${base00}";
+    #       bg = "#${base0F}";
+    #       bold = true;
+    #     };
+
+    #     progress_label = { bold = true; };
+    #     progress_normal = {
+    #       fg = "#${base08}";
+    #       bg = "#${base00}";
+    #     };
+    #     progress_error = {
+    #       fg = "#${base0E}";
+    #       bg = "#${base00}";
+    #     };
+
+    #     permissions_t = { fg = "#${base0B}"; };
+    #     permissions_r = { fg = "#${base0A}"; };
+    #     permissions_w = { fg = "#${base0C}"; };
+    #     permissions_x = { fg = "#${base0B}"; };
+    #     permissions_s = { fg = "#${base02}"; };
+    #   };
+
+    #   select = {
+    #     border = { fg = "#${base08}"; };
+    #     active = { fg = "#${base0F}"; };
+    #     inactive = { };
+    #   };
+
+    #   input = {
+    #     border = { fg = "#${base08}"; };
+    #     title = { };
+    #     value = { };
+    #     selected = { reversed = true; };
+    #   };
+
+    #   completion = {
+    #     border = { fg = "#${base08}"; };
+    #     active = { bg = "#${base02}"; };
+    #     inactive = { };
+
+    #     icon_file = "";
+    #     icon_folder = "";
+    #     icon_command = "";
+    #   };
+
+    #   tasks = {
+    #     border = { fg = "#${base08}"; };
+    #     title = { };
+    #     hovered = { underline = true; };
+    #   };
+
+    #   which = {
+    #     cols = 3;
+    #     mask = { bg = "#${base00}"; };
+    #     cand = { fg = "#${base0E}"; };
+    #     rest = { fg = "#${base02}"; };
+    #     desc = { fg = "#${base0F}"; };
+    #     separator = "  ";
+    #     separator_style = { fg = "#${base02}"; };
+    #   };
+
+    #   help = {
+    #     on = { fg = "#${base0F}"; };
+    #     run = { fg = "#${base09}"; };
+    #     desc = { fg = "#${base07}"; };
+    #     hovered = {
+    #       reversed = true;
+    #       bold = true;
+    #     };
+    #     footer = {
+    #       fg = "#${base03}";
+    #       bg = "#${base07}";
+    #     };
+    #   };
+
+    #   filetype = {
+    #     rules = [
+    #       {
+    #         mime = "image/*";
+    #         fg = "#${base0D}";
+    #       }
+    #       {
+    #         mime = "video/*";
+    #         fg = "#${base09}";
+    #       }
+    #       {
+    #         mime = "audio/*";
+    #         fg = "#${base0B}";
+    #       }
+    #       {
+    #         mime = "application/zip";
+    #         fg = "#${base0F}";
+    #       }
+    #       {
+    #         mime = "application/gzip";
+    #         fg = "#${base0F}";
+    #       }
+    #       {
+    #         mime = "application/x-tar";
+    #         fg = "#${base0F}";
+    #       }
+    #       {
+    #         mime = "application/x-bzip";
+    #         fg = "#${base0F}";
+    #       }
+    #       {
+    #         mime = "application/x-bzip2";
+    #         fg = "#${base0F}";
+    #       }
+    #       {
+    #         mime = "application/x-7z-compressed";
+    #         fg = "#${base0F}";
+    #       }
+    #       {
+    #         mime = "application/x-rar";
+    #         fg = "#${base0F}";
+    #       }
+    #       {
+    #         mime = "application/xz";
+    #         fg = "#${base0F}";
+    #       }
+    #       # Documents
+    #       {
+    #         mime = "text/*";
+    #         fg = "#${base05}";
+    #       }
+    #       {
+    #         mime = "application/doc";
+    #         fg = "#${base08}";
+    #       }
+    #       {
+    #         mime = "application/pdf";
+    #         fg = "#${base0E}";
+    #       }
+    #       {
+    #         mime = "application/rtf";
+    #         fg = "#${base0B}";
+    #       }
+    #       {
+    #         mime = "application/vnd.*";
+    #         fg = "#${base0B}";
+    #       }
+    #       # Fallback
+    #       {
+    #         name = "*/";
+    #         fg = "#${base0A}";
+    #         bold = true;
+    #       }
+    #     ];
+    #   };
+    # };
   };
 }

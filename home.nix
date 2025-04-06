@@ -57,6 +57,7 @@ in {
       swaybg # background
       unstable.gowall # Tool to convert a Wallpaper's color scheme. Still wait version 2...
       dconf-editor
+      grc
 
       # Fonts
       nerdfonts

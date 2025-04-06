@@ -186,11 +186,11 @@
     adwaita-icon-theme
 
     # fish shell
-    grc # colors for fish
-    fzf # cli search. Run: Ctrl+R
-    fishPlugins.fzf-fish
-    fishPlugins.forgit # fzf git support
-    fishPlugins.done # notifications
+    # grc # colors for fish
+    # fzf # cli search. Run: Ctrl+R
+    # fishPlugins.fzf-fish
+    # fishPlugins.forgit # fzf git support
+    # fishPlugins.done # notifications
 
   ];
 
@@ -341,9 +341,9 @@
     fish.enable = true;
     light.enable = true; # brightness control for sway
 
-    # promt for any shell
+    # promt for any shell (slow!!!)
     starship = with config.lib.stylix.colors; {
-      enable = true;
+      enable = false;
       settings = {
         add_newline = true;
         command_timeout = 500;
@@ -367,7 +367,7 @@
         custom.pwd = {
           command = "echo $PWD";
           when = "true";
-          style = "#${base0A}";
+          style = "#${base0C}";
           format = "[$output]($style) ";
         };
         custom.user = {
@@ -383,12 +383,12 @@
           time_format = "%R";
         };
         character = {
-          success_symbol = "[\\[I\\]>](green)";
-          error_symbol = "[\\[I\\]>](red)";
-          vimcmd_symbol = "[\\[N\\]>](#${base05})";
-          vimcmd_replace_one_symbol = "[\\[r\\]>](purple)";
-          vimcmd_replace_symbol = "[\\[R\\]>](purple)";
-          vimcmd_visual_symbol = "[\\[V\\]>](yellow)";
+          success_symbol = "[\\[I\\]>](#${base0B})";
+          error_symbol = "[\\[I\\]>](#${base0A})";
+          vimcmd_symbol = "[\\[N\\]>](#${base04})";
+          vimcmd_replace_one_symbol = "[\\[r\\]>](#${base0E})";
+          vimcmd_replace_symbol = "[\\[R\\]>](#${base0E})";
+          vimcmd_visual_symbol = "[\\[S\\]>](#${base0F})";
         };
       };
     };

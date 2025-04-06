@@ -1,6 +1,6 @@
 { pkgs, config, lib, ... }: {
 
-  programs.fish = {
+  programs.fish = with config.lib.stylix.colors; {
     enable = true;
     shellAliases = {
       # os help - for help
@@ -18,17 +18,43 @@
       jrnl = " jrnl"; # hide from shell history
     };
 
-    interactiveShellInit = ''
-      set fish_greeting # Disable greeting
-    '';
-
-    plugins = [{
-      name = "grc";
-      src = pkgs.fishPlugins.grc.src;
-    } # colors
-      ];
+    plugins = [
+      {
+        name = "done";
+        src = pkgs.fishPlugins.done.src;
+      }
+      {
+        name = "hydro";
+        src = pkgs.fishPlugins.hydro.src;
+      }
+      {
+        name = "colored-man-pages";
+        src = pkgs.fishPlugins.colored-man-pages.src;
+      }
+      {
+        name = "grc"; # colored output for some command (lsblk for example)
+        src = pkgs.fishPlugins.grc.src;
+      }
+    ];
 
     shellInit = "";
+
+    interactiveShellInit = ''
+      set --global hydro_symbol_prompt '>'
+      set --global hydro_symbol_git_dirty '*'
+      set --global hydro_symbol_git_ahead '↑'
+      set --global hydro_symbol_git_behind '↓'
+      set --global hydro_multiline true
+      set --global fish_prompt_pwd_dir_length 40
+
+      set --global hydro_color_pwd -o ${base0C} 
+
+      if not set -q DISPLAY
+        set --global hydro_symbol_prompt '!!>'
+        set_color --background red
+      end
+    '';
+
     loginShellInit = ''
       if not set -q DISPLAY
         if test (tty) = "/dev/tty1"
@@ -39,6 +65,9 @@
     '';
 
     functions = {
+
+      fish_greeting = "";
+
       y = ''
         set tmp (mktemp -t "yazi-cwd.XXXXXX")
         yazi $argv --cwd-file="$tmp"
@@ -47,6 +76,7 @@
         end
         rm -f -- "$tmp"
       '';
+
     };
   };
 }
