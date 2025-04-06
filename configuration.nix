@@ -341,57 +341,6 @@
     fish.enable = true;
     light.enable = true; # brightness control for sway
 
-    # promt for any shell (slow!!!)
-    starship = with config.lib.stylix.colors; {
-      enable = false;
-      settings = {
-        add_newline = true;
-        command_timeout = 500;
-        scan_timeout = 500;
-        format = ''
-          ''${custom.pwd}$nix_shell$lua$git_branch$git_commit$git_state$git_status$custom(:$user)$time
-          $character'';
-
-        git_branch = {
-          style = "green";
-          format = "[$branch(:$remote_branch)]($style) ";
-        };
-        git_commit = { style = "green"; };
-        git_state = { style = "green"; };
-        git_status = {
-          # style = "green";
-          deleted = "x";
-          behind = "↓";
-          ahead = "↑";
-        };
-        custom.pwd = {
-          command = "echo $PWD";
-          when = "true";
-          style = "#${base0C}";
-          format = "[$output]($style) ";
-        };
-        custom.user = {
-          command = "echo $USER@$hostname ";
-          when = "true";
-          style = "#${base05}";
-          format = "[\\[$output\\]]($style) ";
-        };
-        time = {
-          disabled = false;
-          format = "[\\[$time\\]]($style) ";
-          style = "#${base05}";
-          time_format = "%R";
-        };
-        character = {
-          success_symbol = "[\\[I\\]>](#${base0B})";
-          error_symbol = "[\\[I\\]>](#${base0A})";
-          vimcmd_symbol = "[\\[N\\]>](#${base04})";
-          vimcmd_replace_one_symbol = "[\\[r\\]>](#${base0E})";
-          vimcmd_replace_symbol = "[\\[R\\]>](#${base0E})";
-          vimcmd_visual_symbol = "[\\[S\\]>](#${base0F})";
-        };
-      };
-    };
   };
 
   # --------------------------------
