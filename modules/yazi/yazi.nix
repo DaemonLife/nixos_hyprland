@@ -1,17 +1,38 @@
+# Not all is declarative! You need install and sometimes update plugins. Check 'ya --help' for details, 'ya -l' for list plugins.
+
 { pkgs, config, lib, ... }: {
 
   home.packages = with pkgs; [ xdragon ];
 
   programs.yazi = with config.lib.stylix.colors; {
     enable = true;
+    package = pkgs.unstable.yazi;
     enableFishIntegration = true;
 
-    # clipboard sync for all yazi instances
+    # clipboard sync for all yazi instances and git plugin init
     initLua = ''
       require("session"):setup {
       	sync_yanked = true,
       }
     '';
+    #   require("git"):setup()
+    # '';
+
+    # # settings for plugins
+    # settings.plugin = {
+    #   prepend_fetchers = [
+    #     {
+    #       id = "git";
+    #       name = "*";
+    #       run = "git";
+    #     }
+    #     {
+    #       id = "git";
+    #       name = "*/";
+    #       run = "git";
+    #     }
+    #   ];
+    # };
 
     keymap.manager.prepend_keymap = [
       # copy to system clipboard
@@ -27,6 +48,16 @@
         run = ''
           shell --interactive '${pkgs.xdragon}/bin/dragon -x -i -T "$1"'
         '';
+      }
+      {
+        on = "M";
+        run = "plugin mount";
+        desc = "Mount partitions";
+      }
+      {
+        on = "l";
+        run = "plugin smart-enter";
+        desc = "Enter the child directory, or open the file";
       }
     ];
 

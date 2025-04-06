@@ -20,7 +20,7 @@
     ./kitty.nix
     ./gtk.nix
     ./fzf.nix
-    ./yazi.nix
+    ./yazi/yazi.nix
     ./stylix.nix
     ./joplin-cli.nix
     # ./nixvim.nix
