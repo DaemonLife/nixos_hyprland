@@ -19,8 +19,6 @@
         };
         color-modes = true;
 
-        whitespace = { render = "tab"; };
-
         cursor-shape = {
           insert = "bar";
           normal = "block";
