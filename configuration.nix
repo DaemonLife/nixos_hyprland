@@ -202,8 +202,8 @@
   # --------------------------------
 
   security = {
-    # authentication support
-    # polkit.enable = true;
+    # authentication support for sway
+    polkit.enable = true;
     # screen lock
     pam.services.swaylock = { };
   };
@@ -216,6 +216,9 @@
 
     # Flatpak
     flatpak.enable = true;
+
+    # for sway
+    gnome.gnome-keyring.enable = true;
 
     # Disable GNOME power service
     power-profiles-daemon.enable = false;
@@ -277,6 +280,12 @@
   # --------------------------------
 
   qt.enable = true;
+  xdg.portal = {
+    enable = true;
+    wlr.enable = true;
+    extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+    # config.common.default = [ "gtk" ];
+  };
 
   programs = {
 
@@ -284,16 +293,21 @@
     hyprland = {
       enable = true;
       withUWSM = true;
-      # package = pkgs.unstable.hyprland;
+      #   # package = pkgs.unstable.hyprland;
 
-      # package = pkgs.unstable.hyprland.override {
-      # package = pkgs.hyprland.override {
-      # don't use override if you don't want compiling
-      # withSystemd = false;
-      # legacyRenderer = false;
-      # };
+      #   # package = pkgs.unstable.hyprland.override {
+      #   # package = pkgs.hyprland.override {
+      #   # don't use override if you don't want compiling
+      #   # withSystemd = false;
+      #   # legacyRenderer = false;
+      #   # };
 
     };
+    sway = {
+      enable = true;
+      wrapperFeatures.gtk = true;
+    };
+    # uwsm.enable = true;
 
     nh = {
       enable = true;

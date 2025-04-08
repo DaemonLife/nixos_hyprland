@@ -14,11 +14,11 @@ lib.mkForce {
         layer = "top";
         position = "top";
         height = 24;
-        modules-left = [ "sway/workspaces" "sway/window" ];
+        modules-left = [ "hyprland/workspaces" "hyprland/window" ];
         modules-center = [ ];
         modules-right = [
           "tray"
-          "sway/language"
+          "hyprland/language"
           "custom/sep"
           "network"
           "custom/sep"
@@ -35,14 +35,14 @@ lib.mkForce {
           "clock#time"
         ];
 
-        "sway/workspaces" = {
+        "hyprland/workspaces" = {
           window-rewrite = { };
           on-click = "activate";
           disable-scroll = true;
           # all-outputs = false;
           format = "{icon}";
           persistent-workspaces = {
-            # "eDP-1" = 1; # monitor name and num of workspaces
+            "eDP-1" = 1; # monitor name and num of workspaces
           };
           format-icons = {
             "1" = 1; # workspace id and icon format
@@ -60,7 +60,7 @@ lib.mkForce {
 
         };
 
-        "sway/window" = {
+        "hyprland/window" = {
           max-length = 60;
           separate-outputs = true;
           format = { };
@@ -94,7 +94,7 @@ lib.mkForce {
           on-click-right = "rfkill block bluetooth";
         };
 
-        "sway/language" = {
+        "hyprland/language" = {
           format = "{}";
           format-en = "us";
           format-ru = "ru";

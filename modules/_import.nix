@@ -3,7 +3,7 @@
   imports = [
     ./mako.nix
     ./fuzzel.nix
-    ./hyprland.nix
+    # ./hyprland.nix
     ./waybar.nix
     ./firefox.nix
     ./mpv.nix
@@ -25,7 +25,7 @@
     ./joplin-cli.nix
     # ./nixvim.nix
     ./helix.nix
-    # ./sway.nix
+    ./sway.nix
     ./swayidle.nix
     # ./hypridle.nix
     # ./alacritty.nix

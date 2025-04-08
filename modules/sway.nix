@@ -4,7 +4,7 @@ with config.lib.stylix.colors; {
   wayland.windowManager.sway = {
     enable = true;
     checkConfig = true;
-    # xwayland = true;
+    xwayland = true;
 
     config = rec {
       modifier = "Mod4";
@@ -14,7 +14,7 @@ with config.lib.stylix.colors; {
       startup = [
         { command = "rfkill block bluetooth"; }
         { command = "${pkgs.mako}/bin/mako"; }
-        { command = "${pkgs.autotiling}/bin/autotiling"; }
+        { command = "${pkgs.autotiling}/bin/autotiling -l 2"; }
         { command = "${pkgs.udiskie}/bin/udiskie -a"; }
         {
           command =
@@ -42,6 +42,15 @@ with config.lib.stylix.colors; {
           adaptive_sync = "on";
           render_bit_depth = "10"; # 6, 8, 10
           position = "0 0";
+        };
+        # gpd
+        "DSI-1" = {
+          mode = "1200x1920@60.000Hz";
+          scale = "1.6";
+          adaptive_sync = "on";
+          render_bit_depth = "10"; # 6, 8, 10
+          position = "0 0";
+          transform = "90";
         };
 
       };

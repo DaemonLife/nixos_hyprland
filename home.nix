@@ -28,6 +28,7 @@ in {
       pipx
       exiftool
       swayidle
+      autotiling
 
       # Disk
       dua # disk usage TUI tool. Run: dua i
