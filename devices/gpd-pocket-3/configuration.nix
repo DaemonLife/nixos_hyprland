@@ -15,7 +15,12 @@
   # hibernation (swap file is necessary)
   boot.initrd.systemd.enable = true;
   # Specifies what to do when the laptop lid is closed
-  services.logind.lidSwitch = "suspend-then-hibernate";
+  services.logind = {
+    lidSwitch = "suspend-then-hibernate";
+    extraConfig = ''
+      # LidSwitchIgnoreInhibited=no
+    '';
+  };
 
   # --------------------------------
   # OTHER SERVICES 

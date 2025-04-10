@@ -28,7 +28,8 @@ in {
       pipx
       exiftool
       swayidle
-      autotiling
+
+      # autotiling # for sway
 
       # Disk
       dua # disk usage TUI tool. Run: dua i

@@ -59,8 +59,8 @@
       if not set -q DISPLAY
         echo -e "\033[40m"  # make black background
         if test (tty) = "/dev/tty1"
-          # exec uwsm start hyprland-uwsm.desktop 
-          exec sway
+          exec uwsm start hyprland-uwsm.desktop 
+          # exec sway
         end
       end
     '';

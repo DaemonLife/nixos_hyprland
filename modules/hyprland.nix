@@ -38,7 +38,7 @@ in {
       "${execPref}waybar"
       "${execPref}mako"
       "${execPref}udiskie -a"
-      "${execPref}swayidle -w timeout 600 'hyprctl keyword input:kb_layout us,ru && swaylock -f' timeout 540 'hyprctl dispatch dpms off' timeout 1800 'systemctl hibernate' resume 'hyprctl dispatch dpms on' before-sleep 'swaylock -f'"
+      "${execPref}swayidle -w timeout 540 'hyprctl dispatch dpms off' timeout 600 'hyprctl keyword input:kb_layout us,ru; swaylock -f' resume 'hyprctl dispatch dpms on'"
     ];
 
     exec = [
@@ -85,7 +85,7 @@ in {
 
     general = {
       border_size = 4;
-      extend_border_grab_area = 25;
+      # extend_border_grab_area = 25;
       "col.active_border" = lib.mkForce "rgba(${base0D}ff)";
       "col.inactive_border" = lib.mkForce "rgba(${base02}ff)";
       layout = "dwindle";
@@ -131,23 +131,23 @@ in {
 
     animations = {
       enabled = false;
-      bezier = [
-        "wind, 0.05, 0.9, 0.1, 1.05"
-        "winIn, 0.1, 1.1, 0.1, 1.1"
-        "winOut, 0.3, -0.3, 0, 1"
-        "liner, 1, 1, 1, 1"
-      ];
+      # bezier = [
+      #   "wind, 0.05, 0.9, 0.1, 1.05"
+      #   "winIn, 0.1, 1.1, 0.1, 1.1"
+      #   "winOut, 0.3, -0.3, 0, 1"
+      #   "liner, 1, 1, 1, 1"
+      # ];
 
-      animation = [
-        "windows, 1, 6, wind, slide"
-        "windowsIn, 1, 6, winIn, slide"
-        "windowsOut, 1, 5, winOut, slide"
-        "windowsMove, 1, 5, wind, slide"
-        "border, 1, 1, liner"
-        "borderangle, 1, 30, liner, loop"
-        "fade, 1, 10, default"
-        "workspaces, 1, 5, wind"
-      ];
+      # animation = [
+      #   "windows, 1, 6, wind, slide"
+      #   "windowsIn, 1, 6, winIn, slide"
+      #   "windowsOut, 1, 5, winOut, slide"
+      #   "windowsMove, 1, 5, wind, slide"
+      #   "border, 1, 1, liner"
+      #   "borderangle, 1, 30, liner, loop"
+      #   "fade, 1, 10, default"
+      #   "workspaces, 1, 5, wind"
+      # ];
     };
 
     dwindle = {

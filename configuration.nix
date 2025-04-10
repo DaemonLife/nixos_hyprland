@@ -256,6 +256,7 @@
       AllowHibernation=yes
       AllowHybridSleep=yes
       AllowSuspendThenHibernate=yes
+      HibernateDelaySec=1800
     '';
 
     # User service authentication agent
@@ -280,12 +281,12 @@
   # --------------------------------
 
   qt.enable = true;
-  xdg.portal = {
-    enable = true;
-    wlr.enable = true;
-    extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
-    # config.common.default = [ "gtk" ];
-  };
+
+  # xdg.portal = {
+  #   enable = true;
+  #   wlr.enable = true;
+  #   extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+  # };
 
   programs = {
 
@@ -303,10 +304,10 @@
       #   # };
 
     };
-    sway = {
-      enable = true;
-      wrapperFeatures.gtk = true;
-    };
+    # sway = {
+    #   enable = true;
+    #   wrapperFeatures.gtk = true;
+    # };
     # uwsm.enable = true;
 
     nh = {

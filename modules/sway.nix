@@ -6,8 +6,17 @@ with config.lib.stylix.colors; {
     checkConfig = true;
     xwayland = true;
 
+    extraConfig = ''
+      focus_on_window_activation focus
+    '';
+
     config = rec {
       modifier = "Mod4";
+      focus = {
+        followMouse = "yes";
+        mouseWarping = true;
+        wrapping = "yes";
+      };
       terminal = "${pkgs.kitty}/bin/kitty --single-instance";
       menu = "${pkgs.fuzzel}/bin/fuzzel -l 10";
       bars = [{ command = "waybar"; }];
