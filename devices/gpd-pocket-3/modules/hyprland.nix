@@ -16,7 +16,13 @@ with config.lib.stylix.colors; {
     input = {
       sensitivity = lib.mkForce "-0.2"; # -1.0 - 1.0
       scroll_factor = lib.mkForce "0.5";
-      touchpad = { scroll_factor = lib.mkForce "0.000000005"; };
+
+      touchpad = {
+        scroll_factor = lib.mkForce "0.000000005";
+        disable_while_typing = lib.mkForce true;
+        tap-and-drag = lib.mkForce false;
+        drag_lock = lib.mkForce false;
+      };
 
       # correct touch map for gpd screen
       touchdevice.transform = lib.mkForce 3;

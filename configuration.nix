@@ -65,21 +65,20 @@
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
-  services.printing.drivers = with pkgs; [
-    gutenprint # Drivers for many different printers from many different vendors.
-    gutenprintBin # Additional, binary-only drivers for some printers.
-    hplip # Drivers for HP printers.
-    postscript-lexmark # Postscript drivers for Lexmark
-    splix # Drivers for printers supporting SPL (Samsung Printer Language).
-    brlaser # Drivers for some Brother printers
-    brgenml1lpr # Generic drivers for more Brother printers
-    fxlinuxprint # Fuji Xerox Linux Printer Driver
-
-    # samsung-unified-linux-driver # Proprietary Samsung Drivers
-    # cnijfilter2 # Drivers for some Canon Pixma devices (Proprietary driver)
-    # foomatic-db-nonfree # OpenPrinting printer support database (unfree content)
-    # foomatic-db-ppds-withNonfreeDb
-  ];
+  services.printing.drivers = with pkgs;
+    [
+      gutenprint # Drivers for many different printers from many different vendors.
+      # gutenprintBin # Additional, binary-only drivers for some printers.
+      # hplip # Drivers for HP printers.
+      # postscript-lexmark # Postscript drivers for Lexmark
+      # splix # Drivers for printers supporting SPL (Samsung Printer Language).
+      # brlaser # Drivers for some Brother printers
+      # brgenml1lpr # Generic drivers for more Brother printers
+      # fxlinuxprint # Fuji Xerox Linux Printer Driver
+      # samsung-unified-linux-driver # Proprietary Samsung Drivers
+      # cnijfilter2 # Proprietary drivers for some Canon Pixma devices 
+      # foomatic-db-ppds-withNonfreeDb
+    ];
 
   # Enable scanner
   hardware.sane.enable = true; # enables support for scanners
@@ -142,7 +141,6 @@
     shell = pkgs.fish;
     useDefaultShell = true;
 
-    # Users in the scanner group will gain access to the scanner, or the lp group if it’s also a printer.
     extraGroups = [ "networkmanager" "wheel" "video" "input" "scanner" "lp" ];
     packages = with pkgs; [ flatpak ];
   };
@@ -169,6 +167,7 @@
     os-prober
     swaylock
     ntfs3g # ntfs support
+    exfatprogs # exfat gparted support
     clinfo # opencl info
     mesa # video driver
     jdk # java
@@ -179,108 +178,20 @@
     kitty
     bottles # run windows programs
     gitui
-    exfatprogs # exfat gparted support
-    udiskie # auto disks mount
+    # udiskie # auto disks mount
+    nufraw-thumbnailer # RAW preview for thunar
 
     # GNOME programs
     adwaita-icon-theme
-
-    # fish shell
-    # grc # colors for fish
-    # fzf # cli search. Run: Ctrl+R
-    # fishPlugins.fzf-fish
-    # fishPlugins.forgit # fzf git support
-    # fishPlugins.done # notifications
-
   ];
-
-  # Android emulator. Read https://nixos.wiki/wiki/WayDroid
-  virtualisation.waydroid.enable = true;
-
-  # --------------------------------
-  # SECURITY 
-  # --------------------------------
-
-  security = {
-    # authentication support for sway
-    polkit.enable = true;
-    # screen lock
-    pam.services.swaylock = { };
-  };
-
-  # --------------------------------
-  # OTHER SERVICES
-  # --------------------------------
-
-  services = {
-
-    # Flatpak
-    flatpak.enable = true;
-
-    # for sway
-    gnome.gnome-keyring.enable = true;
-
-    # Disable GNOME power service
-    power-profiles-daemon.enable = false;
-    # Thermald proactively prevents overheating 
-    thermald.enable = true;
-
-    # VPN xRay
-    xray = {
-      enable = true;
-      settingsFile = "/etc/xray/config.json";
-    };
-
-    # bluetooth
-    pipewire.wireplumber.extraConfig.bluetoothEnhancements = {
-      "monitor.bluez.properties" = {
-        "bluez5.enable-sbc-xq" = true;
-        "bluez5.enable-msbc" = true;
-        "bluez5.enable-hw-volume" = true;
-        "bluez5.roles" = [ "hsp_hs" "hsp_ag" "hfp_hf" "hfp_ag" ];
-      };
-    };
-
-    # Enable the OpenSSH daemon.
-    openssh.enable = true;
-
-    # disk mount
-    udisks2.enable = true;
-
-  }; # close services
-
-  systemd = {
-
-    sleep.extraConfig = ''
-      AllowSuspend=yes
-      AllowHibernation=yes
-      AllowHybridSleep=yes
-      AllowSuspendThenHibernate=yes
-      HibernateDelaySec=1800
-    '';
-
-    # User service authentication agent
-    user.services.polkit-gnome-authentication-agent-1 = {
-      description = "polkit-gnome-authentication-agent-1";
-      wantedBy = [ "graphical-session.target" ];
-      wants = [ "graphical-session.target" ];
-      after = [ "graphical-session.target" ];
-      serviceConfig = {
-        Type = "simple";
-        ExecStart =
-          "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
-        Restart = "on-failure";
-        RestartSec = 1;
-        TimeoutStopSec = 10;
-      };
-    };
-  };
 
   # --------------------------------
   # OTHER PROGRAMS 
   # --------------------------------
 
   qt.enable = true;
+  # Android emulator. Read https://nixos.wiki/wiki/WayDroid
+  virtualisation.waydroid.enable = true;
 
   # xdg.portal = {
   #   enable = true;
@@ -304,6 +215,7 @@
       #   # };
 
     };
+
     # sway = {
     #   enable = true;
     #   wrapperFeatures.gtk = true;
@@ -315,6 +227,15 @@
       clean.enable = true;
       clean.extraArgs = "--keep-since 7d --keep 5";
       flake = "/home/$USER/nix";
+    };
+
+    thunar = {
+      enable = true;
+      plugins = with pkgs.xfce; [
+        thunar-archive-plugin
+        thunar-media-tags-plugin
+        tumbler
+      ];
     };
 
     proxychains = {
@@ -346,16 +267,87 @@
       localNetworkGameTransfers.openFirewall =
         true; # Open ports in the firewall for Steam Local Network Game Transfers
     };
-    gamemode.enable = true;
 
+    gamemode.enable = true;
     dconf.enable = true;
-    thunar.enable = true;
     lazygit.enable = true;
     htop.enable = true;
     git.enable = true;
     fish.enable = true;
     light.enable = true; # brightness control for sway
 
+  };
+
+  # --------------------------------
+  # OTHER SERVICES
+  # --------------------------------
+
+  services = {
+
+    # gnome.gnome-keyring.enable = true; # for sway
+
+    # Disable GNOME power service
+    power-profiles-daemon.enable = false;
+    # Thermald proactively prevents overheating 
+    thermald.enable = true;
+
+    # VPN xRay
+    xray = {
+      enable = true;
+      settingsFile = "/etc/xray/config.json";
+    };
+
+    # bluetooth audio enhancements
+    # pipewire.wireplumber.extraConfig.bluetoothEnhancements = {
+    #   "monitor.bluez.properties" = {
+    #     "bluez5.enable-sbc-xq" = true;
+    #     "bluez5.enable-msbc" = true;
+    #     "bluez5.enable-hw-volume" = true;
+    #     "bluez5.roles" = [ "hsp_hs" "hsp_ag" "hfp_hf" "hfp_ag" ];
+    #   };
+    # };
+
+    openssh.enable = true;
+    flatpak.enable = true;
+    gvfs.enable = true; # Mount, trash, and other functionalities
+    # udisks2.enable = true; # disk mount
+
+  }; # close services
+
+  systemd = {
+
+    sleep.extraConfig = ''
+      AllowSuspend=yes
+      AllowHibernation=yes
+      # AllowHybridSleep=yes
+      AllowSuspendThenHibernate=yes
+      HibernateDelaySec=1800
+    '';
+
+    # User service authentication agent
+    # user.services.polkit-gnome-authentication-agent-1 = {
+    #   description = "polkit-gnome-authentication-agent-1";
+    #   wantedBy = [ "graphical-session.target" ];
+    #   wants = [ "graphical-session.target" ];
+    #   after = [ "graphical-session.target" ];
+    #   serviceConfig = {
+    #     Type = "simple";
+    #     ExecStart =
+    #       "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
+    #     Restart = "on-failure";
+    #     RestartSec = 1;
+    #     TimeoutStopSec = 10;
+    #   };
+    # };
+  };
+
+  # --------------------------------
+  # SECURITY 
+  # --------------------------------
+
+  security = {
+    polkit.enable = true; # authentication support for sway
+    pam.services.swaylock = { }; # screen lock
   };
 
   # --------------------------------

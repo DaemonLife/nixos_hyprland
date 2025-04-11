@@ -28,6 +28,7 @@ in {
       pipx
       exiftool
       swayidle
+      vlc
 
       # autotiling # for sway
 

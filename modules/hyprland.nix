@@ -37,7 +37,7 @@ in {
       "${execPref}rfkill block bluetooth" # bt off
       "${execPref}waybar"
       "${execPref}mako"
-      "${execPref}udiskie -a"
+      # "${execPref}udiskie -a"
       "${execPref}swayidle -w timeout 540 'hyprctl dispatch dpms off' timeout 600 'hyprctl keyword input:kb_layout us,ru; swaylock -f' resume 'hyprctl dispatch dpms on'"
     ];
 
@@ -51,26 +51,26 @@ in {
     ];
 
     input = {
-
+      # keyboard
       kb_layout = "us,ru";
       kb_options = "grp:win_space_toggle";
+      repeat_rate = 45; # in one second
+      repeat_delay = 190;
+
+      # mouse or hamster
       accel_profile = "adaptive";
       force_no_accel = false;
-      follow_mouse = 1; # window focus
+      follow_mouse = 1; # window focus follow cursor
       natural_scroll = false; # natural mean idiotic
-      repeat_rate = 60;
-      repeat_delay = 300;
-
-      sensitivity = -0.2; # -1.0 - 1.0
+      sensitivity = -0.2; # from -1.0 to 1.0
       scroll_factor = "0.5";
 
       touchpad = {
         disable_while_typing = true;
         tap-and-drag = false;
         drag_lock = false;
-        natural_scroll = true; # true for lenovo!
+        natural_scroll = true; # natural mean idiotic
       };
-
     };
 
     cursor = {

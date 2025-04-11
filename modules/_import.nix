@@ -31,7 +31,7 @@
     # ./alacritty.nix
     # ./eww/eww.nix
     # ./lf/lf.nix
-    # ./zsh.nix
+    # ./zsh/zsh.nix
     # ./ranger.nix
   ];
 

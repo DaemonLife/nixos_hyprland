@@ -4,13 +4,13 @@
 
     bindings = {
       r = "cycle_values video-rotate 90 180 270 0";
-      "Ctrl+c" = "script-binding uosc/chapters";
-      "Ctrl+s" = "script-binding uosc/subtitles";
-      "Ctrl+a" = "script-binding uosc/audio";
+      "Alt+c" = "script-binding uosc/chapters";
+      "Alt+s" = "script-binding uosc/subtitles";
+      "Alt+a" = "script-binding uosc/audio";
     };
 
     scripts = with pkgs; [
-      # mpvScripts.sponsorblock
+      mpvScripts.sponsorblock
       # mpvScripts.dynamic-crop # press 'C'
       # mpvScripts.crop # press 'C'
       mpvScripts.thumbfast # previews
@@ -30,7 +30,7 @@
       keep-open = "no";
       volume = 80;
       volume-max = 100;
-      sub-font = "Helvetica";
+      sub-font = "Mononoki Nerd Font Regular";
       sub-bold = "yes";
       sub-font-size = 46;
       sub-border-size = 3;
