@@ -158,6 +158,16 @@
         border_symbol = "│";
         border_style = { fg = "#${base01}"; };
 
+        tab_active = {
+          fg = "#${base00}";
+          bg = "#${base0B}";
+        };
+        tab_inactive = {
+          fg = "#${base03}";
+          bg = "#${base01}";
+        };
+        tab_width = 1;
+
         # Color block on the left side separator line in the filename.
         # marker_copied = {
         #   bg = "#${base0B}";

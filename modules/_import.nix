@@ -3,8 +3,8 @@
   imports = [
     ./mako.nix
     ./fuzzel.nix
-    ./hyprland.nix
-    ./waybar.nix
+    # ./hyprland.nix
+    # ./waybar.nix
     ./firefox.nix
     ./mpv.nix
     ./swaylock.nix
@@ -26,7 +26,7 @@
     ./helix.nix
     ./swayidle.nix
     ./nixvim.nix
-    # ./sway.nix
+    ./sway.nix
     # ./hypridle.nix
     # ./alacritty.nix
     # ./eww/eww.nix

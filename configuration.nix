@@ -121,19 +121,19 @@
   # --------------------------------
 
   # Enable the X11 windowing system.
-  services.xserver = {
-    enable = true;
-    displayManager.startx.enable = false;
-    displayManager.lightdm.enable = false;
+  # services.xserver = {
+  # enable = true;
+  # displayManager.startx.enable = false;
+  # displayManager.lightdm.enable = false;
 
-    # Enable the GNOME Desktop Environment.
-    displayManager.gdm.enable = false;
-    desktopManager.gnome.enable = false;
+  # Enable the GNOME Desktop Environment.
+  # displayManager.gdm.enable = false;
+  # desktopManager.gnome.enable = false;
 
-    # Configure keymap in X11
-    xkb.layout = "us,ru";
-    xkb.variant = "";
-  };
+  # Configure keymap in X11
+  # xkb.layout = "us,ru";
+  # xkb.variant = "";
+  # };
 
   users.users.user = {
     isNormalUser = true;
@@ -202,24 +202,25 @@
   programs = {
 
     # For Hyprland
-    hyprland = {
-      enable = true;
-      withUWSM = true;
-      #   # package = pkgs.unstable.hyprland;
+    # hyprland = {
+    # enable = true;
+    # withUWSM = true;
+    #   # package = pkgs.unstable.hyprland;
 
-      #   # package = pkgs.unstable.hyprland.override {
-      #   # package = pkgs.hyprland.override {
-      #   # don't use override if you don't want compiling
-      #   # withSystemd = false;
-      #   # legacyRenderer = false;
-      #   # };
+    #   # package = pkgs.unstable.hyprland.override {
+    #   # package = pkgs.hyprland.override {
+    #   # don't use override if you don't want compiling
+    #   # withSystemd = false;
+    #   # legacyRenderer = false;
+    #   # };
 
-    };
-
-    # sway = {
-    #   enable = true;
-    #   wrapperFeatures.gtk = true;
     # };
+
+    sway = {
+      enable = true;
+      # fix GTK apps
+      wrapperFeatures.gtk = true;
+    };
     # uwsm.enable = true;
 
     nh = {
@@ -284,7 +285,7 @@
 
   services = {
 
-    # gnome.gnome-keyring.enable = true; # for sway
+    gnome.gnome-keyring.enable = true; # for sway
 
     # Disable GNOME power service
     power-profiles-daemon.enable = false;
@@ -306,7 +307,6 @@
     #     "bluez5.roles" = [ "hsp_hs" "hsp_ag" "hfp_hf" "hfp_ag" ];
     #   };
     # };
-
     openssh.enable = true;
     flatpak.enable = true;
     gvfs.enable = true; # Mount, trash, and other functionalities

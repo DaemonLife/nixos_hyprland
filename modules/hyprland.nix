@@ -38,7 +38,7 @@ in {
       "${execPref}waybar"
       "${execPref}mako"
       # "${execPref}udiskie -a"
-      "${execPref}swayidle -w timeout 540 'hyprctl dispatch dpms off' timeout 600 'hyprctl keyword input:kb_layout us,ru; swaylock -f' resume 'hyprctl dispatch dpms on'"
+      "${execPref}swayidle -w timeout 540 'hyprctl dispatch dpms off' timeout 600 'hyprctl keyword input:kb_layout us,ru && ${execPref}swaylock' resume 'hyprctl dispatch dpms on'"
     ];
 
     exec = [
@@ -171,8 +171,8 @@ in {
     ];
 
     bindl = [
-      ",switch:on:Lid Switch, exec, ${execPref}hyprctl dispatch dpms off && swaylock"
-      ",switch:off:Lid Switch, exec, ${execPref}hyprctl dispatch dpms on"
+      ",switch:on:Lid Switch, exec, hyprctl dispatch dpms off && swaylock"
+      ",switch:off:Lid Switch, exec, hyprctl dispatch dpms on"
     ];
 
     # for long pressed
@@ -253,8 +253,8 @@ in {
       "SHIFT Alt_L, mouse_down, workspace, -1"
 
       # Lock screen
-      ", F10, exec, ${execPref}swaylock"
       ", F10, exec, ${execPref}hyprctl keyword input:kb_layout us,ru"
+      ", F10, exec, ${execPref}swaylock"
 
       # Screenshot
       "SUPER_SHIFT, s, exec, ${execPref}grimblast copysave area"
