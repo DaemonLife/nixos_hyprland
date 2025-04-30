@@ -1,5 +1,1 @@
-{ pkgs, lib, config, inputs, ... }: {
-
-  imports = [ ./modules/_import.nix ];
-
-}
+{ pkgs, lib, config, inputs, ... }: { imports = [ ./modules/_import.nix ]; }

@@ -1,8 +1,9 @@
 { pkgs, config, lib, ... }: {
 
   imports = [
-    # ./hyprland.nix
     ./mako.nix
+    ./sway.nix
+    # ./hyprland.nix
   ];
 
 }

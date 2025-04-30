@@ -14,7 +14,7 @@ lib.mkForce {
         layer = "top";
         position = "top";
         height = 24;
-        modules-left = [ "sway/workspaces" "sway/window" ];
+        modules-left = [ "sway/workspaces" "sway/mode" "sway/window" ];
         modules-center = [ ];
         modules-right = [
           "tray"
@@ -39,10 +39,13 @@ lib.mkForce {
           window-rewrite = { };
           on-click = "activate";
           disable-scroll = true;
-          # all-outputs = false;
           format = "{icon}";
           persistent-workspaces = {
-            "eDP-1" = 1; # monitor name and num of workspaces
+            # workspace and monitors
+            "1" = [ "eDP-1" ];
+            "2" = [ "DP-1" ];
+            "3" = [ "DP-1" ];
+            "4" = [ "DP-1" ];
           };
           format-icons = {
             "1" = 1; # workspace id and icon format
@@ -54,7 +57,9 @@ lib.mkForce {
             "7" = 7;
             "8" = 8;
             "9" = 9;
-            # "active" = "";
+
+            # "urgent" = "?";
+            # "focused" = "";
             # "default" = "";
           };
 
@@ -65,6 +70,11 @@ lib.mkForce {
           separate-outputs = true;
           format = { };
           rewrite = { };
+        };
+
+        "sway/mode" = {
+          "format" = "<U+F5FC> {}";
+          "max-length" = 50;
         };
 
         tray.spacing = 10;
@@ -257,7 +267,7 @@ lib.mkForce {
           padding: 0px 2px 0px 2px;
           color: @gray;
         }
-        #workspaces button.active { 
+        #workspaces button.focused { 
           font-weight: normal; 
           color: @dark;
           background-color: @accent;

@@ -25,10 +25,7 @@ with config.lib.stylix.colors; {
 
       startup = [
         { command = "rfkill block bluetooth"; }
-        {
-          command = "${pkgs.mako}/bin/mako";
-        }
-        # { command = "${pkgs.autotiling}/bin/autotiling -l 3"; }
+        { command = "${pkgs.mako}/bin/mako"; }
         { command = "${pkgs.udiskie}/bin/udiskie -a"; }
         {
           command =
@@ -36,51 +33,60 @@ with config.lib.stylix.colors; {
         }
         {
           command = ''
-            swayidle -w timeout 540 'swaymsg "output * dpms off"' timeout 600 'swaymsg input "type:keyboard xkb_switch_layout 0" && swaylock' resume 'swaymsg "output * dpms on"'          '';
+            swayidle -w timeout 540 'swaymsg "output * dpms off"' timeout 600 'swaymsg input "type:keyboard xkb_switch_layout 0" && swaylock' resume 'swaymsg "output * dpms on"'
+          '';
         }
       ];
 
       output = {
+        # lenovo
+        "BOE 0x0931 Unknown" = {
+          mode = "2240x1400@60.002Hz";
+          scale = "1.6"; # 2240 -> 1400
+          adaptive_sync = "on";
+          render_bit_depth = "10"; # 6, 8, 10
+          position = "0 0"; # main position
+        };
         # monitor gg
         "Acer Technologies Acer A231H LQT0W0084320" = {
           mode = "1920x1080@60Hz";
           scale = "1";
           adaptive_sync = "off";
           render_bit_depth = "8"; # 6, 8, 10
-          position = "1400 0";
+          position = "1400 0"; # to right
         };
-        # lenovo
-        "BOE 0x0931 Unknown" = {
-          mode = "2240x1400@60.002Hz";
-          scale = "1.6";
+        # monitor msk
+        "Shenzhen KTC Technology Group H27S17 0x00000001" = {
+          mode = "2560x1440@164.998Hz";
+          scale = "1.25";
           adaptive_sync = "on";
           render_bit_depth = "10"; # 6, 8, 10
-          position = "0 0";
+          position = "-2048 0"; # to left
         };
+
         # gpd
         "DSI-1" = {
           mode = "1200x1920@60.000Hz";
-          scale = "1.6";
+          scale = "1.6"; # 1920 -> 1200px
           adaptive_sync = "on";
           render_bit_depth = "10"; # 6, 8, 10
-          position = "0 0";
+          position = "0 0"; # main
           transform = "90";
         };
+        # TV msk
         "Invalid Vendor Codename - RTK RTK TV 0x01010101" = {
           mode = "3840x2160@60.000Hz";
           scale = "1";
           adaptive_sync = "on";
           render_bit_depth = "10"; # 6, 8, 10
-          position = "1200 0";
+          position = "1200 0"; # to right from gpd
         };
 
       };
 
       gaps = {
-        outer = 0;
-        inner = 0;
-        # outer = 2;
-        # inner = 5;
+        outer = 2;
+        inner = 5;
         smartGaps = true;
         smartBorders = "on";
       };
@@ -108,11 +114,32 @@ with config.lib.stylix.colors; {
       bindkeysToCode = true;
       keybindings = {
 
+        ##################
+        # RUN PROGRAMS 
+        ##################
+
         # start terminal
-        "${modifier}+Return" = "exec ${terminal}";
+        "${modifier}+Return" = ''
+          exec swaymsg input "type:keyboard" xkb_switch_layout 0 && exec ${terminal}
+        '';
         # run menu 
         "${modifier}+a" = ''
           exec swaymsg input "type:keyboard" xkb_switch_layout 0 && exec ${menu}'';
+        # run file manager
+        "${modifier}+n" = "exec thunar";
+        "${modifier}+y" =
+          "exec kitty --single-instance --hold $HOME/nix/scripts/y.fish";
+
+        # run broswer
+        "${modifier}+b" = "exec $BROWSER";
+        "${modifier}+Shift+B" =
+          "exec proxychains4 $BROWSER --set window.title_format [VPN] {perc}{current_title}{title_sep}qutebrowser";
+        # telegram
+        "${modifier}+t" = "exec telegram-desktop";
+
+        ##################
+        # Window control 
+        ##################
 
         # kill active window
         "${modifier}+q" = "kill";
@@ -125,9 +152,9 @@ with config.lib.stylix.colors; {
         "${modifier}+r" = "mode resize";
 
         # Layouts
-        "${modifier}+v" = "splitv";
-        "${modifier}+b" = "splith";
-        "${modifier}+t" = "layout toggle split tabbed";
+        "${modifier}+z" = "splitv";
+        "${modifier}+c" = "splith";
+        "${modifier}+x" = "layout toggle splith splitv tabbed";
 
         # reload config
         "${modifier}+Shift+r" = "reload";

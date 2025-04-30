@@ -4,7 +4,7 @@
     ./mako.nix
     ./fuzzel.nix
     # ./hyprland.nix
-    # ./waybar.nix
+    ./waybar.nix
     ./firefox.nix
     ./mpv.nix
     ./swaylock.nix
