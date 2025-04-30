@@ -85,7 +85,7 @@ in {
       # Media
       musikcube # second music player
       termusic
-      unstable.darktable
+      darktable
       unstable.gimp
 
       # Internet

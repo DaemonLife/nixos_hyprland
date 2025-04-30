@@ -87,7 +87,7 @@ in {
       border_size = 4;
       # extend_border_grab_area = 25;
       "col.active_border" = lib.mkForce "rgba(${base0D}ff)";
-      "col.inactive_border" = lib.mkForce "rgba(${base02}ff)";
+      "col.inactive_border" = lib.mkForce "rgba(${base03}ff)";
       layout = "dwindle";
       # Please see https://wiki.hyprland.org/Configuring/Tearing/ before you turn this on
       allow_tearing = false;

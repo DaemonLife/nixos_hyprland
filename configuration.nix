@@ -122,17 +122,17 @@
 
   # Enable the X11 windowing system.
   services.xserver = {
-    enable = false;
-    # displayManager.startx.enable = false;
-    # displayManager.lightdm.enable = false;
+    enable = true;
+    displayManager.startx.enable = false;
+    displayManager.lightdm.enable = false;
 
     # Enable the GNOME Desktop Environment.
-    # displayManager.gdm.enable = false;
-    # desktopManager.gnome.enable = false;
+    displayManager.gdm.enable = false;
+    desktopManager.gnome.enable = false;
 
     # Configure keymap in X11
-    # xkb.layout = "us,ru";
-    # xkb.variant = "";
+    xkb.layout = "us,ru";
+    xkb.variant = "";
   };
 
   users.users.user = {

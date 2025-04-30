@@ -197,8 +197,8 @@ lib.mkForce {
       	@define-color white #${base05};
       	@define-color accent #${base0D};
       	@define-color green #${base0B};
-      	@define-color red #${base0E};
-      	@define-color magenta #${base0F};
+      	@define-color red #${base08};
+      	@define-color magenta #${base09};
       	@define-color yellow #${base0A};
       	
       	/* Default setting for all modules */

@@ -25,7 +25,7 @@
     ./joplin-cli.nix
     ./helix.nix
     ./swayidle.nix
-    # ./nixvim.nix
+    ./nixvim.nix
     # ./sway.nix
     # ./hypridle.nix
     # ./alacritty.nix
