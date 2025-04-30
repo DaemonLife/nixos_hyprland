@@ -14,11 +14,11 @@ lib.mkForce {
         layer = "top";
         position = "top";
         height = 24;
-        modules-left = [ "hyprland/workspaces" "hyprland/window" ];
+        modules-left = [ "sway/workspaces" "sway/window" ];
         modules-center = [ ];
         modules-right = [
           "tray"
-          "hyprland/language"
+          "sway/language"
           "custom/sep"
           "network"
           "custom/sep"
@@ -35,7 +35,7 @@ lib.mkForce {
           "clock#time"
         ];
 
-        "hyprland/workspaces" = {
+        "sway/workspaces" = {
           window-rewrite = { };
           on-click = "activate";
           disable-scroll = true;
@@ -60,7 +60,7 @@ lib.mkForce {
 
         };
 
-        "hyprland/window" = {
+        "sway/window" = {
           max-length = 60;
           separate-outputs = true;
           format = { };
@@ -94,7 +94,7 @@ lib.mkForce {
           on-click-right = "rfkill block bluetooth";
         };
 
-        "hyprland/language" = {
+        "sway/language" = {
           format = "{}";
           format-en = "us";
           format-ru = "ru";

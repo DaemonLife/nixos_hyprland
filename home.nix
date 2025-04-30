@@ -30,6 +30,9 @@ in {
       swayidle
       vlc
 
+      # for sway
+      autotiling
+
       # autotiling # for sway
 
       # Disk
@@ -119,6 +122,19 @@ in {
   # --------------------------------
 
   programs = {
+
+    yambar = {
+      enable = true;
+      settings = {
+        bar = {
+          location = "top";
+          height = 32;
+          background = "00000000";
+
+          right = [{ clock.content = [{ string.text = "{time}"; }]; }];
+        };
+      };
+    };
 
     fastfetch = { enable = true; };
     yt-dlp = { enable = true; };

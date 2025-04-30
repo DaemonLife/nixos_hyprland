@@ -1,5 +1,8 @@
 { pkgs, config, lib, ... }: {
 
-  imports = [ ./hyprland.nix ./mako.nix ];
+  imports = [
+    # ./hyprland.nix
+    ./mako.nix
+  ];
 
 }

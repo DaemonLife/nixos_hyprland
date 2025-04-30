@@ -11,27 +11,32 @@ with config.lib.stylix.colors; {
     '';
 
     config = rec {
-      modifier = "Mod4";
+
       focus = {
         followMouse = "yes";
         mouseWarping = true;
         wrapping = "yes";
       };
+
+      modifier = "Mod4";
       terminal = "${pkgs.kitty}/bin/kitty --single-instance";
       menu = "${pkgs.fuzzel}/bin/fuzzel -l 10";
       bars = [{ command = "waybar"; }];
+
       startup = [
         { command = "rfkill block bluetooth"; }
-        { command = "${pkgs.mako}/bin/mako"; }
-        { command = "${pkgs.autotiling}/bin/autotiling -l 2"; }
+        {
+          command = "${pkgs.mako}/bin/mako";
+        }
+        # { command = "${pkgs.autotiling}/bin/autotiling -l 3"; }
         { command = "${pkgs.udiskie}/bin/udiskie -a"; }
         {
           command =
             "${pkgs.wl-clipboard}/bin/wl-paste -t text --watch clipman store --no-persist";
         }
         {
-          command =
-            "swayidle -w timeout 600 'hyprctl keyword input:kb_layout us,ru && swaylock -f' timeout 630 'hyprctl dispatch dpms off' resume 'hyprctl dispatch dpms on' before-sleep 'swaylock -f'";
+          command = ''
+            swayidle -w timeout 540 'swaymsg "output * dpms off"' timeout 600 'swaymsg input "type:keyboard xkb_switch_layout 0" && swaylock' resume 'swaymsg "output * dpms on"'          '';
         }
       ];
 
@@ -61,12 +66,21 @@ with config.lib.stylix.colors; {
           position = "0 0";
           transform = "90";
         };
+        "Invalid Vendor Codename - RTK RTK TV 0x01010101" = {
+          mode = "3840x2160@60.000Hz";
+          scale = "1";
+          adaptive_sync = "on";
+          render_bit_depth = "10"; # 6, 8, 10
+          position = "1200 0";
+        };
 
       };
 
       gaps = {
-        outer = 2;
-        inner = 5;
+        outer = 0;
+        inner = 0;
+        # outer = 2;
+        # inner = 5;
         smartGaps = true;
         smartBorders = "on";
       };
@@ -119,20 +133,25 @@ with config.lib.stylix.colors; {
         "${modifier}+Shift+r" = "reload";
 
         # Brightness control
-        "XF86MonBrightnessUp" = "exec brightnessctl set -- +5%";
-        "XF86MonBrightnessDown" = "exec brightnessctl set -- -5%";
+        "XF86MonBrightnessUp" = "exec light -A 5";
+        "XF86MonBrightnessDown" = "exec light -U 5";
+        "Ctrl+l" = "exec light -A 5";
+        "Ctrl+h" = "exec light -U 5";
 
         # laptop close 
-        # "switch:on:Lid Switch" = "";
-        # "switch:off:Lid Switch" = "";
+        # "switch:on:Lid Switch" = "exec swaylock && swaymsg 'output * dpms off'";
+        # "switch:off:Lid Switch" = "exec swaymsg 'output * dpms on'";
 
         # Audio 
-        "XF86AudioRaiseVolume" = "amixer sset 'Master' 5%+";
-        "XF86AudioLowerVolume" = "amixer sset 'Master' 5%-";
-        "Ctrl+j" = "amixer sset 'Master' 5%+";
-        "Ctrl+h" = "amixer sset 'Master' 5%-";
-        "XF86AudioMute" = "amixer set Master toggle";
-        "XF86AudioMicMute" = "amixer sset Capture toggle";
+        "XF86AudioRaiseVolume" =
+          "exec pactl set-sink-volume @DEFAULT_SINK@ +5%";
+        "XF86AudioLowerVolume" =
+          "exec pactl set-sink-volume @DEFAULT_SINK@ -5%";
+        "Ctrl+j" = "exec pactl set-sink-volume @DEFAULT_SINK@ +5%";
+        "Ctrl+k" = "exec pactl set-sink-volume @DEFAULT_SINK@ -5%";
+        "XF86AudioMute" = "exec pactl set-sink-mute @DEFAULT_SINK@ toggle";
+        "XF86AudioMicMute" =
+          "exec pactl set-source-mute @DEFAULT_SOURCE@ toggle";
 
         # Screenshot
         "Shift+s+${modifier}" = "grimblast copysave area";
@@ -175,6 +194,8 @@ with config.lib.stylix.colors; {
         "${modifier}+Shift+Left" = "workspace prev";
         "${modifier}+Shift+l" = "workspace next";
         "${modifier}+Shift+h" = "workspace prev";
+        "${modifier}+Shift+j" = "workspace next";
+        "${modifier}+Shift+k" = "workspace prev";
 
         # Move focused container to workspace
         "${modifier}+Ctrl+1" = "move container to workspace number 1";
@@ -216,6 +237,7 @@ with config.lib.stylix.colors; {
       export _JAVA_AWT_WM_NONREPARENTING=1
       export QT_QPA_PLATFORM=wayland
       export XDG_CURRENT_DESKTOP=sway
+      export MOZ_ENABLE_WAYLAND=1
     '';
 
   };
