@@ -43,7 +43,7 @@ in {
 
     exec = [
       # wallpaper
-      "${execPref}swaybg -i $HOME/nix/images/image.jpg"
+      # "${execPref}swaybg -i $HOME/nix/images/image.jpg"
 
       # maze generator
       # "bash $HOME/nix/scripts/maze/run.sh ${base00} ${base02}"
