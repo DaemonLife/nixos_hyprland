@@ -3,7 +3,7 @@
   stylix = {
     enable = true;
     base16Scheme =
-      "${pkgs.base16-schemes}/share/themes/everforest-dark-hard.yaml";
+      "${pkgs.base16-schemes}/share/themes/horizon-terminal-dark.yaml"; # "${pkgs.base16-schemes}/share/themes/everforest-dark-hard.yaml";
     image = ../images/2025-01-27-DSC08066.jpg;
     override = {
       author = "DaemonLife";

@@ -27,9 +27,14 @@
         --tabs-border-color: #${base02} !important;
         --lwt-sidebar-background-color: #${base00} !important;
         --lwt-toolbar-field-focus: #${base01} !important;
+
+        /*
         --button-size-icon: 11px !important;
+        */
+
       }
 
+      /*
       #sidebar-box {
          min-width: 12px !important;
         --button-size-icon: 12px !important;
@@ -42,6 +47,7 @@
         min-width: 50px !important;
         width: 100% !important;
       }      
+      */
 
         /* -- ALL TABS -- */
       .tabbrowser-tab {

@@ -8,6 +8,8 @@ with config.lib.stylix.colors; {
 
     extraConfig = ''
       focus_on_window_activation focus
+      titlebar_border_thickness 4
+      hide_edge_borders smart_no_gaps
     '';
 
     config = rec {
@@ -96,6 +98,14 @@ with config.lib.stylix.colors; {
         titlebar = false;
       };
 
+      colors = {
+        focused = { indicator = lib.mkForce "#${base0E}"; };
+        focusedInactive = { indicator = lib.mkForce "#${base03}"; };
+        unfocused = { indicator = lib.mkForce "#${base03}"; };
+        urgent = { indicator = lib.mkForce "#${base03}"; };
+        placeholder = { indicator = lib.mkForce "#${base03}"; };
+      };
+
       input = {
         "type:keyboard" = {
           xkb_layout = "us,ru";
@@ -127,8 +137,7 @@ with config.lib.stylix.colors; {
           exec swaymsg input "type:keyboard" xkb_switch_layout 0 && exec ${menu}'';
         # run file manager
         "${modifier}+n" = "exec thunar";
-        "${modifier}+y" =
-          "exec kitty --single-instance --hold $HOME/nix/scripts/y.fish";
+        "${modifier}+y" = "exec ${terminal} --hold $HOME/nix/scripts/y.fish";
 
         # run broswer
         "${modifier}+b" = "exec $BROWSER";
@@ -165,10 +174,6 @@ with config.lib.stylix.colors; {
         "Ctrl+l" = "exec light -A 5";
         "Ctrl+h" = "exec light -U 5";
 
-        # laptop close 
-        # "switch:on:Lid Switch" = "exec swaylock && swaymsg 'output * dpms off'";
-        # "switch:off:Lid Switch" = "exec swaymsg 'output * dpms on'";
-
         # Audio 
         "XF86AudioRaiseVolume" =
           "exec pactl set-sink-volume @DEFAULT_SINK@ +5%";
@@ -181,8 +186,8 @@ with config.lib.stylix.colors; {
           "exec pactl set-source-mute @DEFAULT_SOURCE@ toggle";
 
         # Screenshot
-        "Shift+s+${modifier}" = "grimblast copysave area";
-        "PRINT" = "grimblast copysave output";
+        "${modifier}+Shift+s" = "exec grimblast copysave area";
+        "PRINT" = "exec grimblast copysave output";
 
         # Moving around:
         "${modifier}+Left" = "focus left";
