@@ -10,6 +10,7 @@ with config.lib.stylix.colors; {
       focus_on_window_activation focus
       titlebar_border_thickness 4
       hide_edge_borders smart_no_gaps
+      default_orientation auto
     '';
 
     config = rec {
@@ -27,12 +28,10 @@ with config.lib.stylix.colors; {
 
       startup = [
         { command = "rfkill block bluetooth"; }
+        { command = "autotiling-rs"; }
         { command = "${pkgs.mako}/bin/mako"; }
         { command = "${pkgs.udiskie}/bin/udiskie -a"; }
-        {
-          command =
-            "${pkgs.wl-clipboard}/bin/wl-paste -t text --watch clipman store --no-persist";
-        }
+        { command = "wl-paste -t text --watch clipman store --no-persist"; }
         {
           command = ''
             swayidle -w timeout 540 'swaymsg "output * dpms off"' timeout 600 'swaymsg input "type:keyboard xkb_switch_layout 0" && swaylock' resume 'swaymsg "output * dpms on"'
@@ -99,11 +98,26 @@ with config.lib.stylix.colors; {
       };
 
       colors = {
-        focused = { indicator = lib.mkForce "#${base0E}"; };
-        focusedInactive = { indicator = lib.mkForce "#${base03}"; };
-        unfocused = { indicator = lib.mkForce "#${base03}"; };
-        urgent = { indicator = lib.mkForce "#${base03}"; };
-        placeholder = { indicator = lib.mkForce "#${base03}"; };
+        focused = {
+          # border = lib.mkForce "#${base0A}";
+          indicator = lib.mkForce "#${base0E}";
+        };
+        focusedInactive = {
+          border = lib.mkForce "#${base01}";
+          indicator = lib.mkForce "#${base03}";
+        };
+        unfocused = {
+          border = lib.mkForce "#${base01}";
+          indicator = lib.mkForce "#${base03}";
+        };
+        urgent = {
+          border = lib.mkForce "#${base01}";
+          indicator = lib.mkForce "#${base03}";
+        };
+        placeholder = {
+          border = lib.mkForce "#${base01}";
+          indicator = lib.mkForce "#${base03}";
+        };
       };
 
       input = {
@@ -132,9 +146,11 @@ with config.lib.stylix.colors; {
         "${modifier}+Return" = ''
           exec swaymsg input "type:keyboard" xkb_switch_layout 0 && exec ${terminal}
         '';
+
         # run menu 
         "${modifier}+a" = ''
           exec swaymsg input "type:keyboard" xkb_switch_layout 0 && exec ${menu}'';
+
         # run file manager
         "${modifier}+n" = "exec thunar";
         "${modifier}+y" = "exec ${terminal} --hold $HOME/nix/scripts/y.fish";
@@ -143,8 +159,12 @@ with config.lib.stylix.colors; {
         "${modifier}+b" = "exec $BROWSER";
         "${modifier}+Shift+B" =
           "exec proxychains4 $BROWSER --set window.title_format [VPN] {perc}{current_title}{title_sep}qutebrowser";
+
         # telegram
-        "${modifier}+t" = "exec telegram-desktop";
+        # "${modifier}+t" = "exec telegram-desktop";
+
+        # lock screen
+        "F10" = "exec swaylock";
 
         ##################
         # Window control 
@@ -161,9 +181,10 @@ with config.lib.stylix.colors; {
         "${modifier}+r" = "mode resize";
 
         # Layouts
-        "${modifier}+z" = "splitv";
+        "${modifier}+x" = "splitv";
         "${modifier}+c" = "splith";
-        "${modifier}+x" = "layout toggle splith splitv tabbed";
+        "${modifier}+e" = "layout toggle splith splitv";
+        "${modifier}+t" = "layout toggle tabbed";
 
         # reload config
         "${modifier}+Shift+r" = "reload";

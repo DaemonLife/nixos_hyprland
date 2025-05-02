@@ -14,14 +14,6 @@
     };
 
     settings = {
-      # Font
-      # font_family = "GeistMono";
-      # bold_font = "GeistMono Bold";
-      # italic_font = "GeistMono Italic";
-      # bold_italic_font = "GeistMono Bold Italic";
-      # font_size = "12.0";
-
-      # background_opacity = lib.mkForce "0.9";
 
       shell = "fish";
       editor = "$EDITOR";
@@ -35,7 +27,7 @@
       window_border_width = "0pt";
       # draw_minimal_borders = "yes";
       window_margin_width = "0 0 0 0";
-      window_padding_width = "0 4 0 4";
+      window_padding_width = "0 0 0 0";
       # inactive_text_alpha = "0.5";
       tab_bar_style = "hidden";
       confirm_os_window_close = "0";

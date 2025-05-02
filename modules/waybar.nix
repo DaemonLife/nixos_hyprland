@@ -14,7 +14,11 @@ lib.mkForce {
         layer = "top";
         position = "top";
         height = 24;
-        modules-left = [ "sway/workspaces" "sway/mode" "sway/window" ];
+        modules-left = [
+          "sway/workspaces"
+          "sway/window"
+          #"custom/sway-split-mode"
+        ];
         modules-center = [ ];
         modules-right = [
           "tray"
@@ -42,7 +46,7 @@ lib.mkForce {
           format = "{icon}";
           persistent-workspaces = {
             # workspace and monitors
-            "1" = [ "eDP-1" ];
+            "1" = [ "eDP-1" "DSI-1" ];
             "2" = [ "DP-1" ];
             "3" = [ "DP-1" ];
             "4" = [ "DP-1" ];
@@ -90,10 +94,18 @@ lib.mkForce {
 
         "custom/sep" = { format = "|"; };
 
+        # "custom/sway-split-mode" = {
+        #   "exec" = ''
+        #     swaymsg -t get_tree | jq -r '.. | select(.focused == true) | .layout | if . == "splith" then "Horizontal" elif . == "splitv" then "Vertical" else "Other" end'
+        #   '';
+        #   "interval" = 1;
+        #   "format" = "{}";
+        # };
+
         bluetooth = {
           format = "{icon}";
           format-alt = "{icon}";
-          interval = 30;
+          interval = 5;
           format-icons = {
             enabled = "bt";
             disabled = "bt";
@@ -167,6 +179,7 @@ lib.mkForce {
           on-click = ''
             rfkill unblock wifi && kitty --hold sh -c "nmcli dev wifi rescan && nmtui"'';
           on-click-right = "rfkill block wifi";
+          interval = 2;
         };
 
         pulseaudio = {

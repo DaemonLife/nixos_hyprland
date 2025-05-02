@@ -29,9 +29,11 @@ in {
       exiftool
       swayidle
       vlc
+      jq
 
       # for sway
       autotiling
+      autotiling-rs
 
       # autotiling # for sway
 

@@ -191,7 +191,7 @@
       mode = {
         normal_main = {
           fg = "#${base00}";
-          bg = "#${base04}";
+          bg = "#${base03}";
         };
         normal_alt = { # file size info, etc
           fg = "#${base04}";
