@@ -53,6 +53,18 @@
       highlight LightlineRight_active_2 guibg=#${base01} guifg=#${base03}
     '';
 
+    highlightOverride = {
+      "CursorLineNr" = {
+        bg="#${base00}";
+      };
+      "LineNrAbove" = {
+        bg="#${base00}";
+      };
+      "LineNrBelow" = {
+        bg="#${base00}";
+      };
+    };
+
     # Base16 theme setup
     colorschemes.base16 = {
       enable = true;
