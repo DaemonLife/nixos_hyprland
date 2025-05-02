@@ -9,8 +9,8 @@ with config.lib.stylix.colors; {
     extraConfig = ''
       focus_on_window_activation focus
       titlebar_border_thickness 4
+      # title_padding 2
       hide_edge_borders smart_no_gaps
-      default_orientation auto
     '';
 
     config = rec {
@@ -93,30 +93,45 @@ with config.lib.stylix.colors; {
       };
 
       window = {
-        border = 4;
+        border = lib.mkForce 4;
         titlebar = false;
       };
 
-      colors = {
+      colors = lib.mkForce {
         focused = {
-          # border = lib.mkForce "#${base0A}";
-          indicator = lib.mkForce "#${base0E}";
+          text = "#${base05}";
+          background = "#${base00}";
+          border = "#${base0D}";
+          childBorder = "#${base0D}";
+          indicator = "#${base0E}";
         };
         focusedInactive = {
-          border = lib.mkForce "#${base01}";
-          indicator = lib.mkForce "#${base03}";
+          text = "#${base05}";
+          background = "#${base00}";
+          border = "#${base01}";
+          childBorder = "#${base01}";
+          indicator = "#${base03}";
         };
         unfocused = {
-          border = lib.mkForce "#${base01}";
-          indicator = lib.mkForce "#${base03}";
+          text = "#${base05}";
+          background = "#${base00}";
+          border = "#${base01}";
+          childBorder = "#${base01}";
+          indicator = "#${base03}";
         };
         urgent = {
-          border = lib.mkForce "#${base01}";
-          indicator = lib.mkForce "#${base03}";
+          text = "#${base05}";
+          background = "#${base00}";
+          border = "#${base01}";
+          childBorder = "#${base01}";
+          indicator = "#${base03}";
         };
         placeholder = {
-          border = lib.mkForce "#${base01}";
-          indicator = lib.mkForce "#${base03}";
+          text = "#${base05}";
+          background = "#${base00}";
+          border = "#${base01}";
+          childBorder = "#${base01}";
+          indicator = "#${base03}";
         };
       };
 
@@ -221,15 +236,15 @@ with config.lib.stylix.colors; {
         "${modifier}+k" = "focus up";
         "${modifier}+j" = "focus down";
 
-        "${modifier}+Ctrl+Left" = "move left";
-        "${modifier}+Ctrl+Right" = "move right";
-        "${modifier}+Ctrl+Up" = "move up";
-        "${modifier}+Ctrl+Down" = "move down";
+        "${modifier}+Shift+Left" = "exec swaymsg split none && move left";
+        "${modifier}+Shift+Right" = "exec swaymsg split none && move right";
+        "${modifier}+Shift+Up" = "exec swaymsg split none && move up";
+        "${modifier}+Shift+Down" = "exec swaymsg split none && move down";
 
-        "${modifier}+Ctrl+h" = "move left";
-        "${modifier}+Ctrl+l" = "move right";
-        "${modifier}+Ctrl+k" = "move up";
-        "${modifier}+Ctrl+j" = "move down";
+        "${modifier}+Shift+h" = "move left";
+        "${modifier}+Shift+l" = "move right";
+        "${modifier}+Shift+k" = "move up";
+        "${modifier}+Shift+j" = "move down";
 
         # Workspaces:
         # Switch to workspace
@@ -243,12 +258,12 @@ with config.lib.stylix.colors; {
         "${modifier}+8" = "workspace number 8";
         "${modifier}+9" = "workspace number 9";
         "${modifier}+0" = "workspace number 10";
-        "${modifier}+Shift+Right" = "workspace next";
-        "${modifier}+Shift+Left" = "workspace prev";
-        "${modifier}+Shift+l" = "workspace next";
-        "${modifier}+Shift+h" = "workspace prev";
-        "${modifier}+Shift+j" = "workspace next";
-        "${modifier}+Shift+k" = "workspace prev";
+        "${modifier}+Ctrl+Right" = "workspace next";
+        "${modifier}+Ctrl+Left" = "workspace prev";
+        "${modifier}+Ctrl+l" = "workspace next";
+        "${modifier}+Ctrl+h" = "workspace prev";
+        "${modifier}+Ctrl+j" = "workspace next";
+        "${modifier}+Ctrl+k" = "workspace prev";
 
         # Move focused container to workspace
         "${modifier}+Ctrl+1" = "move container to workspace number 1";

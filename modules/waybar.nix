@@ -5,9 +5,9 @@ lib.mkForce {
     enable = true;
 
     # Bug fix for nixos and hyprland
-    package = pkgs.waybar.overrideAttrs (oldAttrs: {
-      mesonFlags = oldAttrs.mesonFlags ++ [ "-Dexperimental=true" ];
-    });
+    # package = pkgs.waybar.overrideAttrs (oldAttrs: {
+    #   mesonFlags = oldAttrs.mesonFlags ++ [ "-Dexperimental=true" ];
+    # });
 
     settings = {
       mainBar = {
@@ -17,6 +17,7 @@ lib.mkForce {
         modules-left = [
           "sway/workspaces"
           "sway/window"
+          "sway/mode"
           #"custom/sway-split-mode"
         ];
         modules-center = [ ];
@@ -77,7 +78,7 @@ lib.mkForce {
         };
 
         "sway/mode" = {
-          "format" = "<U+F5FC> {}";
+          "format" = "swaymode {}";
           "max-length" = 50;
         };
 
@@ -105,7 +106,7 @@ lib.mkForce {
         bluetooth = {
           format = "{icon}";
           format-alt = "{icon}";
-          interval = 5;
+          # interval = 5;
           format-icons = {
             enabled = "bt";
             disabled = "bt";
@@ -163,7 +164,7 @@ lib.mkForce {
             warning = 35;
             critical = 20;
           };
-          interval = 30;
+          # interval = 30;
           format = "bat {capacity}";
           format-plugged = "bat {capacity}";
           format-charging = "bat {capacity}ϟ";
@@ -179,7 +180,7 @@ lib.mkForce {
           on-click = ''
             rfkill unblock wifi && kitty --hold sh -c "nmcli dev wifi rescan && nmtui"'';
           on-click-right = "rfkill block wifi";
-          interval = 2;
+          # interval = 2;
         };
 
         pulseaudio = {
