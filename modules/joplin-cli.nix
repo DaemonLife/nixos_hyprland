@@ -1,4 +1,4 @@
-{ config, ... }: {
+{ ... }: {
 
   # evil keymap
   home.file.".config/joplin/keymap.json".text = ''

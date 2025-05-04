@@ -1,4 +1,4 @@
-{ pkgs, lib, config, inputs, ... }:
+{ pkgs, lib, ... }:
 let username = "user";
 in {
 
@@ -28,15 +28,10 @@ in {
       pipx
       exiftool
       swayidle
-      vlc
-      jq
       nil # lsp pkg for nixvim
 
       # for sway
-      autotiling
       autotiling-rs
-
-      # autotiling # for sway
 
       # Disk
       dua # disk usage TUI tool. Run: dua i
@@ -127,7 +122,7 @@ in {
   programs = {
 
     yambar = {
-      enable = true;
+      enable = false;
       settings = {
         bar = {
           location = "top";

@@ -1,4 +1,4 @@
-{ pkgs, config, ... }: {
+{ config, ... }: {
 
   programs.ranger = with config.lib.stylix.colors; {
     enable = true;

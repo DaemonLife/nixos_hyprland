@@ -1,4 +1,4 @@
-{ pkgs, config, ... }: {
+{ config, ... }: {
 
   programs.librewolf = with config.lib.stylix.colors; {
     enable = true;

@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }: {
+{ config, ... }: {
 
   home.file.".config/gowall/config.yml".text =
     with config.lib.stylix.colors; ''

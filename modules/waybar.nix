@@ -1,13 +1,7 @@
-{ pkgs, config, lib, ... }:
-lib.mkForce {
+{ config, lib, ... }: lib.mkForce {
 
   programs.waybar = with config.lib.stylix.colors; {
     enable = true;
-
-    # Bug fix for nixos and hyprland
-    # package = pkgs.waybar.overrideAttrs (oldAttrs: {
-    #   mesonFlags = oldAttrs.mesonFlags ++ [ "-Dexperimental=true" ];
-    # });
 
     settings = {
       mainBar = {
@@ -62,6 +56,7 @@ lib.mkForce {
             "7" = 7;
             "8" = 8;
             "9" = 9;
+            "10" = 10;
 
             # "urgent" = "?";
             # "focused" = "";

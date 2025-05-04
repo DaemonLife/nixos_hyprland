@@ -1,4 +1,4 @@
-{ pgks, config, pkgs, ... }: {
+{ config, pkgs, ... }: {
   programs.mpv = with config.lib.stylix.colors; {
     enable = true;
 

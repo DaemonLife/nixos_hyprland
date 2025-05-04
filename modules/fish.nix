@@ -1,4 +1,4 @@
-{ pkgs, config, lib, ... }: {
+{ pkgs, config, ... }: {
 
   programs.fish = with config.lib.stylix.colors; {
     enable = true;

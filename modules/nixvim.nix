@@ -2,33 +2,31 @@
 
   programs.nixvim = with config.lib.stylix.colors; {
     enable = true;
-    # defaultEditor = false;
+    defaultEditor = true;
     viAlias = true;
     vimAlias = true;
 
     plugins = {
-      
-      nix = {
-        enable = true;
-      };
+
+      nix = { enable = true; };
 
       lsp = {
         enable = true;
-          servers = {
-            nil_ls.enable = true; # nix language server
-          };
+        servers = {
+          nil_ls.enable = true; # nix language server
+        };
       };
 
       # autocomplite
-      cmp = {         
+      cmp = {
         enable = true;
         autoEnableSources = true;
         settings = {
           sources = [
-            {name = "nvim_lsp";}
-            {name = "path";}
-            {name = "buffer";}
-            {name = "luasnip";}
+            { name = "nvim_lsp"; }
+            { name = "path"; }
+            { name = "buffer"; }
+            { name = "luasnip"; }
           ];
           mapping = {
             "<C-Space>" = "cmp.mapping.complete()";
@@ -36,7 +34,8 @@
             "<C-e>" = "cmp.mapping.close()";
             "<C-f>" = "cmp.mapping.scroll_docs(4)";
             "<CR>" = "cmp.mapping.confirm({ select = true })";
-            "<S-Tab>" = "cmp.mapping(cmp.mapping.select_prev_item(), {'i', 's'})";
+            "<S-Tab>" =
+              "cmp.mapping(cmp.mapping.select_prev_item(), {'i', 's'})";
             "<Tab>" = "cmp.mapping(cmp.mapping.select_next_item(), {'i', 's'})";
           };
         };
@@ -45,15 +44,13 @@
       # vim-visual-multi.enable = true; # multicursor
 
       lsp-format = {
-          enable = true;
+        enable = true;
         lspServersToEnable = "all";
       };
 
       nvim-colorizer.enable = true; # colors for hex code
 
-      comment = {
-        enable = true;
-      };
+      comment = { enable = true; };
 
       nvim-autopairs.enable = true; # auto ""
       nvim-surround.enable = true; # auto "[text]"
@@ -111,13 +108,12 @@
       fileencoding = "utf-8"; # File-content encoding for the current buffer
       spell = true; # Highlight spelling mistakes (local to window)
       wrap = true;
-      linebreak = true; 
+      linebreak = true;
       termguicolors = true; # like base16 color scheme for me
 
     };
 
-    extraConfigVim = ''
-    '';
+    extraConfigVim = "";
 
     autoCmd = [
       # Setups for some files 
@@ -161,15 +157,9 @@
       };
 
       # number bar
-      "LineNrAbove" = {
-        bg = "#${base00}";
-      };
-      "CursorLineNr" = {
-        bg="#${base00}";
-      };
-      "LineNrBelow" = {
-        bg="#${base00}";
-      };
+      "LineNrAbove" = { bg = "#${base00}"; };
+      "CursorLineNr" = { bg = "#${base00}"; };
+      "LineNrBelow" = { bg = "#${base00}"; };
     };
 
     # Base16 theme setup

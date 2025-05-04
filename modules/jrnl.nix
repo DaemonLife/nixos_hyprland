@@ -1,5 +1,5 @@
-{ config, pkgs, ... }:
-let editor = "hx";
+{ ... }:
+let editor = "nvim";
 in {
 
   home.file.".config/jrnl/default.nix".text = ''

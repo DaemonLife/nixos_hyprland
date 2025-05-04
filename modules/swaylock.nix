@@ -1,4 +1,4 @@
-{ pkgs, config, lib, ... }: with config.lib.stylix.colors; {
+{ config, lib, ... }: with config.lib.stylix.colors; {
 
     programs.swaylock = lib.mkForce {
         enable = true;

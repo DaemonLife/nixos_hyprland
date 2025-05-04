@@ -1,4 +1,4 @@
-{ pkgs, config, lib, ... }: {
+{ config, ... }: {
 
   programs.alacritty = with config.lib.stylix.colors; {
     enable = true;

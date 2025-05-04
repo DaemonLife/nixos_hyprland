@@ -1,4 +1,4 @@
-{ pkgs, config, ... }:
+{ config, ... }:
 let
   gtk_colors = with config.colorScheme.palette; ''
     @define-color accent_color #${base0D};

@@ -1,4 +1,4 @@
-{ inputs, pkgs, config, lib, ... }:
+{ config, lib, ... }:
 let
   execPref = "uwsm app -- ";
   # execPref = ""; # if you don't use UWSM

@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }: {
+{ ... }: {
   programs.cmus = {
     enable = true;
     extraConfig = ''

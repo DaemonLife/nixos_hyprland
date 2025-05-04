@@ -1,4 +1,4 @@
-{ pkgs, config, ... }: {
+{ config, ... }: {
 
   services.mako = with config.lib.stylix.colors; {
     enable = true;

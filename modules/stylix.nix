@@ -1,12 +1,16 @@
-{ pkgs, config, ... }: {
+{ pkgs, ... }: {
 
   stylix = {
     enable = true;
+
     base16Scheme =
-      "${pkgs.base16-schemes}/share/themes/horizon-terminal-dark.yaml"; # "${pkgs.base16-schemes}/share/themes/everforest-dark-hard.yaml";
+      "${pkgs.base16-schemes}/share/themes/horizon-terminal-dark.yaml";
+      # "${pkgs.base16-schemes}/share/themes/everforest-dark-hard.yaml";
+
     image = ../images/2025-01-27-DSC08066.jpg;
-    override = {
-      author = "DaemonLife";
+
+    # override = {
+      # author = "DaemonLife";
       #   # one tone gradient
       #   base00 = "232a2d"; # BACKGROUND (BLACK)
       #   base01 = "e57474"; # bright green
@@ -25,8 +29,12 @@
       #   base0C = "71baf2"; # CYAN
       #   base0D = "ce89df"; # BLUE
       #   base0E = "67cbe7"; # MAGENTA
-      base0F = "c38cd2"; # bright cyan # no. fixed dumb everforest color
-    };
+      # base0F = "c38cd2"; # bright cyan # no. fixed dumb everforest color
+    # };
+
+    # targets = {
+    #   waybar.enable = false;
+    # };
 
     cursor.package = pkgs.bibata-cursors;
     cursor.name = "Bibata-Modern-Ice";

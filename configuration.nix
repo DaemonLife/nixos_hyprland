@@ -1,4 +1,4 @@
-{ config, pkgs, lib, inputs, ... }: {
+{ config, pkgs, lib, ... }: {
 
   # --------------------------------
   # SYSTEM THEME 
@@ -33,7 +33,7 @@
   # --------------------------------
 
   environment = {
-    variables = let EDITOR = "hx";
+    variables = let EDITOR = "nvim";
     in {
       EDITOR = "${EDITOR}";
       SYSTEMD_EDITOR = "${EDITOR}";

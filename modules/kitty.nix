@@ -1,4 +1,4 @@
-{ pkgs, config, lib, ... }: {
+{ config, ... }: {
 
   programs.kitty = with config.lib.stylix.colors; {
 

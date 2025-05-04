@@ -1,4 +1,4 @@
-{ pkgs, config, lib, ... }: {
+{ config, lib, ... }: {
 
   programs.fzf = with config.lib.stylix.colors; {
     enable = true;
