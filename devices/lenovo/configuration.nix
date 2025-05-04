@@ -1,11 +1,15 @@
 # Configuration for Lenovo
-{ config, pkgs, ... }: {
+{ pkgs, ... }: {
 
   # Imports
   imports = [ ./hardware-configuration.nix ];
 
-  # OpenCL
-  hardware.graphics.extraPackages = with pkgs; [ rocmPackages.clr.icd amdvlk ];
+  # Enable AMD video driver 
+  hardware.graphics = {
+    enable = true;
+    enable32Bit = true;
+    extraPackages = with pkgs; [ rocmPackages.clr.icd amdvlk ];
+  };
   boot.initrd.kernelModules = [ "amdgpu" ];
   services.xserver.videoDrivers = [ "amdgpu" ];
 

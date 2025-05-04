@@ -33,13 +33,14 @@
   # --------------------------------
 
   environment = {
-    variables = let EDITOR = "nvim";
-    in {
-      EDITOR = "${EDITOR}";
-      SYSTEMD_EDITOR = "${EDITOR}";
-      VISUAL = "${EDITOR}";
-      BROWSER = "qutebrowser";
-    };
+    variables =
+      let EDITOR = "nvim";
+      in {
+        EDITOR = "${EDITOR}";
+        SYSTEMD_EDITOR = "${EDITOR}";
+        VISUAL = "${EDITOR}";
+        BROWSER = "qutebrowser";
+      };
     # Run Electron apps without XWayland
     sessionVariables.NIXOS_OZONE_WL = "1";
   };
@@ -120,21 +121,6 @@
   # DE, USER
   # --------------------------------
 
-  # Enable the X11 windowing system.
-  # services.xserver = {
-  # enable = true;
-  # displayManager.startx.enable = false;
-  # displayManager.lightdm.enable = false;
-
-  # Enable the GNOME Desktop Environment.
-  # displayManager.gdm.enable = false;
-  # desktopManager.gnome.enable = false;
-
-  # Configure keymap in X11
-  # xkb.layout = "us,ru";
-  # xkb.variant = "";
-  # };
-
   users.users.user = {
     isNormalUser = true;
     description = "user";
@@ -165,7 +151,6 @@
   environment.systemPackages = with pkgs; [
     gparted
     os-prober
-    swaylock
     ntfs3g # ntfs support
     exfatprogs # exfat gparted support
     clinfo # opencl info
@@ -177,12 +162,13 @@
     bluez
     kitty
     bottles # run windows programs
-    gitui
     # udiskie # auto disks mount
     nufraw-thumbnailer # RAW preview for thunar
 
     # GNOME programs
-    adwaita-icon-theme
+    # adwaita-icon-theme
+
+    mangohud # fps monitoring
   ];
 
   # --------------------------------
@@ -190,6 +176,13 @@
   # --------------------------------
 
   qt.enable = true;
+
+  # for flatpak
+  # xdg.portal = {
+  #   enable = true;
+  #   wlr.enable = true;
+  #   extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+  # };
 
   # Android emulator. Read https://nixos.wiki/wiki/WayDroid
   virtualisation.waydroid.enable = true;
@@ -199,6 +192,21 @@
     sway = {
       enable = true;
       wrapperFeatures.gtk = true; # gtk fix
+      extraPackages = with pkgs; [
+        swaylock
+        swayidle
+        grim # screenshot functionality
+        slurp # screenshot functionality
+        wl-clipboard # wl-copy and wl-paste for copy/paste from stdin / stdout
+        mako # notification system developed by swaywm maintainer
+      ];
+      # extraSessionCommands = ''
+      #   export SDL_VIDEODRIVER=wayland,11
+      #   export QT_QPA_PLATFORM=wayland
+      #   export QT_WAYLAND_DISABLE_WINDOWDECORATION="1"
+      #   export _JAVA_AWT_WM_NONREPARENTING=1
+      #   export MOZ_ENABLE_WAYLAND=1
+      # '';
     };
 
     nh = {
@@ -207,7 +215,7 @@
       clean.extraArgs = "--keep-since 7d --keep 5";
       flake = "/home/$USER/nix";
     };
-    
+
     # --- thunar ---
     thunar = {
       enable = true;
@@ -238,6 +246,7 @@
       };
     };
 
+    # ------ Steam ------
     steam = {
       enable = true;
       gamescopeSession.enable = true;
@@ -247,8 +256,9 @@
       dedicatedServer.openFirewall = true;
       localNetworkGameTransfers.openFirewall = true;
     };
+    gamemode.enable = true; # micro compositor
+    # ------ Steam ------
 
-    gamemode.enable = true;
     dconf.enable = true;
     htop.enable = true;
     git.enable = true;

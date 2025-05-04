@@ -40,56 +40,6 @@ with config.lib.stylix.colors; {
         }
       ];
 
-      output = {
-        # ------ lenovo ------
-        # lenovo laptop
-        "BOE 0x0931 Unknown" = {
-          mode = "2240x1400@60.002Hz";
-          scale = "1.6"; # 2240 -> 1400
-          adaptive_sync = "on";
-          render_bit_depth = "10"; # 6, 8, 10
-          position = "0 0"; # main position
-        };
-        # monitor gg
-        "Acer Technologies Acer A231H LQT0W0084320" = {
-          mode = "1920x1080@60Hz";
-          scale = "1";
-          adaptive_sync = "off";
-          render_bit_depth = "8"; # 6, 8, 10
-          position = "1400 0"; # to right
-        };
-        # monitor msk
-        "Shenzhen KTC Technology Group H27S17 0x00000001" = {
-          mode = "2560x1440@164.998Hz";
-          scale = "1.25";
-          adaptive_sync = "on";
-          render_bit_depth = "10"; # 6, 8, 10
-          position = "-2048 0"; # to left
-        };
-        # ------ lenovo ------
-
-        # ------ GPD ------
-        # gpd laptop
-        "DSI-1" = {
-          mode = "1200x1920@60.000Hz";
-          scale = "1.6"; # 1920 -> 1200px
-          adaptive_sync = "on";
-          render_bit_depth = "10"; # 6, 8, 10
-          position = "0 0"; # main
-          transform = "90";
-        };
-        # TV msk
-        "Invalid Vendor Codename - RTK RTK TV 0x01010101" = {
-          mode = "3840x2160@60.000Hz";
-          scale = "1";
-          adaptive_sync = "on";
-          render_bit_depth = "10"; # 6, 8, 10
-          position = "1200 0"; # to right from gpd
-        };
-        # ------ GPD ------
-
-      };
-
       gaps = {
         outer = 2;
         inner = 5;

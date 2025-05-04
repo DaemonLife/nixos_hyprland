@@ -44,7 +44,7 @@ in {
       alsa-utils # audio volume control (?)
       pulsemixer # cli pulse adudio control
       digikam
-      # qimgv # img viewer
+      pqiv
 
       # Theming
       vimix-icon-theme # for icons
@@ -128,6 +128,10 @@ in {
     fastfetch = { enable = true; };
     yt-dlp = { enable = true; };
     imv = { enable = true; };
+
+    foot = {
+      enable = true;
+    };
 
     btop = {
       enable = true;
