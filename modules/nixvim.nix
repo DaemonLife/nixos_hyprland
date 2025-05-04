@@ -1,4 +1,6 @@
-{ config, ... }: {
+{ config, pkgs, ... }: {
+
+  home.packages = with pkgs; [ nil nixpkgs-fmt ];
 
   programs.nixvim = with config.lib.stylix.colors; {
     enable = true;
@@ -13,7 +15,13 @@
       lsp = {
         enable = true;
         servers = {
-          nil_ls.enable = true; # nix language server
+          nil_ls = {
+            # nix language server
+            enable = true;
+            settings.formatting.command = [
+              "nixpkgs-fmt" # autoformat
+            ];
+          };
         };
       };
 
@@ -162,36 +170,27 @@
       "LineNrBelow" = { bg = "#${base00}"; };
     };
 
-    # Base16 theme setup
-    # colorschemes.base16 = {
-    #   enable = true;
-    #   colorscheme = {
-    #     base00 = "#${base00}";
-    #     base01 = "#${base01}";
-    #     base02 = "#${base02}";
-    #     base03 = "#${base03}";
-    #     base04 = "#${base04}";
-    #     base05 = "#${base05}";
-    #     base06 = "#${base06}";
-    #     base07 = "#${base07}";
-    #     base08 = "#${base08}";
-    #     base09 = "#${base09}";
-    #     base0A = "#${base0A}";
-    #     base0B = "#${base0B}";
-    #     base0C = "#${base0C}";
-    #     base0D = "#${base0D}";
-    #     base0E = "#${base0E}";
-    #     base0F = "#${base0F}";
-    #   };
-    # };
-
     keymaps = [
 
+      # disable space
+      {
+        action = "";
+        key = "<space>";
+      }
+
+      # --- new redo ---
       {
         action = "<cmd>redo<CR><CR>";
         key = "U";
         options.desc = "Redo.";
       }
+      {
+        action = "";
+        key = "<C-r>";
+      }
+      # --- new redo ---
+
+      # --- new clipboard control ---
       {
         action = ''"+y'';
         key = "<space>y";
@@ -202,6 +201,9 @@
         key = "<space>p";
         options.desc = "Paste from system clipboard.";
       }
+      # --- new clipboard control ---
+
+      # --- new comment control ---
       {
         action = "gcc";
         key = "<space>c";
@@ -220,8 +222,9 @@
           desc = "Comment in visual mode.";
         };
       }
+      # --- new comment control ---
 
-      # soft string jumping
+      # --- soft string jumping ---
       {
         action = "gj";
         key = "j";
@@ -230,18 +233,9 @@
         action = "gk";
         key = "k";
       }
+      # --- soft string jumping ---
 
-      # other
-      {
-        action = "";
-        key = "<C-r>";
-      }
-      {
-        action = "";
-        key = " ";
-      }
-
-      # rus layout support
+      # --- rus layout support ---
       {
         action = "q";
         key = "й";
@@ -490,6 +484,7 @@
         action = "?";
         key = "Я";
       }
+      # --- rus layout support ---
     ];
   };
 

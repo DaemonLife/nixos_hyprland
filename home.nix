@@ -16,9 +16,6 @@ in {
       # --------------------------------
 
       # DE and system
-      libnotify # for mako notifications
-      grimblast
-      brightnessctl # screen light
       # gnome-power-manager # power statistic
       wl-clipboard
       cool-retro-term
@@ -27,11 +24,6 @@ in {
       nodejs
       pipx
       exiftool
-      swayidle
-      nil # lsp pkg for nixvim
-
-      # for sway
-      autotiling-rs
 
       # Disk
       dua # disk usage TUI tool. Run: dua i
@@ -56,17 +48,16 @@ in {
 
       # Theming
       vimix-icon-theme # for icons
-      qogir-icon-theme # for cursor
+      # qogir-icon-theme # for cursor
       gnome-tweaks
-      swaybg # background
       unstable.gowall # Tool to convert a Wallpaper's color scheme. Still wait version 2...
       dconf-editor
       grc
 
       # Fonts
-      nerdfonts
+      # nerdfonts
       font-awesome
-      fira
+      # fira
       cantarell-fonts
 
       # spellcheck for LibreOffice

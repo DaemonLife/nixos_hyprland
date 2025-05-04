@@ -190,38 +190,16 @@
   # --------------------------------
 
   qt.enable = true;
+
   # Android emulator. Read https://nixos.wiki/wiki/WayDroid
   virtualisation.waydroid.enable = true;
 
-  # xdg.portal = {
-  #   enable = true;
-  #   wlr.enable = true;
-  #   extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
-  # };
-
   programs = {
-
-    # For Hyprland
-    # hyprland = {
-    # enable = true;
-    # withUWSM = true;
-    #   # package = pkgs.unstable.hyprland;
-
-    #   # package = pkgs.unstable.hyprland.override {
-    #   # package = pkgs.hyprland.override {
-    #   # don't use override if you don't want compiling
-    #   # withSystemd = false;
-    #   # legacyRenderer = false;
-    #   # };
-
-    # };
 
     sway = {
       enable = true;
-      # fix GTK apps
-      wrapperFeatures.gtk = true;
+      wrapperFeatures.gtk = true; # gtk fix
     };
-    # uwsm.enable = true;
 
     nh = {
       enable = true;
@@ -229,18 +207,20 @@
       clean.extraArgs = "--keep-since 7d --keep 5";
       flake = "/home/$USER/nix";
     };
-
+    
+    # --- thunar ---
     thunar = {
       enable = true;
       plugins = with pkgs.xfce; [
         thunar-archive-plugin
         thunar-media-tags-plugin
-        tumbler
       ];
     };
+    xfconf.enable = true;
+    # --- thunar ---
 
     proxychains = {
-      # just default settings
+      # just default settings ...
       enable = true;
       proxyDNS = true;
       chain.type = "strict";
@@ -252,7 +232,7 @@
         myproxy = {
           type = "socks5";
           host = "127.0.0.1";
-          port = 10808; # and only my port
+          port = 10808; # ... and only my port
           enable = true;
         };
       };
@@ -261,21 +241,33 @@
     steam = {
       enable = true;
       gamescopeSession.enable = true;
-      remotePlay.openFirewall =
-        true; # Open ports in the firewall for Steam Remote Play
-      dedicatedServer.openFirewall =
-        true; # Open ports in the firewall for Source Dedicated Server
-      localNetworkGameTransfers.openFirewall =
-        true; # Open ports in the firewall for Steam Local Network Game Transfers
+
+      # Open ports in the firewall for:
+      remotePlay.openFirewall = true;
+      dedicatedServer.openFirewall = true;
+      localNetworkGameTransfers.openFirewall = true;
     };
 
     gamemode.enable = true;
     dconf.enable = true;
-    lazygit.enable = true;
     htop.enable = true;
     git.enable = true;
     fish.enable = true;
     light.enable = true; # brightness control for sway
+
+    # --- hyprland ---
+    # hyprland = {
+    # enable = true;
+    # withUWSM = true;
+    #   # package = pkgs.unstable.hyprland;
+    #   # package = pkgs.unstable.hyprland.override {
+    #   # package = pkgs.hyprland.override {
+    #   # don't use override if you don't want compiling
+    #   # withSystemd = false;
+    #   # legacyRenderer = false;
+    #   # };
+    # };
+    # --- hyprland ---
 
   };
 
@@ -289,14 +281,19 @@
 
     # Disable GNOME power service
     power-profiles-daemon.enable = false;
+
     # Thermald proactively prevents overheating 
     thermald.enable = true;
 
-    # VPN xRay
     xray = {
       enable = true;
       settingsFile = "/etc/xray/config.json";
     };
+
+    openssh.enable = true;
+    flatpak.enable = true;
+    gvfs.enable = true; # Mount, trash, and other functionalities
+    tumbler.enable = true; # Thunar thumbnail support for images
 
     # bluetooth audio enhancements
     # pipewire.wireplumber.extraConfig.bluetoothEnhancements = {
@@ -307,10 +304,6 @@
     #     "bluez5.roles" = [ "hsp_hs" "hsp_ag" "hfp_hf" "hfp_ag" ];
     #   };
     # };
-    openssh.enable = true;
-    flatpak.enable = true;
-    gvfs.enable = true; # Mount, trash, and other functionalities
-    # udisks2.enable = true; # disk mount
 
   }; # close services
 
@@ -324,21 +317,6 @@
       HibernateDelaySec=1800
     '';
 
-    # User service authentication agent
-    # user.services.polkit-gnome-authentication-agent-1 = {
-    #   description = "polkit-gnome-authentication-agent-1";
-    #   wantedBy = [ "graphical-session.target" ];
-    #   wants = [ "graphical-session.target" ];
-    #   after = [ "graphical-session.target" ];
-    #   serviceConfig = {
-    #     Type = "simple";
-    #     ExecStart =
-    #       "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
-    #     Restart = "on-failure";
-    #     RestartSec = 1;
-    #     TimeoutStopSec = 10;
-    #   };
-    # };
   };
 
   # --------------------------------

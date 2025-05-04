@@ -1,6 +1,8 @@
 { pkgs, config, lib, ... }:
 with config.lib.stylix.colors; {
 
+  home.packages = with pkgs; [ swayidle autotiling-rs swaybg grimblast ];
+
   wayland.windowManager.sway = {
     enable = true;
     checkConfig = true;
@@ -9,8 +11,7 @@ with config.lib.stylix.colors; {
     extraConfig = ''
       focus_on_window_activation focus
       titlebar_border_thickness 4
-      # title_padding 2
-      hide_edge_borders smart_no_gaps
+      # hide_edge_borders smart_no_gaps
     '';
 
     config = rec {
@@ -40,7 +41,8 @@ with config.lib.stylix.colors; {
       ];
 
       output = {
-        # lenovo
+        # ------ lenovo ------
+        # lenovo laptop
         "BOE 0x0931 Unknown" = {
           mode = "2240x1400@60.002Hz";
           scale = "1.6"; # 2240 -> 1400
@@ -64,8 +66,10 @@ with config.lib.stylix.colors; {
           render_bit_depth = "10"; # 6, 8, 10
           position = "-2048 0"; # to left
         };
+        # ------ lenovo ------
 
-        # gpd
+        # ------ GPD ------
+        # gpd laptop
         "DSI-1" = {
           mode = "1200x1920@60.000Hz";
           scale = "1.6"; # 1920 -> 1200px
@@ -82,6 +86,7 @@ with config.lib.stylix.colors; {
           render_bit_depth = "10"; # 6, 8, 10
           position = "1200 0"; # to right from gpd
         };
+        # ------ GPD ------
 
       };
 
@@ -95,6 +100,12 @@ with config.lib.stylix.colors; {
       window = {
         border = lib.mkForce 4;
         titlebar = false;
+        commands = [
+          {
+            command = "title_format \"kitty: %title\"";
+            criteria.app_id = "kitty";
+          }
+        ];
       };
 
       colors = lib.mkForce {

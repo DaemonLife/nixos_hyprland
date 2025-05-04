@@ -1,4 +1,6 @@
-{ config, ... }: {
+{ config, pkgs, ... }: {
+
+  home.packages = with pkgs; [ libnotify ];
 
   services.mako = with config.lib.stylix.colors; {
     enable = true;
