@@ -1,4 +1,4 @@
-{ pkgs, config, ... }: {
+{ config, ... }: {
 
   programs.nixvim = with config.lib.stylix.colors; {
     enable = true;
@@ -7,25 +7,62 @@
     vimAlias = true;
 
     plugins = {
-      lsp.enable = true;
-      # vim-visual-multi.enable = true; # multicursor
-      lsp-format = {
+      
+      nix = {
         enable = true;
+      };
+
+      lsp = {
+        enable = true;
+          servers = {
+            nil_ls.enable = true; # nix language server
+          };
+      };
+
+      # autocomplite
+      cmp = {         
+        enable = true;
+        autoEnableSources = true;
+        settings = {
+          sources = [
+            {name = "nvim_lsp";}
+            {name = "path";}
+            {name = "buffer";}
+            {name = "luasnip";}
+          ];
+          mapping = {
+            "<C-Space>" = "cmp.mapping.complete()";
+            "<C-d>" = "cmp.mapping.scroll_docs(-4)";
+            "<C-e>" = "cmp.mapping.close()";
+            "<C-f>" = "cmp.mapping.scroll_docs(4)";
+            "<CR>" = "cmp.mapping.confirm({ select = true })";
+            "<S-Tab>" = "cmp.mapping(cmp.mapping.select_prev_item(), {'i', 's'})";
+            "<Tab>" = "cmp.mapping(cmp.mapping.select_next_item(), {'i', 's'})";
+          };
+        };
+      };
+
+      # vim-visual-multi.enable = true; # multicursor
+
+      lsp-format = {
+          enable = true;
         lspServersToEnable = "all";
       };
+
       nvim-colorizer.enable = true; # colors for hex code
-      comment.enable = true;
+
+      comment = {
+        enable = true;
+      };
+
       nvim-autopairs.enable = true; # auto ""
       nvim-surround.enable = true; # auto "[text]"
+
       indent-blankline = {
         enable = true;
         settings = { indent.char = "┆"; };
       };
-      cmp = { # autocomplite
-        enable = true;
-        autoEnableSources = true;
-        settings.sources = [{ name = "path"; }];
-      };
+
       lightline = {
         enable = true;
         settings = {
@@ -39,68 +76,8 @@
           };
         };
       };
-    };
 
-    # Lightline colors settings
-    extraConfigVim = ''
-      highlight LightlineLeft_active_0 guibg=#${base0D} guifg=#${base00}
-      highlight LightlineLeft_active_1 guibg=#${base01} guifg=#${base03}
-
-      highlight LightlineMiddle_active guibg=#${base01} guifg=#${base03}
-
-      highlight LightlineRight_active_0 guibg=#${base01} guifg=#${base03}
-      highlight LightlineRight_active_1 guibg=#${base01} guifg=#${base03}
-      highlight LightlineRight_active_2 guibg=#${base01} guifg=#${base03}
-    '';
-
-    highlightOverride = {
-      "CursorLineNr" = {
-        bg="#${base00}";
-      };
-      "LineNrAbove" = {
-        bg="#${base00}";
-      };
-      "LineNrBelow" = {
-        bg="#${base00}";
-      };
-    };
-
-    # Base16 theme setup
-    colorschemes.base16 = {
-      enable = true;
-      colorscheme = {
-        base00 = "#${base00}";
-        base01 = "#${base01}";
-        base02 = "#${base02}";
-        base03 = "#${base03}";
-        base04 = "#${base04}";
-        base05 = "#${base05}";
-        base06 = "#${base06}";
-        base07 = "#${base07}";
-        base08 = "#${base08}";
-        base09 = "#${base09}";
-        base0A = "#${base0A}";
-        base0B = "#${base0B}";
-        base0C = "#${base0C}";
-        base0D = "#${base0D}";
-        base0E = "#${base0E}";
-        base0F = "#${base0F}";
-      };
-    };
-
-    autoCmd = [
-      # Setups for some files 
-      {
-        event = "FileType";
-        pattern = [ "tex" "latex" "markdown" ];
-        command = "setlocal spell spelllang=en,ru";
-      }
-      {
-        event = "FileType";
-        pattern = "nix";
-        command = "setlocal tabstop=2 shiftwidth=2";
-      }
-    ];
+    }; # plugins
 
     opts = {
       # Line numbers
@@ -134,24 +111,91 @@
       fileencoding = "utf-8"; # File-content encoding for the current buffer
       spell = true; # Highlight spelling mistakes (local to window)
       wrap = true;
-      linebreak = true;
+      linebreak = true; 
+      termguicolors = true; # like base16 color scheme for me
 
     };
 
-    keymaps = [
+    extraConfigVim = ''
+    '';
 
+    autoCmd = [
+      # Setups for some files 
       {
-        action = "jjj";
-        key = "<space>p";
+        event = "FileType";
+        pattern = [ "tex" "latex" "markdown" ];
+        command = "setlocal spell spelllang=en,ru";
       }
       {
-        action = "kkk";
-        key = "<space>P";
+        event = "FileType";
+        pattern = "nix";
+        command = "setlocal tabstop=2 shiftwidth=2";
       }
-      {
-        action = ''"+p'';
-        key = "<space>н";
-      }
+    ];
+
+    highlightOverride = {
+      # status bar 
+      "LightlineLeft_active_0" = {
+        bg = "#${base0D}";
+        fg = "#${base00}";
+      };
+      "LightlineLeft_active_1" = {
+        bg = "#${base01}";
+        fg = "#${base03}";
+      };
+      "LightlineMiddle_active" = {
+        bg = "#${base01}";
+        fg = "#${base03}";
+      };
+      "LightlineRight_active_0" = {
+        bg = "#${base01}";
+        fg = "#${base03}";
+      };
+      "LightlineRight_active_1" = {
+        bg = "#${base01}";
+        fg = "#${base03}";
+      };
+      "LightlineRight_active_2" = {
+        bg = "#${base01}";
+        fg = "#${base03}";
+      };
+
+      # number bar
+      "LineNrAbove" = {
+        bg = "#${base00}";
+      };
+      "CursorLineNr" = {
+        bg="#${base00}";
+      };
+      "LineNrBelow" = {
+        bg="#${base00}";
+      };
+    };
+
+    # Base16 theme setup
+    # colorschemes.base16 = {
+    #   enable = true;
+    #   colorscheme = {
+    #     base00 = "#${base00}";
+    #     base01 = "#${base01}";
+    #     base02 = "#${base02}";
+    #     base03 = "#${base03}";
+    #     base04 = "#${base04}";
+    #     base05 = "#${base05}";
+    #     base06 = "#${base06}";
+    #     base07 = "#${base07}";
+    #     base08 = "#${base08}";
+    #     base09 = "#${base09}";
+    #     base0A = "#${base0A}";
+    #     base0B = "#${base0B}";
+    #     base0C = "#${base0C}";
+    #     base0D = "#${base0D}";
+    #     base0E = "#${base0E}";
+    #     base0F = "#${base0F}";
+    #   };
+    # };
+
+    keymaps = [
 
       {
         action = "<cmd>redo<CR><CR>";
@@ -160,13 +204,31 @@
       }
       {
         action = ''"+y'';
-        key = "<C-y>";
+        key = "<space>y";
         options.desc = "Copy to system clipboard.";
       }
       {
         action = ''"+p'';
-        key = "<C-p>";
+        key = "<space>p";
         options.desc = "Paste from system clipboard.";
+      }
+      {
+        action = "gcc";
+        key = "<space>c";
+        mode = "n";
+        options = {
+          remap = true;
+          desc = "Comment in normal mode.";
+        };
+      }
+      {
+        action = "gc";
+        key = "<space>c";
+        mode = "v";
+        options = {
+          remap = true;
+          desc = "Comment in visual mode.";
+        };
       }
 
       # soft string jumping

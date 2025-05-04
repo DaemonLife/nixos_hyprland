@@ -30,6 +30,7 @@ in {
       swayidle
       vlc
       jq
+      nil # lsp pkg for nixvim
 
       # for sway
       autotiling
