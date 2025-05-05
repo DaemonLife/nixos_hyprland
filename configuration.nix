@@ -200,13 +200,6 @@
         wl-clipboard # wl-copy and wl-paste for copy/paste from stdin / stdout
         mako # notification system developed by swaywm maintainer
       ];
-      # extraSessionCommands = ''
-      #   export SDL_VIDEODRIVER=wayland,11
-      #   export QT_QPA_PLATFORM=wayland
-      #   export QT_WAYLAND_DISABLE_WINDOWDECORATION="1"
-      #   export _JAVA_AWT_WM_NONREPARENTING=1
-      #   export MOZ_ENABLE_WAYLAND=1
-      # '';
     };
 
     nh = {

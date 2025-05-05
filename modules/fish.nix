@@ -30,9 +30,7 @@
       }
     ];
 
-    shellInit = "";
-
-    # start sway
+    # when login to shell
     loginShellInit = ''
       if not set -q DISPLAY
         and test (tty) = "/dev/tty1"
@@ -41,13 +39,20 @@
       end
     '';
 
+    # when start shell
+    # git status for my promt, check:
+    # https://fishshell.com/docs/current/cmds/fish_git_prompt.html 
+    shellInit = ''
+      set __fish_git_prompt_show_informative_status 1
+    '';
+
     functions = {
 
       # disable it
       fish_greeting = "";
 
       fish_prompt = '' 
-        printf '\n%s@%s %s%s%s%s \n> ' $USER $hostname \
+        printf '%s@%s %s%s%s%s \n> ' $USER $hostname \
           (set_color $fish_color_cwd) $PWD (set_color normal) (fish_vcs_prompt)
       '';
 

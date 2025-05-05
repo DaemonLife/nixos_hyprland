@@ -23,7 +23,8 @@ with config.lib.stylix.colors; {
       };
 
       modifier = "Mod4";
-      terminal = "${pkgs.kitty}/bin/kitty --single-instance";
+      # terminal = "${pkgs.kitty}/bin/kitty --single-instance";
+      terminal = "foot";
       menu = "${pkgs.fuzzel}/bin/fuzzel -l 10";
       bars = [{ command = "waybar"; }];
 
@@ -172,12 +173,10 @@ with config.lib.stylix.colors; {
         "Ctrl+h" = "exec light -U 5";
 
         # Audio 
-        "XF86AudioRaiseVolume" =
-          "exec pactl set-sink-volume @DEFAULT_SINK@ +5%";
-        "XF86AudioLowerVolume" =
-          "exec pactl set-sink-volume @DEFAULT_SINK@ -5%";
-        "Ctrl+j" = "exec pactl set-sink-volume @DEFAULT_SINK@ +5%";
-        "Ctrl+k" = "exec pactl set-sink-volume @DEFAULT_SINK@ -5%";
+        "XF86AudioRaiseVolume" = "exec bash $HOME/nix/scripts/volume.sh 5";
+        "XF86AudioLowerVolume" = "exec bash $HOME/nix/scripts/volume.sh -5";
+        "Ctrl+j" = "exec bash $HOME/nix/scripts/volume.sh 5";
+        "Ctrl+k" = "exec bash $HOME/nix/scripts/volume.sh -5";
         "XF86AudioMute" = "exec pactl set-sink-mute @DEFAULT_SINK@ toggle";
         "XF86AudioMicMute" =
           "exec pactl set-source-mute @DEFAULT_SOURCE@ toggle";
@@ -267,6 +266,8 @@ with config.lib.stylix.colors; {
       export QT_QPA_PLATFORM=wayland
       export XDG_CURRENT_DESKTOP=sway
       export MOZ_ENABLE_WAYLAND=1
+
+      export TERMINAL=foot
     '';
 
   };
