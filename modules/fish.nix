@@ -2,6 +2,7 @@
 
   programs.fish = with config.lib.stylix.colors; {
     enable = true;
+
     shellAliases = {
       # os help - for help
       os = "$HOME/nix/scripts/nix_rebuild.sh";
@@ -24,14 +25,6 @@
         src = pkgs.fishPlugins.done.src;
       }
       {
-        name = "hydro";
-        src = pkgs.fishPlugins.hydro.src;
-      }
-      {
-        name = "colored-man-pages";
-        src = pkgs.fishPlugins.colored-man-pages.src;
-      }
-      {
         name = "grc"; # colored output for some command (lsblk for example)
         src = pkgs.fishPlugins.grc.src;
       }
@@ -39,36 +32,26 @@
 
     shellInit = "";
 
-    interactiveShellInit = ''
-      set --global hydro_symbol_prompt '>'
-      set --global hydro_symbol_git_dirty '*'
-      set --global hydro_symbol_git_ahead '↑'
-      set --global hydro_symbol_git_behind '↓'
-      set --global hydro_multiline true
-      set --global fish_prompt_pwd_dir_length 40
-
-      set --global hydro_color_pwd -o ${base0C} 
-
-      if not set -q DISPLAY
-        set --global hydro_symbol_prompt '!!>'
-        set_color --background red
-      end
-    '';
-
+    # start sway
     loginShellInit = ''
       if not set -q DISPLAY
-        echo -e "\033[40m"  # make black background
-        if test (tty) = "/dev/tty1"
-          # exec uwsm start hyprland-uwsm.desktop 
+        and test (tty) = "/dev/tty1"
           exec sway
-        end
+        # exec uwsm start hyprland-uwsm.desktop 
       end
     '';
 
     functions = {
 
+      # disable it
       fish_greeting = "";
 
+      fish_prompt = '' 
+        printf '\n%s@%s %s%s%s%s \n> ' $USER $hostname \
+          (set_color $fish_color_cwd) $PWD (set_color normal) (fish_vcs_prompt)
+      '';
+
+      # yazi setup
       y = ''
         set tmp (mktemp -t "yazi-cwd.XXXXXX")
         yazi $argv --cwd-file="$tmp"

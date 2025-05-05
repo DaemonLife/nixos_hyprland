@@ -131,6 +131,13 @@ in {
 
     foot = {
       enable = true;
+      settings = {
+        cursor = lib.mkForce {
+          style = lib.mkForce "beam";
+          beam-thickness = 1;
+          blink = "yes";
+        };
+      };
     };
 
     btop = {
