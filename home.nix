@@ -78,7 +78,7 @@ in {
       musikcube # second music player
       termusic
       darktable
-      unstable.gimp
+      unstable.gimp3-with-plugins
 
       # Internet
       qbittorrent # torrent client
