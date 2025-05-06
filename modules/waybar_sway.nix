@@ -45,6 +45,7 @@
             "2" = [ "DP-1" ];
             "3" = [ "DP-1" ];
             "4" = [ "DP-1" ];
+            "5" = [ "DP-1" ];
           };
           format-icons = {
             "1" = 1; # workspace id and icon format
@@ -107,9 +108,8 @@
             disabled = "bt";
           };
           tooltip-format = "{}";
-          # on-click = "rfkill toggle bluetooth";
-          on-click = "rfkill unblock bluetooth && overskride";
-          on-click-right = "rfkill block bluetooth";
+          on-click = "bluetooth on";
+          on-click-right = "bluetooth off";
         };
 
         "sway/language" = {
@@ -172,9 +172,8 @@
           format-ethernet = " {ipaddr}/{cidr}";
           format-linked = "wifi (No IP)";
           format-disconnected = "wifi";
-          on-click = ''
-            rfkill unblock wifi && kitty --hold sh -c "nmcli dev wifi rescan && nmtui"'';
-          on-click-right = "rfkill block wifi";
+          on-click = ''wifi on && $TERMINAL --hold sh -c "nmcli dev wifi rescan && nmtui"'';
+          on-click-right = "wifi off";
           # interval = 2;
         };
 
@@ -199,7 +198,7 @@
           };
           max-volume = 100;
           tooltip-format = "{desc}, {volume}%";
-          on-click = "kitty sh -c 'pulsemixer'"; # or pavucontrol
+          on-click = "$TERMINAL sh -c 'pulsemixer'"; # or pavucontrol
           on-click-right = "pactl set-source-mute @DEFAULT_SOURCE@ toggle";
           on-click-middle = "helvum";
           scroll-step = 5;

@@ -31,6 +31,25 @@
         };
       };
 
+      workspaceOutputAssign = [
+        {
+          workspace = "1";
+          output = "DSI-1";
+        }
+        {
+          workspace = "2";
+          output = "DSI-1";
+        }
+        {
+          workspace = "3";
+          output = "DSI-1";
+        }
+        {
+          workspace = "4";
+          output = "DSI-1";
+        }
+      ];
+
     };
   };
 

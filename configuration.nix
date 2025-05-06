@@ -162,11 +162,11 @@
     bluez
     kitty
     bottles # run windows programs
-    # udiskie # auto disks mount
+    udiskie # auto disks mount
     nufraw-thumbnailer # RAW preview for thunar
 
     # GNOME programs
-    # adwaita-icon-theme
+    adwaita-icon-theme
 
     mangohud # fps monitoring
   ];
@@ -179,9 +179,9 @@
 
   # for flatpak
   # xdg.portal = {
-  #   enable = true;
+  # enable = true;
   #   wlr.enable = true;
-  #   extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+  # extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
   # };
 
   # Android emulator. Read https://nixos.wiki/wiki/WayDroid
@@ -312,6 +312,20 @@
 
   systemd = {
 
+    user.services.polkit-gnome-authentication-agent-1 = {
+      description = "polkit-gnome-authentication-agent-1";
+      wantedBy = [ "graphical-session.target" ];
+      wants = [ "graphical-session.target" ];
+      after = [ "graphical-session.target" ];
+      serviceConfig = {
+        Type = "simple";
+        ExecStart = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
+        Restart = "on-failure";
+        RestartSec = 1;
+        TimeoutStopSec = 10;
+      };
+    };
+
     sleep.extraConfig = ''
       AllowSuspend=yes
       AllowHibernation=yes
@@ -364,5 +378,4 @@
 
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  system.stateVersion = "23.11"; # Did you read the comment?
 }

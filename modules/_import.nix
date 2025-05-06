@@ -13,6 +13,7 @@
     ./gowall.nix
     ./qt.nix
     # ./kitty.nix
+    ./foot.nix
     ./gtk.nix
     ./fzf.nix
     ./yazi/yazi.nix

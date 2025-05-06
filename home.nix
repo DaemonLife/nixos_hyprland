@@ -24,6 +24,8 @@ in {
       nodejs
       pipx
       exiftool
+      imagemagick
+      zip
 
       # Disk
       dua # disk usage TUI tool. Run: dua i
@@ -128,17 +130,6 @@ in {
     fastfetch = { enable = true; };
     yt-dlp = { enable = true; };
     imv = { enable = true; };
-
-    foot = {
-      enable = true;
-      settings = {
-        cursor = lib.mkForce {
-          style = lib.mkForce "beam";
-          beam-thickness = 1;
-          blink = "yes";
-        };
-      };
-    };
 
     btop = {
       enable = true;

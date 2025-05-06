@@ -1,37 +1,68 @@
-{ config, lib, pkgs, ... }: with config.lib.stylix.colors; {
+{ config, lib, pkgs, ... }: with config.lib.stylix.colors; let
 
-  home.file.".config/colors.tdesktop-theme".text = ''
+  # Default background: base00
+  # Alternate background: base01
+  # Selection background: base02
+  # Default text: base05
+  # Alternate text: base04
+  # Warning: base0A
+  # Urgent: base09
+  # Error: base08
+
+  telegram_style = ''
+    # --- Window ---
     windowBg: #${base00};
     windowFg: #${base05};
-
-    scrollBgOver: #${base01};
-    historyScrollBarBg: windowFg;
-
+    # selected bg in menu
     windowBgOver: #${base00};
-    windowBgRipple: #${base08};
-    windowFgOver: windowFg;
-    windowSubTextFg: windowFg;
-    windowSubTextFgOver: #${base0D};
-    windowBoldFg: windowFg;
-    windowBoldFgOver: #${base0D};
+    # selected fg in menu
+    windowFgOver: #${base05};
+    # RBM emoji arrow and some animations bg
+    windowBgRipple: #${base0B};
+
+    # activate buttons bg
+    activeButtonBg: #${base01};
+    activeButtonBgOver: #${base02};
+    activeButtonBgRipple: #${base0B};
+
+    # activate buttons fg
+    activeButtonFg: #${base05};
+    activeButtonFgOver: #${base06};
+    activeButtonSecondaryFg: #${base05};
+    activeButtonSecondaryFgOver: #${base06};
+
+    # --- Scroll --- 
+    # bar bg in CHAT LIST when hover 
+    scrollBgOver: #${base00};
+    # bar fg in CHAT when hover
+    historyScrollBarBg: #${base05};
+
+    # --- text ---
+    windowSubTextFg: #${base05};
+    windowSubTextFgOver: #${base0B};
+    windowBoldFg: #${base05};
+    windowBoldFgOver: #${base0B};
+    windowActiveTextFg: #${base05};
+
+    # --- Player ---
+    # fg status line for bg active player 
     windowBgActive: #${base0D};
-    windowFgActive: #${base00};
-    windowActiveTextFg: windowFg;
+
+    # --- Effects ---
     windowShadowFg: #00000000;
     windowShadowFgFallback: #00000000;
     shadowFg: #00000000;
     slideFadeOutBg: #00000000;
     slideFadeOutShadowFg: #00000000;
-    imageBg: #00000088;
-    imageBgTransparent: #00000088;
-    activeButtonBg: #${base01};
-    activeButtonBgOver: #${base01};
-    activeButtonBgRipple: #${base02};
-    activeButtonFg: windowFg;
-    activeButtonFgOver: activeButtonFg;
-    activeButtonSecondaryFg: windowFg;
-    activeButtonSecondaryFgOver: windowFg;
-    activeLineFg: windowFg;
+    imageBg: #000000ff;
+    imageBgTransparent: #000000ff;
+
+    # --- Other ---
+
+    # ???
+    windowFgActive: #${base00};
+
+    activeLineFg: #${base05};
     activeLineFgError: #${base08};
     lightButtonBg: #${base01};
     lightButtonBgOver: #${base01};
@@ -49,44 +80,44 @@
     menuBg: #${base00};
     menuBgOver: windowBgOver;
     menuBgRipple: windowBgRipple;
-    menuIconFg: windowFg;
+    menuIconFg: #${base05};
     menuIconFgOver: #${base03};
     menuSubmenuArrowFg: #${base03};
     menuFgDisabled: #${base03};
-    menuSeparatorFg: windowFg;
+    menuSeparatorFg: #${base05};
     scrollBarBg: #${base01};
     scrollBarBgOver: #${base01};
     scrollBg: #${base01};
-    smallCloseIconFg: windowFg;
+    smallCloseIconFg: #${base05};
     smallCloseIconFgOver: #${base03};
-    radialFg: windowFg;
+    radialFg: #${base05};
     radialBg: #${base00};
     placeholderFg: windowSubTextFg;
     placeholderFgActive: #${base03};
     inputBorderFg: #${base03};
     filterInputBorderFg: #${base02};
     filterInputInactiveBg: #${base02};
-    checkboxFg: windowFg;
+    checkboxFg: #${base05};
     sliderBgInactive: #${base01};
-    sliderBgActive: windowFg;
+    sliderBgActive: #${base05};
     tooltipBg: #${base07};
     tooltipFg: #${base0D};
-    tooltipBorderFg: windowFg;
+    tooltipBorderFg: #${base05};
     titleShadow: #00000000;
     titleBg: #${base00};
     titleBgActive: #${base01};
     titleButtonBg: titleBg;
     titleButtonFg: #${base03};
     titleButtonBgOver: #${base00};
-    titleButtonFgOver: windowFg;
+    titleButtonFgOver: #${base05};
     titleButtonBgActive: titleButtonBg;
     titleButtonFgActive: titleButtonFg;
     titleButtonBgActiveOver: titleButtonBgOver;
-    titleButtonFgActiveOver: windowFg;
+    titleButtonFgActiveOver: #${base05};
     titleButtonCloseBg: titleButtonBg;
     titleButtonCloseFg: titleButtonFg;
     titleButtonCloseBgOver: #${base08};
-    titleButtonCloseFgOver: windowFg;
+    titleButtonCloseFgOver: #${base05};
     titleButtonCloseBgActive: titleButtonCloseBg;
     titleButtonCloseFgActive: windowBoldFg;
     titleButtonCloseBgActiveOver: #${base08};
@@ -95,17 +126,17 @@
     titleFg: windowSubTextFg;
     trayCounterBg: #${base01};
     trayCounterBgMute: #${base04};
-    trayCounterFg: windowFg;
-    trayCounterBgMacInvert: windowFg;
+    trayCounterFg: #${base05};
+    trayCounterBgMacInvert: #${base05};
     trayCounterFgMacInvert: #${base00};
     layerBg: #0000007f;
     cancelIconFg: menuIconFg;
     cancelIconFgOver: menuIconFgOver;
     boxBg: #${base00};
-    boxTextFg: windowFg;
+    boxTextFg: #${base05};
     boxTextFgGood: #${base0B};
     boxTextFgError: #${base08};
-    boxTitleFg: windowFg;
+    boxTitleFg: #${base05};
     boxSearchBg: #${base01};
     boxTitleAdditionalFg: #${base03};
     boxTitleCloseFg: cancelIconFg;
@@ -116,11 +147,11 @@
     contactsNameFg: boxTextFg;
     contactsStatusFg: windowSubTextFg;
     contactsStatusFgOver: windowSubTextFgOver;
-    contactsStatusFgOnline: windowFg;
+    contactsStatusFgOnline: #${base05};
     photoCropFadeBg: #${base01}7f;
     photoCropPointFg: #${base03}7f;
     introBg: #${base00};
-    introTitleFg: windowFg;
+    introTitleFg: #${base05};
     introDescriptionFg: windowSubTextFg;
     introErrorFg: #${base04};
     introCoverTopBg: #${base00};
@@ -133,17 +164,17 @@
     dialogsMenuIconFg: menuIconFg;
     dialogsMenuIconFgOver: menuIconFgOver;
     dialogsBg: #${base00};
-    dialogsNameFg: windowFg;
+    dialogsNameFg: #${base05};
     dialogsChatIconFg: dialogsNameFg;
-    dialogsDateFg: windowFg;
+    dialogsDateFg: #${base05};
     dialogsTextFg: #${base04};
     dialogsTextFgService: windowActiveTextFg;
     dialogsDraftFg: #${base0A};
-    dialogsVerifiedIconBg: windowFg;
+    dialogsVerifiedIconBg: #${base05};
     dialogsVerifiedIconFg: #${base01};
-    dialogsSendingIconFg: windowFg;
-    dialogsSentIconFg: windowFg;
-    dialogsUnreadBg: windowFg;
+    dialogsSendingIconFg: #${base05};
+    dialogsSentIconFg: #${base05};
+    dialogsUnreadBg: #${base05};
     dialogsUnreadBgMuted: #${base04};
     dialogsUnreadFg: #${base01};
     dialogsBgOver: #${base01};
@@ -163,47 +194,47 @@
     dialogsBgActive: #${base01};
     dialogsNameFgActive: #${base06};
     dialogsChatIconFgActive: #${base06};
-    dialogsDateFgActive: windowFg;
-    dialogsTextFgActive: windowFg;
-    dialogsTextFgServiceActive: windowFg;
+    dialogsDateFgActive: #${base05};
+    dialogsTextFgActive: #${base05};
+    dialogsTextFgServiceActive: #${base05};
     dialogsDraftFgActive: windowSubTextFg;
-    dialogsVerifiedIconBgActive: windowFg;
+    dialogsVerifiedIconBgActive: #${base05};
     dialogsVerifiedIconFgActive: dialogsVerifiedIconFg;
     dialogsSendingIconFgActive: dialogsSendingIconFg;
-    dialogsSentIconFgActive: windowFg;
-    dialogsUnreadBgActive: windowFg;
+    dialogsSentIconFgActive: #${base05};
+    dialogsUnreadBgActive: #${base05};
     dialogsUnreadBgMutedActive: dialogsUnreadBgMuted;
     dialogsUnreadFgActive: dialogsUnreadFg;
     dialogsForwardBg: dialogsBgActive;
     dialogsForwardFg: dialogsNameFgActive;
     searchedBarBg: #${base00};
-    searchedBarFg: windowFg;
+    searchedBarFg: #${base05};
     topBarBg: #${base00};
     emojiPanBg: #${base00};
     emojiPanCategories: #${base00};
-    emojiPanHeaderFg: windowFg;
+    emojiPanHeaderFg: #${base05};
     emojiPanHeaderBg: #${base03};
     stickerPanDeleteBg: #${base01};
-    stickerPanDeleteFg: windowFg;
+    stickerPanDeleteFg: #${base05};
     stickerPreviewBg: #${base00}80;
-    historyTextInFg: windowFg;
+    historyTextInFg: #${base05};
     historyTextInFgSelected: #${base00};
-    historyTextOutFg: windowFg;
+    historyTextOutFg: #${base05};
     historyCaptionInFg: historyTextInFg;
     historyCaptionOutFg: historyTextOutFg;
     historyFileNameInFg: historyTextInFg;
     historyFileNameOutFg: historyTextOutFg;
     historyOutIconFg: dialogsSentIconFg;
     historyOutIconFgSelected: #${base00};
-    historyIconFgInverted: windowFg;
+    historyIconFgInverted: #${base05};
     historySendingOutIconFg: #${base04};
     historySendingInIconFg: #${base04};
-    historySendingInvertedIconFg: windowFg;
+    historySendingInvertedIconFg: #${base05};
     historyUnreadBarBg: #${base00};
     historyUnreadBarBorder: shadowFg;
     historyUnreadBarFg: #${base05};
     historyForwardChooseBg: #${base03}80;
-    historyForwardChooseFg: windowFg;
+    historyForwardChooseFg: #${base05};
     historyPeer1NameFg: #${base08};
     historyPeer1UserpicBg: #${base08};
     historyPeer2NameFg: #${base0B};
@@ -221,38 +252,38 @@
     historyPeer8NameFg: #${base0F};
     historyPeer8UserpicBg: #${base0F};
     historyPeerUserpicFg: #${base01};
-    historyScrollBarBgOver: windowFg;
+    historyScrollBarBgOver: #${base05};
     historyScrollBg: #${base01};
-    historyScrollBgOver: windowFg;
+    historyScrollBgOver: #${base05};
     msgInBg: #${base01};
     msgInBgSelected: #${base0D};
     msgOutBg: #${base01};
     msgOutBgSelected: #${base0D}ff;
     msgSelectOverlay: #${base0D}ff;
     msgStickerOverlay: #${base0D}ff;
-    msgInServiceFg: windowFg;
-    msgInServiceFgSelected: windowFg;
+    msgInServiceFg: #${base05};
+    msgInServiceFgSelected: #${base05};
     msgOutServiceFg: #${base0D};
     msgOutServiceFgSelected: activeLineFg;
     msgInShadow: #00000000;
     msgInShadowSelected: #00000000;
     msgOutShadow: #00000000;
     msgOutShadowSelected: #00000000;
-    msgInDateFg: windowFg;
+    msgInDateFg: #${base05};
     msgInDateFgSelected: #${base00};
-    msgOutDateFg: windowFg;
+    msgOutDateFg: #${base05};
     msgOutDateFgSelected: #${base00};
     msgServiceFg: #${base05};
     msgServiceBg: #${base01};
     msgServiceBgSelected: #${base02};
-    msgInReplyBarColor: windowFg;
-    msgInReplyBarSelColor: windowFg;
-    msgOutReplyBarColor: windowFg;
-    msgOutReplyBarSelColor: windowFg;
-    msgImgReplyBarColor: windowFg;
-    msgInMonoFg: windowFg;
-    msgOutMonoFg: windowFg;
-    msgDateImgFg: windowFg;
+    msgInReplyBarColor: #${base05};
+    msgInReplyBarSelColor: #${base05};
+    msgOutReplyBarColor: #${base05};
+    msgOutReplyBarSelColor: #${base05};
+    msgImgReplyBarColor: #${base05};
+    msgInMonoFg: #${base05};
+    msgOutMonoFg: #${base05};
+    msgDateImgFg: #${base05};
     msgDateImgBg: #${base01};
     msgDateImgBgOver: #${base01};
     msgDateImgBgSelected: #${base00};
@@ -295,10 +326,10 @@
     historyFileThumbRadialFg: historyFileThumbIconFg;
     historyFileThumbRadialFgSelected: historyFileThumbIconFgSelected;
     msgWaveformInActive: #${base0D};
-    msgWaveformInActiveSelected: windowFg;
+    msgWaveformInActiveSelected: #${base05};
     msgWaveformInInactive: #${base03};
     msgWaveformInInactiveSelected: #${base02};
-    msgWaveformOutActive: windowFg;
+    msgWaveformOutActive: #${base05};
     msgWaveformOutActiveSelected: #${base02};
     msgWaveformOutInactive: #${base01};
     msgWaveformOutInactiveSelected: msgInBgSelected;
@@ -310,31 +341,31 @@
     mediaOutFg: msgOutDateFg;
     mediaOutFgSelected: msgOutDateFgSelected;
     youtubePlayIconBg: #00000080;
-    youtubePlayIconFg: windowFg;
+    youtubePlayIconFg: #${base05};
     videoPlayIconBg: #00000080;
     videoPlayIconFg: #${base05};
     toastBg: #${base00};
-    toastFg: windowFg;
+    toastFg: #${base05};
     reportSpamBg: #${base00};
-    reportSpamFg: windowFg;
+    reportSpamFg: #${base05};
     historyToDownBg: #00000000;
     historyToDownBgOver: #00000080;
     historyToDownBgRipple: windowBgRipple;
-    historyToDownFg: windowFg;
-    historyToDownFgOver: windowFg;
+    historyToDownFg: #${base05};
+    historyToDownFgOver: #${base05};
     historyToDownShadow: #00000000;
     historyComposeAreaBg: #${base00};
     historyComposeAreaFg: historyTextInFg;
-    historyComposeAreaFgService: windowFg;
-    historyComposeIconFg: windowFg;
-    historyComposeIconFgOver: windowFg;
-    historySendIconFg: windowFg;
-    historySendIconFgOver: windowFg;
+    historyComposeAreaFgService: #${base05};
+    historyComposeIconFg: #${base05};
+    historyComposeIconFgOver: #${base05};
+    historySendIconFg: #${base05};
+    historySendIconFgOver: #${base05};
     historyPinnedBg: #${base00};
     historyReplyBg: historyComposeAreaBg;
     historyReplyIconFg: historyTextInFg;
-    historyReplyCancelFg: windowFg;
-    historyReplyCancelFgOver: windowFg;
+    historyReplyCancelFg: #${base05};
+    historyReplyCancelFgOver: #${base05};
     historyComposeButtonBg: historyComposeAreaBg;
     historyComposeButtonBgOver: windowBgOver;
     historyComposeButtonBgRipple: windowBgRipple;
@@ -343,24 +374,24 @@
     overviewCheckFgActive: #${base01};
     overviewPhotoSelectOverlay: #bdbdbd4a;
     profileStatusFgOver: #${base04};
-    profileVerifiedCheckBg: windowFg;
+    profileVerifiedCheckBg: #${base05};
     profileVerifiedCheckFg: #${base01};
-    profileAdminStartFg: windowFg;
-    notificationsBoxMonitorFg: windowFg;
+    profileAdminStartFg: #${base05};
+    notificationsBoxMonitorFg: #${base05};
     notificationsBoxScreenBg: windowSubTextFg;
     notificationSampleUserpicFg: #${base01};
-    notificationSampleCloseFg: windowFg;
-    notificationSampleTextFg: windowFg;
+    notificationSampleCloseFg: #${base05};
+    notificationSampleTextFg: #${base05};
     notificationSampleNameFg: #${base04};
     mainMenuBg: #${base00};
     mainMenuCoverBg: #${base00};
-    mainMenuCoverFg: windowFg;
+    mainMenuCoverFg: #${base05};
     mediaPlayerBg: #${base00};
-    mediaPlayerActiveFg: windowFg;
+    mediaPlayerActiveFg: #${base05};
     mediaPlayerInactiveFg: #${base03};
     mediaPlayerDisabledFg: #${base03};
     mediaviewFileBg: #000000;
-    mediaviewFileNameFg: windowFg;
+    mediaviewFileNameFg: #${base05};
     mediaviewFileSizeFg: windowSubTextFg;
     mediaviewFileRedCornerFg: #${base08};
     mediaviewFileYellowCornerFg: #${base0A};
@@ -374,24 +405,24 @@
     mediaviewBg: #000000;
     mediaviewVideoBg: imageBg;
     mediaviewControlBg: #${base07}80;
-    mediaviewControlFg: windowFg;
+    mediaviewControlFg: #${base05};
     mediaviewCaptionBg: #00000080;
-    mediaviewCaptionFg: windowFg;
+    mediaviewCaptionFg: #${base05};
     mediaviewTextLinkFg: #${base0D};
     mediaviewSaveMsgBg: toastBg;
     mediaviewSaveMsgFg: toastFg;
-    mediaviewPlaybackActive: windowFg;
+    mediaviewPlaybackActive: #${base05};
     mediaviewPlaybackInactive: #${base02};
-    mediaviewPlaybackActiveOver: windowFg;
+    mediaviewPlaybackActiveOver: #${base05};
     mediaviewPlaybackInactiveOver: windowSubTextFgOver;
     mediaviewPlaybackProgressFg: #${base03};
     mediaviewPlaybackIconFg: mediaviewPlaybackActive;
     mediaviewPlaybackIconFgOver: mediaviewPlaybackActiveOver;
     mediaviewTransparentBg: #000000ff;
-    mediaviewTransparentFg: windowFg;
+    mediaviewTransparentFg: #${base05};
     notificationBg: #${base00};
 
-    emojiIconFg: windowFg;
+    emojiIconFg: #${base05};
     historyLinkOutFg: #${base08};
     historyLinkInFg: #${base08};
     sideBarBg: #${base00};
@@ -411,9 +442,22 @@
     walletTitleButtonCloseFgActiveOver: #${base08};
   '';
 
-  home.activation.telegram_style = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
-    ${pkgs.imagemagick}/bin/magick -size 2960x2960 xc:#${base00} ~/.config/background.jpg
-    cd ~/.config && ${pkgs.zip}/bin/zip telegram-base16.zip background.jpg colors.tdesktop-theme && rm -rf colors.tdesktop-theme background.jpg && mv telegram-base16.zip telegram-base16.tdesktop-theme
-  '';
+in
+{
 
+  home.activation.telegram_style = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+
+    cd $HOME/.config && echo "${telegram_style}" > tmp_colors.tdesktop-theme;
+
+    sed '/^#/d' tmp_colors.tdesktop-theme > colors.tdesktop-theme;
+
+    ${pkgs.imagemagick}/bin/magick -size 2960x2960 xc:#${base00} background.jpg;
+
+    ${pkgs.zip}/bin/zip telegram-base16.zip background.jpg colors.tdesktop-theme;
+
+    mv telegram-base16.zip telegram-base16.tdesktop-theme
+
+    rm -rf colors.tdesktop-theme tmp_colors.tdesktop-theme background.jpg;
+
+  '';
 }

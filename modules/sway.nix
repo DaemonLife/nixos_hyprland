@@ -37,7 +37,7 @@ with config.lib.stylix.colors; {
       bars = [{ command = "waybar"; }];
 
       startup = [
-        { command = "rfkill block bluetooth"; }
+        { command = "bluetooth off"; }
         { command = "autotiling-rs"; }
         { command = "${pkgs.mako}/bin/mako"; }
         { command = "${pkgs.udiskie}/bin/udiskie -a"; }
