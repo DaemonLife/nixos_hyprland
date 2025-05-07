@@ -20,7 +20,7 @@
           scale = "1";
           adaptive_sync = "enable";
           render_bit_depth = "8"; # 6, 8, 10
-          position = "1400 0"; # right position (1400+2048?)
+          position = "3448 0"; # right position (1400+2048?)
         };
         # monitor msk
         "Shenzhen KTC Technology Group H27S17 0x00000001" = {
@@ -39,15 +39,19 @@
         }
         {
           workspace = "2";
-          output = "DP-1";
+          output = [ "DP-1" "HDMI-A-1" ];
         }
         {
           workspace = "3";
-          output = "DP-1";
+          output = [ "DP-1" "HDMI-A-1" ];
         }
         {
           workspace = "4";
-          output = "DP-1";
+          output = [ "DP-1" "HDMI-A-1" ];
+        }
+        {
+          workspace = "5";
+          output = [ "DP-1" "HDMI-A-1" ];
         }
       ];
 

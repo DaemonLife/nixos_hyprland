@@ -143,7 +143,7 @@ with config.lib.stylix.colors; {
         # run broswer
         "${modifier}+b" = "exec $BROWSER";
         "${modifier}+Shift+B" =
-          "exec proxychains4 $BROWSER --set window.title_format [VPN] {perc}{current_title}{title_sep}qutebrowser";
+          "exec proxychains4 $BROWSER --set window.title_format \"[VPN] {perc}{current_title}{title_sep}qutebrowser\"";
 
         # telegram
         # "${modifier}+t" = "exec telegram-desktop";
@@ -281,3 +281,4 @@ with config.lib.stylix.colors; {
   };
 
 }
+

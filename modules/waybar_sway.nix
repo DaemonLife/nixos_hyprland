@@ -42,10 +42,10 @@
           persistent-workspaces = {
             # workspace and monitors
             "1" = [ "eDP-1" "DSI-1" ];
-            "2" = [ "DP-1" ];
-            "3" = [ "DP-1" ];
-            "4" = [ "DP-1" ];
-            "5" = [ "DP-1" ];
+            "2" = [ "DP-1" "HDMI-A-1" ];
+            "3" = [ "DP-1" "HDMI-A-1" ];
+            "4" = [ "DP-1" "HDMI-A-1" ];
+            "5" = [ "DP-1" "HDMI-A-1" ];
           };
           format-icons = {
             "1" = 1; # workspace id and icon format
