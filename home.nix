@@ -27,6 +27,7 @@ in {
       imagemagick
       zip
       onlyoffice-desktopeditors
+      kickoff
 
       # Disk
       dua # disk usage TUI tool. Run: dua i
@@ -80,7 +81,7 @@ in {
       # Media
       musikcube # second music player
       termusic
-      darktable
+      unstable.darktable
       unstable.gimp3-with-plugins
 
       # Internet
