@@ -1,17 +1,20 @@
-{ pkgs, config, lib, ... }:
-with config.lib.stylix.colors; {
+{ pkgs, config, lib, ... }: {
 
-  imports = [
-    ./waybar_sway.nix
-    ./mako.nix
-    ./fuzzel.nix
-    ./swaylock.nix
-    ./swayidle.nix
-  ];
+  imports =
+    [
+      (import ./waybar.nix {
+        inherit config lib;
+        MY_DE = "sway";
+      })
+      ./mako.nix
+      ./fuzzel.nix
+      ./swaylock.nix
+      ./swayidle.nix
+    ];
 
-  home.packages = with pkgs; [ swayidle autotiling-rs swaybg grimblast ];
+  home. packages = with pkgs; [ swayidle autotiling-rs swaybg grimblast ];
 
-  wayland.windowManager.sway = {
+  wayland.windowManager.sway = with config.lib.stylix.colors; {
     enable = true;
     checkConfig = true;
     xwayland = true;

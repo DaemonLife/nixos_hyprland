@@ -280,14 +280,6 @@
 
   services = {
 
-    gnome.gnome-keyring.enable = true; # for sway
-
-    # Disable GNOME power service
-    power-profiles-daemon.enable = false;
-
-    # Thermald proactively prevents overheating 
-    thermald.enable = true;
-
     xray = {
       enable = true;
       settingsFile = "/etc/xray/config.json";
@@ -297,6 +289,14 @@
     flatpak.enable = true;
     gvfs.enable = true; # Mount, trash, and other functionalities
     tumbler.enable = true; # Thunar thumbnail support for images
+    gnome.gnome-keyring.enable = true; # for sway
+    power-profiles-daemon.enable = false; # disable for tlp
+    thermald.enable = true; # Thermald prevents overheating 
+
+    # logind = lib.mkForce {
+    #   lidSwitch = "lock";
+    #   lidSwitchExternalPower = "lock";
+    # };
 
     # bluetooth audio enhancements
     # pipewire.wireplumber.extraConfig.bluetoothEnhancements = {
@@ -329,7 +329,7 @@
     sleep.extraConfig = ''
       AllowSuspend=yes
       AllowHibernation=yes
-      # AllowHybridSleep=yes
+      AllowHybridSleep=yes
       AllowSuspendThenHibernate=yes
       HibernateDelaySec=1800
     '';
@@ -376,7 +376,5 @@
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
 
-  # Before changing this value read the documentation for this option
-  # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  system.stateVersion = "23.11"; # Did you read the comment?
+  system.stateVersion = "23.11";
 }

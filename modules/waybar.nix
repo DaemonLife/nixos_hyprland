@@ -1,6 +1,6 @@
-{ config, lib, ... }: lib.mkForce {
+{ config, lib, MY_DE, ... }: {
 
-  programs.waybar = with config.lib.stylix.colors; {
+  programs.waybar = with config.lib.stylix.colors; lib.mkForce {
     enable = true;
 
     settings = {
@@ -9,15 +9,15 @@
         position = "top";
         height = 24;
         modules-left = [
-          "sway/workspaces"
-          "sway/window"
-          "sway/mode"
+          "${MY_DE}/workspaces"
+          "${MY_DE}/window"
+          # "${MY_DE}/mode"
           #"custom/sway-split-mode"
         ];
         modules-center = [ ];
         modules-right = [
           "tray"
-          "sway/language"
+          "${MY_DE}/language"
           "custom/sep"
           "network"
           "custom/sep"
@@ -34,7 +34,7 @@
           "clock#time"
         ];
 
-        "sway/workspaces" = {
+        "${MY_DE}/workspaces" = {
           window-rewrite = { };
           on-click = "activate";
           disable-scroll = true;
@@ -66,17 +66,17 @@
 
         };
 
-        "sway/window" = {
+        "${MY_DE}/window" = {
           max-length = 60;
           separate-outputs = true;
           format = { };
           rewrite = { };
         };
 
-        "sway/mode" = {
-          "format" = "swaymode {}";
-          "max-length" = 50;
-        };
+        # "${MY_DE}/mode" = {
+        #   "format" = "swaymode {}";
+        #   "max-length" = 50;
+        # };
 
         tray.spacing = 10;
 
@@ -112,7 +112,7 @@
           on-click-right = "bluetooth off";
         };
 
-        "sway/language" = {
+        "${MY_DE}/language" = {
           format = "{}";
           format-en = "us";
           format-ru = "ru";
@@ -208,117 +208,121 @@
 
     };
 
-    style = ''
-      	@define-color dark #${base00};
-      	@define-color gray #${base03};
-      	@define-color dark-white #${base04};
-      	@define-color white #${base05};
-      	@define-color accent #${base0D};
-      	@define-color green #${base0B};
-      	@define-color red #${base08};
-      	@define-color magenta #${base09};
-      	@define-color yellow #${base0A};
-      	
-      	/* Default setting for all modules */
-      	* {
-      	  border: none;
-          border-radius: 0;
-          margin: 0px;
-          text-decoration: none;
-      	  font-family: "Mononoki Nerd Font Regular"; 
-          font-size: 14px;
-          min-height: 0;
-          box-shadow: none;
-      	}
+    style =
+      let
+        focus = if "${MY_DE}" == "sway" then "focused" else "active";
+      in
+      ''
+        	@define-color dark #${base00};
+        	@define-color gray #${base03};
+        	@define-color dark-white #${base04};
+        	@define-color white #${base05};
+        	@define-color accent #${base0D};
+        	@define-color green #${base0B};
+        	@define-color red #${base08};
+        	@define-color magenta #${base09};
+        	@define-color yellow #${base0A};
+        	
+        	/* Default setting for all modules */
+        	* {
+        	  border: none;
+            border-radius: 0;
+            margin: 0px;
+            text-decoration: none;
+        	  font-family: "Mononoki Nerd Font Regular"; 
+            font-size: 14px;
+            min-height: 0;
+            box-shadow: none;
+        	}
 
-        /* Default color for modules except workspaces button.active */
-        #workspaces button, #window, window#waybar, #tray, #language, #network, #bluetooth, #idle_inhibitor, #battery, #pulseaudio, #clock#time, #clock#date { color: @white; }
+          /* Default color for modules except workspaces button.active */
+          #workspaces button, #window, window#waybar, #tray, #language, #network, #bluetooth, #idle_inhibitor, #battery, #pulseaudio, #clock#time, #clock#date { color: @white; }
 
-      	/* Default padding for some modules */
-      #tray,	#language, #network, #bluetooth, #idle_inhibitor, #battery, #pulseaudio, #clock { padding: 0px 5px 0px 5px; }
+        	/* Default padding for some modules */
+        #tray,	#language, #network, #bluetooth, #idle_inhibitor, #battery, #pulseaudio, #clock { padding: 0px 5px 0px 5px; }
 
-        #custom-sep {
-          color: @gray;
-        }
+          #custom-sep {
+            color: @gray;
+          }
 
-        #language {
-          background-color: #${base00};
-        }
-        #network {
-          background-color: #${base00};
-        }
-        #bluetooth {
-          background-color: #${base00};
-        }
-        #idle_inhibitor {
-          background-color: #${base00};
-        }
-        #pulseaudio {
-          background-color: #${base00};
-        }
-        #battery {
-          background-color: #${base00};
-        }
-        #clock.date {
-          background-color: #${base00};
-        }
-        #clock.time {
-          background-color: #${base00};
-        }
+          #language {
+            background-color: #${base00};
+          }
+          #network {
+            background-color: #${base00};
+          }
+          #bluetooth {
+            background-color: #${base00};
+          }
+          #idle_inhibitor {
+            background-color: #${base00};
+          }
+          #pulseaudio {
+            background-color: #${base00};
+          }
+          #battery {
+            background-color: #${base00};
+          }
+          #clock.date {
+            background-color: #${base00};
+          }
+          #clock.time {
+            background-color: #${base00};
+          }
         
-        #workspaces button { 
-          font-weight: normal; 
-          padding: 0px 2px 0px 2px;
-        }
-        #workspaces button.empty { 
-          font-weight: normal; 
-          padding: 0px 2px 0px 2px;
-          color: @gray;
-        }
-        #workspaces button.focused { 
-          font-weight: normal; 
-          color: @dark;
-          background-color: @accent;
-          padding: 0px 6px 0px 6px;
-        }
+          #workspaces button { 
+            font-weight: normal; 
+            padding: 0px 2px 0px 2px;
+          }
+          #workspaces button.empty { 
+            font-weight: normal; 
+            padding: 0px 2px 0px 2px;
+            color: @gray;
+          }
+          #workspaces button.${focus} { 
+            font-weight: normal; 
+            color: @dark;
+            background-color: @accent;
+            padding: 0px 6px 0px 6px;
+          }
         
-        window#waybar {
-          background-color: @dark;
-        }
-        #window { padding: 0px 10px 0px 10px; }
+          window#waybar {
+            background-color: @dark;
+          }
+          #window { padding: 0px 10px 0px 10px; }
          
-        /* calendar look */
-        tooltip {
-          background-color: @dark;
-          border: 2px;
-          border-style: solid;
-          border-color: @accent;
-          font-size: 16px;
-        }
+          /* calendar look */
+          tooltip {
+            background-color: @dark;
+            border: 2px;
+            border-style: solid;
+            border-color: @accent;
+            font-size: 16px;
+          }
 
-      	#network.disconnected { color: @gray;}
-      	#network.disabled { color: @yellow; }
+        	#network.disconnected { color: @gray;}
+        	#network.disabled { color: @yellow; }
 
-      	#idle_inhibitor.activated { color: @green; }
-      	#idle_inhibitor.deactivated { color: @gray; }
+        	#idle_inhibitor.activated { color: @green; }
+        	#idle_inhibitor.deactivated { color: @gray; }
 
-      	#bluetooth { color: @green; }
-      	#bluetooth.disabled { color: @gray; }
+        	#bluetooth { color: @green; }
+        	#bluetooth.disabled { color: @gray; }
 
-      	#pulseaudio.muted { color: @gray; }
+        	#pulseaudio.muted { color: @gray; }
 
-      	#battery.plugged { color: @green; }
-      	#battery.charging{
-          color: @green;
-          animation-name: blink;
-          animation-duration: 1.5s;
-          animation-timing-function: linear;
-          animation-iteration-count: infinite;
-          animation-direction: alternate;
-      	} 
-      	#battery.warning:not(.charging) { color: @yellow; }
-      	#battery.critical:not(.charging) { color: @red; }
-      	@keyframes blink { to { color: @white; } }
-      	'';
+        	#battery.plugged { color: @green; }
+        	#battery.charging{
+            color: @green;
+            animation-name: blink;
+            animation-duration: 1.5s;
+            animation-timing-function: linear;
+            animation-iteration-count: infinite;
+            animation-direction: alternate;
+        	} 
+        	#battery.warning:not(.charging) { color: @yellow; }
+        	#battery.critical:not(.charging) { color: @red; }
+        	@keyframes blink { to { color: @white; } }
+        	'';
   };
 }
