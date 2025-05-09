@@ -45,6 +45,7 @@
         { command = "${pkgs.mako}/bin/mako"; }
         { command = "${pkgs.udiskie}/bin/udiskie -a"; }
         { command = "wl-paste -t text --watch clipman store --no-persist"; }
+        { command = "bash $HOME/nix/scripts/maze/run.sh '000000' ${base08} ${base09} ${base0A} ${base0B} ${base0C} ${base0D} ${base0E} ${base0F}"; }
         {
           command = ''
             swayidle -w timeout 540 'swaymsg "output * dpms off"' timeout 600 'swaymsg input "type:keyboard xkb_switch_layout 0" && swaylock' resume 'swaymsg "output * dpms on"'

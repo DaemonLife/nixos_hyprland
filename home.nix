@@ -26,6 +26,7 @@ in {
       exiftool
       imagemagick
       zip
+      onlyoffice-desktopeditors
 
       # Disk
       dua # disk usage TUI tool. Run: dua i

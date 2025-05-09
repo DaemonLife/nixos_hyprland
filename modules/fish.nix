@@ -44,6 +44,12 @@
     # https://fishshell.com/docs/current/cmds/fish_git_prompt.html 
     shellInit = ''
       set __fish_git_prompt_show_informative_status 1
+      set fish_cursor_insert line blink # for vi mode
+      bind -s --preset -M visual -m default space-y "fish_clipboard_copy; commandline -f end-selection repaint-mode"
+
+      bind yy fish_clipboard_copy
+      bind Y fish_clipboard_copy
+      bind p fish_clipboard_paste
     '';
 
     functions = {
@@ -52,8 +58,7 @@
       fish_greeting = "";
 
       fish_prompt = '' 
-        printf '%s@%s %s%s%s%s \n> ' $USER $hostname \
-          (set_color $fish_color_cwd) $PWD (set_color normal) (fish_vcs_prompt)
+        printf '%s@%s %s%s%s%s \n> ' $USER $hostname (set_color $fish_color_cwd) $PWD (set_color normal) (fish_vcs_prompt)
       '';
 
       # yazi setup

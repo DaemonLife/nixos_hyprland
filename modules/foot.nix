@@ -4,11 +4,10 @@
     enable = true;
 
     settings = {
+      main.selection-target = "both"; # copy to foot and system clipboard 
 
-      cursor = lib.mkForce {
-        style = "block";
-        beam-thickness = 1;
-        blink = "yes";
+      cursor = {
+        beam-thickness = 1.2;
       };
 
     };

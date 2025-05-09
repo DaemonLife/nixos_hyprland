@@ -17,7 +17,7 @@
         "https://search.nixos.org/packages?&from=0&size=50&sort=relevance&type=packages&query={}";
       nixo =
         "https://search.nixos.org/options?size=50&sort=relevance&type=packages&query={}";
-      nixg = "https://github.com/search?q={}+language%3Anix&type=repositories";
+      nixg = "https://github.com/search?q={}+language%3Anix&type=code";
       git = "https://github.com/search?q={}&type=repositories";
       wttr = "https://wttr.in/{}?FMm"; # Weather. Type ":help" for helping
     };

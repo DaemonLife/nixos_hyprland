@@ -8,6 +8,7 @@
     windowBgOver: #${base02}; // selected bg in menu
     windowFgOver: #${base00}; // selected fg in menu
     menuBg: #${base00}; // global bg popup animation after click
+    windowFgActive: #${base00}; // fg for some light buttons
 
     // some boxes in ui
     boxBg: #${base00};
@@ -378,6 +379,7 @@
 
     // --- Output message in chat (from me) ---
     historyTextOutFg: historyTextInFg;
+    historyTextOutFgSelected: historyTextInFgSelected;
     historyCaptionOutFg: historyCaptionInFg;
     historyFileNameOutFg: historyFileNameInFg;
     historyOutIconFg: historyInIconFg;
@@ -419,44 +421,44 @@
     historyPeer3UserpicBg: #${base0A};
     historyPeer4NameFg: #${base0C}; // blue
     historyPeer4UserpicBg: #${base0C};
-    historyPeer5NameFg: #${base09}; // purple
-    historyPeer5UserpicBg: #${base09};
-    historyPeer6NameFg: #${base0E}; // pink
-    historyPeer6UserpicBg: #${base0E};
+    historyPeer5NameFg: #${base0E}; // purple
+    historyPeer5UserpicBg: #${base0E};
+    historyPeer6NameFg: #${base0F}; // pink
+    historyPeer6UserpicBg: #${base0F};
     historyPeer7NameFg: #${base0D}; // sea
     historyPeer7UserpicBg: #${base0D};
-    historyPeer8NameFg: #${base0F}; // orange
-    historyPeer8UserpicBg: #${base0F};
+    historyPeer8NameFg: #${base09}; // orange
+    historyPeer8UserpicBg: #${base09};
 
     // --- Files/links ---
     msgFile1Bg: #${base01}; // blue
-    msgFile1BgDark: #${base05};
+    msgFile1BgDark: #${base0D};
     msgFile1BgOver: #${base04};
     msgFile1BgSelected: #${base04};
     msgFile2Bg: #${base01}; // green
-    msgFile2BgDark: #${base05};
+    msgFile2BgDark: #${base0B};
     msgFile2BgOver: #${base04};
     msgFile2BgSelected: #${base04};
     msgFile3Bg: #${base01}; // red
-    msgFile3BgDark: #${base05};
+    msgFile3BgDark: #${base08};
     msgFile3BgOver: #${base04};
     msgFile3BgSelected: #${base04};
     msgFile4Bg: #${base01}; // yellow
-    msgFile4BgDark: #${base05};
+    msgFile4BgDark: #${base0A};
     msgFile4BgOver: #${base04};
     msgFile4BgSelected: #${base04};
 
-    youtubePlayIconBg: #00000080; // youtube
-    youtubePlayIconFg: #${base05};
-    videoPlayIconBg: #00000080; // other video services
-    videoPlayIconFg: #${base05};
+    youtubePlayIconBg: #${base00}80; // youtube
+    youtubePlayIconFg: #${base08};
+    videoPlayIconBg: #${base00}80; // other video services
+    videoPlayIconFg: #${base0D};
 
     toastBg: #${base00}; // for link t.me ?
     toastFg: #${base05};
 
     // --- Side bar ---
     sideBarBg: #${base00};
-    sideBarBgActive: #${base01};
+    sideBarBgActive: #${base02};
     sideBarIconFg: #${base03};
     sideBarIconFgActive: #${base0D};
     sideBarBadgeBg: #${base0D};
@@ -469,7 +471,6 @@
     sideBarTextFg: #${base03};
 
     // --- ??? ---
-    windowFgActive: #${base00};
     activeLineFg: #${base05};
     activeLineFgError: #${base08};
     outlineButtonBg: #${base00};
