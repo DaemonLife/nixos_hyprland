@@ -329,7 +329,7 @@
     sleep.extraConfig = ''
       AllowSuspend=yes
       AllowHibernation=yes
-      AllowHybridSleep=yes
+      # AllowHybridSleep=yes
       AllowSuspendThenHibernate=yes
       HibernateDelaySec=1800
     '';
