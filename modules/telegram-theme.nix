@@ -75,23 +75,23 @@
 
     // --- Program window title ---
     titleBg: #${base00};
-    titleBgActive: #${base01};
-    titleButtonBg: titleBg;
+    titleBgActive: #${base00};
+    titleButtonBg: #${base00};
     titleButtonFg: #${base05};
-    titleButtonBgOver: #${base00};
+    titleButtonBgOver: #${base01};
     titleButtonFgOver: #${base06};
-    titleButtonBgActive: titleButtonBg;
-    titleButtonFgActive: titleButtonFg;
-    titleButtonBgActiveOver: titleButtonBgOver;
-    titleButtonFgActiveOver: #${base05};
-    titleButtonCloseBg: titleButtonBg;
-    titleButtonCloseFg: titleButtonFg;
+    titleButtonBgActive: #${base00};
+    titleButtonFgActive: #${base05};
+    titleButtonBgActiveOver: #${base01};
+    titleButtonFgActiveOver: #${base06};
+    titleButtonCloseBg: #${base00};
+    titleButtonCloseFg: #${base05};
     titleButtonCloseBgOver: #${base08};
     titleButtonCloseFgOver: #${base06};
-    titleButtonCloseBgActive: #${base05};
-    titleButtonCloseFgActive: #${base05};
+    titleButtonCloseBgActive: #${base00};
+    titleButtonCloseFgActive: #${base06};
     titleButtonCloseBgActiveOver: #${base08};
-    titleButtonCloseFgActiveOver: #${base05};
+    titleButtonCloseFgActiveOver: #${base06};
     titleFgActive: #${base05};
     titleFg: #${base05};
 
