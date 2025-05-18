@@ -5,8 +5,8 @@
     // --- Main UI ---
     windowBg: #${base00};
     windowFg: #${base05};
-    windowBgOver: #${base02}; // selected bg in menu
-    windowFgOver: #${base00}; // selected fg in menu
+    windowBgOver: #${base01}; // hover bg in menu
+    windowFgOver: #${base00}; // hover fg in menu
     menuBg: #${base00}; // global bg popup animation after click
     windowFgActive: #${base00}; // fg for some light buttons
 
@@ -19,8 +19,8 @@
     boxSearchBg: #${base01};
     boxTitleAdditionalFg: #${base05};
     boxTitleCloseFg: #${base05};
-    boxTitleCloseFgOver: #${base05};
-    
+    boxTitleCloseFgOver: #${base06};
+
     // up /\ and down \/ arrow for chat and chat list
     historyToDownBg: #00000000;
     historyToDownBgOver: #00000000;
@@ -57,43 +57,44 @@
 
     // --- Main settings menu ---
     mainMenuBg: #${base00};
-    mainMenuCoverBg: #${base02};
-    mainMenuCoverFg: #${base05};
+    mainMenuCoverBg: #${base01};
+    mainMenuCoverFg: #${base06};
     checkboxFg: #${base05}; // checkbox and radio buttons
     // slider (notifications and sounds)
     sliderBgInactive: #${base01};
     sliderBgActive: #${base05};
 
-    windowSubTextFg: #${base04};
-    windowSubTextFgOver: #${base05};
+    windowSubTextFg: #${base05};
+    windowSubTextFgOver: #${base06};
     windowBoldFg: #${base06};
-    windowBoldFgOver: #${base0B};
-    windowActiveTextFg: #${base03}; // setap status, description (on, off, ...)
+    windowBoldFgOver: #${base07};
+    windowActiveTextFg: #${base04}; // setap status, description (on, off, ...)
 
     // --- Notificaton ---
     notificationBg: #${base00};
 
     // --- Program window title ---
     titleBg: #${base00};
-    titleBgActive: #${base00};
-    titleButtonBg: #${base00};
-    titleButtonFg: #${base05};
-    titleButtonBgOver: #${base01};
-    titleButtonFgOver: #${base06};
-    titleButtonBgActive: #${base00};
-    titleButtonFgActive: #${base05};
-    titleButtonBgActiveOver: #${base01};
-    titleButtonFgActiveOver: #${base06};
-    titleButtonCloseBg: #${base00};
-    titleButtonCloseFg: #${base05};
-    titleButtonCloseBgOver: #${base08};
-    titleButtonCloseFgOver: #${base06};
-    titleButtonCloseBgActive: #${base00};
-    titleButtonCloseFgActive: #${base06};
-    titleButtonCloseBgActiveOver: #${base08};
-    titleButtonCloseFgActiveOver: #${base06};
-    titleFgActive: #${base05};
     titleFg: #${base05};
+    titleFgActive: #${base06};
+    titleBgActive: titleBg;
+
+    titleButtonBg: titleBg;
+    titleButtonFg: titleFg;
+    titleButtonBgOver: #${base01};
+    titleButtonFgOver: titleFgActive;
+    titleButtonBgActive: titleBg;
+    titleButtonFgActive: titleFgActive;
+    titleButtonBgActiveOver: titleFgActive;
+    titleButtonFgActiveOver: titleFgActive;
+    titleButtonCloseBg: titleBg;
+    titleButtonCloseFg: titleFg;
+    titleButtonCloseBgOver: #${base08};
+    titleButtonCloseFgOver: #${base07};
+    titleButtonCloseBgActive: titleBg;
+    titleButtonCloseFgActive: titleButtonCloseFgOver;
+    titleButtonCloseBgActiveOver: titleButtonCloseBgOver;
+    titleButtonCloseFgActiveOver: titleButtonCloseFgOver;
 
     // --- Scroll in CHAT --- 
     // bar itself
@@ -171,14 +172,14 @@
     // output messages in chat
     msgOutShadow: #00000000;
     msgOutShadowSelected: #00000000;
-    
+
     // --- Cancel operation button ---
     lightButtonBg: #${base01};
     lightButtonBgOver: #${base02};
     lightButtonBgRipple: #${base01};
     lightButtonFg: #${base05};
     lightButtonFgOver: #${base06};
-    
+
     // --- Attention (log out button) ---
     attentionButtonFg: #${base05};
     attentionButtonFgOver: #${base08};
@@ -188,11 +189,10 @@
     // --- Close button in notifications? ---
     smallCloseIconFg: #${base05};
     smallCloseIconFgOver: #${base06};
-    
+
     // --- Message input box ---
-    placeholderFg: #${base03}; // text and cursor
-    placeholderFgActive: #${base05}; // text and cursor
-    // area
+    placeholderFg: #${base05}; // Wrtie a message... text (and search input!)
+    placeholderFgActive: #${base04}; // Wrtie a message... text active
     historyComposeAreaBg: #${base00};
     historyComposeAreaFg: #${base05};
     historyComposeAreaFgService: #${base05};
@@ -252,24 +252,26 @@
     dialogsBg: #${base00};
     dialogsNameFg: #${base05};
     dialogsChatIconFg: dialogsNameFg;
-    dialogsDateFg: #${base05};
-    dialogsTextFg: #${base04};
-    dialogsTextFgService: #${base04};
-    dialogsDraftFg: #${base04};
-    dialogsVerifiedIconBg: #${base04};
-    dialogsVerifiedIconFg: #${base00};
-    dialogsSendingIconFg: #${base05};
-    dialogsSentIconFg: #${base05};
+    dialogsDateFg: dialogsNameFg;
+    dialogsTextFg: dialogsNameFg;
+    dialogsTextFgService: dialogsNameFg;
+    dialogsDraftFg: dialogsNameFg;
+    dialogsVerifiedIconBg: dialogsNameFg;
+    dialogsVerifiedIconFg: dialogsBg;
+    dialogsSendingIconFg: dialogsNameFg;
+    dialogsSentIconFg: dialogsNameFg;
+
     dialogsUnreadBg: #${base0D};
     dialogsUnreadBgMuted: #${base04};
     dialogsUnreadFg: #${base00};
+
+    dialogsTextFgOver: #${base06};
     dialogsBgOver: #${base01};
-    dialogsNameFgOver: #${base05};
-    dialogsChatIconFgOver: #${base05};
-    dialogsDateFgOver: #${base05};
-    dialogsTextFgOver: windowSubTextFgOver;
-    dialogsTextFgServiceOver: dialogsTextFgService;
-    dialogsDraftFgOver: dialogsDraftFg;
+    dialogsTextFgServiceOver: dialogsTextFgOver;
+    dialogsNameFgOver: dialogsTextFgOver;
+    dialogsChatIconFgOver: dialogsTextFgOver;
+    dialogsDateFgOver: dialogsTextFgOver;
+    dialogsDraftFgOver: dialogsTextFgOver;
     dialogsVerifiedIconBgOver: dialogsVerifiedIconBg;
     dialogsVerifiedIconFgOver: dialogsVerifiedIconFg;
     dialogsSendingIconFgOver: dialogsSendingIconFg;
@@ -277,6 +279,7 @@
     dialogsUnreadBgOver: dialogsUnreadBg;
     dialogsUnreadBgMutedOver: dialogsUnreadBgMuted;
     dialogsUnreadFgOver: dialogsUnreadFg;
+
     dialogsBgActive: #${base02};
     dialogsNameFgActive: #${base06};
     dialogsChatIconFgActive: #${base06};
@@ -296,10 +299,10 @@
 
     // --- Search ---
     filterInputActiveBg: #${base02}; // top search box in chat list
-    filterInputInactiveBg: #${base02};
-    filterInputBorderFg: #${base05};
+    filterInputInactiveBg: filterInputActiveBg;
+    filterInputBorderFg: #${base02}; // ???
     searchedBarBg: #${base00}; // bottom bar
-    searchedBarFg: #${base05};
+    searchedBarFg: #${base04};
 
     // --- Emoji, stickers, GIFs panel ---
     emojiPanBg: #${base01};
@@ -410,7 +413,7 @@
     mediaOutFg: mediaInFg;
     mediaOutFgSelected: mediaInFgSelected;
     historyLinkOutFg: historyLinkInFg;
-    
+
     // --- User withoin avatar ---
     historyPeerUserpicFg: #${base01}; // default color
     historyPeer1NameFg: #${base08}; // red
@@ -461,14 +464,14 @@
     sideBarBgActive: #${base02};
     sideBarIconFg: #${base03};
     sideBarIconFgActive: #${base0D};
-    sideBarBadgeBg: #${base0D};
-    sideBarBadgeBgMuted: #${base03}; // non active or muted badge
-    sideBarBadgeFg: #${base00}; // text in badge
+    sideBarBadgeBg: sideBarIconFgActive;
+    sideBarBadgeBgMuted: sideBarIconFg; // non active or muted badge
+    sideBarBadgeFg: sideBarBg; // text in badge
     sideBarBgRipple: #${base08}; // bg animation when icon clicked
 
     // both work like active lol
-    sideBarTextFgActive: #${base0D};
-    sideBarTextFg: #${base03};
+    sideBarTextFgActive: sideBarIconFgActive;
+    sideBarTextFg: sideBarIconFg;
 
     // --- ??? ---
     activeLineFg: #${base05};
