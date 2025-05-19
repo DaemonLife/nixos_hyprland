@@ -22,7 +22,7 @@
 
     // up /\ and down \/ arrow for chat and chat list
     historyToDownBg: #${base01}7f;
-    historyToDownBgOver: #${base02}7f;
+    historyToDownBgOver: #${base01};
     historyToDownBgRipple: #${base0D};
     historyToDownFg: #${base05};
     historyToDownFgOver: #${base06};
@@ -154,14 +154,14 @@
 
     // --- Effects ---
     titleShadow: #00000000;
-    windowShadowFg: #00000000;
-    windowShadowFgFallback: #00000000;
-    shadowFg: #00000000;
-    slideFadeOutBg: #00000000;
-    slideFadeOutShadowFg: #00000000;
+    windowShadowFg: #0000007f;
+    windowShadowFgFallback: #0000007f;
+    shadowFg: #00000000; // borders color
+    slideFadeOutBg: #0000007f;
+    slideFadeOutShadowFg: #0000007f;
     imageBg: #000000ff;
     imageBgTransparent: #000000ff;
-    layerBg: #00000000; // Side bar shade
+    layerBg: #00000050; // Side bar shade
 
     // input messages in chat
     msgInShadow: #00000000;
