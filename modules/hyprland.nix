@@ -1,4 +1,9 @@
-{ config, lib, ... }:
+{
+  pkgs,
+  config,
+  lib,
+  ...
+}:
 let
   execPref = "uwsm app -- ";
   # execPref = ""; # if you don't use UWSM
@@ -14,6 +19,10 @@ in
     ./fuzzel.nix
     ./swaylock.nix
     ./swayidle.nix
+  ];
+
+  home.packages = with pkgs; [
+    brightnessctl
   ];
 
   wayland.windowManager.hyprland = {
@@ -217,9 +226,9 @@ in
         # Run programs
         "$mod, RETURN, exec, ${execPref}$terminal"
         "$mod, RETURN, exec, ${execPref}hyprctl keyword input:kb_layout us,ru"
-        "$mod, D, exec, ${execPref}hyprctl keyword input:kb_layout us,ru && ${execPref}$menu"
+        "$mod, A, exec, ${execPref}hyprctl keyword input:kb_layout us,ru && ${execPref}$menu"
         "$mod, N, exec, ${execPref}$filemanager"
-        "$mod, y, exec, ${execPref}kitty --single-instance --hold $HOME/nix/scripts/y.fish"
+        "$mod, y, exec, ${execPref}&terminal --hold $HOME/nix/scripts/y.fish"
         "$mod, B, exec, ${execPref}$browser"
         "$mod SHIFT, B, exec, ${execPref}proxychains4 $browser --set window.title_format [VPN]\\ {perc}{current_title}{title_sep}qutebrowser"
         "$mod, T, exec, ${execPref}telegram-desktop"

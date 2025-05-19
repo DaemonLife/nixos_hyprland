@@ -19,8 +19,6 @@
           modules-left = [
             "${MY_DE}/workspaces"
             "${MY_DE}/window"
-            # "${MY_DE}/mode"
-            #"custom/sway-split-mode"
           ];
           modules-center = [ ];
           modules-right = [
@@ -81,10 +79,6 @@
               "8" = 8;
               "9" = 9;
               "10" = 10;
-
-              # "urgent" = "?";
-              # "focused" = "";
-              # "default" = "";
             };
 
           };
@@ -95,11 +89,6 @@
             format = { };
             rewrite = { };
           };
-
-          # "${MY_DE}/mode" = {
-          #   "format" = "swaymode {}";
-          #   "max-length" = 50;
-          # };
 
           tray.spacing = 10;
 
@@ -115,14 +104,6 @@
           "custom/sep" = {
             format = "|";
           };
-
-          # "custom/sway-split-mode" = {
-          #   "exec" = ''
-          #     swaymsg -t get_tree | jq -r '.. | select(.focused == true) | .layout | if . == "splith" then "Horizontal" elif . == "splitv" then "Vertical" else "Other" end'
-          #   '';
-          #   "interval" = 1;
-          #   "format" = "{}";
-          # };
 
           bluetooth = {
             format = "{icon}";
