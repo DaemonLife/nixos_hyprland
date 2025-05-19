@@ -1,6 +1,14 @@
-{ pkgs, config, lib, ... }: {
+{
+  pkgs,
+  config,
+  lib,
+  ...
+}:
+{
 
   services.mako = with config.lib.stylix.colors; {
-    borderSize = lib.mkForce 2;
+    settings = {
+      border-size = lib.mkForce 2;
+    };
   };
 }

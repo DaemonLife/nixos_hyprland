@@ -16,7 +16,7 @@
   ];
 
   programs.helix = {
-    package = pkgs.unstable.helix;
+    # package = pkgs.unstable.helix;
     enable = true;
     defaultEditor = true;
 

@@ -1,10 +1,10 @@
-{ pkgs, ... }: {
+{ pkgs, ... }:
+{
 
   stylix = {
     enable = true;
 
-    base16Scheme =
-      "${pkgs.base16-schemes}/share/themes/horizon-terminal-dark.yaml";
+    base16Scheme = "${pkgs.base16-schemes}/share/themes/horizon-terminal-dark.yaml";
 
     image = ../images/2025-01-27-DSC08066.jpg;
 
@@ -31,25 +31,21 @@
     # base0F = "c38cd2"; # bright cyan # no. fixed dumb everforest color
     # };
 
-    # targets = {
-    #   waybar.enable = false;
-    # };
-
     cursor.package = pkgs.bibata-cursors;
     cursor.name = "Bibata-Modern-Ice";
     cursor.size = 24;
 
     fonts = {
       monospace = {
-        package = pkgs.nerdfonts;
+        package = pkgs.nerd-fonts.geist-mono;
         name = "GeistMono Nerd Font Mono";
       };
       sansSerif = {
-        package = pkgs.nerdfonts;
+        package = pkgs.nerd-fonts.mononoki;
         name = "Mononoki Nerd Font Regular";
       };
       serif = {
-        package = pkgs.nerdfonts;
+        package = pkgs.nerd-fonts.mononoki;
         name = "Mononoki Nerd Font Regular";
       };
       emoji = {
@@ -73,5 +69,4 @@
 
     polarity = "dark";
   };
-
 }

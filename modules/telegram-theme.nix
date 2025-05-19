@@ -1,4 +1,11 @@
-{ config, lib, pkgs, ... }: with config.lib.stylix.colors; let
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+with config.lib.stylix.colors;
+let
 
   telegram_style = ''
     // --- Main UI ---
@@ -539,7 +546,7 @@ in
 
     cd $HOME/.config && echo "${telegram_style}" > tmp_colors.tdesktop-theme;
     sed '/^#/d' tmp_colors.tdesktop-theme > colors.tdesktop-theme;
-    ${pkgs.imagemagick}/bin/magick -size 2960x2960 xc:#${base00} background.jpg;
+    ${pkgs.imagemagick}/bin/magick -size 2960x2960 xc:#${base02} background.jpg;
     ${pkgs.zip}/bin/zip telegram-base16.zip background.jpg colors.tdesktop-theme;
     mv telegram-base16.zip telegram-base16.tdesktop-theme;
     rm -rf colors.tdesktop-theme tmp_colors.tdesktop-theme background.jpg;
