@@ -19,8 +19,8 @@
     ./yazi/yazi.nix
     ./stylix.nix
     ./joplin-cli.nix
-    ./nixvim.nix
-    # ./helix.nix
+    # ./nixvim.nix
+    ./helix.nix
     ./sway.nix
     # ./hyprland.nix
     ./GIMP.nix

@@ -47,12 +47,12 @@
         min-width: 50px !important;
         width: 100% !important;
       }      
-      */
 
         /* -- ALL TABS -- */
       .tabbrowser-tab {
         height: 40px !important;
       }
+
       .tabbrowser-tab .tab-background { 
         color: #${base05} !important; 
         border-radius: 0px !important;
@@ -253,6 +253,7 @@
         color: #${base0E} !important;
       }
 
+      */
     '';
 
     profiles.user.userContent = ''

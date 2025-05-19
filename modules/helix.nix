@@ -1,9 +1,24 @@
-{ pkgs, ... }: {
+{ pkgs, ... }:
+{
+
+  home.packages = with pkgs; [
+    nil # nix lang
+    # nixpkgs-fmt # nix autoformat
+    nixfmt-rfc-style # official nix format style
+    bash-language-server # bash lang
+    shfmt # bash
+    shellcheck # bash
+    vscode-langservers-extracted # html
+    marksman # markdown
+    ruff # python
+    pyright # python
+    pylyzer # python
+  ];
 
   programs.helix = {
     package = pkgs.unstable.helix;
     enable = true;
-    # defaultEditor = true;
+    defaultEditor = true;
 
     settings = {
       editor = {
@@ -14,7 +29,11 @@
         cursorline = true;
         lsp.display-messages = true;
         gutters = {
-          layout = [ "line-numbers" "diagnostics" "diff" ];
+          layout = [
+            "line-numbers"
+            "diagnostics"
+            "diff"
+          ];
           line-numbers.min-width = 1;
         };
         color-modes = true;
@@ -32,7 +51,12 @@
         };
 
         statusline = {
-          left = [ "mode" "spinner" "version-control" "file-name" ];
+          left = [
+            "mode"
+            "spinner"
+            "version-control"
+            "file-name"
+          ];
         };
 
         soft-wrap = {
@@ -48,13 +72,40 @@
         space.space = "file_picker";
         space.w = ":w";
         space.q = ":q";
-        esc = [ "collapse_selection" "keep_primary_selection" ];
+        esc = [
+          "collapse_selection"
+          "keep_primary_selection"
+        ];
         A-x = "extend_to_line_bounds";
-        X = [ "extend_line_up" "extend_to_line_bounds" ];
+        X = [
+          "extend_line_up"
+          "extend_to_line_bounds"
+        ];
         C-right = "move_next_word_start";
         C-left = "move_prev_word_start";
         C-up = "move_visual_line_up";
         C-down = "move_visual_line_down";
+
+        tab = "move_parent_node_end";
+        S-tab = "move_parent_node_start";
+        H = "extend_char_left";
+        x = "extend_to_line_bounds";
+        J = [
+          "extend_line_down"
+          "extend_to_line_bounds"
+        ];
+        K = [
+          "extend_line_up"
+          "extend_to_line_bounds"
+        ];
+        L = "extend_char_right";
+        B = "extend_prev_word_start";
+        W = "extend_next_word_start";
+        E = "extend_next_word_end";
+        g = {
+          j = "goto_last_line";
+          k = "goto_file_start";
+        };
 
         # ------ rus layout
         # --- movement
@@ -169,7 +220,6 @@
         #   "C-г" = "page_cursor_half_up"; # Ctrl-u
         #   "C-в" = "page_cursor_half_down"; # Ctrl-d
         # };
-
         # g = {
         #   "п" = "goto_file_start"; # g
         #   "у" = "goto_last_line"; # e
@@ -272,6 +322,7 @@
         C-left = "move_prev_word_start";
         C-up = "move_visual_line_up";
         C-down = "move_visual_line_down";
+        C-space = "completion";
 
         # rus
         "C-ы" = "commit_undo_checkpoint"; # Ctrl-s
@@ -288,10 +339,20 @@
       };
 
       keys.select = {
+
+        tab = "extend_parent_node_end";
+        S-tab = "extend_parent_node_start";
+
+        g = {
+          j = "goto_last_line";
+          k = "goto_file_start";
+        };
+
         "р" = "extend_char_left";
         "о" = "extend_visual_line_down";
         "л" = "extend_visual_line_up";
         "д" = "extend_char_right";
+
         # --- movement
         # "р" = "move_char_left"; # h
         # "о" = "move_visual_line_down"; # j
@@ -329,17 +390,71 @@
     }; # settings
 
     languages = {
-      language = [{
-        name = "nix";
-        auto-format = true;
-        formatter.command = "${pkgs.nixfmt-classic}/bin/nixfmt";
-        indent = {
-          tab-width = 2;
-          unit = "	";
-        };
-      }];
+      language-server.pyright.config.python.analysis.typeCheckingMode = "basic";
+      language-server.ruff = {
+        command = "ruff";
+        args = [ "server" ];
+      };
+
+      language-server.pylyzer = {
+        command = "pylyzer";
+        args = [ "--server" ];
+      };
+
+      language = [
+        {
+          name = "nix";
+          formatter.command = "nixfmt";
+          auto-format = true;
+          indent = {
+            tab-width = 2;
+            unit = "	";
+          };
+        }
+        {
+          name = "python";
+          language-servers = [
+            "pyright"
+            "ruff"
+            "pylyzer"
+          ];
+          auto-format = true;
+        }
+        {
+          name = "bash";
+          language-servers = [ "bash-language-server" ];
+          auto-format = true;
+          formatter = {
+            command = "shfmt";
+            args = [
+              "-i"
+              "2"
+              "-"
+            ];
+          };
+        }
+        {
+          name = "markdown";
+          language-servers = [ "marksman" ];
+          auto-format = true;
+          formatter = {
+            command = "prettier";
+            # args = [ "--stdin-filepath" "file.md" ];
+          };
+        }
+        {
+          name = "html";
+          language-servers = [ "vscode-html-language-server" ];
+          auto-format = true;
+          formatter.command = "prettier";
+        }
+        {
+          name = "css";
+          auto-format = true;
+          language-servers = [ "vscode-css-language-server" ];
+        }
+      ];
     };
 
   }; # programs
 } # main
-

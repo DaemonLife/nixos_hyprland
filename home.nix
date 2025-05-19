@@ -4,7 +4,7 @@ in {
 
   imports = [ ./modules/_import.nix ];
 
-  home = {
+   home = {
     username = username;
     homeDirectory = "/home/${username}";
     stateVersion = "24.05";
@@ -27,7 +27,6 @@ in {
       imagemagick
       zip
       onlyoffice-desktopeditors
-      kickoff
 
       # Disk
       dua # disk usage TUI tool. Run: dua i

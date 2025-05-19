@@ -165,9 +165,9 @@
       };
 
       # number bar
-      "LineNrAbove" = { bg = "#${base00}"; };
-      "CursorLineNr" = { bg = "#${base00}"; };
-      "LineNrBelow" = { bg = "#${base00}"; };
+      "LineNrAbove" = { bg = "#${base00}"; fg = "#${base03}"; };
+      "CursorLineNr" = { bg = "#${base00}"; fg = "#${base05}"; };
+      "LineNrBelow" = { bg = "#${base00}"; fg = "#${base03}"; };
     };
 
     keymaps = [
@@ -192,13 +192,15 @@
 
       # --- new clipboard control ---
       {
-        action = ''"+y'';
-        key = "<space>y";
+        action = ''"+yl'';
+        key = "<space>Y";
+        mode = [ "n" "v" ];
         options.desc = "Copy to system clipboard.";
       }
       {
-        action = ''"+p'';
-        key = "<space>p";
+        action = ''"+pl'';
+        key = "<space>P";
+        mode = [ "n" "v" ];
         options.desc = "Paste from system clipboard.";
       }
       # --- new clipboard control ---

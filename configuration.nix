@@ -34,7 +34,7 @@
 
   environment = {
     variables =
-      let EDITOR = "nvim";
+      let EDITOR = "hx";
       in {
         EDITOR = "${EDITOR}";
         SYSTEMD_EDITOR = "${EDITOR}";
