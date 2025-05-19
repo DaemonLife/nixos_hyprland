@@ -111,8 +111,8 @@
     historyScrollBgOver: scrollBgOver;
 
     // --- Media player ---
-    windowBgActive: #${base02}; // fg status line active player in chat (base01 or base02)
-    mediaviewPlaybackProgressFg: #${base04}; // player progress line in chat and FUCK DAMN time clock in full screen video
+    windowBgActive: #${base0D}; // player progress line fg in chat and (NO WAY!!!...) sliders color, blue default 
+    mediaviewPlaybackProgressFg: #${base04}; // player progress line bg in chat and FUCK DAMN time clock in full screen video
 
     // --- Top compact media player ---
     mediaPlayerBg: #${base00};
