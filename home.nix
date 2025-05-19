@@ -58,6 +58,7 @@ in
       gowall # Tool to convert a Wallpaper's color scheme. Still wait version 2...
       dconf-editor
       grc
+      adwsteamgtk # steam gnome
 
       # Fonts
       # nerdfonts

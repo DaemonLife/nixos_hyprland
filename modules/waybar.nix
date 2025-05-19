@@ -217,6 +217,7 @@
         let
           focus = if "${MY_DE}" == "sway" then "focused" else "active";
         in
+        #css
         ''
           	@define-color dark #${base00};
           	@define-color gray #${base03};

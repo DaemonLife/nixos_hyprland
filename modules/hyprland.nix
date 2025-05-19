@@ -228,7 +228,7 @@ in
         "$mod, RETURN, exec, ${execPref}hyprctl keyword input:kb_layout us,ru"
         "$mod, A, exec, ${execPref}hyprctl keyword input:kb_layout us,ru && ${execPref}$menu"
         "$mod, N, exec, ${execPref}$filemanager"
-        "$mod, y, exec, ${execPref}&terminal --hold $HOME/nix/scripts/y.fish"
+        "$mod, y, exec, ${execPref}$terminal --hold $HOME/nix/scripts/y.fish"
         "$mod, B, exec, ${execPref}$browser"
         "$mod SHIFT, B, exec, ${execPref}proxychains4 $browser --set window.title_format [VPN]\\ {perc}{current_title}{title_sep}qutebrowser"
         "$mod, T, exec, ${execPref}telegram-desktop"
@@ -316,7 +316,7 @@ in
 
     export CLUTTER_BACKEND=wayland
 
-    export SDL_VIDEODRIVER=wayland 
+    export SDL_VIDEODRIVER=wayland,x11
 
     export GDK_BACKEND=wayland,x11,*
     export GDK_DPI_SCALE=1

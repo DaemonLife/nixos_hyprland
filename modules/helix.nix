@@ -13,6 +13,7 @@
     ruff # python
     pyright # python
     pylyzer # python
+    uwu-colors
   ];
 
   programs.helix = {
@@ -404,6 +405,10 @@
       language = [
         {
           name = "nix";
+          language-servers = [
+            "nil"
+            "uwu-colors"
+          ];
           formatter.command = "nixfmt";
           auto-format = true;
           indent = {
@@ -417,12 +422,16 @@
             "pyright"
             "ruff"
             "pylyzer"
+            "uwu-colors"
           ];
           auto-format = true;
         }
         {
           name = "bash";
-          language-servers = [ "bash-language-server" ];
+          language-servers = [
+            "bash-language-server"
+            "uwu-colors"
+          ];
           auto-format = true;
           formatter = {
             command = "shfmt";
@@ -435,7 +444,10 @@
         }
         {
           name = "markdown";
-          language-servers = [ "marksman" ];
+          language-servers = [
+            "marksman"
+            "uwu-colors"
+          ];
           auto-format = true;
           formatter = {
             command = "prettier";
@@ -444,14 +456,20 @@
         }
         {
           name = "html";
-          language-servers = [ "vscode-html-language-server" ];
+          language-servers = [
+            "vscode-html-language-server"
+            "uwu-colors"
+          ];
           auto-format = true;
           formatter.command = "prettier";
         }
         {
           name = "css";
           auto-format = true;
-          language-servers = [ "vscode-css-language-server" ];
+          language-servers = [
+            "vscode-css-language-server"
+            "uwu-colors"
+          ];
         }
       ];
     };
