@@ -191,7 +191,7 @@
     smallCloseIconFgOver: #${base06};
 
     // --- Message input box ---
-    placeholderFg: #${base05}; // Wrtie a message... text (and search input!)
+    placeholderFg: #${base05}; // Wrtie a message... text (and fg search input DAMN!!!)
     placeholderFgActive: #${base04}; // Wrtie a message... text active
     historyComposeAreaBg: #${base00};
     historyComposeAreaFg: #${base05};
