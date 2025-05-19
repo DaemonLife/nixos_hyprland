@@ -1,18 +1,28 @@
-{ pkgs, config, lib, ... }: {
+{
+  pkgs,
+  config,
+  lib,
+  ...
+}:
+{
 
-  imports =
-    [
-      (import ./waybar.nix {
-        inherit config lib;
-        MY_DE = "sway";
-      })
-      ./mako.nix
-      ./fuzzel.nix
-      ./swaylock.nix
-      ./swayidle.nix
-    ];
+  imports = [
+    (import ./waybar.nix {
+      inherit config lib;
+      MY_DE = "sway";
+    })
+    ./mako.nix
+    ./fuzzel.nix
+    ./swaylock.nix
+    ./swayidle.nix
+  ];
 
-  home. packages = with pkgs; [ swayidle autotiling-rs swaybg grimblast ];
+  home.packages = with pkgs; [
+    swayidle
+    autotiling-rs
+    swaybg
+    grimblast
+  ];
 
   wayland.windowManager.sway = with config.lib.stylix.colors; {
     enable = true;
@@ -37,7 +47,7 @@
       # terminal = "${pkgs.kitty}/bin/kitty --single-instance";
       terminal = "foot";
       menu = "${pkgs.fuzzel}/bin/fuzzel -l 10";
-      bars = [{ command = "waybar"; }];
+      bars = [ { command = "waybar"; } ];
 
       startup = [
         { command = "bluetooth off"; }
@@ -45,7 +55,9 @@
         { command = "${pkgs.mako}/bin/mako"; }
         { command = "${pkgs.udiskie}/bin/udiskie -a"; }
         { command = "wl-paste -t text --watch clipman store --no-persist"; }
-        { command = "bash $HOME/nix/scripts/maze/run.sh '000000' ${base08} ${base09} ${base0A} ${base0B} ${base0C} ${base0D} ${base0E} ${base0F}"; }
+        {
+          command = "bash $HOME/nix/scripts/maze/run.sh '000000' ${base08} ${base09} ${base0A} ${base0B} ${base0C} ${base0D} ${base0E} ${base0F}";
+        }
         {
           command = ''
             swayidle -w timeout 540 'swaymsg "output * dpms off"' timeout 600 'swaymsg input "type:keyboard xkb_switch_layout 0" && swaylock' resume 'swaymsg "output * dpms on"'
@@ -128,7 +140,7 @@
       keybindings = {
 
         ##################
-        # RUN PROGRAMS 
+        # RUN PROGRAMS
         ##################
 
         # start terminal
@@ -136,9 +148,8 @@
           exec swaymsg input "type:keyboard" xkb_switch_layout 0 && exec ${terminal}
         '';
 
-        # run menu 
-        "${modifier}+a" = ''
-          exec swaymsg input "type:keyboard" xkb_switch_layout 0 && exec ${menu}'';
+        # run menu
+        "${modifier}+a" = ''exec swaymsg input "type:keyboard" xkb_switch_layout 0 && exec ${menu}'';
 
         # run file manager
         "${modifier}+n" = "exec thunar";
@@ -156,7 +167,7 @@
         "F10" = "exec swaylock";
 
         ##################
-        # Window control 
+        # Window control
         ##################
 
         # kill active window
@@ -184,14 +195,13 @@
         "Ctrl+l" = "exec light -A 5";
         "Ctrl+h" = "exec light -U 5";
 
-        # Audio 
+        # Audio
         "XF86AudioRaiseVolume" = "exec bash $HOME/nix/scripts/volume.sh 5";
         "XF86AudioLowerVolume" = "exec bash $HOME/nix/scripts/volume.sh -5";
         "Ctrl+j" = "exec bash $HOME/nix/scripts/volume.sh 5";
         "Ctrl+k" = "exec bash $HOME/nix/scripts/volume.sh -5";
         "XF86AudioMute" = "exec pactl set-sink-mute @DEFAULT_SINK@ toggle";
-        "XF86AudioMicMute" =
-          "exec pactl set-source-mute @DEFAULT_SOURCE@ toggle";
+        "XF86AudioMicMute" = "exec pactl set-source-mute @DEFAULT_SOURCE@ toggle";
 
         # Screenshot
         "${modifier}+Shift+s" = "exec grimblast copysave area";
@@ -285,4 +295,3 @@
   };
 
 }
-

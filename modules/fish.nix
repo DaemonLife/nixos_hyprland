@@ -35,8 +35,13 @@
     loginShellInit = ''
       if not set -q DISPLAY
         and test (tty) = "/dev/tty1"
-          exec sway
-        # exec uwsm start hyprland-uwsm.desktop 
+
+          if uwsm check may-start; then
+            exec uwsm start hyprland-uwsm.desktop
+          end
+
+          # exec sway
+           
       end
     '';
 

@@ -1,4 +1,5 @@
-{ ... }: {
+{ ... }:
+{
 
   imports = [
     ./firefox.nix
@@ -21,8 +22,8 @@
     ./joplin-cli.nix
     # ./nixvim.nix
     ./helix.nix
-    ./sway.nix
-    # ./hyprland.nix
+    # ./sway.nix
+    ./hyprland.nix
     ./GIMP.nix
     # ./alacritty.nix
     # ./eww/eww.nix
