@@ -1,4 +1,5 @@
-{ ... }: {
+{ ... }:
+{
 
   programs.git = {
     enable = true;
@@ -6,7 +7,7 @@
 
     aliases = {
       acp = ''
-        !f() { git add . && git commit -m "$*" && git push && echo '
+        !f() { git add .; git commit -m "$*"; git push && echo '
         Push complited!'; }; f'';
     };
   };
