@@ -163,7 +163,7 @@ let
     titleShadow: #00000000;
     windowShadowFg: #0000007f;
     windowShadowFgFallback: #0000007f;
-    shadowFg: #00000000; // borders color
+    shadowFg: #${base00}; // borders color
     slideFadeOutBg: #0000007f;
     slideFadeOutShadowFg: #0000007f;
     imageBg: #000000ff;
