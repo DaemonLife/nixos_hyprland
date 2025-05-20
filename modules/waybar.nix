@@ -15,7 +15,7 @@
         mainBar = {
           layer = "top";
           position = "top";
-          height = 24;
+          height = 26;
           modules-left = [
             "${MY_DE}/workspaces"
             "${MY_DE}/window"

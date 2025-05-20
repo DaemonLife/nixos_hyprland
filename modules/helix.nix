@@ -3,8 +3,8 @@
 
   home.packages = with pkgs; [
     nil # nix lang
-    # nixpkgs-fmt # nix autoformat
-    nixfmt-rfc-style # official nix format style
+    nixpkgs-fmt # nix autoformat
+    # nixfmt-rfc-style # official nix format style
     bash-language-server # bash lang
     shfmt # bash
     shellcheck # bash
@@ -409,7 +409,7 @@
             "nil"
             "uwu-colors"
           ];
-          formatter.command = "nixfmt";
+          formatter.command = "nixpkgs-fmt";
           auto-format = true;
           indent = {
             tab-width = 2;
