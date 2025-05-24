@@ -177,6 +177,11 @@
         action = "";
         key = "<space>";
       }
+      {
+        action = "";
+        key = "<D-Space>";
+        mode = "i";
+      }
 
       # --- new redo ---
       {

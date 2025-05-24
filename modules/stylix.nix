@@ -6,7 +6,7 @@
     base16Scheme =
       "${pkgs.base16-schemes}/share/themes/horizon-terminal-dark.yaml";
 
-    image = ../images/2025-01-27-DSC08066.jpg;
+    image = ../images/image.jpg;
 
     # override = {
     # author = "DaemonLife";

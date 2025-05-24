@@ -82,28 +82,28 @@
         focusedInactive = {
           text = "#${base05}";
           background = "#${base00}";
-          border = "#${base00}";
+          border = "#${base01}";
           childBorder = "#${base00}";
           indicator = "#${base03}";
         };
         unfocused = {
           text = "#${base05}";
           background = "#${base00}";
-          border = "#${base00}";
+          border = "#${base01}";
           childBorder = "#${base00}";
           indicator = "#${base03}";
         };
         urgent = {
           text = "#${base05}";
           background = "#${base00}";
-          border = "#${base00}";
+          border = "#${base01}";
           childBorder = "#${base00}";
           indicator = "#${base03}";
         };
         placeholder = {
           text = "#${base05}";
           background = "#${base00}";
-          border = "#${base00}";
+          border = "#${base01}";
           childBorder = "#${base00}";
           indicator = "#${base03}";
         };

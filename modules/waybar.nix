@@ -159,7 +159,7 @@
             warning = 35;
             critical = 20;
           };
-          # interval = 30;
+          interval = 300;
           format = "bat {capacity}";
           format-plugged = "bat {capacity}";
           format-charging = "bat {capacity}ϟ";
@@ -300,8 +300,8 @@
             font-size: 16px;
           }
 
-        	#network.disconnected { color: @gray;}
-        	#network.disabled { color: @yellow; }
+        	#network.disconnected { color: @yellow;}
+        	#network.disabled { color: @gray; }
 
         	#idle_inhibitor.activated { color: @green; }
         	#idle_inhibitor.deactivated { color: @gray; }

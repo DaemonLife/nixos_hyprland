@@ -243,6 +243,7 @@
     steam = {
       enable = true;
       gamescopeSession.enable = true;
+      protontricks.enable = true;
 
       # Open ports in the firewall for:
       remotePlay.openFirewall = true;
