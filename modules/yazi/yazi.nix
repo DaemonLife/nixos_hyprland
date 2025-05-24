@@ -4,13 +4,19 @@
 # ya pack -a yazi-rs/plugins:smart-enter
 # ya pack -a yazi-rs/plugins:mount
 
-{ pkgs, config, lib, ... }: {
+{
+  pkgs,
+  config,
+  lib,
+  ...
+}:
+{
 
   home.packages = with pkgs; [ xdragon ];
 
   programs.yazi = with config.lib.stylix.colors; {
     enable = true;
-    package = pkgs.unstable.yazi;
+    # package = pkgs.unstable.yazi;
     enableFishIntegration = true;
 
     # clipboard sync for all yazi instances and git plugin init
@@ -42,9 +48,11 @@
       # copy to system clipboard
       {
         on = "<C-y>";
-        run = [''
-          shell --interactive 'for path in "$@"; do echo "file://$path"; done | wl-copy -t text/uri-list' 
-        ''];
+        run = [
+          ''
+            shell --interactive 'for path in "$@"; do echo "file://$path"; done | wl-copy -t text/uri-list' 
+          ''
+        ];
       }
       # drag and drop
       {
@@ -74,52 +82,69 @@
       };
 
       opener = {
-        "video" = [{
-          run = ''mpv "$@" >/dev/null 2>&1 &'';
-          desc = "Play video";
-          block = true;
-          orphan = true;
-        }];
-        "edit" = [{
-          run = ''$EDITOR "$@"'';
-          desc = "Edit";
-          block = true;
-        }];
-        "open" = [{
-          run = ''xdg-open "$@"'';
-          desc = "Open";
-        }];
-        "image" = [{
-          run = ''imv "$@" *'';
-          desc = "Open in imv";
-          orphan = true;
-        }];
-        "default_browser" = [{
-          run = ''$BROWSER "$@"'';
-          desc = "Open in default browser";
-          orphan = true;
-        }];
-        "librewolf" = [{
-          run = ''librewolf "$@"'';
-          desc = "Open in Librewolf";
-          orphan = true;
-        }];
-        "qutebrowser" = [{
-          run = ''qutebrowser "$@"'';
-          desc = "Open in qutebrowser";
-          orphan = true;
-        }];
-        "qbittorrent" = [{
-          run = ''qbittorrent "$@"'';
-          desc = "Open in qBittorrent";
-          orphan = true;
-        }];
-        "rtorrent" = [{
-          run = ''
-            cp "$@" $HOME/Downloads/rtorrent/watch && $TERMINAL --execute rtorrent'';
-          desc = "Open in rtorrent";
-          orphan = true;
-        }];
+        "video" = [
+          {
+            run = ''mpv "$@" >/dev/null 2>&1 &'';
+            desc = "Play video";
+            block = true;
+            orphan = true;
+          }
+        ];
+        "edit" = [
+          {
+            run = ''$EDITOR "$@"'';
+            desc = "Edit";
+            block = true;
+          }
+        ];
+        "open" = [
+          {
+            run = ''xdg-open "$@"'';
+            desc = "Open";
+          }
+        ];
+        "image" = [
+          {
+            run = ''imv "$@" *'';
+            desc = "Open in imv";
+            orphan = true;
+          }
+        ];
+        "default_browser" = [
+          {
+            run = ''$BROWSER "$@"'';
+            desc = "Open in default browser";
+            orphan = true;
+          }
+        ];
+        "librewolf" = [
+          {
+            run = ''librewolf "$@"'';
+            desc = "Open in Librewolf";
+            orphan = true;
+          }
+        ];
+        "qutebrowser" = [
+          {
+            run = ''qutebrowser "$@"'';
+            desc = "Open in qutebrowser";
+            orphan = true;
+          }
+        ];
+        "qbittorrent" = [
+          {
+            run = ''qbittorrent "$@"'';
+            desc = "Open in qBittorrent";
+            orphan = true;
+          }
+        ];
+        "rtorrent" = [
+          {
+            run = ''cp "$@" $HOME/Downloads/rtorrent/watch && $TERMINAL --execute rtorrent'';
+            desc = "Open in rtorrent";
+            orphan = true;
+          }
+        ];
       };
 
       # check file mime type: xdg-mime query filetype [FILE]
@@ -134,7 +159,10 @@
         }
         {
           mime = "application/x-bittorrent";
-          use = [ "qbittorrent" "rtorrent" ];
+          use = [
+            "qbittorrent"
+            "rtorrent"
+          ];
         }
         {
           mime = "application/json";
@@ -142,7 +170,12 @@
         }
         {
           mime = "text/html";
-          use = [ "default_browser" "librewolf" "qutebrowser" "edit" ];
+          use = [
+            "default_browser"
+            "librewolf"
+            "qutebrowser"
+            "edit"
+          ];
         }
         {
           mime = "*";
@@ -156,7 +189,9 @@
 
       manager = {
         border_symbol = "│";
-        border_style = { fg = "#${base01}"; };
+        border_style = {
+          fg = "#${base01}";
+        };
 
         tab_active = {
           fg = "#${base00}";
@@ -193,7 +228,8 @@
           fg = "#${base00}";
           bg = "#${base03}";
         };
-        normal_alt = { # file size info, etc
+        normal_alt = {
+          # file size info, etc
           fg = "#${base04}";
           bg = "#${base01}";
         };

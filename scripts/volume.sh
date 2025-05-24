@@ -11,5 +11,7 @@ current_volume=$(pactl get-sink-volume @DEFAULT_SINK@ | awk -F'/' '{print $2}' |
 
 # Проверяем, если громкость больше 100, устанавливаем 100
 if [ "$current_volume" -gt 100 ]; then
-    pactl set-sink-volume @DEFAULT_SINK@ 100%
+  pactl set-sink-volume @DEFAULT_SINK@ 100%
 fi
+
+#559900

@@ -2,28 +2,37 @@
   description = "DaemonLife flake";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-24.11";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-25.05";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
     home-manager = {
-      url = "github:nix-community/home-manager/release-24.11";
+      url = "github:nix-community/home-manager/release-25.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     stylix = {
-      url = "github:danth/stylix/release-24.11";
+      url = "github:nix-community/stylix/release-25.05";
       inputs = {
         nixpkgs.follows = "nixpkgs";
         home-manager.follows = "home-manager";
       };
     };
-    nixvim = {
-      url = "github:nix-community/nixvim/nixos-24.11";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    # nixvim = {
+    #   url = "github:nix-community/nixvim/nixos-24.11";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
   };
 
-  outputs = { self, nixpkgs, home-manager, stylix, nixvim, nixpkgs-unstable
-    , nixos-hardware, ... }@inputs:
+  outputs =
+    {
+      self,
+      nixpkgs,
+      home-manager,
+      stylix,
+      # nixvim,
+      nixpkgs-unstable,
+      nixos-hardware,
+      ...
+    }@inputs:
     let
       system = "x86_64-linux";
       pkgs = import nixpkgs { inherit system; };
@@ -38,7 +47,7 @@
             stylix.nixosModules.stylix
             home-manager.nixosModules.home-manager
             {
-              home-manager.sharedModules = [ nixvim.homeManagerModules.nixvim ];
+              # home-manager.sharedModules = [ nixvim.homeManagerModules.nixvim ];
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
               home-manager.users.user.imports = [
@@ -59,14 +68,12 @@
             }
           ]
           # Добавляем модуль только если device равно "gpd-pocket-3"
-          (if device == "gpd-pocket-3" then
-            [ nixos-hardware.nixosModules.${device} ]
-          else
-            [ ])
+          (if device == "gpd-pocket-3" then [ nixos-hardware.nixosModules.${device} ] else [ ])
         ];
       };
 
-    in {
+    in
+    {
       nixosConfigurations = {
         # create configurations for my devices
         gpd-pocket-3 = nixpkgs.lib.nixosSystem (mkNixosConfig "gpd-pocket-3");

@@ -1,6 +1,8 @@
 { pkgs, lib, ... }:
-let username = "user";
-in {
+let
+  username = "user";
+in
+{
 
   imports = [ ./modules/_import.nix ];
 
@@ -12,7 +14,7 @@ in {
     packages = with pkgs; [
 
       # --------------------------------
-      # SOFT FOR DE 
+      # SOFT FOR DE
       # --------------------------------
 
       # DE and system
@@ -27,7 +29,6 @@ in {
       imagemagick
       zip
       onlyoffice-desktopeditors
-      kickoff
 
       # Disk
       dua # disk usage TUI tool. Run: dua i
@@ -54,9 +55,10 @@ in {
       vimix-icon-theme # for icons
       # qogir-icon-theme # for cursor
       gnome-tweaks
-      unstable.gowall # Tool to convert a Wallpaper's color scheme. Still wait version 2...
+      gowall # Tool to convert a Wallpaper's color scheme. Still wait version 2...
       dconf-editor
       grc
+      adwsteamgtk # steam gnome
 
       # Fonts
       # nerdfonts
@@ -81,12 +83,11 @@ in {
       # Media
       musikcube # second music player
       termusic
-      unstable.darktable
-      unstable.gimp3-with-plugins
+      darktable
+      gimp3-with-plugins
 
       # Internet
       qbittorrent # torrent client
-      transmission_4-gtk
       tor-browser
 
       # Docs
@@ -94,7 +95,7 @@ in {
       libreoffice
       joplin
       stellarium # astro map
-      unstable.astroterm # astro map ASCII
+      astroterm # astro map ASCII
       epy # cli book reader
       tldr # community documentation
       russ # rss tui reader
@@ -104,7 +105,7 @@ in {
       portablemc # minecraft cli launcher
       curseofwar # stategy cli game
       vitetris # tetris cli game
-      dwarf-fortress-packages.dwarf-fortress-full
+      # dwarf-fortress-packages.dwarf-fortress-full
 
     ];
     sessionPath = [ "$HOME/.local/bin" ];
@@ -124,14 +125,20 @@ in {
           height = 32;
           background = "00000000";
 
-          right = [{ clock.content = [{ string.text = "{time}"; }]; }];
+          right = [ { clock.content = [ { string.text = "{time}"; } ]; } ];
         };
       };
     };
 
-    fastfetch = { enable = true; };
-    yt-dlp = { enable = true; };
-    imv = { enable = true; };
+    fastfetch = {
+      enable = true;
+    };
+    yt-dlp = {
+      enable = true;
+    };
+    imv = {
+      enable = true;
+    };
 
     btop = {
       enable = true;
@@ -148,7 +155,9 @@ in {
   dconf = {
     settings = {
       # disable top right buttons
-      "org/gnome/desktop/wm/preferences" = { button-layout = ""; };
+      "org/gnome/desktop/wm/preferences" = {
+        button-layout = "";
+      };
 
       "org/gnome/desktop/peripherals/touchpad" = {
         tap-and-drag = false;

@@ -1,9 +1,15 @@
-{ pkgs, config, lib, ... }: {
+{
+  pkgs,
+  config,
+  lib,
+  ...
+}:
+{
 
   imports = [
     ./mako.nix
-    ./sway.nix
-    # ./hyprland.nix
+    # ./sway.nix
+    ./hyprland.nix
   ];
 
 }

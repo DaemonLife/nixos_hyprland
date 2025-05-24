@@ -1,7 +1,13 @@
-{ config, pkgs, lib, ... }: {
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
+{
 
   # --------------------------------
-  # SYSTEM THEME 
+  # SYSTEM THEME
   # --------------------------------
 
   imports = [ ./modules/stylix.nix ];
@@ -29,13 +35,15 @@
   };
 
   # --------------------------------
-  # ENVIRONMENTS 
+  # ENVIRONMENTS
   # --------------------------------
 
   environment = {
     variables =
-      let EDITOR = "nvim";
-      in {
+      let
+        EDITOR = "hx";
+      in
+      {
         EDITOR = "${EDITOR}";
         SYSTEMD_EDITOR = "${EDITOR}";
         VISUAL = "${EDITOR}";
@@ -66,20 +74,19 @@
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
-  services.printing.drivers = with pkgs;
-    [
-      gutenprint # Drivers for many different printers from many different vendors.
-      # gutenprintBin # Additional, binary-only drivers for some printers.
-      # hplip # Drivers for HP printers.
-      # postscript-lexmark # Postscript drivers for Lexmark
-      # splix # Drivers for printers supporting SPL (Samsung Printer Language).
-      # brlaser # Drivers for some Brother printers
-      # brgenml1lpr # Generic drivers for more Brother printers
-      # fxlinuxprint # Fuji Xerox Linux Printer Driver
-      # samsung-unified-linux-driver # Proprietary Samsung Drivers
-      # cnijfilter2 # Proprietary drivers for some Canon Pixma devices 
-      # foomatic-db-ppds-withNonfreeDb
-    ];
+  services.printing.drivers = with pkgs; [
+    gutenprint # Drivers for many different printers from many different vendors.
+    # gutenprintBin # Additional, binary-only drivers for some printers.
+    # hplip # Drivers for HP printers.
+    # postscript-lexmark # Postscript drivers for Lexmark
+    # splix # Drivers for printers supporting SPL (Samsung Printer Language).
+    # brlaser # Drivers for some Brother printers
+    # brgenml1lpr # Generic drivers for more Brother printers
+    # fxlinuxprint # Fuji Xerox Linux Printer Driver
+    # samsung-unified-linux-driver # Proprietary Samsung Drivers
+    # cnijfilter2 # Proprietary drivers for some Canon Pixma devices
+    # foomatic-db-ppds-withNonfreeDb
+  ];
 
   # Enable scanner
   hardware.sane.enable = true; # enables support for scanners
@@ -127,21 +134,34 @@
     shell = pkgs.fish;
     useDefaultShell = true;
 
-    extraGroups = [ "networkmanager" "wheel" "video" "input" "scanner" "lp" ];
+    extraGroups = [
+      "networkmanager"
+      "wheel"
+      "video"
+      "input"
+      "scanner"
+      "lp"
+    ];
     packages = with pkgs; [ flatpak ];
   };
 
   # --------------------------------
-  # NIX SETTING 
+  # NIX SETTING
   # --------------------------------
 
-  nixpkgs.config = { allowUnfree = true; };
+  nixpkgs.config = {
+    allowUnfree = true;
+  };
   nix = {
     # Allow unfree and experimental packages
-    settings.experimental-features = [ "nix-command" "flakes" ];
+    settings.experimental-features = [
+      "nix-command"
+      "flakes"
+    ];
 
     optimise.automatic = true;
     settings.auto-optimise-store = true;
+
   };
 
   # --------------------------------
@@ -172,7 +192,7 @@
   ];
 
   # --------------------------------
-  # OTHER PROGRAMS 
+  # OTHER PROGRAMS
   # --------------------------------
 
   qt.enable = true;
@@ -189,18 +209,18 @@
 
   programs = {
 
-    sway = {
-      enable = true;
-      wrapperFeatures.gtk = true; # gtk fix
-      extraPackages = with pkgs; [
-        swaylock
-        swayidle
-        grim # screenshot functionality
-        slurp # screenshot functionality
-        wl-clipboard # wl-copy and wl-paste for copy/paste from stdin / stdout
-        mako # notification system developed by swaywm maintainer
-      ];
-    };
+    # sway = {
+    #   enable = true;
+    #   wrapperFeatures.gtk = true; # gtk fix
+    #   extraPackages = with pkgs; [
+    #     swaylock
+    #     swayidle
+    #     grim # screenshot functionality
+    #     slurp # screenshot functionality
+    #     wl-clipboard # wl-copy and wl-paste for copy/paste from stdin / stdout
+    #     mako # notification system developed by swaywm maintainer
+    #   ];
+    # };
 
     nh = {
       enable = true;
@@ -257,20 +277,19 @@
     htop.enable = true;
     git.enable = true;
     fish.enable = true;
-    light.enable = true; # brightness control for sway
 
     # --- hyprland ---
-    # hyprland = {
-    # enable = true;
-    # withUWSM = true;
-    #   # package = pkgs.unstable.hyprland;
-    #   # package = pkgs.unstable.hyprland.override {
-    #   # package = pkgs.hyprland.override {
-    #   # don't use override if you don't want compiling
-    #   # withSystemd = false;
-    #   # legacyRenderer = false;
-    #   # };
-    # };
+    hyprland = {
+      enable = true;
+      withUWSM = true;
+      #   # package = pkgs.unstable.hyprland;
+      #   # package = pkgs.unstable.hyprland.override {
+      #   # package = pkgs.hyprland.override {
+      #   # don't use override if you don't want compiling
+      #   # withSystemd = false;
+      #   # legacyRenderer = false;
+      #   # };
+    };
     # --- hyprland ---
 
   };
@@ -290,9 +309,13 @@
     flatpak.enable = true;
     gvfs.enable = true; # Mount, trash, and other functionalities
     tumbler.enable = true; # Thunar thumbnail support for images
-    gnome.gnome-keyring.enable = true; # for sway
+    # gnome.gnome-keyring.enable = true; # for sway
     power-profiles-daemon.enable = false; # disable for tlp
-    thermald.enable = true; # Thermald prevents overheating 
+    thermald.enable = true; # Thermald prevents overheating
+
+    xserver.displayManager.gdm.enable = false;
+    xserver.displayManager.startx.enable = true;
+    xserver.desktopManager.gnome.enable = false;
 
     # logind = lib.mkForce {
     #   lidSwitch = "lock";
@@ -338,11 +361,11 @@
   };
 
   # --------------------------------
-  # SECURITY 
+  # SECURITY
   # --------------------------------
 
   security = {
-    polkit.enable = true; # authentication support for sway
+    # polkit.enable = true; # authentication support for
     pam.services.swaylock = { }; # screen lock
   };
 
@@ -364,11 +387,13 @@
         GRUB_CMDLINE_LINUX_DEFAULT="loglevel=1"
       '';
     };
-    efi = { canTouchEfiVariables = true; };
+    efi = {
+      canTouchEfiVariables = true;
+    };
   };
 
   # --------------------------------
-  # OTHER STUFF 
+  # OTHER STUFF
   # --------------------------------
 
   # Open ports in the firewall.
@@ -377,5 +402,5 @@
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
 
-  system.stateVersion = "23.11";
+  system.stateVersion = "24.11";
 }

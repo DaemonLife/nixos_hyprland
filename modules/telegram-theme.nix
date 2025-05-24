@@ -1,32 +1,38 @@
-{ config, lib, pkgs, ... }: with config.lib.stylix.colors; let
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+with config.lib.stylix.colors;
+let
 
   telegram_style = ''
-
     // --- Main UI ---
     windowBg: #${base00};
     windowFg: #${base05};
-    windowBgOver: #${base02}; // selected bg in menu
-    windowFgOver: #${base00}; // selected fg in menu
+    windowBgOver: #${base01}; // hover bg in menu
+    windowFgOver: #${base06}; // hover fg in menu
     menuBg: #${base00}; // global bg popup animation after click
     windowFgActive: #${base00}; // fg for some light buttons
 
     // some boxes in ui
-    boxBg: #${base00};
-    boxTextFg: #${base05};
+    boxBg: windowBg;
+    boxTextFg: windowFg;
     boxTextFgGood: #${base0B};
     boxTextFgError: #${base08};
-    boxTitleFg: #${base05};
+    boxTitleFg: windowFg;
     boxSearchBg: #${base01};
-    boxTitleAdditionalFg: #${base05};
+    boxTitleAdditionalFg: #${base06};
     boxTitleCloseFg: #${base05};
-    boxTitleCloseFgOver: #${base05};
-    
+    boxTitleCloseFgOver: #${base06};
+
     // up /\ and down \/ arrow for chat and chat list
-    historyToDownBg: #00000000;
-    historyToDownBgOver: #00000000;
-    historyToDownBgRipple: #00000000;
-    historyToDownFg: #${base04};
-    historyToDownFgOver: #${base05};
+    historyToDownBg: #${base01}7f;
+    historyToDownBgOver: #${base01};
+    historyToDownBgRipple: #${base0D};
+    historyToDownFg: #${base05};
+    historyToDownFgOver: #${base06};
     historyToDownShadow: #00000000;
 
     // bottom button in chat or channel (mute/unmute/join)
@@ -40,8 +46,8 @@
     activeButtonBgRipple: #${base0D};
     activeButtonFg: #${base05};
     activeButtonFgOver: #${base06};
-    activeButtonSecondaryFg: #${base05};
-    activeButtonSecondaryFgOver: #${base06};
+    activeButtonSecondaryFg: #${base06};
+    activeButtonSecondaryFgOver: #${base07};
 
     // back cancel, close buttons
     cancelIconFg: #${base05};
@@ -57,51 +63,43 @@
 
     // --- Main settings menu ---
     mainMenuBg: #${base00};
-    mainMenuCoverBg: #${base02};
+    mainMenuCoverBg: #${base01};
     mainMenuCoverFg: #${base05};
     checkboxFg: #${base05}; // checkbox and radio buttons
-    // slider (notifications and sounds)
-    sliderBgInactive: #${base01};
-    sliderBgActive: #${base05};
+    sliderBgInactive: #${base01}; // slider (notifications and sounds)
+    sliderBgActive: #${base06};
 
-    windowSubTextFg: #${base04};
-    windowSubTextFgOver: #${base05};
-    windowBoldFg: #${base06};
-    windowBoldFgOver: #${base0B};
-    windowActiveTextFg: #${base03}; // setap status, description (on, off, ...)
+    windowSubTextFg: #${base05};
+    windowSubTextFgOver: #${base06};
+    windowBoldFg: #${base05}; // fg text in some menu
+    windowBoldFgOver: #${base06}; // hover fg text in some menu
+    windowActiveTextFg: #${base04}; // setap status, description (on, off, ...)
 
     // --- Notificaton ---
     notificationBg: #${base00};
 
     // --- Program window title ---
     titleBg: #${base00};
-    titleBgActive: #${base01};
-    titleButtonBg: titleBg;
-    titleButtonFg: #${base05};
-    titleButtonBgOver: #${base00};
-    titleButtonFgOver: #${base06};
-    titleButtonBgActive: titleButtonBg;
-    titleButtonFgActive: titleButtonFg;
-    titleButtonBgActiveOver: titleButtonBgOver;
-    titleButtonFgActiveOver: #${base05};
-    titleButtonCloseBg: titleButtonBg;
-    titleButtonCloseFg: titleButtonFg;
-    titleButtonCloseBgOver: #${base08};
-    titleButtonCloseFgOver: #${base06};
-    titleButtonCloseBgActive: #${base05};
-    titleButtonCloseFgActive: #${base05};
-    titleButtonCloseBgActiveOver: #${base08};
-    titleButtonCloseFgActiveOver: #${base05};
-    titleFgActive: #${base05};
     titleFg: #${base05};
 
-    // --- Scroll in CHAT --- 
-    // bar itself
-    historyScrollBarBg: #${base04};
-    historyScrollBarBgOver: #${base05};
-    // only bg
-    historyScrollBg: #${base01};
-    historyScrollBgOver: #${base02};
+    titleFgActive: titleFg;
+    titleBgActive: titleBg;
+    titleButtonBg: titleBg;
+    titleButtonFg: titleFg;
+    titleButtonBgOver: #${base01};
+    titleButtonFgOver: titleFg;
+    titleButtonBgActive: titleBgActive;
+    titleButtonFgActive: titleFgActive;
+    titleButtonBgActiveOver: titleButtonBgOver;
+    titleButtonFgActiveOver: titleFgActive;
+    titleButtonCloseBg: titleBg;
+    titleButtonCloseFg: titleFg;
+    titleButtonCloseBgOver: #${base08};
+    titleButtonCloseFgOver: #${base00};
+    titleButtonCloseBgActive: titleBgActive;
+    titleButtonCloseFgActive: titleFgActive;
+    titleButtonCloseBgActiveOver: titleButtonCloseBgOver;
+    titleButtonCloseFgActiveOver: titleButtonCloseFgOver;
 
     // --- Scroll in CHAT LIST --- 
     // bar itself
@@ -111,58 +109,66 @@
     scrollBg: #${base01};
     scrollBgOver: #${base02};
 
+    // --- Scroll in CHAT --- 
+    // bar itself
+    historyScrollBarBg: scrollBarBg;
+    historyScrollBarBgOver: scrollBarBgOver;
+    // only bg
+    historyScrollBg: scrollBg;
+    historyScrollBgOver: scrollBgOver;
+
     // --- Media player ---
-    windowBgActive: #${base0E}; // fg status line active player in chat
-    mediaviewPlaybackProgressFg: #${base03}; // player progress line in chat and FUCK DAMN time clock in full screen video
+    windowBgActive: #${base0D}; // player progress line fg in chat and (NO WAY!!!...) sliders color, blue default 
+    mediaviewPlaybackProgressFg: #${base04}; // player progress line bg in chat and FUCK DAMN time clock in full screen video
 
     // --- Top compact media player ---
     mediaPlayerBg: #${base00};
     mediaPlayerActiveFg: #${base05};
-    mediaPlayerInactiveFg: #${base03};
+    mediaPlayerInactiveFg: #${base04};
     mediaPlayerDisabledFg: #${base03};
 
     // --- Media in full screen ---
     // loading icon
-    radialFg: #${base0D};
+    radialFg: #${base05};
     radialBg: #${base01};
 
     mediaviewMenuFg: #${base05}; // menu text fg
     mediaviewMenuBgOver: #${base03}; // statick bg of speed line
     mediaviewBg: #${base00};
-    mediaviewVideoBg: #${base00};
-    mediaviewControlFg: #${base05};
+    mediaviewVideoBg: mediaviewBg;
+    mediaviewControlFg: mediaviewMenuFg;
 
     // caption for photo
-    mediaviewCaptionBg: #${base00}88;
+    mediaviewCaptionBg: #${base00}aa;
     mediaviewCaptionFg: #${base05};
     mediaviewTextLinkFg: #${base0D};
 
     // when clicked save button
-    mediaviewSaveMsgBg: #${base00};
+    mediaviewSaveMsgBg: #${base01};
     mediaviewSaveMsgFg: #${base05};
 
     // video player
     mediaviewPlaybackActive: #${base05}; // status line fs player
     mediaviewPlaybackInactive: #${base03}; // inactive status line fs player
-    mediaviewPlaybackActiveOver: #${base05};
-    mediaviewPlaybackInactiveOver: #${base03};
+    mediaviewPlaybackActiveOver: #${base06};
+    mediaviewPlaybackInactiveOver: #${base04};
     mediaviewPlaybackIconFg: #${base05};
-    mediaviewPlaybackIconFgOver: #${base05};
+    mediaviewPlaybackIconFgOver: #${base06};
 
     // transparent layer (for png)
     mediaviewTransparentBg: #000000ff;
-    mediaviewTransparentFg: #${base05};
+    mediaviewTransparentFg: #${base06};
 
     // --- Effects ---
     titleShadow: #00000000;
-    windowShadowFg: #00000000;
-    windowShadowFgFallback: #00000000;
-    shadowFg: #00000000;
-    slideFadeOutBg: #00000000;
-    slideFadeOutShadowFg: #00000000;
+    windowShadowFg: #0000007f;
+    windowShadowFgFallback: #0000007f;
+    shadowFg: #${base00}; // borders color
+    slideFadeOutBg: #0000007f;
+    slideFadeOutShadowFg: #0000007f;
     imageBg: #000000ff;
     imageBgTransparent: #000000ff;
-    layerBg: #00000000; // Side bar shade
+    layerBg: #00000050; // Side bar shade
 
     // input messages in chat
     msgInShadow: #00000000;
@@ -171,40 +177,40 @@
     // output messages in chat
     msgOutShadow: #00000000;
     msgOutShadowSelected: #00000000;
-    
+
     // --- Cancel operation button ---
     lightButtonBg: #${base01};
     lightButtonBgOver: #${base02};
     lightButtonBgRipple: #${base01};
     lightButtonFg: #${base05};
     lightButtonFgOver: #${base06};
-    
+
     // --- Attention (log out button) ---
     attentionButtonFg: #${base05};
-    attentionButtonFgOver: #${base08};
-    attentionButtonBgOver: #${base05};
+    attentionButtonFgOver: #${base00};
+    attentionButtonBgOver: #${base08};
     attentionButtonBgRipple: #${base08};
 
     // --- Close button in notifications? ---
     smallCloseIconFg: #${base05};
     smallCloseIconFgOver: #${base06};
-    
+
     // --- Message input box ---
-    placeholderFg: #${base03}; // text and cursor
-    placeholderFgActive: #${base05}; // text and cursor
-    // area
-    historyComposeAreaBg: #${base00};
-    historyComposeAreaFg: #${base05};
-    historyComposeAreaFgService: #${base05};
+    placeholderFg: #${base05}; // 'Wrtie a message...' text (and fg search input... IDIOTS!!!)
+    placeholderFgActive: #${base04}; // 'Wrtie a message...' text active (and fg search input active..)
     historyComposeIconFg: #${base05};
-    historyComposeIconFgOver: #${base05};
-    historySendIconFg: #${base05};
-    historySendIconFgOver: #${base05};
+    historyComposeIconFgOver: #${base06};
+
+    historyComposeAreaBg: #${base00};
+    historyComposeAreaFg: historyComposeIconFg;
+    historyComposeAreaFgService: historyComposeIconFg;
+    historySendIconFg: historyComposeIconFg;
+    historySendIconFgOver: historyComposeIconFgOver;
     historyPinnedBg: #${base00};
     historyReplyBg: historyComposeAreaBg;
-    historyReplyIconFg: historyTextInFg;
-    historyReplyCancelFg: #${base05};
-    historyReplyCancelFgOver: #${base05};
+    historyReplyIconFg: historyComposeIconFg;
+    historyReplyCancelFg: historyComposeIconFg;
+    historyReplyCancelFgOver: historyComposeIconFgOver;
 
     // --- Popup when hover message's clock ---
     tooltipBg: #${base00};
@@ -227,8 +233,8 @@
     contactsStatusFgOnline: #${base05};
 
     // --- Photo editor ---
-    photoCropFadeBg: #${base00}7f;
-    photoCropPointFg: #${base03}7f;
+    photoCropFadeBg: #000000aa;
+    photoCropPointFg: #${base02}7f;
 
     // --- Login menu? ---
     introBg: #${base00};
@@ -252,24 +258,27 @@
     dialogsBg: #${base00};
     dialogsNameFg: #${base05};
     dialogsChatIconFg: dialogsNameFg;
-    dialogsDateFg: #${base05};
-    dialogsTextFg: #${base04};
-    dialogsTextFgService: #${base04};
-    dialogsDraftFg: #${base04};
-    dialogsVerifiedIconBg: #${base04};
-    dialogsVerifiedIconFg: #${base00};
-    dialogsSendingIconFg: #${base05};
-    dialogsSentIconFg: #${base05};
+    dialogsDateFg: dialogsNameFg;
+    dialogsTextFg: dialogsNameFg;
+    dialogsTextFgService: dialogsNameFg;
+    dialogsDraftFg: dialogsNameFg;
+    dialogsVerifiedIconBg: dialogsNameFg;
+    dialogsVerifiedIconFg: dialogsBg;
+    dialogsSendingIconFg: dialogsNameFg;
+    dialogsSentIconFg: dialogsNameFg;
+
+    // chat msg counter icon
     dialogsUnreadBg: #${base0D};
     dialogsUnreadBgMuted: #${base04};
     dialogsUnreadFg: #${base00};
+
+    dialogsTextFgOver: #${base06};
     dialogsBgOver: #${base01};
-    dialogsNameFgOver: #${base05};
-    dialogsChatIconFgOver: #${base05};
-    dialogsDateFgOver: #${base05};
-    dialogsTextFgOver: windowSubTextFgOver;
-    dialogsTextFgServiceOver: dialogsTextFgService;
-    dialogsDraftFgOver: dialogsDraftFg;
+    dialogsTextFgServiceOver: dialogsTextFgOver;
+    dialogsNameFgOver: dialogsTextFgOver;
+    dialogsChatIconFgOver: dialogsTextFgOver;
+    dialogsDateFgOver: dialogsTextFgOver;
+    dialogsDraftFgOver: dialogsTextFgOver;
     dialogsVerifiedIconBgOver: dialogsVerifiedIconBg;
     dialogsVerifiedIconFgOver: dialogsVerifiedIconFg;
     dialogsSendingIconFgOver: dialogsSendingIconFg;
@@ -277,6 +286,7 @@
     dialogsUnreadBgOver: dialogsUnreadBg;
     dialogsUnreadBgMutedOver: dialogsUnreadBgMuted;
     dialogsUnreadFgOver: dialogsUnreadFg;
+
     dialogsBgActive: #${base02};
     dialogsNameFgActive: #${base06};
     dialogsChatIconFgActive: #${base06};
@@ -296,10 +306,10 @@
 
     // --- Search ---
     filterInputActiveBg: #${base02}; // top search box in chat list
-    filterInputInactiveBg: #${base02};
-    filterInputBorderFg: #${base05};
-    searchedBarBg: #${base00}; // bottom bar
-    searchedBarFg: #${base05};
+    filterInputInactiveBg: filterInputActiveBg;
+    filterInputBorderFg: #${base02}; // ???
+    searchedBarBg: #${base00}; // bottom bar bg
+    searchedBarFg: #${base04}; // bottom bar fg
 
     // --- Emoji, stickers, GIFs panel ---
     emojiPanBg: #${base01};
@@ -307,7 +317,7 @@
     emojiPanHeaderFg: #${base05};
     emojiPanHeaderBg: #${base01}; // it does not works...
     emojiIconFg: #${base05}; // emoji category fg
-    stickerPreviewBg: #${base00}80; // full screen bg
+    stickerPreviewBg: #${base00}7f; // full screen bg
     stickerPanDeleteBg: #${base01}; // delete icon for sticker
     stickerPanDeleteFg: #${base05};
 
@@ -318,11 +328,11 @@
     reportSpamFg: #${base05};
 
     // Media in msg wheh msg selected
-    msgSelectOverlay: #${base0D}50;
-    msgStickerOverlay: #${base0D}50;
+    msgSelectOverlay: #${base0D}7f;
+    msgStickerOverlay: #${base0D}7f;
 
     // sound icon in msg media
-    historyFileThumbIconFg: msgInBg;
+    historyFileThumbIconFg: #${base05};
     historyFileThumbIconFgSelected: #${base0D};
 
     // media download animation in msg
@@ -330,14 +340,14 @@
     historyFileThumbRadialFgSelected: historyFileThumbIconFgSelected;
 
     // servis msg is msg of chat itself
-    msgServiceFg: #${base05};
+    msgServiceFg: #${base06};
     msgServiceBg: #${base01};
     msgServiceBgSelected: #${base0D};
 
     // date on image in msg
     msgDateImgFg: #${base05};
-    msgDateImgBg: #${base01};
-    msgDateImgBgOver: #${base01};
+    msgDateImgBg: #${base01}7f;
+    msgDateImgBgOver: msgDateImgBg;
     msgDateImgBgSelected: #${base01};
 
     // bot buttons
@@ -347,70 +357,80 @@
 
     // --- Input message in chat ---
     historyTextInFg: #${base05};
-    historyTextInFgSelected: #${base00};
     historyCaptionInFg: historyTextInFg;
     historyFileNameInFg: historyTextInFg;
-    historySendingInIconFg: #${base04};
-    msgInBg: #${base01};
-    msgInBgSelected: #${base0D};
-    msgInServiceFg: #${base05};
-    msgInServiceFgSelected: #${base0D};
-    msgInDateFg: #${base05};
-    msgInDateFgSelected: #${base00};
-    msgInMonoFg: #${base05};
-    msgInReplyBarColor: #${base05};
-    msgInReplyBarSelColor: #${base05};
-    historyFileInIconFg: #${base01};
-    historyFileInIconFgSelected: #${base0D};
-    historyFileInRadialFg: historyFileInIconFg;
-    historyFileInRadialFgSelected: historyFileInIconFgSelected;
+    historySendingInIconFg: historyTextInFg;
+    msgInBg: #${base00};
+    msgInServiceFg: historyTextInFg;
+    msgInDateFg: historyTextInFg;
+    msgInMonoFg: historyTextInFg;
+    msgInReplyBarColor: historyTextInFg;
+    msgInReplyBarSelColor: historyTextInFg;
+
+    historyFileInIconFg: msgInBg;
+    historyFileInRadialFg: msgInBg;
     msgFileThumbLinkInFg: lightButtonFg;
-    msgFileThumbLinkInFgSelected: lightButtonFgOver;
-    msgFileInBg: #${base00};
-    msgFileInBgOver: windowSubTextFgOver;
-    msgFileInBgSelected: windowBoldFg;
+    msgFileInBg: #${base05};
+    msgFileInBgOver: #${base06};
+
     msgWaveformInActive: #${base0D};
-    msgWaveformInActiveSelected: #${base05};
     msgWaveformInInactive: #${base02};
-    msgWaveformInInactiveSelected: #${base03};
     mediaInFg: msgInDateFg;
-    mediaInFgSelected: msgInDateFgSelected;
-    historyLinkInFg: #${base0D};
+    historyLinkInFg: #${base0E};
+
+    // selected
+    historyTextInFgSelected: #${base00};
+    msgInBgSelected: #${base0D};
+    msgInServiceFgSelected: #${base0D};
+    msgInDateFgSelected: #${base00};
+    historyFileInIconFgSelected: #${base0D};
+    historyFileInRadialFgSelected: historyFileInIconFgSelected;
+    msgFileThumbLinkInFgSelected: #${base05};
+    msgFileInBgSelected: windowBoldFg;
+    msgWaveformInActiveSelected: #${base06};
+    msgWaveformInInactiveSelected: #${base01};
+    mediaInFgSelected: #${base06};
 
     // --- Output message in chat (from me) ---
-    historyTextOutFg: historyTextInFg;
-    historyTextOutFgSelected: historyTextInFgSelected;
-    historyCaptionOutFg: historyCaptionInFg;
-    historyFileNameOutFg: historyFileNameInFg;
-    historyOutIconFg: historyInIconFg;
-    historyOutIconFgSelected: historyInIconFgSelected;
-    historySendingOutIconFg: historySendingInIconFg;
-    msgOutBg: msgInBg;
-    msgOutBgSelected: msgInBgSelected;
-    msgOutDateFg: msgInDateFg;
-    msgOutDateFgSelected: msgInDateFgSelected;
-    msgOutServiceFg: msgInServiceFg;
-    msgOutServiceFgSelected: msgInServiceFgSelected;
-    msgOutMonoFg: msgInMonoFg;
-    msgOutReplyBarColor: msgInReplyBarColor;
-    msgOutReplyBarSelColor: msgInReplyBarSelColor;
-    historyFileOutIconFg: historyFileInIconFg;
-    historyFileOutIconFgSelected: historyFileInIconFgSelected;
-    historyFileOutRadialFg: historyFileInRadialFg;
-    historyFileOutRadialFgSelected: historyFilenInRadialFgSelected;
-    msgFileThumbLinkOutFg: msgFileThumbLinkInFg;
-    msgFileThumbLinkOutFgSelected: msgFileThumbLinkInFgSelected;
-    msgFileOutBg: msgFileInBg;
-    msgFileOutBgOver: msgFileInBgOver;
-    msgFileOutBgSelected: msgFileInBgSelected;
+    historyTextOutFg: #${base00};
+    historyCaptionOutFg: historyTextOutFg;
+    historyFileNameOutFg: historyTextOutFg;
+    historyOutIconFg: historyTextOutFg;
+    msgOutBg: #${base05};
+    msgOutDateFg: historyTextOutFg;
+    msgOutServiceFg: historyTextOutFg;
+    msgOutMonoFg: historyTextOutFg;
+    msgOutReplyBarColor: historyTextOutFg;
+
+    historyFileOutIconFg: msgOutBg;
+    historyFileOutRadialFg: msgOutBg;
+    msgFileThumbLinkOutFg: #${base0D}; // 'OPEN WITH' file text
+    msgFileOutBg: #${base00};
+    msgFileOutBgOver: #${base01};
+
     msgWaveformOutActive: msgWaveformInActive;
-    msgWaveformOutActiveSelected: msgWaveformInActiveSelected;
     msgWaveformOutInactive: msgWaveformInInactive;
+
+    mediaOutFg: historyTextOutFg;
+    historyLinkOutFg: #${base0E};
+
+    // selected like in
+    historyTextOutFgSelected: historyTextInFgSelected;
+    historyOutIconFgSelected: historyTextInFgSelected;
+    msgOutReplyBarSelColor: msgInReplyBarSelColor;
+    historySendingOutIconFg: historyTextInFgSelected;
+    msgFileThumbLinkOutFgSelected: historyTextInFgSelected;
+    msgFileOutBgSelected: msgFileInBgSelected;
+    msgWaveformOutActiveSelected: msgWaveformInActiveSelected;
     msgWaveformOutInactiveSelected: msgWaveformInInactiveSelected;
-    mediaOutFg: mediaInFg;
     mediaOutFgSelected: mediaInFgSelected;
-    historyLinkOutFg: historyLinkInFg;
-    
+    historyFileOutIconFgSelected: historyFileInIconFgSelected;
+    historyFileOutRadialFgSelected: historyFilenInRadialFgSelected;
+    msgOutServiceFgSelected: msgInServiceFgSelected;
+    msgOutDateFgSelected: msgInDateFgSelected;
+    msgOutBgSelected: msgInBgSelected;
+
+
     // --- User withoin avatar ---
     historyPeerUserpicFg: #${base01}; // default color
     historyPeer1NameFg: #${base08}; // red
@@ -458,21 +478,21 @@
 
     // --- Side bar ---
     sideBarBg: #${base00};
-    sideBarBgActive: #${base02};
-    sideBarIconFg: #${base03};
-    sideBarIconFgActive: #${base0D};
-    sideBarBadgeBg: #${base0D};
-    sideBarBadgeBgMuted: #${base03}; // non active or muted badge
-    sideBarBadgeFg: #${base00}; // text in badge
+    sideBarBgActive: sideBarBg;
+    sideBarIconFg: #${base04};
+    sideBarIconFgActive: #${base0C};
+    sideBarBadgeBg: sideBarIconFgActive;
+    sideBarBadgeBgMuted: sideBarIconFg; // not active or muted badge
+    sideBarBadgeFg: sideBarBg; // text in badge
     sideBarBgRipple: #${base08}; // bg animation when icon clicked
 
     // both work like active lol
-    sideBarTextFgActive: #${base0D};
-    sideBarTextFg: #${base03};
+    sideBarTextFgActive: sideBarIconFgActive;
+    sideBarTextFg: sideBarIconFg;
 
     // --- ??? ---
     activeLineFg: #${base05};
-    activeLineFgError: #${base08};
+    activeLineFgError: #${base05};
     outlineButtonBg: #${base00};
     outlineButtonBgOver: lightButtonBgOver;
     outlineButtonOutlineFg: windowBgActive;
@@ -526,7 +546,7 @@ in
 
     cd $HOME/.config && echo "${telegram_style}" > tmp_colors.tdesktop-theme;
     sed '/^#/d' tmp_colors.tdesktop-theme > colors.tdesktop-theme;
-    ${pkgs.imagemagick}/bin/magick -size 2960x2960 xc:#${base00} background.jpg;
+    ${pkgs.imagemagick}/bin/magick -size 2960x2960 xc:#${base02} background.jpg;
     ${pkgs.zip}/bin/zip telegram-base16.zip background.jpg colors.tdesktop-theme;
     mv telegram-base16.zip telegram-base16.tdesktop-theme;
     rm -rf colors.tdesktop-theme tmp_colors.tdesktop-theme background.jpg;

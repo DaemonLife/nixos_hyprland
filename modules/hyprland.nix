@@ -1,4 +1,9 @@
-{ config, lib, ... }:
+{
+  pkgs,
+  config,
+  lib,
+  ...
+}:
 let
   execPref = "uwsm app -- ";
   # execPref = ""; # if you don't use UWSM
@@ -6,12 +11,18 @@ in
 {
 
   imports = [
-    ./waybar_hyprland.nix
+    (import ./waybar.nix {
+      inherit config lib;
+      MY_DE = "hyprland";
+    })
     ./mako.nix
     ./fuzzel.nix
     ./swaylock.nix
     ./swayidle.nix
-    # ./hypridle.nix
+  ];
+
+  home.packages = with pkgs; [
+    brightnessctl
   ];
 
   wayland.windowManager.hyprland = {
@@ -23,7 +34,7 @@ in
 
   wayland.windowManager.hyprland.settings = with config.lib.stylix.colors; {
     "$mod" = "SUPER";
-    "$terminal" = "kitty --single-instance";
+    "$terminal" = "$TERMINAL";
     # "$filemanager" = "nautilus -w";
     "$filemanager" = "thunar";
     "$menu" = "fuzzel -l 10";
@@ -44,17 +55,14 @@ in
 
     exec-once = [
       "${execPref}pactl set-source-mute @DEFAULT_SOURCE@ on" # mic off
-      "${execPref}rfkill block bluetooth" # bt off
+      "${execPref}bluetooth off"
       "${execPref}waybar"
       "${execPref}mako"
-      # "${execPref}udiskie -a"
+      "${execPref}udiskie -a"
       "${execPref}swayidle -w timeout 540 'hyprctl dispatch dpms off' timeout 600 'hyprctl keyword input:kb_layout us,ru && ${execPref}swaylock' resume 'hyprctl dispatch dpms on'"
     ];
 
     exec = [
-      # wallpaper
-      # "${execPref}swaybg -i $HOME/nix/images/image.jpg"
-
       # maze generator
       # "bash $HOME/nix/scripts/maze/run.sh ${base00} ${base02}"
       # "swaybg -i $HOME/nix/scripts/maze/maze.png"
@@ -87,11 +95,10 @@ in
       # default_monitor = "";
     };
 
-    # for hyprland v.47
-    # ecosystem = {
-    #   no_update_news = true;
-    #   no_donation_nag = true;
-    # };
+    ecosystem = {
+      no_update_news = true;
+      no_donation_nag = true;
+    };
 
     general = {
       border_size = 4;
@@ -103,8 +110,11 @@ in
       allow_tearing = false;
     };
 
-    # disable borders if one window 
-    workspace = [ "w[tv1], gapsout:0, gapsin:0" "f[1], gapsout:0, gapsin:0" ];
+    # disable borders if one window
+    workspace = [
+      "w[tv1], gapsout:0, gapsin:0"
+      "f[1], gapsout:0, gapsin:0"
+    ];
     windowrulev2 = [
       "noanim,class:^(.*)$" # testin
       "bordersize 0, floating:0, onworkspace:w[tv1]"
@@ -129,7 +139,9 @@ in
     };
 
     # Scale options
-    xwayland = { force_zero_scaling = true; };
+    xwayland = {
+      force_zero_scaling = true;
+    };
 
     decoration = {
       rounding = 0;
@@ -209,77 +221,89 @@ in
     ];
 
     # for one press
-    bind = [
-      # Run programs
-      "$mod, RETURN, exec, ${execPref}$terminal"
-      "$mod, RETURN, exec, ${execPref}hyprctl keyword input:kb_layout us,ru"
-      "$mod, D, exec, ${execPref}hyprctl keyword input:kb_layout us,ru && ${execPref}$menu"
-      "$mod, N, exec, ${execPref}$filemanager"
-      "$mod, y, exec, ${execPref}kitty --single-instance --hold $HOME/nix/scripts/y.fish"
-      "$mod, B, exec, ${execPref}$browser"
-      "$mod SHIFT, B, exec, ${execPref}proxychains4 $browser --set window.title_format [VPN]\\ {perc}{current_title}{title_sep}qutebrowser"
-      "$mod, T, exec, ${execPref}telegram-desktop"
-      # "$mod, O, exit"
+    bind =
+      [
+        # Run programs
+        "$mod, RETURN, exec, ${execPref}$terminal"
+        "$mod, RETURN, exec, ${execPref}hyprctl keyword input:kb_layout us,ru"
+        "$mod, A, exec, ${execPref}hyprctl keyword input:kb_layout us,ru && ${execPref}$menu"
+        "$mod, N, exec, ${execPref}$filemanager"
+        "$mod, y, exec, ${execPref}$terminal --hold $HOME/nix/scripts/y.fish"
+        "$mod, B, exec, ${execPref}$browser"
+        "$mod SHIFT, B, exec, ${execPref}proxychains4 $browser --set window.title_format [VPN]\\ {perc}{current_title}{title_sep}qutebrowser"
+        "$mod, T, exec, ${execPref}telegram-desktop"
+        # "$mod, O, exit"
 
-      # Windows control
-      "$mod, q, killactive"
-      "$mod, v, togglefloating"
-      # "$mod, P, pseudo"
-      "$mod, s, togglesplit"
-      # "$mod, g, togglegroup"
-      # "$mod, tab, changegroupactive"
-      "$mod, f, fullscreen"
-      "$mod, Tab, cyclenext"
-      "$mod, Tab, bringactivetotop"
+        # Windows control
+        "$mod, q, killactive"
+        "$mod, v, togglefloating"
+        # "$mod, P, pseudo"
+        "$mod, s, togglesplit"
+        # "$mod, g, togglegroup"
+        # "$mod, tab, changegroupactive"
+        "$mod, f, fullscreen"
+        "$mod, Tab, cyclenext"
+        "$mod, Tab, bringactivetotop"
 
-      # Move focus
-      "$mod, left, movefocus, l"
-      "$mod, right, movefocus, r"
-      "$mod, up, movefocus, u"
-      "$mod, down, movefocus, d"
-      "$mod, h, movefocus, l"
-      "$mod, l, movefocus, r"
-      "$mod, k, movefocus, u"
-      "$mod, j, movefocus, d"
+        # Move focus
+        "$mod, left, movefocus, l"
+        "$mod, right, movefocus, r"
+        "$mod, up, movefocus, u"
+        "$mod, down, movefocus, d"
+        "$mod, h, movefocus, l"
+        "$mod, l, movefocus, r"
+        "$mod, k, movefocus, u"
+        "$mod, j, movefocus, d"
 
-      # Move window
-      "$mod Control_L, left, movewindow, l"
-      "$mod Control_L, right, movewindow, r"
-      "$mod Control_L, up, movewindow, u"
-      "$mod Control_L, down, movewindow, d"
-      "$mod Control_L, h, movewindow, l"
-      "$mod Control_L, l, movewindow, r"
-      "$mod Control_L, k, movewindow, u"
-      "$mod Control_L, j, movewindow, d"
+        # Move window
+        "$mod Control_L, left, movewindow, l"
+        "$mod Control_L, right, movewindow, r"
+        "$mod Control_L, up, movewindow, u"
+        "$mod Control_L, down, movewindow, d"
+        "$mod Control_L, h, movewindow, l"
+        "$mod Control_L, l, movewindow, r"
+        "$mod Control_L, k, movewindow, u"
+        "$mod Control_L, j, movewindow, d"
 
-      # Workspace
-      "SHIFT Alt_L, RIGHT, workspace, +1"
-      "SHIFT Alt_L, LEFT, workspace, -1"
-      "SHIFT Alt_L, l, workspace, +1"
-      "SHIFT Alt_L, h, workspace, -1"
-      "SHIFT Alt_L, j, workspace, +1"
-      "SHIFT Alt_L, k, workspace, -1"
-      "SHIFT Alt_L, mouse_up, workspace, +1"
-      "SHIFT Alt_L, mouse_down, workspace, -1"
+        # Workspace
+        "SHIFT Alt_L, RIGHT, workspace, +1"
+        "SHIFT Alt_L, LEFT, workspace, -1"
+        "SHIFT Alt_L, l, workspace, +1"
+        "SHIFT Alt_L, h, workspace, -1"
+        "SHIFT Alt_L, j, workspace, +1"
+        "SHIFT Alt_L, k, workspace, -1"
+        "SHIFT Alt_L, mouse_up, workspace, +1"
+        "SHIFT Alt_L, mouse_down, workspace, -1"
 
-      # Lock screen
-      ", F10, exec, ${execPref}hyprctl keyword input:kb_layout us,ru"
-      ", F10, exec, ${execPref}swaylock"
+        # Lock screen
+        ", F10, exec, ${execPref}hyprctl keyword input:kb_layout us,ru"
+        ", F10, exec, ${execPref}swaylock"
 
-      # Screenshot
-      "SUPER_SHIFT, s, exec, ${execPref}grimblast copysave area"
-      " , PRINT, exec, ${execPref}grimblast copysave output"
+        # Screenshot
+        "SUPER_SHIFT, s, exec, ${execPref}grimblast copysave area"
+        " , PRINT, exec, ${execPref}grimblast copysave output"
 
-    ] ++ (
-      # workspaces
-      # binds $mod + [shift +] {1..10} to [move to] workspace {1..10}
-      builtins.concatLists (builtins.genList
-        (x:
-          let ws = let c = (x + 1) / 10; in builtins.toString (x + 1 - (c * 10));
-          in [
-            "$mod, ${ws}, workspace, ${toString (x + 1)}"
-            "$mod Control_L, ${ws}, movetoworkspacesilent, ${toString (x + 1)}"
-          ]) 10));
+      ]
+      ++ (
+        # workspaces
+        # binds $mod + [shift +] {1..10} to [move to] workspace {1..10}
+        builtins.concatLists (
+          builtins.genList (
+            x:
+            let
+              ws =
+                let
+                  c = (x + 1) / 10;
+                in
+                builtins.toString (x + 1 - (c * 10));
+            in
+            [
+              "$mod, ${ws}, workspace, ${toString (x + 1)}"
+              "$mod Control_L, ${ws}, movetoworkspacesilent, ${toString (x + 1)}"
+            ]
+          ) 10
+        )
+      );
 
   };
 
@@ -292,7 +316,7 @@ in
 
     export CLUTTER_BACKEND=wayland
 
-    export SDL_VIDEODRIVER=wayland 
+    export SDL_VIDEODRIVER=wayland,x11
 
     export GDK_BACKEND=wayland,x11,*
     export GDK_DPI_SCALE=1
@@ -305,7 +329,7 @@ in
     export MOZ_ENABLE_WAYLAND=1
     export MOZ_USE_XINPUT2=1
 
-    export TERMINAL=kitty
+    export TERMINAL=foot
 
     export XCURSOR_SIZE=24
     export XCURSOR_THEME=Bibata-Modern-Ice
