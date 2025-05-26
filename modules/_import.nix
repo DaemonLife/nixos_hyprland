@@ -20,7 +20,7 @@
     ./yazi/yazi.nix
     ./stylix.nix
     ./joplin-cli.nix
-    # ./nixvim.nix
+    ./nixvim.nix
     ./helix.nix
     # ./sway.nix
     ./hyprland.nix

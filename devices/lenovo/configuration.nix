@@ -69,4 +69,6 @@
     }; # tlp
 
   }; # services
+
+  system.stateVersion = "24.11";
 }

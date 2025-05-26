@@ -16,22 +16,21 @@
         home-manager.follows = "home-manager";
       };
     };
-    # nixvim = {
-    #   url = "github:nix-community/nixvim/nixos-24.11";
-    #   inputs.nixpkgs.follows = "nixpkgs";
-    # };
+    nixvim = {
+      url = "github:nix-community/nixvim/nixos-25.05";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
-    {
-      self,
-      nixpkgs,
-      home-manager,
-      stylix,
-      # nixvim,
-      nixpkgs-unstable,
-      nixos-hardware,
-      ...
+    { self
+    , nixpkgs
+    , home-manager
+    , stylix
+    , nixvim
+    , nixpkgs-unstable
+    , nixos-hardware
+    , ...
     }@inputs:
     let
       system = "x86_64-linux";
@@ -47,7 +46,7 @@
             stylix.nixosModules.stylix
             home-manager.nixosModules.home-manager
             {
-              # home-manager.sharedModules = [ nixvim.homeManagerModules.nixvim ];
+              home-manager.sharedModules = [ nixvim.homeManagerModules.nixvim ];
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
               home-manager.users.user.imports = [
