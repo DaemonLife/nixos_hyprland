@@ -4,14 +4,15 @@
 
     bindings = {
       r = "cycle_values video-rotate 90 180 270 0";
-      "Alt+c" = "script-binding uosc/chapters";
-      "Alt+s" = "script-binding uosc/subtitles";
-      "Alt+a" = "script-binding uosc/audio";
+      "Alt+s" = "cycle sub";
+      "Alt+S" = "cycle sub down";
+      "Alt+a" = "cycle audio";
+      "Alt+A" = "cycle audio down";
     };
 
     scripts = with pkgs; [
       mpvScripts.sponsorblock
-      # mpvScripts.dynamic-crop # press 'C'
+      mpvScripts.dynamic-crop # press 'C'
       # mpvScripts.crop # press 'C'
       mpvScripts.thumbfast # previews
       mpvScripts.mpris # for using standard media keys

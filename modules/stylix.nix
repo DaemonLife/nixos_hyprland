@@ -6,7 +6,7 @@
 
     base16Scheme = "${pkgs.base16-schemes}/share/themes/horizon-terminal-dark.yaml";
 
-    image = ../images/image.jpg;
+    image = ../images/mars.jpg;
 
     # override = {
     # author = "DaemonLife";
@@ -33,7 +33,7 @@
 
     cursor.package = pkgs.bibata-cursors;
     cursor.name = "Bibata-Modern-Ice";
-    cursor.size = 24;
+    cursor.size = 26;
 
     fonts = {
       monospace = {
@@ -53,10 +53,10 @@
         name = "Noto Color Emoji";
       };
       sizes = {
-        applications = 16;
-        terminal = 15;
-        desktop = 16;
-        popups = 12;
+        applications = 22;
+        terminal = 20;
+        desktop = 20;
+        popups = 18;
       };
     };
 

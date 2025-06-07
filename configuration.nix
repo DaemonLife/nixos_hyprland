@@ -1,8 +1,7 @@
-{
-  config,
-  pkgs,
-  lib,
-  ...
+{ config
+, pkgs
+, lib
+, ...
 }:
 {
 
@@ -209,18 +208,18 @@
 
   programs = {
 
-    # sway = {
-    #   enable = true;
-    #   wrapperFeatures.gtk = true; # gtk fix
-    #   extraPackages = with pkgs; [
-    #     swaylock
-    #     swayidle
-    #     grim # screenshot functionality
-    #     slurp # screenshot functionality
-    #     wl-clipboard # wl-copy and wl-paste for copy/paste from stdin / stdout
-    #     mako # notification system developed by swaywm maintainer
-    #   ];
-    # };
+    sway = {
+      enable = true;
+      wrapperFeatures.gtk = true; # gtk fix
+      extraPackages = with pkgs; [
+        swaylock
+        swayidle
+        grim # screenshot functionality
+        slurp # screenshot functionality
+        wl-clipboard # wl-copy and wl-paste for copy/paste from stdin / stdout
+        mako # notification system developed by swaywm maintainer
+      ];
+    };
 
     nh = {
       enable = true;
@@ -279,17 +278,17 @@
     fish.enable = true;
 
     # --- hyprland ---
-    hyprland = {
-      enable = true;
-      withUWSM = true;
-      #   # package = pkgs.unstable.hyprland;
-      #   # package = pkgs.unstable.hyprland.override {
-      #   # package = pkgs.hyprland.override {
-      #   # don't use override if you don't want compiling
-      #   # withSystemd = false;
-      #   # legacyRenderer = false;
-      #   # };
-    };
+    # hyprland = {
+    #   enable = true;
+    #   withUWSM = true;
+    #   # package = pkgs.unstable.hyprland;
+    #   # package = pkgs.unstable.hyprland.override {
+    #   # package = pkgs.hyprland.override {
+    #   # don't use override if you don't want compiling
+    #   # withSystemd = false;
+    #   # legacyRenderer = false;
+    #   # };
+    # };
     # --- hyprland ---
 
   };
@@ -309,7 +308,7 @@
     flatpak.enable = true;
     gvfs.enable = true; # Mount, trash, and other functionalities
     tumbler.enable = true; # Thunar thumbnail support for images
-    # gnome.gnome-keyring.enable = true; # for sway
+    gnome.gnome-keyring.enable = true; # for sway
     power-profiles-daemon.enable = false; # disable for tlp
     thermald.enable = true; # Thermald prevents overheating
 

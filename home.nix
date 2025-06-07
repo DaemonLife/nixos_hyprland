@@ -29,6 +29,8 @@ in
       imagemagick
       zip
       onlyoffice-desktopeditors
+      nautilus
+      nautilus-open-any-terminal
 
       # Disk
       dua # disk usage TUI tool. Run: dua i
@@ -125,7 +127,7 @@ in
           height = 32;
           background = "00000000";
 
-          right = [ { clock.content = [ { string.text = "{time}"; } ]; } ];
+          right = [{ clock.content = [{ string.text = "{time}"; }]; }];
         };
       };
     };

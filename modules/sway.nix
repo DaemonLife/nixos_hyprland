@@ -1,8 +1,7 @@
-{
-  pkgs,
-  config,
-  lib,
-  ...
+{ pkgs
+, config
+, lib
+, ...
 }:
 {
 
@@ -18,10 +17,10 @@
   ];
 
   home.packages = with pkgs; [
-    swayidle
+    # swayidle
     autotiling-rs
     swaybg
-    grimblast
+    grimblast # screenshot
   ];
 
   wayland.windowManager.sway = with config.lib.stylix.colors; {
@@ -44,10 +43,10 @@
       };
 
       modifier = "Mod4";
-      # terminal = "${pkgs.kitty}/bin/kitty --single-instance";
-      terminal = "foot";
+      terminal = "${pkgs.kitty}/bin/kitty --single-instance";
+      # terminal = "foot";
       menu = "${pkgs.fuzzel}/bin/fuzzel -l 10";
-      bars = [ { command = "waybar"; } ];
+      bars = [{ command = "waybar"; }];
 
       startup = [
         { command = "bluetooth off"; }
@@ -152,7 +151,7 @@
         "${modifier}+a" = ''exec swaymsg input "type:keyboard" xkb_switch_layout 0 && exec ${menu}'';
 
         # run file manager
-        "${modifier}+n" = "exec thunar";
+        "${modifier}+n" = "exec nautilus";
         "${modifier}+y" = "exec ${terminal} --hold $HOME/nix/scripts/y.fish";
 
         # run broswer

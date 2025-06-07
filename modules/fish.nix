@@ -36,11 +36,11 @@
       if not set -q DISPLAY
         and test (tty) = "/dev/tty1"
 
-          if uwsm check may-start; then
-            exec uwsm start hyprland-uwsm.desktop
-          end
+          # if uwsm check may-start; then
+          #   exec uwsm start hyprland-uwsm.desktop
+          # end
 
-          # exec sway
+          exec sway
            
       end
     '';

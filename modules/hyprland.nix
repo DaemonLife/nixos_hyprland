@@ -1,8 +1,7 @@
-{
-  pkgs,
-  config,
-  lib,
-  ...
+{ pkgs
+, config
+, lib
+, ...
 }:
 let
   execPref = "uwsm app -- ";
@@ -43,14 +42,6 @@ in
     monitor = [
       # GPD3
       "DSI-1,preferred,auto,2,transform,3"
-      # Lenovo
-      "eDP-1,highres,auto,1.6,bitdepth,10,vrr,1,mirror,desc:LG Electronics LG TV 0x01010101"
-      # Monitor msk
-      "desc:Shenzhen KTC Technology Group H27S17 0x00000001,highres,0x0,1.25,bitdepth,10,vrr,1"
-      # Monitor gg
-      "desc:Acer Technologies Acer A231H LQT0W0084320,highres,auto-right,1,bitdepth,10,vrr,1"
-      # Random monitor
-      ",preferred,auto,1"
     ];
 
     exec-once = [
@@ -288,20 +279,21 @@ in
         # workspaces
         # binds $mod + [shift +] {1..10} to [move to] workspace {1..10}
         builtins.concatLists (
-          builtins.genList (
-            x:
-            let
-              ws =
-                let
-                  c = (x + 1) / 10;
-                in
-                builtins.toString (x + 1 - (c * 10));
-            in
-            [
-              "$mod, ${ws}, workspace, ${toString (x + 1)}"
-              "$mod Control_L, ${ws}, movetoworkspacesilent, ${toString (x + 1)}"
-            ]
-          ) 10
+          builtins.genList
+            (
+              x:
+              let
+                ws =
+                  let
+                    c = (x + 1) / 10;
+                  in
+                  builtins.toString (x + 1 - (c * 10));
+              in
+              [
+                "$mod, ${ws}, workspace, ${toString (x + 1)}"
+                "$mod Control_L, ${ws}, movetoworkspacesilent, ${toString (x + 1)}"
+              ]
+            ) 10
         )
       );
 
@@ -329,7 +321,7 @@ in
     export MOZ_ENABLE_WAYLAND=1
     export MOZ_USE_XINPUT2=1
 
-    export TERMINAL=foot
+    export TERMINAL=kitty
 
     export XCURSOR_SIZE=24
     export XCURSOR_THEME=Bibata-Modern-Ice

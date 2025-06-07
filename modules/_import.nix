@@ -13,22 +13,25 @@
     ./qutebrowser.nix
     ./gowall.nix
     ./qt.nix
-    # ./kitty.nix
+    ./kitty.nix
     ./foot.nix
     ./gtk.nix
     ./fzf.nix
-    ./yazi/yazi.nix
+    ./yazi.nix
     ./stylix.nix
     ./joplin-cli.nix
-    ./nixvim.nix
-    ./helix.nix
-    # ./sway.nix
-    ./hyprland.nix
     ./GIMP.nix
+
+    # ./nixvim.nix
+    ./helix.nix
+
+    ./sway.nix
+    # ./hyprland.nix
+
     # ./alacritty.nix
     # ./eww/eww.nix
     # ./lf/lf.nix
-    # ./zsh/zsh.nix
+    # ./zsh.nix
     # ./ranger.nix
   ];
 
