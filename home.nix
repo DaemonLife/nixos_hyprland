@@ -31,6 +31,7 @@ in
       onlyoffice-desktopeditors
       nautilus
       nautilus-open-any-terminal
+      fzy
 
       # Disk
       dua # disk usage TUI tool. Run: dua i
@@ -102,6 +103,7 @@ in
       tldr # community documentation
       russ # rss tui reader
       gnome-feeds # gui rss reader
+      tui-journal
 
       # Gaming
       portablemc # minecraft cli launcher

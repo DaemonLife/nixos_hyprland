@@ -21,6 +21,7 @@
     autotiling-rs
     swaybg
     grimblast # screenshot
+    brightnessctl
   ];
 
   wayland.windowManager.sway = with config.lib.stylix.colors; {
@@ -59,7 +60,12 @@
         }
         {
           command = ''
-            swayidle -w timeout 540 'swaymsg "output * dpms off"' timeout 600 'swaymsg input "type:keyboard xkb_switch_layout 0" && swaylock' resume 'swaymsg "output * dpms on"'
+            swayidle -w \
+            timeout 600 'brightnessctl -s; brightnessctl set 0%' \
+            timeout 610 'swaymsg "output * dpms off"' \
+            timeout 615 'swaymsg input "type:keyboard xkb_switch_layout 0"; swaylock -f' \
+            resume 'swaymsg "output * dpms on"; brightnessctl -r' \
+            before-sleep 'swaylock -f'
           '';
         }
       ];
@@ -180,19 +186,19 @@
         "${modifier}+r" = "mode resize";
 
         # Layouts
-        "${modifier}+x" = "splitv";
-        "${modifier}+c" = "splith";
+        # "${modifier}+x" = "splitv";
+        # "${modifier}+c" = "splith";
         "${modifier}+e" = "layout toggle splith splitv";
-        "${modifier}+t" = "layout toggle tabbed";
+        "${modifier}+t" = "layout toggle tabbed splith";
 
         # reload config
         "${modifier}+Shift+r" = "reload";
 
         # Brightness control
-        "XF86MonBrightnessUp" = "exec light -A 5";
-        "XF86MonBrightnessDown" = "exec light -U 5";
-        "Ctrl+l" = "exec light -A 5";
-        "Ctrl+h" = "exec light -U 5";
+        "XF86MonBrightnessUp" = "exec brightnessctl set +5%";
+        "XF86MonBrightnessDown" = "exec brightnessctl set 5%-";
+        "Ctrl+l" = "exec brightnessctl set +5%";
+        "Ctrl+h" = "exec brightnessctl set 5%-";
 
         # Audio
         "XF86AudioRaiseVolume" = "exec bash $HOME/nix/scripts/volume.sh 5";
@@ -239,12 +245,10 @@
         "${modifier}+8" = "workspace number 8";
         "${modifier}+9" = "workspace number 9";
         "${modifier}+0" = "workspace number 10";
-        "${modifier}+Ctrl+Right" = "workspace next";
-        "${modifier}+Ctrl+Left" = "workspace prev";
-        "${modifier}+Ctrl+l" = "workspace next";
-        "${modifier}+Ctrl+h" = "workspace prev";
-        "${modifier}+Ctrl+j" = "workspace next";
-        "${modifier}+Ctrl+k" = "workspace prev";
+        "Alt+Shift+j" = "workspace next";
+        "Alt+Shift+k" = "workspace prev";
+        "Alt+Shift+l" = "workspace next";
+        "Alt+Shift+h" = "workspace prev";
 
         # Move focused container to workspace
         "${modifier}+Ctrl+1" = "move container to workspace number 1";
