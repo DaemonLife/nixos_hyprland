@@ -18,9 +18,7 @@ in
       # --------------------------------
 
       # DE and system
-      # gnome-power-manager # power statistic
       wl-clipboard
-      cool-retro-term
       unzip
       python3
       nodejs
@@ -28,12 +26,9 @@ in
       exiftool
       imagemagick
       zip
-      onlyoffice-desktopeditors
       nautilus
       nautilus-open-any-terminal
-      discord
-
-      # Disk
+      fzy
       dua # disk usage TUI tool. Run: dua i
 
       # Network
@@ -47,55 +42,51 @@ in
       imagemagick
       ffmpegthumbnailer
       ffmpeg-full
-      helvum # A GTK patchbay for pipewire
       pavucontrol # audio gui control
       alsa-utils # audio volume control (?)
       pulsemixer # cli pulse adudio control
-      digikam
-      pqiv
 
       # Theming
       vimix-icon-theme # for icons
-      # qogir-icon-theme # for cursor
-      gnome-tweaks
-      gowall # Tool to convert a Wallpaper's color scheme. Still wait version 2...
+      # gnome-tweaks
+      gowall # Tool to convert a Wallpaper's color scheme
       dconf-editor
       grc
-      adwsteamgtk # steam gnome
 
       # Fonts
-      # nerdfonts
       font-awesome
-      # fira
       cantarell-fonts
-
-      # spellcheck for LibreOffice
-      hunspell
-      hunspellDicts.ru_RU
-      hunspellDicts.en_US
-
-      bottles
-      veracrypt
-      cmatrix # matrix in terminal
-      wev # key events in wayland
 
       # --------------------------------
       # USER SOFT
       # --------------------------------
+
+      # Utils
+      cool-retro-term
+      bottles
+      veracrypt
+      cmatrix # matrix in terminal
+      wev # key events in wayland
 
       # Media
       musikcube # second music player
       termusic
       darktable
       gimp3-with-plugins
+      helvum # A GTK patchbay for pipewire
+      digikam
+      pqiv
 
       # Internet
       qbittorrent # torrent client
       tor-browser
+      # discord
 
       # Docs
-      jrnl
       libreoffice
+      onlyoffice-desktopeditors
+      jrnl
+      tui-journal
       joplin
       stellarium # astro map
       astroterm # astro map ASCII
@@ -104,11 +95,16 @@ in
       russ # rss tui reader
       gnome-feeds # gui rss reader
 
+      # Spellcheck for LibreOffice
+      hunspell
+      hunspellDicts.ru_RU
+      hunspellDicts.en_US
+
       # Gaming
       portablemc # minecraft cli launcher
       curseofwar # stategy cli game
       vitetris # tetris cli game
-      # dwarf-fortress-packages.dwarf-fortress-full
+      dwarf-fortress-packages.dwarf-fortress-full
 
     ];
     sessionPath = [ "$HOME/.local/bin" ];

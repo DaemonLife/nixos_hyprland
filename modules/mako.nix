@@ -13,9 +13,9 @@
       margin = "0,0,0,0";
       padding = "10,10,10,10";
       border-size = 2;
-      borderRadius = 0;
-      defaultTimeout = 12000;
-      groupBy = "summary";
+      border-radius = 0;
+      default-timeout = 12000;
+      group-by = "summary";
       # font = "JetBrains Mono Regular";
       format = "<b>%s</b>\\n%b";
     };

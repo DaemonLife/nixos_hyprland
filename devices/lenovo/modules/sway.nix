@@ -9,18 +9,18 @@
         # lenovo laptop
         "BOE 0x0931 Unknown" = {
           mode = "2240x1400@60.002Hz";
-          scale = "1.8"; # 2240 -> 1400
+          scale = "2"; # 2240 -> 1400
           adaptive_sync = "enable";
           render_bit_depth = "10"; # 6, 8, 10
-          position = "2560 400"; # laptop position for msk
+          position = "2560 0"; # laptop position for msk
         };
         # monitor gg
         "Acer Technologies Acer A231H LQT0W0084320" = {
           mode = "1920x1080@60Hz";
-          scale = "1";
+          scale = "0.8";
           adaptive_sync = "enable";
           render_bit_depth = "8"; # 6, 8, 10
-          position = "4032 0"; # right position (1400+2048?)
+          position = "3840 0"; # right position (1400+2048?)
         };
         # monitor msk
         "Shenzhen KTC Technology Group H27S17 0x00000001" = {
