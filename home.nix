@@ -83,7 +83,7 @@ in
       # discord
 
       # Docs
-      libreoffice
+      # libreoffice
       onlyoffice-desktopeditors
       jrnl
       tui-journal
@@ -96,15 +96,15 @@ in
       gnome-feeds # gui rss reader
 
       # Spellcheck for LibreOffice
-      hunspell
-      hunspellDicts.ru_RU
-      hunspellDicts.en_US
+      # hunspell
+      # hunspellDicts.ru_RU
+      # hunspellDicts.en_US
 
       # Gaming
       portablemc # minecraft cli launcher
       curseofwar # stategy cli game
       vitetris # tetris cli game
-      dwarf-fortress-packages.dwarf-fortress-full
+      # dwarf-fortress-packages.dwarf-fortress-full
 
     ];
     sessionPath = [ "$HOME/.local/bin" ];

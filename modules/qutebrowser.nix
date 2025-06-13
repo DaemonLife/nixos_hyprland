@@ -28,17 +28,26 @@
           "https://raw.githubusercontent.com/afreakk/greasemonkeyscripts/1d1be041a65c251692ee082eda64d2637edf6444/youtube_sponsorblock.js";
         sha256 = "sha256-e3QgDPa3AOpPyzwvVjPQyEsSUC9goisjBUDMxLwg8ZE=";
       })
-      (pkgs.writeText "some-script.js" ''
-        // ==UserScript==
-        // @name  Some Greasemonkey script
-        // ==/UserScript==
-      '')
+      # (pkgs.writeText "my.js" ''
+      #   // ==UserScript==
+      #   // @name         my test
+      #   // @namespace    http://your.namespace.com/
+      #   // @version      0.1
+      #   // @description  blabla
+      #   // @match        *://*/* <-- run for all pages
+      #   // @grant        none
+      #   // ==/UserScript==
+
+      # '')
     ];
 
     keyBindings = {
       normal = {
         "<Ctrl+m>" = "hint links spawn --detach proxychains4 -q mpv {hint-url}";
         "<Alt+m>" = "hint links spawn --detach proxychains4 -q vlc {hint-url}";
+
+        # default setup for esc and unfocus all elements (*.blur)
+        "<Escape>" = "clear-keychain ;; search ;; fullscreen --leave ;; jseval -q document.activeElement.blur()";
       };
     };
 
