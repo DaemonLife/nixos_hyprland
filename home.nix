@@ -31,6 +31,7 @@ in
       onlyoffice-desktopeditors
       nautilus
       nautilus-open-any-terminal
+      discord
 
       # Disk
       dua # disk usage TUI tool. Run: dua i

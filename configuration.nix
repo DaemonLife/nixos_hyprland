@@ -188,6 +188,8 @@
     adwaita-icon-theme
 
     mangohud # fps monitoring
+
+    protonup-qt
   ];
 
   # --------------------------------
@@ -262,7 +264,11 @@
     steam = {
       enable = true;
       gamescopeSession.enable = true;
-      protontricks.enable = true;
+      # protontricks.enable = true;
+      #
+      extraCompatPackages = with pkgs; [
+        proton-ge-bin
+      ];
 
       # Open ports in the firewall for:
       remotePlay.openFirewall = true;

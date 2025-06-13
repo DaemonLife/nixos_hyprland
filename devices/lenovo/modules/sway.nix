@@ -20,7 +20,7 @@
           scale = "1";
           adaptive_sync = "enable";
           render_bit_depth = "8"; # 6, 8, 10
-          position = "3448 0"; # right position (1400+2048?)
+          position = "4032 0"; # right position (1400+2048?)
         };
         # monitor msk
         "Shenzhen KTC Technology Group H27S17 0x00000001" = {
