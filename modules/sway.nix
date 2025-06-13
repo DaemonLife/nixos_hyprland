@@ -19,8 +19,9 @@
   home.packages = with pkgs; [
     autotiling-rs
     swaybg
-    grimblast # screenshot
     brightnessctl
+    grim
+    slurp
   ];
 
   wayland.windowManager.sway = with config.lib.stylix.colors; {
@@ -208,8 +209,8 @@
         "XF86AudioMicMute" = "exec pactl set-source-mute @DEFAULT_SOURCE@ toggle";
 
         # Screenshot
-        "${modifier}+Shift+s" = "exec grimblast copysave area";
-        "PRINT" = "exec grimblast copysave output";
+        "${modifier}+Shift+s" = "exec bash $HOME/nix/scripts/screenshot.sh region";
+        "PRINT" = "exec bash $HOME/nix/scripts/screenshot.sh output";
 
         # Moving around:
         "${modifier}+Left" = "focus left";

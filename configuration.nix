@@ -141,8 +141,12 @@
       "scanner"
       "lp"
     ];
+
     packages = with pkgs; [ flatpak ];
   };
+
+  # virtualbox
+  users.extraGroups.vboxusers.members = [ "user-with-access-to-virtualbox" ];
 
   # --------------------------------
   # NIX SETTING
@@ -207,6 +211,8 @@
 
   # Android emulator. Read https://nixos.wiki/wiki/WayDroid
   virtualisation.waydroid.enable = true;
+
+  virtualisation.virtualbox.host.enable = true;
 
   programs = {
 
