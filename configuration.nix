@@ -199,11 +199,11 @@
   qt.enable = true;
 
   # for flatpak
-  # xdg.portal = {
-  # enable = true;
-  #   wlr.enable = true;
-  # extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
-  # };
+  xdg.portal = {
+    enable = true;
+    wlr.enable = true;
+    extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+  };
 
   # Android emulator. Read https://nixos.wiki/wiki/WayDroid
   virtualisation.waydroid.enable = true;

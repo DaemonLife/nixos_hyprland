@@ -17,7 +17,6 @@
   ];
 
   home.packages = with pkgs; [
-    # swayidle
     autotiling-rs
     swaybg
     grimblast # screenshot

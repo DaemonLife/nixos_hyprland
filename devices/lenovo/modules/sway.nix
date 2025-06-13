@@ -9,7 +9,7 @@
         # lenovo laptop
         "BOE 0x0931 Unknown" = {
           mode = "2240x1400@60.002Hz";
-          scale = "2"; # 2240 -> 1400
+          scale = "1.75"; # 2240 -> 1400
           adaptive_sync = "enable";
           render_bit_depth = "10"; # 6, 8, 10
           position = "2560 0"; # laptop position for msk
