@@ -41,12 +41,12 @@
         name = "GeistMono Nerd Font Mono";
       };
       sansSerif = {
-        package = pkgs.nerd-fonts.mononoki;
-        name = "Mononoki Nerd Font Regular";
+        # package = pkgs.nerd-fonts.mononoki;
+        name = "Cantarell Regular";
       };
       serif = {
-        package = pkgs.nerd-fonts.mononoki;
-        name = "Mononoki Nerd Font Regular";
+        # package = pkgs.nerd-fonts.mononoki;
+        name = "Cantarell Regular";
       };
       emoji = {
         package = pkgs.noto-fonts-emoji;

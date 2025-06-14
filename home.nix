@@ -56,6 +56,7 @@ in
       # Fonts
       font-awesome
       cantarell-fonts
+      fontpreview # --preview-text "Привет, как дела, это просто тест шрифта!!! 1234567890?*# Just a test for my font."
 
       # --------------------------------
       # USER SOFT

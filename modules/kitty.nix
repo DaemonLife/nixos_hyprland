@@ -26,7 +26,7 @@
       open_url_with = "$BROWSER";
       window_border_width = "0pt";
       # draw_minimal_borders = "yes";
-      window_margin_width = "0 0 0 0";
+      window_margin_width = "4 4 4 4";
       window_padding_width = "0 0 0 0";
       # inactive_text_alpha = "0.5";
       tab_bar_style = "hidden";

@@ -71,8 +71,11 @@
       ];
 
       gaps = {
-        outer = 2;
-        inner = 5;
+        # outer = 2;
+        # inner = 5;
+        outer = 0;
+        inner = 0;
+
         smartGaps = true;
         smartBorders = "on";
       };
