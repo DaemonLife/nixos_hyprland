@@ -4,7 +4,7 @@
     enable = true;
     settings = {
       main = {
-        font = lib.mkForce "Jetbrains Mono:weight=regular:size=16";
+        # font = lib.mkForce "Jetbrains Mono:weight=regular:size=16";
         # dpi-aware = "auto";
         icons-enabled = "no";
         show-actions = "no";

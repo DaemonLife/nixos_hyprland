@@ -24,7 +24,7 @@
       "browser.gesture.swipe.left" = "";
       "browser.gesture.swipe.right" = "";
       "browser.tabs.firefox-view" = false;
-      "browser.uidensity" = 1; # 1 is super compact mode
+      # "browser.uidensity" = 1; # 1 is super compact mode
       "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
     };
 
@@ -43,13 +43,9 @@
         #pageActionSeparator,
         #wrapper-firefox-view-button,
         #fxa-toolbar-menu-button,
-        #translations-button,
         #reader-mode-button,
         .tab-secondary-label{
           display: none !important;
-        }
-        .bookmark-item .toolbarbutton-icon {
-          display: none;
         }
       '';
 

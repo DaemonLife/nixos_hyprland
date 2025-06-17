@@ -104,7 +104,7 @@
         ];
         "image" = [
           {
-            run = ''imv "$@" *'';
+            run = ''imv-dir "$@"'';
             desc = "Open in imv";
             orphan = true;
           }
