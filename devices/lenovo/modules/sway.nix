@@ -29,7 +29,7 @@
           adaptive_sync = "false";
           render_bit_depth = "10"; # 6, 8, 10
           position = "0 0"; # left position 
-          color_profile = "icc /home/user/nix/h27s17.icm";
+          # color_profile = "icc /home/user/nix/h27s17.icm";
         };
       };
 
