@@ -139,7 +139,7 @@
         ];
         "rtorrent" = [
           {
-            run = ''cp "$@" $HOME/Downloads/rtorrent/watch && $TERMINAL --execute rtorrent'';
+            run = ''cp "$@" $HOME/Downloads/rtorrent/watch && kitty --hold sh -c "rtorrent"'';
             desc = "Open in rtorrent";
             orphan = true;
           }
@@ -147,7 +147,7 @@
       };
 
       # check file mime type: xdg-mime query filetype [FILE]
-      open.rules = [
+      open.append_rules = [
         {
           mime = "image/*";
           use = [ "image" ];
@@ -157,7 +157,7 @@
           use = [ "video" ];
         }
         {
-          mime = "application/x-bittorrent";
+          name = "*.torrent";
           use = [
             "qbittorrent"
             "rtorrent"
