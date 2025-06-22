@@ -187,13 +187,13 @@
     bottles # run windows programs
     udiskie # auto disks mount
     nufraw-thumbnailer # RAW preview for thunar
+    colord
 
     # GNOME programs
     adwaita-icon-theme
 
-    mangohud # fps monitoring
-
-    protonup-qt
+    # protonup-qt
+    vulkan-validation-layers
   ];
 
   # --------------------------------
@@ -210,9 +210,12 @@
   };
 
   # Android emulator. Read https://nixos.wiki/wiki/WayDroid
-  virtualisation.waydroid.enable = true;
+  # virtualisation.waydroid.enable = true;
 
   virtualisation.virtualbox.host.enable = true;
+  # virtualisation.virtualbox.host.enableKvm = true;
+  # virtualisation.virtualbox.host.addNetworkInterface = false; # false for kvm
+  virtualisation.virtualbox.guest.enable = true;
 
   programs = {
 
@@ -237,14 +240,14 @@
     };
 
     # --- thunar ---
-    thunar = {
-      enable = true;
-      plugins = with pkgs.xfce; [
-        thunar-archive-plugin
-        thunar-media-tags-plugin
-      ];
-    };
-    xfconf.enable = true;
+    # thunar = {
+    #   enable = true;
+    #   plugins = with pkgs.xfce; [
+    #     thunar-archive-plugin
+    #     thunar-media-tags-plugin
+    #   ];
+    # };
+    # xfconf.enable = true;
     # --- thunar ---
 
     proxychains = {
@@ -271,7 +274,7 @@
       enable = true;
       gamescopeSession.enable = true;
       # protontricks.enable = true;
-      #
+
       extraCompatPackages = with pkgs; [
         proton-ge-bin
       ];

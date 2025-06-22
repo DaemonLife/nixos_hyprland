@@ -71,10 +71,10 @@
       ];
 
       gaps = {
-        # outer = 2;
-        # inner = 5;
-        outer = 0;
-        inner = 0;
+        outer = 2;
+        inner = 5;
+        # outer = 0;
+        # inner = 0;
 
         smartGaps = true;
         smartBorders = "on";
@@ -104,28 +104,28 @@
           background = "#${base00}";
           border = "#${base01}";
           childBorder = "#${base00}";
-          indicator = "#${base03}";
+          indicator = "#${base00}";
         };
         unfocused = {
           text = "#${base05}";
           background = "#${base00}";
           border = "#${base01}";
           childBorder = "#${base00}";
-          indicator = "#${base03}";
+          indicator = "#${base00}";
         };
         urgent = {
           text = "#${base05}";
           background = "#${base00}";
           border = "#${base01}";
           childBorder = "#${base00}";
-          indicator = "#${base03}";
+          indicator = "#${base00}";
         };
         placeholder = {
           text = "#${base05}";
           background = "#${base00}";
           border = "#${base01}";
           childBorder = "#${base00}";
-          indicator = "#${base03}";
+          indicator = "#${base00}";
         };
       };
 
@@ -296,6 +296,7 @@
       export MOZ_ENABLE_WAYLAND=1
 
       export TERMINAL=foot
+      export WLR_RENDERER vulkan
     '';
 
   };

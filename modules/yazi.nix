@@ -43,7 +43,7 @@
     #   ];
     # };
 
-    keymap.manager.prepend_keymap = [
+    keymap.mgr.prepend_keymap = [
       # copy to system clipboard
       {
         on = "<C-y>";
@@ -74,7 +74,7 @@
 
     settings = {
 
-      manager = {
+      mgr = {
         sort_dir_first = true;
         # linemode = "size_and_mtime";
         title_format = "{cwd}";
@@ -186,7 +186,7 @@
 
     theme = lib.mkForce {
 
-      manager = {
+      mgr = {
         border_symbol = "│";
         border_style = {
           fg = "#${base01}";
