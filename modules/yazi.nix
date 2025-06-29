@@ -1,47 +1,60 @@
 # Not all is declarative! You need install and sometimes update plugins. Check 'ya --help' for details, 'ya -l' for list plugins.
 
 # Installation:
-# ya pack -a yazi-rs/plugins:smart-enter
-# ya pack -a yazi-rs/plugins:mount
+# ya pkg add boydaihungst/file-extra-metadata
+# ya pkg add KKV9/compress
+# ya pkg add atareao/convert
 
-{ pkgs
-, config
-, lib
-, ...
-}:
+{ pkgs, config, lib, ... }:
 {
-
   home.packages = with pkgs; [ xdragon ];
 
   programs.yazi = with config.lib.stylix.colors; {
     enable = true;
-    # package = pkgs.unstable.yazi;
     enableFishIntegration = true;
 
-    # clipboard sync for all yazi instances and git plugin init
     initLua = ''
       require("session"):setup {
       	sync_yanked = true,
       }
+      require("git"):setup()
     '';
-    #   require("git"):setup()
-    # '';
 
-    # # settings for plugins
-    # settings.plugin = {
-    #   prepend_fetchers = [
-    #     {
-    #       id = "git";
-    #       name = "*";
-    #       run = "git";
-    #     }
-    #     {
-    #       id = "git";
-    #       name = "*/";
-    #       run = "git";
-    #     }
-    #   ];
-    # };
+    plugins = with pkgs; {
+      smart-filter = yaziPlugins.smart-filter;
+      mount = yaziPlugins.mount;
+      smart-enter = yaziPlugins.smart-enter;
+      git = yaziPlugins.git;
+    };
+
+    settings.plugin = {
+      # plugin git
+      prepend_fetchers = [
+        {
+          id = "git";
+          name = "*";
+          run = "git";
+        }
+        {
+          id = "git";
+          name = "*/";
+          run = "git";
+        }
+      ];
+      # plugin extra metadata
+      append_previewers = [
+        {
+          name = "*";
+          run = "file-extra-metadata";
+        }
+      ];
+      append_spotters = [
+        {
+          name = "*";
+          run = "file-extra-metadata";
+        }
+      ];
+    };
 
     keymap.mgr.prepend_keymap = [
       # copy to system clipboard
@@ -55,28 +68,78 @@
       }
       # drag and drop
       {
-        on = "<C-n>";
+        on = "<C-g>";
         run = ''
           shell --interactive '${pkgs.xdragon}/bin/dragon -x -i -T "$1"'
         '';
       }
+      # plugin file-extra-metadata
       {
-        on = "M";
+        on = "<Tab>";
+        run = "spot";
+        desc = "Spot hovered file";
+      }
+      # plugin mount
+      {
+        on = "<C-m>";
         run = "plugin mount";
         desc = "Mount partitions";
       }
+      # plugin smart enter
       {
         on = "l";
         run = "plugin smart-enter";
         desc = "Enter the child directory, or open the file";
       }
+      # plugin compress
+      {
+        on = [ "c" "a" "a" ];
+        run = "plugin compress";
+        desc = "Archive selected files";
+      }
+      {
+        on = [ "c" "a" "p" ];
+        run = "plugin compress -p";
+        desc = "Archive (password)";
+      }
+      {
+        on = [ "c" "a" "h" ];
+        run = "plugin compress -ph";
+        desc = "Archive (password+header)";
+      }
+      {
+        on = [ "c" "a" "l" ];
+        run = "plugin compress -l";
+        desc = "Archive (compression level)";
+      }
+      {
+        on = [ "c" "a" "u" ];
+        run = "plugin compress -phl";
+        desc = "Archive (password+header+level)";
+      }
+      # plugin convert imgs
+      {
+        on = [ "c" "p" ];
+        run = "plugin convert -- --extension='png'";
+        desc = "Convert to PNG";
+      }
+      {
+        on = [ "c" "j" ];
+        run = "plugin convert -- --extension='jpg'";
+        desc = "Convert to JPG";
+      }
+      {
+        on = "F";
+        run = "plugin smart-filter";
+        desc = "Smart filter";
+      }
+
     ];
 
     settings = {
 
       mgr = {
         sort_dir_first = true;
-        # linemode = "size_and_mtime";
         title_format = "{cwd}";
       };
 
