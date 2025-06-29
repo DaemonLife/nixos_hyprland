@@ -56,7 +56,7 @@
         lspServersToEnable = "all";
       };
 
-      nvim-colorizer.enable = true; # colors for hex code
+      colorizer.enable = true; # colors for hex code
 
       comment = { enable = true; };
 

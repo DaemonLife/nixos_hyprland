@@ -40,7 +40,7 @@
   environment = {
     variables =
       let
-        EDITOR = "hx";
+        EDITOR = "vi";
       in
       {
         EDITOR = "${EDITOR}";
@@ -146,7 +146,7 @@
   };
 
   # virtualbox
-  users.extraGroups.vboxusers.members = [ "user-with-access-to-virtualbox" ];
+  # users.extraGroups.vboxusers.members = [ "user-with-access-to-virtualbox" ];
 
   # --------------------------------
   # NIX SETTING
@@ -186,7 +186,7 @@
     kitty
     bottles # run windows programs
     udiskie # auto disks mount
-    nufraw-thumbnailer # RAW preview for thunar
+    # nufraw-thumbnailer # RAW preview for thunar
     colord
 
     # GNOME programs
@@ -202,35 +202,33 @@
 
   qt.enable = true;
 
-  # for flatpak
-  xdg.portal = {
-    enable = true;
-    wlr.enable = true;
-    extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
-  };
+  # # for flatpak
+  # xdg.portal = {
+  #   enable = true;
+  #   wlr.enable = true;
+  #   extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+  # };
 
   # Android emulator. Read https://nixos.wiki/wiki/WayDroid
   # virtualisation.waydroid.enable = true;
 
-  virtualisation.virtualbox.host.enable = true;
-  # virtualisation.virtualbox.host.enableKvm = true;
-  # virtualisation.virtualbox.host.addNetworkInterface = false; # false for kvm
-  virtualisation.virtualbox.guest.enable = true;
+  # virtualisation.virtualbox.host.enable = true;
+  # virtualisation.virtualbox.guest.enable = true;
 
   programs = {
 
-    sway = {
-      enable = true;
-      wrapperFeatures.gtk = true; # gtk fix
-      extraPackages = with pkgs; [
-        swaylock
-        swayidle
-        grim # screenshot functionality
-        slurp # screenshot functionality
-        wl-clipboard # wl-copy and wl-paste for copy/paste from stdin / stdout
-        mako # notification system developed by swaywm maintainer
-      ];
-    };
+    # sway = {
+    #   enable = true;
+    #   wrapperFeatures.gtk = true; # gtk fix
+    #   extraPackages = with pkgs; [
+    #     swaylock
+    #     swayidle
+    #     grim # screenshot functionality
+    #     slurp # screenshot functionality
+    #     wl-clipboard # wl-copy and wl-paste for copy/paste from stdin / stdout
+    #     mako # notification system developed by swaywm maintainer
+    #   ];
+    # };
 
     nh = {
       enable = true;
@@ -293,17 +291,10 @@
     fish.enable = true;
 
     # --- hyprland ---
-    # hyprland = {
-    #   enable = true;
-    #   withUWSM = true;
-    #   # package = pkgs.unstable.hyprland;
-    #   # package = pkgs.unstable.hyprland.override {
-    #   # package = pkgs.hyprland.override {
-    #   # don't use override if you don't want compiling
-    #   # withSystemd = false;
-    #   # legacyRenderer = false;
-    #   # };
-    # };
+    hyprland = {
+      enable = true;
+      withUWSM = true;
+    };
     # --- hyprland ---
 
   };
@@ -322,13 +313,13 @@
     openssh.enable = true;
     flatpak.enable = true;
     gvfs.enable = true; # Mount, trash, and other functionalities
-    tumbler.enable = true; # Thunar thumbnail support for images
-    gnome.gnome-keyring.enable = true; # for sway
+    # tumbler.enable = true; # Thunar thumbnail support for images
+    # gnome.gnome-keyring.enable = true; # for sway
     power-profiles-daemon.enable = false; # disable for tlp
     thermald.enable = true; # Thermald prevents overheating
 
     xserver.displayManager.gdm.enable = false;
-    xserver.displayManager.startx.enable = true;
+    # xserver.displayManager.startx.enable = true;
     xserver.desktopManager.gnome.enable = false;
 
     # logind = lib.mkForce {
@@ -349,7 +340,8 @@
   }; # close services
 
   systemd = {
-
+    
+    # authentication for programs
     user.services.polkit-gnome-authentication-agent-1 = {
       description = "polkit-gnome-authentication-agent-1";
       wantedBy = [ "graphical-session.target" ];
@@ -379,7 +371,7 @@
   # --------------------------------
 
   security = {
-    # polkit.enable = true; # authentication support for
+    # polkit.enable = true; # authentication support for sway
     pam.services.swaylock = { }; # screen lock
   };
 

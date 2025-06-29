@@ -22,11 +22,11 @@
     ./joplin-cli.nix
     ./GIMP.nix
 
-    # ./nixvim.nix
-    ./helix.nix
+    ./nixvim.nix
+    # ./helix.nix
 
-    ./sway.nix
-    # ./hyprland.nix
+    # ./sway.nix
+    ./hyprland.nix
 
     # ./alacritty.nix
     # ./eww/eww.nix
