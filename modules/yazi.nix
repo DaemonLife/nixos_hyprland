@@ -48,7 +48,7 @@
           run = "file-extra-metadata";
         }
       ];
-      append_spotters = [
+      spotters = [
         {
           name = "*";
           run = "file-extra-metadata";
