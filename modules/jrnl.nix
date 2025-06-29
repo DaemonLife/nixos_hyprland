@@ -8,7 +8,7 @@ let
       title: cyan
     default_hour: 9
     default_minute: 0
-    editor: hx 
+    editor: vi 
     encrypt: false
     highlight: true
     indent_character: '|'

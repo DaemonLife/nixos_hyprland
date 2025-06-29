@@ -181,7 +181,7 @@
     jdk # java
     impala # wifi tui
     iwd # wifi cli, don't delete!
-    helix
+    # helix
     bluez
     kitty
     bottles # run windows programs
