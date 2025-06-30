@@ -198,13 +198,13 @@
       # --- new clipboard control ---
       {
         action = ''"+yl'';
-        key = "<space>Y";
+        key = "<space>y";
         mode = [ "n" "v" ];
         options.desc = "Copy to system clipboard.";
       }
       {
         action = ''"+pl'';
-        key = "<space>P";
+        key = "<space>p";
         mode = [ "n" "v" ];
         options.desc = "Paste from system clipboard.";
       }
