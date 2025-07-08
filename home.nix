@@ -29,12 +29,14 @@ in
       fzy
       dua # disk usage TUI tool. Run: dua i
       libraw # lib for raw support maybe for imv
+      unstable.nchat
+      tg
 
       # Network
       overskride # bluetooth gui
       bluetui # bluetooth tui
       telegram-desktop
-      nchat
+      # nchat
       bitwarden-cli
 
       # Media

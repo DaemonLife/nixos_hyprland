@@ -26,7 +26,7 @@ with config.lib.stylix.colors; {
     };
 
     monitor = [
-      "DSI-1,preferred,auto-left,1.875,transform,3"
+      "DSI-1,preferred,auto-left,1.87500,transform,3"
     ];
 
     # plugin = {

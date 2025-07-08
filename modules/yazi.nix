@@ -57,85 +57,90 @@
       ];
     };
 
-    keymap.mgr.prepend_keymap = [
-      # copy to system clipboard
-      {
-        on = "<C-y>";
-        run = [
-          ''
-            shell --interactive 'for path in "$@"; do echo "file://$path"; done | wl-copy -t text/uri-list' 
-          ''
-        ];
-      }
-      # drag and drop
-      {
-        on = "<C-g>";
-        run = ''
-          shell --interactive '${pkgs.xdragon}/bin/dragon -x -i -T "$1"'
-        '';
-      }
-      # plugin file-extra-metadata
-      {
-        on = "<Tab>";
-        run = "spot";
-        desc = "Spot hovered file";
-      }
-      # plugin mount
-      {
-        on = "<C-m>";
-        run = "plugin mount";
-        desc = "Mount partitions";
-      }
-      # plugin smart enter
-      {
-        on = "l";
-        run = "plugin smart-enter";
-        desc = "Enter the child directory, or open the file";
-      }
-      # plugin compress
-      {
-        on = [ "c" "a" "a" ];
-        run = "plugin compress";
-        desc = "Archive selected files";
-      }
-      {
-        on = [ "c" "a" "p" ];
-        run = "plugin compress -p";
-        desc = "Archive (password)";
-      }
-      {
-        on = [ "c" "a" "h" ];
-        run = "plugin compress -ph";
-        desc = "Archive (password+header)";
-      }
-      {
-        on = [ "c" "a" "l" ];
-        run = "plugin compress -l";
-        desc = "Archive (compression level)";
-      }
-      {
-        on = [ "c" "a" "u" ];
-        run = "plugin compress -phl";
-        desc = "Archive (password+header+level)";
-      }
-      # plugin convert imgs
-      {
-        on = [ "c" "p" ];
-        run = "plugin convert -- --extension='png'";
-        desc = "Convert to PNG";
-      }
-      {
-        on = [ "c" "j" ];
-        run = "plugin convert -- --extension='jpg'";
-        desc = "Convert to JPG";
-      }
-      # {
-      #   on = "F";
-      #   run = "plugin smart-filter";
-      #   desc = "Smart filter";
-      # }
+    keymap = {
 
-    ];
+      # tasks.prepend_keymap = [
+      #   {
+      #     on = [ "<C-v" ];
+      #     run = "show";
+      #     desc = "Show tasks";
+      #   }
+      # ];
+
+      mgr.prepend_keymap = [
+        # copy to system clipboard
+        {
+          on = "<C-y>";
+          run = [
+            ''
+              shell --interactive 'for path in "$@"; do echo "file://$path"; done | wl-copy -t text/uri-list' 
+            ''
+          ];
+        }
+        # drag and drop
+        {
+          on = "<C-g>";
+          run = ''
+            shell --interactive '${pkgs.xdragon}/bin/dragon -x -i -T "$1"'
+          '';
+        }
+        # plugin file-extra-metadata
+        {
+          on = "<Tab>";
+          run = "spot";
+          desc = "Spot hovered file";
+        }
+        # plugin mount
+        {
+          on = "<C-m>";
+          run = "plugin mount";
+          desc = "Mount partitions";
+        }
+        # plugin smart enter
+        {
+          on = "l";
+          run = "plugin smart-enter";
+          desc = "Enter the child directory, or open the file";
+        }
+        # plugin compress
+        {
+          on = [ "c" "a" "a" ];
+          run = "plugin compress";
+          desc = "Archive selected files";
+        }
+        {
+          on = [ "c" "a" "p" ];
+          run = "plugin compress -p";
+          desc = "Archive (password)";
+        }
+        {
+          on = [ "c" "a" "h" ];
+          run = "plugin compress -ph";
+          desc = "Archive (password+header)";
+        }
+        {
+          on = [ "c" "a" "l" ];
+          run = "plugin compress -l";
+          desc = "Archive (compression level)";
+        }
+        {
+          on = [ "c" "a" "u" ];
+          run = "plugin compress -phl";
+          desc = "Archive (password+header+level)";
+        }
+        # plugin convert imgs
+        {
+          on = [ "c" "p" ];
+          run = "plugin convert -- --extension='png'";
+          desc = "Convert to PNG";
+        }
+        {
+          on = [ "c" "j" ];
+          run = "plugin convert -- --extension='jpg'";
+          desc = "Convert to JPG";
+        }
+      ];
+    };
 
     settings = {
 
@@ -249,6 +254,24 @@
     }; # settings end
 
     theme = lib.mkForce {
+      tabs = {
+        active = {
+          fg = "#${base00}";
+          bg = "#${base0B}";
+        };
+        inactive = {
+          fg = "#${base03}";
+          bg = "#${base01}";
+        };
+        sep_inner = {
+          open = "";
+          close = "";
+        };
+        sep_outer = {
+          open = "";
+          close = "";
+        };
+      };
 
       mgr = {
         border_symbol = "│";
@@ -256,15 +279,18 @@
           fg = "#${base01}";
         };
 
-        tab_active = {
+        count_copied = {
           fg = "#${base00}";
           bg = "#${base0B}";
         };
-        tab_inactive = {
-          fg = "#${base03}";
-          bg = "#${base01}";
+        count_cut = {
+          fg = "#${base00}";
+          bg = "#${base08}";
         };
-        tab_width = 1;
+        count_selected = {
+          fg = "#${base00}";
+          bg = "#${base0A}";
+        };
 
         # Color block on the left side separator line in the filename.
         # marker_copied = {

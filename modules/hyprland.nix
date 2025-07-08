@@ -1,8 +1,4 @@
-{ pkgs
-, config
-, lib
-, ...
-}:
+{ pkgs, config, lib, ... }:
 let
   execPref = "uwsm app -- ";
   # execPref = ""; # if you don't use UWSM
@@ -22,6 +18,7 @@ in
 
   home.packages = with pkgs; [
     brightnessctl
+    grimblast # screenshot tool
   ];
 
   wayland.windowManager.hyprland = {
@@ -34,8 +31,8 @@ in
   wayland.windowManager.hyprland.settings = with config.lib.stylix.colors; {
     "$mod" = "SUPER";
     "$terminal" = "kitty";
-    "$filemanager" = "nautilus -w";
-    # "$filemanager" = "thunar";
+    # "$filemanager" = "nautilus -w";
+    "$filemanager" = "thunar";
     "$menu" = "fuzzel -l 10";
     "$browser" = "$BROWSER";
 
@@ -44,7 +41,7 @@ in
       "${execPref}bluetooth off"
       "${execPref}waybar"
       "${execPref}mako"
-      "${execPref}udiskie -a"
+      # "${execPref}udiskie -a"
       "${execPref}swayidle -w timeout 540 'hyprctl dispatch dpms off' timeout 600 'hyprctl keyword input:kb_layout us,ru && ${execPref}swaylock' resume 'hyprctl dispatch dpms on'"
     ];
 
@@ -179,7 +176,7 @@ in
     ];
 
     bindl = [
-      ",switch:on:Lid Switch, exec, hyprctl dispatch dpms off && swaylock"
+      ",switch:on:Lid Switch, exec, hyprctl keyword input:kb_layout us,ru && swaylock && hyprctl dispatch dpms off"
       ",switch:off:Lid Switch, exec, hyprctl dispatch dpms on"
     ];
 

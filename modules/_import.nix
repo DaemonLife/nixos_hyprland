@@ -14,13 +14,14 @@
     ./gowall.nix
     ./qt.nix
     ./kitty.nix
-    ./foot.nix
+    # ./foot.nix
     ./gtk.nix
     ./fzf.nix
     ./yazi.nix
     ./stylix.nix
     ./joplin-cli.nix
     ./GIMP.nix
+    ./nchat.nix
 
     ./nixvim.nix
     # ./helix.nix

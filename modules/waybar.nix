@@ -14,7 +14,7 @@
         mainBar = {
           layer = "top";
           position = "top";
-          height = 26;
+          height = 28;
           modules-left = [
             "${MY_DE}/workspaces"
             "${MY_DE}/window"
@@ -117,7 +117,7 @@
             on-click-right = "bluetooth off";
           };
 
-          "${MY_DE}/language" = {
+          "hyprland/language" = {
             format = "{}";
             format-en = "us";
             format-ru = "ru";
@@ -302,7 +302,7 @@
               border: 2px;
               border-style: solid;
               border-color: @accent;
-              font-size: 16px;
+              font-size: 15px;
             }
 
           	#network.disconnected { color: @gray;}

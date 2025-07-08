@@ -184,7 +184,7 @@
     # helix
     bluez
     kitty
-    bottles # run windows programs
+    # bottles # run windows programs
     udiskie # auto disks mount
     nufraw-thumbnailer # RAW preview for thunar
     colord
@@ -193,7 +193,7 @@
     adwaita-icon-theme
 
     # protonup-qt
-    vulkan-validation-layers
+    # vulkan-validation-layers
   ];
 
   # --------------------------------
@@ -272,11 +272,9 @@
       enable = true;
       gamescopeSession.enable = true;
       # protontricks.enable = true;
-
       extraCompatPackages = with pkgs; [
         proton-ge-bin
       ];
-
       # Open ports in the firewall for:
       remotePlay.openFirewall = true;
       dedicatedServer.openFirewall = true;
@@ -313,7 +311,7 @@
     openssh.enable = true;
     flatpak.enable = true;
     gvfs.enable = true; # Mount, trash, and other functionalities
-    # tumbler.enable = true; # Thunar thumbnail support for images
+    tumbler.enable = true; # Thunar thumbnail support for images
     # gnome.gnome-keyring.enable = true; # for sway
     power-profiles-daemon.enable = false; # disable for tlp
     thermald.enable = true; # Thermald prevents overheating
@@ -322,25 +320,10 @@
     # xserver.displayManager.startx.enable = true;
     xserver.desktopManager.gnome.enable = false;
 
-    # logind = lib.mkForce {
-    #   lidSwitch = "lock";
-    #   lidSwitchExternalPower = "lock";
-    # };
-
-    # bluetooth audio enhancements
-    # pipewire.wireplumber.extraConfig.bluetoothEnhancements = {
-    #   "monitor.bluez.properties" = {
-    #     "bluez5.enable-sbc-xq" = true;
-    #     "bluez5.enable-msbc" = true;
-    #     "bluez5.enable-hw-volume" = true;
-    #     "bluez5.roles" = [ "hsp_hs" "hsp_ag" "hfp_hf" "hfp_ag" ];
-    #   };
-    # };
-
   }; # close services
 
   systemd = {
-    
+
     # authentication for programs
     user.services.polkit-gnome-authentication-agent-1 = {
       description = "polkit-gnome-authentication-agent-1";
