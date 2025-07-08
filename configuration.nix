@@ -186,7 +186,7 @@
     kitty
     bottles # run windows programs
     udiskie # auto disks mount
-    # nufraw-thumbnailer # RAW preview for thunar
+    nufraw-thumbnailer # RAW preview for thunar
     colord
 
     # GNOME programs
@@ -238,14 +238,14 @@
     };
 
     # --- thunar ---
-    # thunar = {
-    #   enable = true;
-    #   plugins = with pkgs.xfce; [
-    #     thunar-archive-plugin
-    #     thunar-media-tags-plugin
-    #   ];
-    # };
-    # xfconf.enable = true;
+    thunar = {
+      enable = true;
+      plugins = with pkgs.xfce; [
+        thunar-archive-plugin
+        thunar-media-tags-plugin
+      ];
+    };
+    xfconf.enable = true;
     # --- thunar ---
 
     proxychains = {

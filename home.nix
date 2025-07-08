@@ -26,10 +26,9 @@ in
       exiftool
       imagemagick
       zip
-      nautilus
-      nautilus-open-any-terminal
       fzy
       dua # disk usage TUI tool. Run: dua i
+      libraw # lib for raw support maybe for imv
 
       # Network
       overskride # bluetooth gui
@@ -64,19 +63,16 @@ in
 
       # Utils
       cool-retro-term
-      bottles
+      # bottles
       veracrypt
       cmatrix # matrix in terminal
       wev # key events in wayland
 
       # Media
-      musikcube # second music player
-      termusic
       darktable
       gimp3-with-plugins
       helvum # A GTK patchbay for pipewire
       digikam
-      pqiv
 
       # Internet
       qbittorrent # torrent client
@@ -87,7 +83,6 @@ in
       # libreoffice
       onlyoffice-desktopeditors
       jrnl
-      tui-journal
       joplin
       stellarium # astro map
       astroterm # astro map ASCII

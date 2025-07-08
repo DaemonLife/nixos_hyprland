@@ -1,9 +1,6 @@
 { pkgs, config, lib, ... }:
 with config.lib.stylix.colors; {
 
-  # touchscreen plugin
-  # wayland.windowManager.hyprland.plugins = [ pkgs.hyprlandPlugins.hyprgrass ];
-
   # hyprland settings
   wayland.windowManager.hyprland.settings = {
 
@@ -27,6 +24,10 @@ with config.lib.stylix.colors; {
       # correct touch map for gpd screen
       touchdevice.transform = lib.mkForce 3;
     };
+
+    monitor = [
+      "DSI-1,preferred,auto-left,1.875,transform,3"
+    ];
 
     # plugin = {
     #   touch_gestures = {

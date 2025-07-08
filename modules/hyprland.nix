@@ -39,11 +39,6 @@ in
     "$menu" = "fuzzel -l 10";
     "$browser" = "$BROWSER";
 
-    monitor = [
-      # GPD3
-      "DSI-1,preferred,auto,2,transform,3"
-    ];
-
     exec-once = [
       "${execPref}pactl set-source-mute @DEFAULT_SOURCE@ on" # mic off
       "${execPref}bluetooth off"

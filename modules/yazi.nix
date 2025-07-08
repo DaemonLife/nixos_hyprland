@@ -21,34 +21,35 @@
     '';
 
     plugins = with pkgs; {
-      smart-filter = yaziPlugins.smart-filter;
       mount = yaziPlugins.mount;
       smart-enter = yaziPlugins.smart-enter;
       git = yaziPlugins.git;
     };
 
     settings.plugin = {
-      # plugin git
       prepend_fetchers = [
+        # plugin git
         {
           id = "git";
           name = "*";
           run = "git";
         }
+        # plugin git
         {
           id = "git";
           name = "*/";
           run = "git";
         }
       ];
-      # plugin extra metadata
       append_previewers = [
+        # plugin extra metadata
         {
           name = "*";
           run = "file-extra-metadata";
         }
       ];
       spotters = [
+        # plugin extra metadata
         {
           name = "*";
           run = "file-extra-metadata";
@@ -128,11 +129,11 @@
         run = "plugin convert -- --extension='jpg'";
         desc = "Convert to JPG";
       }
-      {
-        on = "F";
-        run = "plugin smart-filter";
-        desc = "Smart filter";
-      }
+      # {
+      #   on = "F";
+      #   run = "plugin smart-filter";
+      #   desc = "Smart filter";
+      # }
 
     ];
 
