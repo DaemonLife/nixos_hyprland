@@ -32,11 +32,21 @@
     ];
 
     # when login to shell
+    # loginShellInit = ''
+    #   if not set -q DISPLAY
+    #     and test (tty) = "/dev/tty1"
+    #       exec uwsm start hyprland-uwsm.desktop
+    #       # exec sway
+    #   end
+    # '';
     loginShellInit = ''
       if not set -q DISPLAY
-        and test (tty) = "/dev/tty1"
+        # setterm -background black
+
+        if test (tty) = "/dev/tty1"
           exec uwsm start hyprland-uwsm.desktop
           # exec sway
+        end
       end
     '';
 
