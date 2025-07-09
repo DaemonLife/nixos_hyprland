@@ -41,7 +41,7 @@ in
       "${execPref}bluetooth off"
       "${execPref}waybar"
       "${execPref}mako"
-      # "${execPref}udiskie -a"
+      "${execPref}udiskie -a"
       "${execPref}swayidle -w timeout 540 'hyprctl dispatch dpms off' timeout 600 'hyprctl keyword input:kb_layout us,ru && ${execPref}swaylock' resume 'hyprctl dispatch dpms on'"
     ];
 

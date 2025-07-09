@@ -46,6 +46,7 @@ in
       pavucontrol # audio gui control
       alsa-utils # audio volume control (?)
       pulsemixer # cli pulse adudio control
+      nomacs-qt6
 
       # Theming
       vimix-icon-theme # for icons
@@ -75,6 +76,7 @@ in
       gimp3-with-plugins
       helvum # A GTK patchbay for pipewire
       digikam
+      kdePackages.kdenlive
 
       # Internet
       qbittorrent # torrent client

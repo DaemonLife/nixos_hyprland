@@ -188,6 +188,8 @@
     udiskie # auto disks mount
     nufraw-thumbnailer # RAW preview for thunar
     colord
+    xdg-desktop-portal-termfilechooser # make yazi default file chooser
+    ueberzugpp
 
     # GNOME programs
     adwaita-icon-theme

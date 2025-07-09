@@ -24,10 +24,26 @@
       mount = yaziPlugins.mount;
       smart-enter = yaziPlugins.smart-enter;
       git = yaziPlugins.git;
+      mime-ext = yaziPlugins.mime-ext;
     };
 
     settings.plugin = {
+      prepend_preloaders = [
+        # ARW support preview
+        # {
+        #   name = "*.ARW";
+        #   run = "magick";
+        # }
+      ];
+
       prepend_fetchers = [
+        # plugin mime-ext
+        {
+          id = "mime";
+          name = "*";
+          run = "mime-ext";
+          prio = "high";
+        }
         # plugin git
         {
           id = "git";
@@ -47,6 +63,11 @@
           name = "*";
           run = "file-extra-metadata";
         }
+        # ARW support
+        # {
+        #   name = "*.ARW";
+        #   run = "magick";
+        # }
       ];
       spotters = [
         # plugin extra metadata
@@ -58,14 +79,6 @@
     };
 
     keymap = {
-
-      # tasks.prepend_keymap = [
-      #   {
-      #     on = [ "<C-v" ];
-      #     run = "show";
-      #     desc = "Show tasks";
-      #   }
-      # ];
 
       mgr.prepend_keymap = [
         # copy to system clipboard
@@ -144,6 +157,18 @@
 
     settings = {
 
+      preview = {
+        # image_filter = "triangle";
+        image_quality = 70;
+        max_width = 800;
+        max_height = 800;
+      };
+
+      tasks = {
+        # image_alloc = 1536870912; # ARW support
+        image_bound = [ 10000 10000 ]; # no limit for images preview
+      };
+
       mgr = {
         sort_dir_first = true;
         title_format = "{cwd}";
@@ -175,6 +200,13 @@
           {
             run = ''imv-dir "$@"'';
             desc = "Open in imv";
+            orphan = true;
+          }
+        ];
+        "image_RAW" = [
+          {
+            run = ''nomacs "$@"'';
+            desc = "Open in nomacs";
             orphan = true;
           }
         ];
@@ -224,6 +256,10 @@
         {
           mime = "video/*";
           use = [ "video" ];
+        }
+        {
+          name = "*.ARW";
+          use = "image_RAW";
         }
         {
           name = "*.torrent";
