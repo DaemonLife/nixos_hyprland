@@ -8,13 +8,26 @@
     viAlias = true;
     vimAlias = true;
 
+    # --- Plugins ---
+    extraPlugins = with pkgs; [
+      vimPlugins.nvim-biscuits # annotations at the end of a closing tag/bracket/parenthesis/etc
+    ];
+
+    extraConfigLua = ''
+      require("nvim-biscuits").setup({ cursor_line_only = true })
+    '';
+
     plugins = {
 
-      nix = { enable = true; };
+      treesitter.enable = true; # need for nvim-biscuits
+      render-markdown.enable = true;
+      nix.enable = true;
 
       lsp = {
         enable = true;
         servers = {
+          bashls.enable = true;
+          html.enable = true;
           nil_ls = {
             # nix language server
             enable = true;
@@ -49,8 +62,6 @@
         };
       };
 
-      # vim-visual-multi.enable = true; # multicursor
-
       lsp-format = {
         enable = true;
         lspServersToEnable = "all";
@@ -82,7 +93,8 @@
         };
       };
 
-    }; # plugins
+    };
+    # --- Plugins ---
 
     opts = {
       # Line numbers
