@@ -346,7 +346,7 @@
       AllowHibernation=yes
       # AllowHybridSleep=yes
       AllowSuspendThenHibernate=yes
-      HibernateDelaySec=1800
+      HibernateDelaySec=3600
     '';
 
   };

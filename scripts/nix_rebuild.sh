@@ -7,14 +7,16 @@ if [ -z "$1" ]; then
 fi
 
 if [ "$1" == "help" ]; then
-  echo -e "Usage: os [ swith | boot | test | help ] [ update ]\n"
+  echo -e "Usage: os [ switch | boot | test | help ] [ update | offline]\n"
   echo "Options"
   echo -e "
-  switch\tBuild and activate the new configuration, and make it the boot default.
-  boot\t\tBuild the new configuration and make it the boot default.
-  test\t\tBuild and activate the new configuration.
+  switch\tBuild and activate new configuration, and make it boot default.
+  boot\t\tBuild new configuration and make it boot default.
+  test\t\tBuild and activate new configuration.
   help\t\tPrint this message.
-  update\tUpdate flake inputs."
+
+  update\tUpdate flake inputs.
+  offline\tOffline rebuild."
   exit 0 # just exit
 fi
 
@@ -36,11 +38,13 @@ fi
 
 # Check second option in command
 if [ "$2" == "update" ]; then
-    update_option="-u"
+    second_option="-u"
+elif [ "$2" == "offline" ]; then
+    second_option="-- --offline"
 else
-    update_option=""
+    second_option=""
 fi
 
 # run rebuild with nh program
-nh os $1 $update_option $HOME/nix/. -H $hardware_model || 
+nh os $1 -H $hardware_model $second_option || 
 echo -e "\nError option.\nUse 'os help'."

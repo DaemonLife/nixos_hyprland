@@ -47,7 +47,7 @@ in
 
     exec = [
       # maze generator
-      # "bash $HOME/nix/scripts/maze/run.sh ${base00} ${base02}"
+      "bash $HOME/nix/scripts/maze/run.sh ${base00} ${base02} ${base08} ${base09} ${base0A} ${base0B} ${base0C} ${base0D} ${base0E} ${base0F}"
       # "swaybg -i $HOME/nix/scripts/maze/maze.png"
     ];
 
@@ -259,8 +259,7 @@ in
         "SHIFT Alt_L, mouse_down, workspace, -1"
 
         # Lock screen
-        ", F10, exec, ${execPref}hyprctl keyword input:kb_layout us,ru"
-        ", F10, exec, ${execPref}swaylock"
+        ", F10, exec, ${execPref}hyprctl keyword input:kb_layout us,ru && ${execPref}swaylock"
 
         # Screenshot
         "SUPER_SHIFT, s, exec, ${execPref}grimblast copysave area"
