@@ -5,8 +5,7 @@
 # ya pkg add KKV9/compress
 # ya pkg add atareao/convert
 
-{ pkgs, config, lib, ... }:
-{
+{ pkgs, config, lib, ... }: {
   home.packages = with pkgs; [ xdragon ];
 
   programs.yazi = with config.lib.stylix.colors; {
@@ -27,145 +26,68 @@
       mime-ext = yaziPlugins.mime-ext;
     };
 
-    settings.plugin = {
-      prepend_preloaders = [
-        # ARW support preview
-        # {
-        #   name = "*.ARW";
-        #   run = "magick";
-        # }
-      ];
-
-      prepend_fetchers = [
-        # plugin mime-ext
-        {
-          id = "mime";
-          name = "*";
-          run = "mime-ext";
-          prio = "high";
-        }
-        # plugin git
-        {
-          id = "git";
-          name = "*";
-          run = "git";
-        }
-        # plugin git
-        {
-          id = "git";
-          name = "*/";
-          run = "git";
-        }
-      ];
-      append_previewers = [
-        # plugin extra metadata
-        {
-          name = "*";
-          run = "file-extra-metadata";
-        }
-        # ARW support
-        # {
-        #   name = "*.ARW";
-        #   run = "magick";
-        # }
-      ];
-      spotters = [
-        # plugin extra metadata
-        {
-          name = "*";
-          run = "file-extra-metadata";
-        }
-      ];
-    };
-
-    keymap = {
-
-      mgr.prepend_keymap = [
-        # copy to system clipboard
-        {
-          on = "<C-y>";
-          run = [
-            ''
-              shell --interactive 'for path in "$@"; do echo "file://$path"; done | wl-copy -t text/uri-list' 
-            ''
-          ];
-        }
-        # drag and drop
-        {
-          on = "<C-g>";
-          run = ''
-            shell --interactive '${pkgs.xdragon}/bin/dragon -x -i -T "$1"'
-          '';
-        }
-        # plugin file-extra-metadata
-        {
-          on = "<Tab>";
-          run = "spot";
-          desc = "Spot hovered file";
-        }
-        # plugin mount
-        {
-          on = "<C-m>";
-          run = "plugin mount";
-          desc = "Mount partitions";
-        }
-        # plugin smart enter
-        {
-          on = "l";
-          run = "plugin smart-enter";
-          desc = "Enter the child directory, or open the file";
-        }
-        # plugin compress
-        {
-          on = [ "c" "a" "a" ];
-          run = "plugin compress";
-          desc = "Archive selected files";
-        }
-        {
-          on = [ "c" "a" "p" ];
-          run = "plugin compress -p";
-          desc = "Archive (password)";
-        }
-        {
-          on = [ "c" "a" "h" ];
-          run = "plugin compress -ph";
-          desc = "Archive (password+header)";
-        }
-        {
-          on = [ "c" "a" "l" ];
-          run = "plugin compress -l";
-          desc = "Archive (compression level)";
-        }
-        {
-          on = [ "c" "a" "u" ];
-          run = "plugin compress -phl";
-          desc = "Archive (password+header+level)";
-        }
-        # plugin convert imgs
-        {
-          on = [ "c" "p" ];
-          run = "plugin convert -- --extension='png'";
-          desc = "Convert to PNG";
-        }
-        {
-          on = [ "c" "j" ];
-          run = "plugin convert -- --extension='jpg'";
-          desc = "Convert to JPG";
-        }
-      ];
-    };
-
     settings = {
+      floating_window_scaling_factor = 0.5;
+      plugin = {
+        prepend_preloaders = [
+          # ARW support preview
+          # {
+          #   name = "*.ARW";
+          #   run = "magick";
+          # }
+        ];
+
+        prepend_fetchers = [
+          # plugin mime-ext
+          {
+            id = "mime";
+            name = "*";
+            run = "mime-ext";
+            prio = "high";
+          }
+          # plugin git
+          {
+            id = "git";
+            name = "*";
+            run = "git";
+          }
+          # plugin git
+          {
+            id = "git";
+            name = "*/";
+            run = "git";
+          }
+        ];
+        append_previewers = [
+          # plugin extra metadata
+          {
+            name = "*";
+            run = "file-extra-metadata";
+          }
+          # ARW support
+          # {
+          #   name = "*.ARW";
+          #   run = "magick";
+          # }
+        ];
+        spotters = [
+          # plugin extra metadata
+          {
+            name = "*";
+            run = "file-extra-metadata";
+          }
+        ];
+      };
 
       preview = {
-        # image_filter = "triangle";
+        image_filter = "triangle";
         image_quality = 70;
         max_width = 800;
         max_height = 800;
       };
 
       tasks = {
-        # image_alloc = 1536870912; # ARW support
+        image_alloc = 1536870912; # ARW support
         image_bound = [ 10000 10000 ]; # no limit for images preview
       };
 
@@ -391,6 +313,180 @@
         };
       };
 
+    };
+
+    keymap = {
+      mgr.prepend_keymap = [
+        # copy to system clipboard
+        {
+          on = "<C-y>";
+          run = [
+            ''
+              shell --interactive 'for path in "$@"; do echo "file://$path"; done | wl-copy -t text/uri-list' 
+            ''
+          ];
+        }
+        {
+          on = "<C-н>";
+          run = [
+            ''
+              shell --interactive 'for path in "$@"; do echo "file://$path"; done | wl-copy -t text/uri-list' 
+            ''
+          ];
+        }
+        # drag and drop
+        {
+          on = "<C-g>";
+          run = ''
+            shell --interactive '${pkgs.xdragon}/bin/dragon -x -i -T "$1"'
+          '';
+        }
+        {
+          on = "<C-п>";
+          run = ''
+            shell --interactive '${pkgs.xdragon}/bin/dragon -x -i -T "$1"'
+          '';
+        }
+        # plugin file-extra-metadata
+        {
+          on = "<Tab>";
+          run = "spot";
+          desc = "Spot hovered file";
+        }
+        # plugin mount
+        {
+          on = "<C-m>";
+          run = "plugin mount";
+          desc = "Mount partitions";
+        }
+        {
+          on = "<C-ь>";
+          run = "plugin mount";
+          desc = "Mount partitions";
+        }
+        # plugin smart enter
+        {
+          on = "l";
+          run = "plugin smart-enter";
+          desc = "Enter the child directory, or open the file";
+        }
+        {
+          on = "д";
+          run = "plugin smart-enter";
+          desc = "Enter the child directory, or open the file";
+        }
+        # plugin compress
+        {
+          on = [ "c" "a" "a" ];
+          run = "plugin compress";
+          desc = "Archive selected files";
+        }
+        {
+          on = [ "c" "a" "p" ];
+          run = "plugin compress -p";
+          desc = "Archive (password)";
+        }
+        {
+          on = [ "c" "a" "h" ];
+          run = "plugin compress -ph";
+          desc = "Archive (password+header)";
+        }
+        {
+          on = [ "c" "a" "l" ];
+          run = "plugin compress -l";
+          desc = "Archive (compression level)";
+        }
+        {
+          on = [ "c" "a" "u" ];
+          run = "plugin compress -phl";
+          desc = "Archive (password+header+level)";
+        }
+        # plugin convert imgs
+        {
+          on = [ "c" "p" ];
+          run = "plugin convert -- --extension='png'";
+          desc = "Convert to PNG";
+        }
+        {
+          on = [ "c" "j" ];
+          run = "plugin convert -- --extension='jpg'";
+          desc = "Convert to JPG";
+        }
+        # other rus
+        {
+          on = "Р";
+          run = "back";
+          desc = "Back to previous directory";
+        }
+        {
+          on = "Д";
+          run = "forward";
+          desc = "Forward to next directory";
+        }
+
+        {
+          on = "р";
+          run = "leave";
+          desc = "Back to parent directory";
+        }
+        {
+          on = "л";
+          run = "arrow prev";
+          desc = "Previous file";
+        }
+        {
+          on = "о";
+          run = "arrow next";
+          desc = "Next file";
+        }
+        {
+          on = "й";
+          run = "quit";
+          desc = "ru: quit";
+        }
+        {
+          on = "м";
+          run = "visual_mode";
+          desc = "ru: visual mode enter";
+        }
+        {
+          on = "н";
+          run = "yank";
+          desc = "ru: yank";
+        }
+        {
+          on = "Н";
+          run = "unyank";
+          desc = "ru: unyank";
+        }
+        {
+          on = "ч";
+          run = "yank --cut";
+          desc = "ru: cut";
+        }
+        {
+          on = "Ч";
+          run = "unyank";
+          desc = "ru: uncut";
+        }
+        {
+          on = "з";
+          run = "paste";
+          desc = "ru: paste";
+        }
+        {
+          on = "в";
+          run = "remove";
+          desc = "ru: trash";
+        }
+        {
+          on = "В";
+          run = "remove --permanently";
+          desc = "ru: delete";
+        }
+        { on = "е"; run = "tab_create --current"; desc = "Create a new tab with CWD"; }
+        { on = "ц"; run = "tasks:show"; desc = "Show task manager"; }
+      ];
     };
 
   };
