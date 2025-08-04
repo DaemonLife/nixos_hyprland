@@ -6,7 +6,7 @@
 
     base16Scheme = "${pkgs.base16-schemes}/share/themes/horizon-terminal-dark.yaml";
 
-    image = ../images/mars.jpg;
+    image = "/mnt/windows/Users/user/Documents/Лихо одноглазое/Wallpapers/Final_3840x2160.jpg";
 
     # override = {
     # author = "DaemonLife";
