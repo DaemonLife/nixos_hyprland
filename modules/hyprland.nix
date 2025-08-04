@@ -42,7 +42,7 @@ in
       "${execPref}waybar"
       "${execPref}mako"
       "${execPref}udiskie -a"
-      "${execPref}swayidle -w timeout 540 'hyprctl dispatch dpms off' timeout 600 'hyprctl keyword input:kb_layout us,ru && ${execPref}swaylock' resume 'hyprctl dispatch dpms on'"
+      "${execPref}swayidle -w timeout 540 'hyprctl dispatch dpms off' timeout 600 'hyprctl keyword input:kb_layout us,ru && ${execPref}swaylock' resume 'sleep 1 && hyprctl dispatch dpms on'"
     ];
 
     exec = [
@@ -112,13 +112,16 @@ in
       disable_hyprland_logo = true;
       disable_splash_rendering = true;
       animate_manual_resizes = false;
-      # animate_mouse_windowdragging = true; # need test this
       mouse_move_focuses_monitor = true;
-      initial_workspace_tracking = 1;
+      initial_workspace_tracking = 2;
       disable_autoreload = true; # for save battery
 
       mouse_move_enables_dpms = true;
       key_press_enables_dpms = true;
+      enable_swallow = true;
+      swallow_regex =
+        [ "*kitty*" ];
+
     };
 
     # Scale options
@@ -176,8 +179,9 @@ in
     ];
 
     bindl = [
-      ",switch:on:Lid Switch, exec, hyprctl keyword input:kb_layout us,ru && swaylock && hyprctl dispatch dpms off"
-      ",switch:off:Lid Switch, exec, hyprctl dispatch dpms on"
+      ", switch:Lid Switch, exec, swaylock && hyprctl keyword input:kb_layout us,ru"
+      # ",switch:off:Lid Switch, exec, hyprctl keyword input:kb_layout us,ru && swaylock && sleep 1 && hyprctl dispatch dpms off"
+      # ",switch:on:Lid Switch, exec, sleep 1 && hyprctl dispatch dpms on"
     ];
 
     # for long pressed
