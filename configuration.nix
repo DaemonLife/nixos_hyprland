@@ -269,6 +269,8 @@
       };
     };
 
+    amnezia-vpn.enable = true;
+
     # ------ Steam ------
     steam = {
       enable = true;

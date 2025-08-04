@@ -120,13 +120,6 @@
         ];
         "image" = [
           {
-            run = ''imv-dir "$@"'';
-            desc = "Open in imv";
-            orphan = true;
-          }
-        ];
-        "image_RAW" = [
-          {
             run = ''nomacs "$@"'';
             desc = "Open in nomacs";
             orphan = true;
@@ -176,12 +169,12 @@
           use = [ "image" ];
         }
         {
-          mime = "video/*";
-          use = [ "video" ];
+          name = "*.ARW";
+          use = "image";
         }
         {
-          name = "*.ARW";
-          use = "image_RAW";
+          mime = "video/*";
+          use = [ "video" ];
         }
         {
           name = "*.torrent";
@@ -192,6 +185,10 @@
         }
         {
           mime = "application/json";
+          use = [ "edit" ];
+        }
+        {
+          mime = "";
           use = [ "edit" ];
         }
         {

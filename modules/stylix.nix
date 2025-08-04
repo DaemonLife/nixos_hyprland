@@ -6,7 +6,7 @@
 
     base16Scheme = "${pkgs.base16-schemes}/share/themes/horizon-terminal-dark.yaml";
 
-    image = "/mnt/windows/Users/user/Documents/Лихо одноглазое/Wallpapers/Final_3840x2160.jpg";
+    image = ../images/Saints_3840x2160.jpg;
 
     # override = {
     # author = "DaemonLife";
@@ -53,7 +53,7 @@
         name = "Noto Color Emoji";
       };
       sizes = {
-        applications = 20;
+        applications = 22;
         terminal = 20;
         desktop = 20;
         popups = 18;

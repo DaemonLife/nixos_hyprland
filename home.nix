@@ -116,19 +116,6 @@ in
 
   programs = {
 
-    yambar = {
-      enable = false;
-      settings = {
-        bar = {
-          location = "top";
-          height = 32;
-          background = "00000000";
-
-          right = [{ clock.content = [{ string.text = "{time}"; }]; }];
-        };
-      };
-    };
-
     fastfetch = {
       enable = true;
     };

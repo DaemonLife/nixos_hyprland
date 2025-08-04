@@ -14,7 +14,6 @@
     ./gowall.nix
     ./qt.nix
     ./kitty.nix
-    # ./foot.nix
     ./gtk.nix
     ./fzf.nix
     ./yazi.nix
@@ -22,6 +21,7 @@
     ./joplin-cli.nix
     ./GIMP.nix
     ./nchat.nix
+    ./nomacs.nix
 
     ./nixvim.nix
     # ./helix.nix
@@ -29,6 +29,7 @@
     # ./sway.nix
     ./hyprland.nix
 
+    # ./foot.nix
     # ./alacritty.nix
     # ./eww/eww.nix
     # ./lf/lf.nix
