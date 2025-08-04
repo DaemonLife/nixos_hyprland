@@ -66,7 +66,7 @@ in
 
       # Utils
       cool-retro-term
-      # bottles
+      bottles
       veracrypt
       cmatrix # matrix in terminal
       wev # key events in wayland
