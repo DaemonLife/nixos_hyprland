@@ -1,6 +1,8 @@
-{ pkgs, config, ... }:
 {
-
+  pkgs,
+  config,
+  ...
+}: {
   programs.fish = with config.lib.stylix.colors; {
     enable = true;
 
@@ -32,19 +34,12 @@
     ];
 
     # when login to shell
-    # loginShellInit = ''
-    #   if not set -q DISPLAY
-    #     and test (tty) = "/dev/tty1"
-    #       exec uwsm start hyprland-uwsm.desktop
-    #       # exec sway
-    #   end
-    # '';
     loginShellInit = ''
       if not set -q DISPLAY
-        # setterm -background black
-
         if test (tty) = "/dev/tty1"
-          exec uwsm start hyprland-uwsm.desktop
+          echo "Run niri-session"
+          # niri-session
+          # exec uwsm start hyprland-uwsm.desktop
           # exec sway
         end
       end
@@ -66,7 +61,6 @@
     '';
 
     functions = {
-
       # disable it
       fish_greeting = "";
 
@@ -83,7 +77,6 @@
         end
         rm -f -- "$tmp"
       '';
-
     };
   };
 }

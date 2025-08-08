@@ -8,7 +8,7 @@
   imports = [
     ./mako.nix
     # ./sway.nix
-    ./hyprland.nix
+    # ./hyprland.nix
   ];
 
 }

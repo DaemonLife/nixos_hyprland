@@ -23,11 +23,13 @@
     ./nchat.nix
     ./nomacs.nix
 
-    ./nixvim.nix
+    ./nvf.nix
+    # ./nixvim.nix
     # ./helix.nix
 
     # ./sway.nix
-    ./hyprland.nix
+    # ./hyprland.nix
+    ./niri.nix
 
     # ./foot.nix
     # ./alacritty.nix
