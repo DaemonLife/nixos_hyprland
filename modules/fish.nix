@@ -37,7 +37,8 @@
     loginShellInit = ''
       if not set -q DISPLAY
         if test (tty) = "/dev/tty1"
-          echo "Run niri-session"
+          # echo "Run niri-session"
+          # bash $HOME/nix/scripts/start_niri.sh
           # niri-session
           # exec uwsm start hyprland-uwsm.desktop
           # exec sway

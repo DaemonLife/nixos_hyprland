@@ -317,7 +317,7 @@
     power-profiles-daemon.enable = false; # disable for tlp
     thermald.enable = true; # Thermald prevents overheating
 
-    xserver.displayManager.gdm.enable = false;
+    xserver.displayManager.gdm.enable = true;
     # xserver.displayManager.startx.enable = true;
     xserver.desktopManager.gnome.enable = false;
   }; # close services

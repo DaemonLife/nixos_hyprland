@@ -32,13 +32,13 @@
         };
       };
 
-      comments.comment-nvim = {
-        enable = true;
-        mappings = {
-          toggleCurrentLine = "<space>c";
-          toggleSelectedLine = "<space>c";
-        };
-      };
+      # comments.comment-nvim = {
+      #   enable = true;
+      #   mappings = {
+      #     toggleCurrentLine = "gc";
+      #     toggleSelectedLine = "gc";
+      #   };
+      # };
 
       visuals.indent-blankline = {
         enable = true;
@@ -48,7 +48,7 @@
       ui = {
         #borders.enable = true;
         colorizer.enable = false;
-        #fastaction.enable = true;
+        # fastaction.enable = true;
         #illuminate.enable = true;
         smartcolumn.enable = false;
       };
@@ -60,7 +60,7 @@
         nvim-lint.enable = true;
       };
 
-      git.enable = true;
+      # git.enable = true;
       autopairs.nvim-autopairs.enable = true;
       notify.nvim-notify.enable = true;
 
@@ -69,6 +69,8 @@
         whichKey.enable = true;
       };
 
+      mini.comment.enable = true;
+
       utility = {
         multicursors.enable = true;
         nvim-biscuits.enable = true;
@@ -76,13 +78,6 @@
           cursor_line_only = true;
         };
       };
-
-      # extraPlugins = with pkgs.vimPlugins; {
-      #   aerial = {
-      #     package = aerial-nvim;
-      #     setup = "require('aerial').setup {}";
-      #   };
-      # };
 
       keymaps = [
         # disable space
@@ -123,20 +118,30 @@
           mode = ["n" "v"];
           desc = "Paste from system slipboard";
         }
+        {
+          action = ''"+dl'';
+          key = "<space>d";
+          mode = ["n" "v"];
+          desc = "Cut to system slipboard";
+        }
         # --- new clipboard control ---
 
         # --- new comment control ---
         # {
         #   action = "gcc";
         #   key = "<space>c";
+        #   # mode = "n";
         #   mode = ["n" "v"];
         #   noremap = false;
+        #   silent = true;
         # }
         # {
         #   action = "gc";
         #   key = "<space>c";
+        #   # mode = "v";
         #   mode = ["n" "v"];
         #   noremap = false;
+        #   silent = true;
         # }
         # --- new comment control ---
 

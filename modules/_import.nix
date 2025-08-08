@@ -1,6 +1,4 @@
-{ ... }:
-{
-
+{...}: {
   imports = [
     ./firefox.nix
     ./mpv.nix
@@ -38,5 +36,4 @@
     # ./zsh.nix
     # ./ranger.nix
   ];
-
 }
