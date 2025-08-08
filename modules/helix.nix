@@ -1,12 +1,16 @@
-{ pkgs, ... }:
-{
+{ pkgs, ... }: {
 
   home.packages = with pkgs; [
-    nil # nix lang
-    nixpkgs-fmt # nix autoformat
+    # lang servers
+    nil # nix
+    bash-language-server
+
+    # auto format servers 
+    nixpkgs-fmt # nix
     # nixfmt-rfc-style # official nix format style
-    bash-language-server # bash lang
     shfmt # bash
+
+    # other
     shellcheck # bash
     vscode-langservers-extracted # html
     marksman # markdown
@@ -17,18 +21,19 @@
   ];
 
   programs.helix = {
-    # package = pkgs.unstable.helix;
     enable = true;
-    # defaultEditor = true;
+    defaultEditor = true;
 
     settings = {
+
       editor = {
         # Show currently open buffers, only when more than one exists.
         bufferline = "multiple";
         line-number = "relative";
-        # Highlight all lines with a cursor
         cursorline = true;
+        color-modes = true;
         lsp.display-messages = true;
+
         gutters = {
           layout = [
             "line-numbers"
@@ -37,7 +42,6 @@
           ];
           line-numbers.min-width = 1;
         };
-        color-modes = true;
 
         cursor-shape = {
           insert = "bar";
@@ -64,7 +68,7 @@
           enable = true;
           max-wrap = 25; # increase value to reduce forced mid-word wrapping
           max-indent-retain = 0;
-          wrap-indicator = ""; # set wrap-indicator to "" to hide it
+          wrap-indicator = ""; # hide it
         };
 
       }; # editor
@@ -245,14 +249,18 @@
         #   "ц" = "goto_word"; # w
         # };
 
-        # m = {
-        #   "ь" = "match_brackets"; # m
-        # "ы <char>" = "surround_add"; # s <char>
-        # "к <from><to>" = "surround_replace"; # r <from><to>
-        # "в <char>" = "surround_delete"; # d <char>
-        # "ф <object>" = "select_textobject_around"; # a <object>
-        # "ш <object>" = "select_textobject_inner"; # i <object>
-        # };
+        "ь" = {
+          "ь" = "match_brackets"; # m
+          "ы" = "surround_add"; # s <char>
+          "к" = "surround_replace"; # r <from><to>
+          "в" = "surround_delete"; # d <char>
+          "ф" = "select_textobject_around"; # a <object>
+          "ш" = "select_textobject_inner"; # i <object>
+        };
+
+        space = {
+          "с" = "toggle_comments";
+        };
 
         # w = {
         #   "ц" = "rotate_view"; # w
@@ -336,11 +344,9 @@
         "C-р" = "delete_char_backward"; # Ctrl-h
         "C-в" = "delete_char_forward"; # Ctrl-d
         "C-о" = "insert_newline"; # Ctrl-j
-
       };
 
       keys.select = {
-
         tab = "extend_parent_node_end";
         S-tab = "extend_parent_node_start";
 
@@ -387,7 +393,6 @@
         # "." = "global_search"; # /
         # "," = "command_palette"; # ?
       };
-
     }; # settings
 
     languages = {
@@ -473,6 +478,7 @@
         }
       ];
     };
-
   }; # programs
-} # main
+}
+# main
+

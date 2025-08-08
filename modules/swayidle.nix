@@ -1,5 +1,4 @@
-{ ... }: {
-
+{...}: {
   services.swayidle = {
     enable = true;
     #   systemdTarget = "hyprland-session.target";
@@ -31,7 +30,5 @@
     #       command = "hyprctl dispatch dpms off";
     #     }
     #   ];
-
   };
-
 }

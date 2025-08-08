@@ -1,10 +1,11 @@
-{ pkgs, lib, ... }:
-let
-  username = "user";
-in
 {
-
-  imports = [ ./modules/_import.nix ];
+  pkgs,
+  lib,
+  ...
+}: let
+  username = "user";
+in {
+  imports = [./modules/_import.nix];
 
   home = {
     username = username;
@@ -12,7 +13,6 @@ in
     stateVersion = "24.05";
 
     packages = with pkgs; [
-
       # --------------------------------
       # SOFT FOR DE
       # --------------------------------
@@ -28,7 +28,6 @@ in
       zip
       fzy
       dua # disk usage TUI tool. Run: dua i
-      libraw # lib for raw support maybe for imv
       unstable.nchat
       tg
 
@@ -105,9 +104,8 @@ in
       curseofwar # stategy cli game
       vitetris # tetris cli game
       # dwarf-fortress-packages.dwarf-fortress-full
-
     ];
-    sessionPath = [ "$HOME/.local/bin" ];
+    sessionPath = ["$HOME/.local/bin"];
   };
 
   # --------------------------------
@@ -115,7 +113,6 @@ in
   # --------------------------------
 
   programs = {
-
     fastfetch = {
       enable = true;
     };
@@ -124,6 +121,16 @@ in
     };
     imv = {
       enable = true;
+    };
+
+    bash = {
+      initExtra = ''
+        if [[ $(${pkgs.procps}/bin/ps --no-header --pid=$PPID --format=comm) != "fish" && -z ''${BASH_EXECUTION_STRING} ]]
+        then
+          shopt -q login_shell && LOGIN_OPTION='--login' || LOGIN_OPTION=""
+          exec ${pkgs.fish}/bin/fish $LOGIN_OPTION
+        fi
+      '';
     };
 
     btop = {
@@ -135,7 +142,6 @@ in
         vim_keys = lib.mkForce true;
       };
     };
-
   };
 
   dconf = {

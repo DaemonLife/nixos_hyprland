@@ -1,15 +1,14 @@
-{ config
-, pkgs
-, lib
-, ...
-}:
 {
-
+  config,
+  pkgs,
+  lib,
+  ...
+}: {
   # --------------------------------
   # SYSTEM THEME
   # --------------------------------
 
-  imports = [ ./modules/stylix.nix ];
+  imports = [./modules/stylix.nix];
 
   # TTYI colors
   console = with config.lib.stylix.colors; {
@@ -38,16 +37,14 @@
   # --------------------------------
 
   environment = {
-    variables =
-      let
-        EDITOR = "vi";
-      in
-      {
-        EDITOR = "${EDITOR}";
-        SYSTEMD_EDITOR = "${EDITOR}";
-        VISUAL = "${EDITOR}";
-        BROWSER = "qutebrowser";
-      };
+    variables = let
+      EDITOR = "vi";
+    in {
+      EDITOR = "${EDITOR}";
+      SYSTEMD_EDITOR = "${EDITOR}";
+      VISUAL = "${EDITOR}";
+      BROWSER = "qutebrowser";
+    };
     # Run Electron apps without XWayland
     sessionVariables.NIXOS_OZONE_WL = "1";
   };
@@ -89,9 +86,9 @@
 
   # Enable scanner
   hardware.sane.enable = true; # enables support for scanners
-  hardware.sane.extraBackends = [ pkgs.sane-airscan ];
+  hardware.sane.extraBackends = [pkgs.sane-airscan];
   # udev, a device manager for the Linux kernel.
-  services.udev.packages = [ pkgs.sane-airscan ];
+  services.udev.packages = [pkgs.sane-airscan];
 
   # Enable sound with pipewire.
   # rtkit is optional but recommended for pipewire
@@ -142,7 +139,7 @@
       "lp"
     ];
 
-    packages = with pkgs; [ flatpak ];
+    packages = with pkgs; [flatpak];
   };
 
   # virtualbox
@@ -164,7 +161,6 @@
 
     optimise.automatic = true;
     settings.auto-optimise-store = true;
-
   };
 
   # --------------------------------
@@ -218,7 +214,6 @@
   # virtualisation.virtualbox.guest.enable = true;
 
   programs = {
-
     # sway = {
     #   enable = true;
     #   wrapperFeatures.gtk = true; # gtk fix
@@ -293,12 +288,15 @@
     fish.enable = true;
 
     # --- hyprland ---
-    hyprland = {
-      enable = true;
-      withUWSM = true;
-    };
+    # hyprland = {
+    #   enable = true;
+    #   withUWSM = true;
+    # };
     # --- hyprland ---
 
+    # --- niri ---
+    niri.enable = true;
+    # --- niri ---
   };
 
   # --------------------------------
@@ -306,7 +304,6 @@
   # --------------------------------
 
   services = {
-
     xray = {
       enable = true;
       settingsFile = "/etc/xray/config.json";
@@ -316,24 +313,22 @@
     flatpak.enable = true;
     gvfs.enable = true; # Mount, trash, and other functionalities
     tumbler.enable = true; # Thunar thumbnail support for images
-    # gnome.gnome-keyring.enable = true; # for sway
+    gnome.gnome-keyring.enable = true; # for sway
     power-profiles-daemon.enable = false; # disable for tlp
     thermald.enable = true; # Thermald prevents overheating
 
-    xserver.displayManager.gdm.enable = false;
+    xserver.displayManager.gdm.enable = true;
     # xserver.displayManager.startx.enable = true;
     xserver.desktopManager.gnome.enable = false;
-
   }; # close services
 
   systemd = {
-
     # authentication for programs
     user.services.polkit-gnome-authentication-agent-1 = {
       description = "polkit-gnome-authentication-agent-1";
-      wantedBy = [ "graphical-session.target" ];
-      wants = [ "graphical-session.target" ];
-      after = [ "graphical-session.target" ];
+      wantedBy = ["graphical-session.target"];
+      wants = ["graphical-session.target"];
+      after = ["graphical-session.target"];
       serviceConfig = {
         Type = "simple";
         ExecStart = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
@@ -350,7 +345,6 @@
       AllowSuspendThenHibernate=yes
       HibernateDelaySec=3600
     '';
-
   };
 
   # --------------------------------
@@ -358,8 +352,8 @@
   # --------------------------------
 
   security = {
-    # polkit.enable = true; # authentication support for sway
-    pam.services.swaylock = { }; # screen lock
+    polkit.enable = true; # authentication support for sway
+    pam.services.swaylock = {}; # screen lock
   };
 
   # --------------------------------
