@@ -106,6 +106,11 @@
           position x=2048 y=400
       }
 
+      // gpd
+      output "DSI-1" {
+      transform "270"
+      }
+
       layout {
           gaps 18
           center-focused-column "never"
