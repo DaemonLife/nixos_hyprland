@@ -17,6 +17,7 @@
   home.packages = with pkgs; [
     brightnessctl
     swayidle
+    swaybg
     xwayland-satellite # x11 support
   ];
 
@@ -174,7 +175,6 @@
       spawn-at-startup "mako"
       spawn-at-startup "xwayland-satellite"
       spawn-at-startup "swayidle" "-w" "timeout" "501" "niri msg action power-off-monitors" "timeout" "500" "swaylock -f" "before-sleep" "swaylock -f"
-      spawn-at-startup "AmneziaVPN"
 
       hotkey-overlay {
           skip-at-startup
